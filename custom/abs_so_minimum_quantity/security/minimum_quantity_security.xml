@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="minimum_quantity_group" model="res.groups">
+            <field name="name">Unrestrict Minimun Quantity on SO Lines</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+            <field name="comment">This group can assign less quantity than minimun quantity to sale order lines.</field>
+        </record>
+    </data>
+</odoo>

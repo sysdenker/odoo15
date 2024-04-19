@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<templates xml:space="preserve">
+    <t t-name="enotif_woo_template_order">
+        <div id="enotif_woo_order">
+        
+          <button id="enotif_woo_order_import_orders">Import all orders</button>
+          <div id="enotif_woo_order_result"></div>
+                              
+        </div>        
+    </t>
+</templates>

@@ -1,0 +1,113 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cnd_l10n_mx_edi_cancellation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-08 00:21+0000\n"
+"PO-Revision-Date: 2022-01-08 00:21+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cnd_l10n_mx_edi_cancellation
+#: model:ir.model.fields.selection,name:cnd_l10n_mx_edi_cancellation.selection__account_move__l10n_mx_edi_cancellation_type__01
+msgid "\"01\" Comprobante emitido con errores con relación"
+msgstr ""
+
+#. module: cnd_l10n_mx_edi_cancellation
+#: model:ir.model.fields.selection,name:cnd_l10n_mx_edi_cancellation.selection__account_move__l10n_mx_edi_cancellation_type__02
+msgid "\"02\" Comprobante emitido con errores sin relación"
+msgstr ""
+
+#. module: cnd_l10n_mx_edi_cancellation
+#: model:ir.model.fields.selection,name:cnd_l10n_mx_edi_cancellation.selection__account_move__l10n_mx_edi_cancellation_type__03
+msgid "\"03\" No se llevó a cabo la operación"
+msgstr ""
+
+#. module: cnd_l10n_mx_edi_cancellation
+#: model:ir.model.fields.selection,name:cnd_l10n_mx_edi_cancellation.selection__account_move__l10n_mx_edi_cancellation_type__04
+msgid "\"04\" Operación nominativa relacionada en la factura global"
+msgstr ""
+
+#. module: cnd_l10n_mx_edi_cancellation
+#: model:ir.model.fields,field_description:cnd_l10n_mx_edi_cancellation.field_account_move__l10n_mx_edi_cancellation_related_uuid
+msgid "Cancellation Fiscal Folio"
+msgstr "Folio Fiscal de Canc. relacionado"
+
+#. module: cnd_l10n_mx_edi_cancellation
+#: model:ir.model.fields,field_description:cnd_l10n_mx_edi_cancellation.field_account_move__l10n_mx_edi_cancellation_type
+msgid "Cancellation Type"
+msgstr "Tipo de Cancelación"
+
+#. module: cnd_l10n_mx_edi_cancellation
+#: model_terms:ir.ui.view,arch_db:cnd_l10n_mx_edi_cancellation.l10n_mx_edi_cancellation_account_move_search_view
+msgid "Cancelled"
+msgstr "Cancelada"
+
+#. module: cnd_l10n_mx_edi_cancellation
+#: model:ir.model.fields,help:cnd_l10n_mx_edi_cancellation.field_account_move__l10n_mx_edi_cancellation_related_uuid
+msgid ""
+"Fiscal Folio (UUID) related to the \"Cancellation Type\" selection, required"
+" only if the \"Cancellation Type\" is \"01\"."
+msgstr ""
+"Folio fiscal (UUID) relacionado con la selección \"Tipo de cancelación\", requerido solo si el \"Tipo de cancelación\" es \"01\"."
+
+#. module: cnd_l10n_mx_edi_cancellation
+#: model:ir.model,name:cnd_l10n_mx_edi_cancellation.model_account_move
+msgid "Journal Entries"
+msgstr "Asientos contables"
+
+#. module: cnd_l10n_mx_edi_cancellation
+#: model:ir.model,name:cnd_l10n_mx_edi_cancellation.model_l10n_mx_edi_pac_sw_mixin
+msgid "Mixin methods for PAC SW"
+msgstr "Mezcla de métodos para el PAC SW"
+
+#. module: cnd_l10n_mx_edi_cancellation
+#: model:ir.model.fields,help:cnd_l10n_mx_edi_cancellation.field_account_move__l10n_mx_edi_cancellation_type
+msgid ""
+"The SAT has 4 cases in which an invoice could be cancelled, please fill this field based on your case:\n"
+"Case 1: The invoice was generated with errors and must be re-invoiced, the format must be:\n"
+"\"01|UUID\", where the UUID is the fiscal folio of the new invoice generated to replace invoice to cancel.\n"
+"Case 2: The invoice has an error on the customer, this will be cancelled and replaced by a new with de correct customer. The format must be:\n"
+"\"02\", only is required the case number.\n"
+"Case 3: It is applied when an operation that does not materialize was billed. The format must be:\n"
+"\"03\", only is required the case number.\n"
+"Case 4: This assumption applies when a sale is included in the global invoice for operations with the general public and after that, the client requests his nominative invoice, which leads to cancel the global invoice and reissue it, as well as generate the nominative invoice to the customer. The format must be:\n"
+"\"04\", only is required the case number.\n"
+msgstr ""
+"El SAT tiene 4 casos en los que se podría cancelar una factura, por favor complete este campo según su caso:\n"
+"Caso 1: La factura se generó con errores y se debe volver a facturar, el formato debe ser:\n"
+"\"01|UUID\", donde el UUID es el folio fiscal de la nueva factura generada para reemplazar la factura a cancelar.\n"
+"Caso 2: La factura tiene un error en el cliente, esta será cancelada y reemplazada por una nueva con el cliente correcto. El formato debe ser:\n"
+"\"02\", sólo se requiere el número de caso.\n"
+"Caso 3: Se generó la factura pero se canceló la operación, esta será cancelada y no se debe generar una nueva factura. El formato debe ser:\n"
+"\"03\", sólo se requiere el número de caso.\n"
+"Caso 4: Este supuesto aplica cuando se incluye una venta en la factura global para operaciones con público en general y posterior a ello, el cliente solicita su factura nominativa, lo que lleva a cancelar la factura global y reemitirla, así como generar la factura nominativa al cliente. El formato debe ser:\n"
+"\"04\", sólo se requiere el número de caso.\n"
+
+#. module: cnd_l10n_mx_edi_cancellation
+#: code:addons/cnd_l10n_mx_edi_cancellation/models/account_move.py:0
+#, python-format
+msgid ""
+"The format must be similar to \"aa6635e1-e394-463b-b43d-69eb4c3a8570\", "
+"please, verify if the UUID is correct."
+msgstr ""
+"El formato debe ser similar a \"aa6635e1-e394-463b-b43d-69eb4c3a8570\", verifique que el UUID es correcto."
+
+#. module: cnd_l10n_mx_edi_cancellation
+#: code:addons/cnd_l10n_mx_edi_cancellation/__init__.py:0
+#, python-format
+msgid "This module support Odoo series 13.0, found %s."
+msgstr "Este módulo soporta Odoo serie 13.0, encontrado %s."
+
+#. module: cnd_l10n_mx_edi_cancellation
+#: code:addons/cnd_l10n_mx_edi_cancellation/models/pac_sw_mixin.py:0
+#, python-format
+msgid "Token could not be obtained %s"
+msgstr "No se pudo obtener el token %s"

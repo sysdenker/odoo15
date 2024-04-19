@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="Custom backend assets"
+              inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script
+                    src="/custom_exception/static/src/lib/sweetalert.min.js"></script>
+            <script type="text/javascript"
+                    src="/custom_exception/static/src/js/custom_exception.js"></script>
+        </xpath>
+    </template>
+</odoo>

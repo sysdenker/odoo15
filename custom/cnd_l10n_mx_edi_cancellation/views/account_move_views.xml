@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+	<record id="l10n_mx_edi_cancellation_account_move_form_view" model="ir.ui.view">
+		<field name="name">l10n_mx.edi.cancellation.account.move.view</field>
+		<field name="model">account.move</field>
+		<field name="inherit_id" ref="l10n_mx_edi.view_l10n_mx_edi_invoice_form_inherit"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='l10n_mx_edi_origin']" position="after">
+				<field name="l10n_mx_edi_cancellation_type" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+				<field name="l10n_mx_edi_cancellation_related_uuid" attrs="{'invisible': [('l10n_mx_edi_cancellation_type', '!=', '01')], 'required': [('l10n_mx_edi_cancellation_type', '=', '01')]}"/>
+			</xpath>
+		</field>
+	</record>
+
+	<record id="l10n_mx_edi_cancellation_account_move_search_view" model="ir.ui.view">
+	 	<field name="name">l10n_mx.edi.cancellation.account.move.search.view</field>
+		<field name="model">account.move</field>
+		<field name="inherit_id" ref="account.view_account_invoice_filter"/>
+		<field name="arch" type="xml">
+			<xpath expr="//filter[@name='late']" position="after">
+				<separator/>
+				<filter name="cfdi_cancelled" string="Cancelled" domain="[('l10n_mx_edi_cancellation', '!=', False)]"/>
+			</xpath>
+		</field>
+    </record>
+</odoo>
