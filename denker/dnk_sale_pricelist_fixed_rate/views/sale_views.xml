@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="dnk_sale_pricelist_fixed_rate_capture_price_unit_form" model="ir.ui.view">
+			<field name="name">dnk.sale.pricelist.fixed.rate.capture.price.unit.form</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='price_unit']" position="attributes">
+					<attribute name="readonly">1</attribute>
+				</xpath>
+			</field>
+		</record>
+
+		<record id="dnk_sale_pricelist_fixed_rate_edit_capture_price_unit_form" model="ir.ui.view">
+			<field name="name">dnk.sale.pricelist.fixed.rate.edit.capture.price.unit.form</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="dnk_sale_pricelist_fixed_rate_capture_price_unit_form"/>
+			<field name="groups_id" eval="[(4, ref('dnk_sale_pricelist_fixed_rate.dnk_group_capture_price_unit'))]"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='price_unit']" position="attributes">
+					<attribute name="readonly">0</attribute>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

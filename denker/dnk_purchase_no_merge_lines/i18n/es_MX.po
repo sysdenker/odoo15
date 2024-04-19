@@ -1,0 +1,32 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* dnk_product_price_currency
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-10-16 16:10+0000\n"
+"PO-Revision-Date: 2018-10-16 16:10+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dnk_product_price_currency
+#: model:ir.model.fields,field_description:dnk_product_price_currency.field_product_product_dnk_price_currency_id
+#: model:ir.model.fields,field_description:dnk_product_price_currency.field_product_template_dnk_price_currency_id
+msgid "- Price List Currency"
+msgstr "- Moneda del Precio de Venta"
+
+#. module: dnk_product_price_currency
+#: model:ir.model,name:dnk_product_price_currency.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: dnk_product_price_currency
+#: model:ir.model,name:dnk_product_price_currency.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"

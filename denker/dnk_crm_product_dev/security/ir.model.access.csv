@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+dnk_crm_pdev_admin_access, Denker Product Development Admin Access,model_dnk_crm_product_dev,dnk_crm_product_dev.dnk_crm_product_dev_admin_group,1,1,1,1
+dnk_crm_pdev_user_access, Denker Product Development User Access,model_dnk_crm_product_dev,dnk_crm_product_dev.dnk_crm_product_dev_user_group,1,1,1,1
+dnk_crm_pdl_user_access, Denker Product Dev Line User Access,model_dnk_crm_product_dev_line,dnk_crm_product_dev.dnk_crm_product_dev_user_group,1,1,1,1
+dnk_crm_pdl_adm_access, Denker Product Dev Line Admin Access,model_dnk_crm_product_dev_line,dnk_crm_product_dev.dnk_crm_product_dev_admin_group,1,1,1,1
+dnk_crm_pdev_stage_admin, Denker Product Development Stage Admin,model_dnk_crm_pd_stage,dnk_crm_product_dev.dnk_crm_product_dev_admin_group,1,1,1,1
+dnk_crm_pdev_stage_user, Denker Product Development Stage User,model_dnk_crm_pd_stage,dnk_crm_product_dev.dnk_crm_product_dev_user_group,1,0,0,0
+dnk_crm_pdev_type_admin, Denker Product Development Type Admin,model_dnk_crm_pd_type,dnk_crm_product_dev.dnk_crm_product_dev_admin_group,1,1,1,1
+dnk_crm_pdev_type_user, Denker Product Development Type User,model_dnk_crm_pd_type,dnk_crm_product_dev.dnk_crm_product_dev_user_group,1,0,0,0
+dnk_crm_pdav_admin, Denker Product Dev Attr Value Admin,model_dnk_pdev_attribute_value,dnk_crm_product_dev.dnk_crm_product_dev_admin_group,1,1,1,1
+dnk_crm_pdav_user, Denker Product Dev Attr Value User,model_dnk_pdev_attribute_value,dnk_crm_product_dev.dnk_crm_product_dev_user_group,1,0,0,0
+dnk_crm_pdev_stage_hist, Denker PDev Stage,model_dnk_crm_pd_stage_hist,dnk_crm_product_dev.dnk_crm_product_dev_user_group,1,0,1,0
+dnk_product_cat_price_admin, Denker Product Category Price Admin,model_dnk_pdev_category_price,dnk_crm_product_dev.dnk_crm_product_dev_admin_group,1,1,1,1
+dnk_product_cat_price_user, Denker Product Category Price User,model_dnk_pdev_category_price,dnk_crm_product_dev.dnk_crm_product_dev_user_group,1,0,0,0

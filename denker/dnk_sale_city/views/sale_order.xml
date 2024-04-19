@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="dnk_sale_order_sale_city_form_view" model="ir.ui.view">
+            <field name="name">dnk_sale_order_sale_city_form_view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                    <field name="dnk_sale_city_id" readonly="True"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Esta vista se tiene quitar de aquí y ponerla en el módulo de dnk_sale_order_line_menu-->
+        <!--
+        <record id="dnk_view_sale_line_menu2_sale_city_form" model="ir.ui.view">
+    				<field name="name">dnk_view_sale_line_menu2_sale_city_form</field>
+    				<field name="model">sale.order.line</field>
+    				<field name="inherit_id" ref="dnk_sale_order_line_menu.dnk_view_sale_order_line_form"/>
+    				<field name="arch" type="xml">
+    						<field name="dnk_color_id" position="after">
+    							<field name="dnk_sale_city_id"/>
+    					</field>
+    				</field>
+    		</record>
+        -->
+    </data>
+</odoo>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="dnk_show_sale_price_form_product_template">
+        <field name="name">dnk_show_sale_price_form_product_template</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <label for="list_price" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_sale_price</attribute>
+            </label>
+            <div name="pricing" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_sale_price</attribute>
+            </div>
+            <field name="dnk_force_currency_id" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_sale_price</attribute>
+            </field>
+            <label for="standard_price" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_cost_price</attribute>
+            </label>
+            <div name="standard_price_uom" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_cost_price</attribute>
+            </div>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="dnk_show_sale_price_tree_product_template">
+        <field name="name">dnk_show_sale_price_tree_product_template</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="list_price" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_sale_price</attribute>
+            </field>
+            <field name="standard_price" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_cost_price</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="dnk_show_sale_price_kanban_product_template">
+        <field name="name">dnk_show_sale_price_kanban_product_template</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div/div/ul/li[1]" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_sale_price</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="dnk_show_sale_price_form_product_product">
+        <field name="name">dnk_show_sale_price_form_product_product</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <label for="lst_price" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_sale_price</attribute>
+            </label>
+            <field name="lst_price" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_sale_price</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="dnk_show_sale_price_tree_product_product">
+        <field name="name">dnk_show_sale_price_tree_product_product</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="lst_price" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_sale_price</attribute>
+            </field>
+            <field name="standard_price" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_cost_price</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="dnk_show_sale_price_kanban_product">
+        <field name="name">dnk_show_sale_price_kanban_product</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div/div[2]/ul/li[1]" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_sale_price</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!--Tal vez no sea necesaria esta vista, comprobar -->
+    <!-- <record model="ir.ui.view" id="dnk_show_cost_price_form_product_template">
+        <field name="name">dnk_show_cost_price_form_product_template</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <label for="standard_price" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_cost_price</attribute>
+            </label>
+            <field name="standard_price" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_cost_price</attribute>
+            </field>
+            <!- Por el momento no eliminar estas líneas ya que no sé aún si se van a necesitar estos campos en Odoo v13
+            <field name="dnk_theoretical_cost" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_cost_price</attribute>
+            </field>
+            <field name="dnk_theoretical_cost_currency_id" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_cost_price</attribute>
+            </field>->
+        </field>
+    </record> -->
+
+    <!-- Por el momento no eliminar estas líneas ya que no sé aún si se van a necesitar estos campos en Odoo v13
+    <record model="ir.ui.view" id="dnk_show_product_theoretical_cost_tree_view">
+        <field name="name">dnk.show.product.theoretical.cost.tree.view</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="dnk_sale_theoretical_cost.dnk_product_product_theoretical_cost_tree"/>
+        <field name="arch" type="xml">
+            <field name="standard_price" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_cost_price</attribute>
+            </field>
+            <field name="dnk_theoretical_cost" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_cost_price</attribute>
+            </field>
+        </field>
+    </record>-->
+
+    <!-- Por el momento no eliminar estas líneas ya que no sé aún si se van a necesitar estos campos en Odoo v13
+    <record model="ir.ui.view" id="dnk_show_theoretical_cost_form_product_template">
+        <field name="name">dnk.show.theoretical.cost.form.product.template</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="dnk_sale_theoretical_cost.dnk_product_template_theoretical_cost_form"/>
+        <field name="arch" type="xml">
+            <label for="dnk_theoretical_cost" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_cost_price</attribute>
+            </label>
+        </field>
+    </record>-->
+
+    <!-- mod por Odoo15
+    <record model="ir.ui.view" id="dnk_product_hide_cost_price_variant_easy_edit_view_inherit">
+        <field name="name">dnk.product.hide.cost.price.variant.easy.edit.view.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock_account.product_variant_easy_edit_view_inherit"/>
+        <field name="arch" type="xml">
+            <div name="update_cost_price" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_cost_price</attribute>
+            </div>
+        </field>
+    </record>-->
+
+    <!-- mod por Odoo15
+    <record model="ir.ui.view" id="dnk_product_hide_cost_price_view_template_property_form">
+        <field name="name">dnk.product.hide.cost.price.view.template.property.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock_account.view_template_property_form"/>
+        <field name="arch" type="xml">
+            <span name="update_cost_price" position="attributes">
+                <attribute name="groups">dnk_product_hide_cost.dnk_show_cost_price</attribute>
+            </span>
+        </field>
+    </record>-->
+
+</odoo>

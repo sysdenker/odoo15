@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="dnk_crm_category">
+            <field name="name">- Denker CRM</field>
+            <field name="description">Categoría para los grupos CRM</field>
+            <field name="sequence">105</field>
+        </record>
+        <record model="ir.module.category" id="dnk_accounting_category">
+            <field name="name">- Denker Accounting</field>
+            <field name="description">Categoría para los grupos de Contabilidad</field>
+            <field name="sequence">107</field>
+        </record>
+        <record model="ir.module.category" id="dnk_sales_category">
+            <field name="name">- Denker Sales</field>
+            <field name="description">Categoría para los grupos de Ventas</field>
+            <field name="sequence">108</field>
+        </record>
+        <record model="ir.module.category" id="dnk_purchases_category">
+            <field name="name">- Denker Purchases</field>
+            <field name="description">Categoría para los grupos de Compras</field>
+            <field name="sequence">109</field>
+        </record>
+        <record model="ir.module.category" id="dnk_product_category">
+            <field name="name">- Denker Products</field>
+            <field name="description">Categoría para los grupos de Productos</field>
+            <field name="sequence">110</field>
+        </record>
+        <record model="ir.module.category" id="dnk_mrp_category">
+            <field name="name">- Denker MRP</field>
+            <field name="description">Categoría para los grupos de MRP</field>
+            <field name="sequence">120</field>
+        </record>
+        <record model="ir.module.category" id="dnk_stock_category">
+            <field name="name">- Denker Inventario</field>
+            <field name="description">Categoría para los grupos de Inventario</field>
+            <field name="sequence">130</field>
+        </record>
+        <record model="ir.module.category" id="dnk_maintenance_category">
+            <field name="name">- Denker Mantenimiento</field>
+            <field name="description">Categoría para los grupos de Mantenimiento</field>
+            <field name="sequence">140</field>
+        </record>
+    </data>
+</odoo>

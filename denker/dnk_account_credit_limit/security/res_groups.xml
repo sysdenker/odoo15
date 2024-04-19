@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="dnk_account_credit_limit_group" model="res.groups">
+            <field name="name">Credit Limit</field>
+            <field name="comment">This group can see and edit credit limit fields.</field>
+            <field name="category_id" ref="dnk_groups_categories.dnk_accounting_category"/>
+        </record>
+    </data>
+</odoo>

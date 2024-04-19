@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<odoo noupdate="0">
+	<record forcecreate="True" id="dnk_update_crm_lead_new_to_working" model="ir.cron">
+		<field name="name">Update CRM Lead New to Working</field>
+		<field eval="False" name="active" />
+		<field name="user_id" ref="base.user_root" />
+		<field name="interval_number">7</field>
+		<field name="interval_type">days</field>
+		<field name="numbercall">-1</field>
+		<field name="model_id" ref="dnk_crm_opportunities.model_crm_lead" />
+		<field name="state">code</field>
+		<field name="code">
+      model.cron_update_crm_to_working()
+		</field>
+	</record>
+
+  <record forcecreate="True" id="dnk_update_crm_lead_to_sale_stopped" model="ir.cron">
+		<field name="name">Update CRM Lead Selling to Sale Stopped</field>
+		<field eval="False" name="active" />
+		<field name="user_id" ref="base.user_root" />
+		<field name="interval_number">7</field>
+		<field name="interval_type">days</field>
+		<field name="numbercall">-1</field>
+		<field name="model_id" ref="dnk_crm_opportunities.model_crm_lead" />
+		<field name="state">code</field>
+		<field name="code">
+      model.cron_update_crm_to_sale_stopped()
+		</field>
+	</record>
+
+  <record forcecreate="True" id="dnk_update_crm_lead_to_selling" model="ir.cron">
+		<field name="name">Update CRM Lead Selling to Selling</field>
+		<field eval="False" name="active" />
+		<field name="user_id" ref="base.user_root" />
+		<field name="interval_number">7</field>
+		<field name="interval_type">days</field>
+		<field name="numbercall">-1</field>
+		<field name="model_id" ref="dnk_crm_opportunities.model_crm_lead" />
+		<field name="state">code</field>
+		<field name="code">
+      model.cron_update_crm_to_selling()
+		</field>
+	</record>
+
+</odoo>

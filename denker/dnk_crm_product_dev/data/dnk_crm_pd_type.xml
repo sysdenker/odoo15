@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="data_dnk_pd_type_1" model="dnk.crm.pd.type">
+            <field name="name">Producir Muestrario</field>
+            <field name="sequence">1</field>
+            <field name="dnk_pc_delivery_date">0</field>
+            <field name="dnk_ps_delivery_date">7</field>
+        </record>
+        <record id="data_dnk_pd_type_2" model="dnk.crm.pd.type">
+            <field name="name">Producir Muestra</field>
+            <field name="sequence">2</field>
+            <field name="dnk_pc_delivery_date">0</field>
+            <field name="dnk_ps_delivery_date">5</field>
+        </record>
+        <record id="data_dnk_pd_type_3" model="dnk.crm.pd.type">
+            <field name="name">Entregar Muestra</field>
+            <field name="sequence">3</field>
+            <field name="dnk_pc_delivery_date">0</field>
+            <field name="dnk_ps_delivery_date">2</field>
+        </record>
+        <record id="data_dnk_pd_type_4" model="dnk.crm.pd.type">
+            <field name="name">Nueva Variante [Política]</field>
+            <field name="sequence">4</field>
+            <field name="dnk_pc_delivery_date">3</field>
+            <field name="dnk_ps_delivery_date">5</field>
+        </record>
+        <record id="data_dnk_pd_type_5" model="dnk.crm.pd.type">
+            <field name="name">Nueva Característica [Patrón]</field>
+            <field name="sequence">5</field>
+            <field name="dnk_pc_delivery_date">7</field>
+            <field name="dnk_ps_delivery_date">8</field>
+        </record>
+        <record id="data_dnk_pd_type_6" model="dnk.crm.pd.type">
+            <field name="name">Nueva Característica [Laminado]</field>
+            <field name="sequence">6</field>
+            <field name="dnk_pc_delivery_date">15</field>
+            <field name="dnk_ps_delivery_date">60</field>
+        </record>
+        <record id="data_dnk_pd_type_7" model="dnk.crm.pd.type">
+            <field name="name">Nuevo Diseño Gráfico</field>
+            <field name="sequence">7</field>
+            <field name="dnk_pc_delivery_date">0</field>
+            <field name="dnk_ps_delivery_date">0</field>
+        </record>
+        <record id="data_dnk_pd_type_8" model="dnk.crm.pd.type">
+            <field name="name">Nueva MP</field>
+            <field name="sequence">8</field>
+            <field name="dnk_pc_delivery_date">30</field>
+            <field name="dnk_ps_delivery_date">7</field>
+        </record>
+        <record id="data_dnk_pd_type_9" model="dnk.crm.pd.type">
+            <field name="name">Nuevo Proveedor</field>
+            <field name="sequence">9</field>
+            <field name="dnk_pc_delivery_date">30</field>
+            <field name="dnk_ps_delivery_date">60</field>
+        </record>
+        <record id="data_dnk_pd_type_10" model="dnk.crm.pd.type">
+            <field name="name">Mejora al Proceso</field>
+            <field name="sequence">10</field>
+            <field name="dnk_pc_delivery_date">0</field>
+            <field name="dnk_ps_delivery_date">0</field>
+        </record>
+        <record id="data_dnk_pd_type_11" model="dnk.crm.pd.type">
+            <field name="name">Reingeniería Estética</field>
+            <field name="sequence">11</field>
+            <field name="dnk_pc_delivery_date">30</field>
+            <field name="dnk_ps_delivery_date">60</field>
+        </record>
+        <record id="data_dnk_pd_type_12" model="dnk.crm.pd.type">
+            <field name="name">Reingeniería Técnica</field>
+            <field name="sequence">12</field>
+            <field name="dnk_pc_delivery_date">30</field>
+            <field name="dnk_ps_delivery_date">60</field>
+        </record>
+        <record id="data_dnk_pd_type_13" model="dnk.crm.pd.type">
+            <field name="name">Introducción de Producto</field>
+            <field name="sequence">13</field>
+            <field name="dnk_pc_delivery_date">30</field>
+            <field name="dnk_ps_delivery_date">60</field>
+        </record>
+    </data>
+</odoo>

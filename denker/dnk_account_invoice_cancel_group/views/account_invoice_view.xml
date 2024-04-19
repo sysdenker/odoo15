@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Account Invoice Form (account.move) -->
+    <record id="dnk_view_account_invoice_cancel_group_form" model="ir.ui.view">
+        <field name="name">dnk.view.account.invoice.cancel.group.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_draft']" position="attributes">
+                <attribute name="groups">dnk_account_invoice_cancel_group.dnk_group_account_invoice_cancel</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <record id="dnk_product_model_tree_view" model="ir.ui.view">
+          <field name="name">dnk_product_model_tree_view</field>
+          <field name="model">product.attribute</field>
+          <field name="inherit_id" ref="product.product_attribute_view_form"/>
+          <field name="groups_id" eval="[(4, ref('dnk_crm_product_dev_user_group'))]"/>
+          <field name="arch" type="xml">
+              <xpath expr="//form[1]/sheet[1]/notebook[1]/page[1]/field[@name='value_ids']/tree[1]/field[@name='is_custom']" position="before">
+                  <field name="dnk_reference_code_part"/>
+                  <field name="dnk_att_price"/>
+              </xpath>
+          </field>
+      </record>
+  </data>
+</odoo>

@@ -1,0 +1,120 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* dnk_account_credit_limit
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-19 21:40+0000\n"
+"PO-Revision-Date: 2020-05-19 21:40+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dnk_account_credit_limit
+#: model:ir.model.fields,field_description:dnk_account_credit_limit.field_stock_picking__dnk_allow_delivery
+msgid "- Allow Delivery?"
+msgstr "- ¿Permitir entrega?"
+
+#. module: dnk_account_credit_limit
+#: model:ir.model.fields,field_description:dnk_account_credit_limit.field_sale_order__dnk_permitted_limit_exceeded
+msgid "- Allow with limit exceeded?"
+msgstr "- ¿Permitir con límite excedido?"
+
+#. module: dnk_account_credit_limit
+#: model:ir.model.fields,field_description:dnk_account_credit_limit.field_res_partner__dnk_available_credit
+#: model:ir.model.fields,field_description:dnk_account_credit_limit.field_res_users__dnk_available_credit
+msgid "- Available Credit"
+msgstr "- Crédito Disponible"
+
+#. module: dnk_account_credit_limit
+#: model_terms:ir.ui.view,arch_db:dnk_account_credit_limit.dnk_account_credit_limit_partner_form_view
+msgid "- Credit"
+msgstr "- Crédito"
+
+#. module: dnk_account_credit_limit
+#: model:ir.model.fields,field_description:dnk_account_credit_limit.field_res_company__dnk_immediate_payment_term
+#: model:ir.model.fields,field_description:dnk_account_credit_limit.field_res_config_settings__dnk_immediate_payment_term
+msgid "- Immediate payment term"
+msgstr "- Término de Pago inmediato"
+
+#. module: dnk_account_credit_limit
+#: model:ir.model.fields,field_description:dnk_account_credit_limit.field_res_partner__dnk_blocked_sales
+#: model:ir.model.fields,field_description:dnk_account_credit_limit.field_res_users__dnk_blocked_sales
+msgid "- Sales blocked by default?"
+msgstr "- ¿Ventas bloqueadas por defecto?"
+
+#. module: dnk_account_credit_limit
+#: model:ir.model.fields,field_description:dnk_account_credit_limit.field_sale_order__dnk_paid_sale_order
+msgid "- Paid Order?"
+msgstr "- ¿Orden pagada?"
+
+#. module: dnk_account_credit_limit
+#: model_terms:ir.ui.view,arch_db:dnk_account_credit_limit.dnk_account_credit_limit_config_settings_form
+msgid "<span class=\"o_form_label\">- Immediate Payment Term</span>"
+msgstr "<span class=\"o_form_label\">- Término de Pago Inmediato</span>"
+
+#. module: dnk_account_credit_limit
+#: model:ir.model.fields,help:dnk_account_credit_limit.field_stock_picking__dnk_allow_delivery
+msgid "Allow delivery with overdue invoices"
+msgstr "Permitir entregas con Facturas vencidas"
+
+#. module: dnk_account_credit_limit
+#: model:ir.model,name:dnk_account_credit_limit.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: dnk_account_credit_limit
+#: model:ir.model,name:dnk_account_credit_limit.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de Configuración"
+
+#. module: dnk_account_credit_limit
+#: model:ir.model,name:dnk_account_credit_limit.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: dnk_account_credit_limit
+#: model:res.groups,name:dnk_account_credit_limit.dnk_account_credit_limit_group
+msgid "Credit Limit"
+msgstr "Límite de Crédito"
+
+#. module: dnk_account_credit_limit
+#: model_terms:ir.ui.view,arch_db:dnk_account_credit_limit.dnk_account_credit_limit_partner_form_view
+msgid "Credit limits are managed on"
+msgstr "Límites de crédito son gestionados por"
+
+#. module: dnk_account_credit_limit
+#: model_terms:ir.ui.view,arch_db:dnk_account_credit_limit.dnk_account_credit_limit_config_settings_form
+msgid "Immediate Payment Term for Credit Limit"
+msgstr "Término de pago Inmediato para Límite de crédito"
+
+#. module: dnk_account_credit_limit
+#: model:ir.model,name:dnk_account_credit_limit.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: dnk_account_credit_limit
+#: model:res.groups,comment:dnk_account_credit_limit.dnk_account_credit_limit_group
+msgid "This group can see and edit credit limit fields."
+msgstr "Éste grupo puede ver y editar los campos de límite de crédito."
+
+#. module: dnk_account_credit_limit
+#: model:ir.model,name:dnk_account_credit_limit.model_stock_picking
+msgid "Transfer"
+msgstr "Albarán"
+
+#. module: dnk_account_credit_limit
+#: model:ir.model.fields,help:dnk_account_credit_limit.field_res_config_settings__dnk_immediate_payment_term
+msgid ""
+"Término de pago que se compara con cada venta y determina si es inmediato."
+msgstr ""
+
+#. module: dnk_account_credit_limit
+#: model_terms:ir.ui.view,arch_db:dnk_account_credit_limit.dnk_account_credit_limit_partner_form_view
+msgid "the parent company"
+msgstr "La compañía matriz"

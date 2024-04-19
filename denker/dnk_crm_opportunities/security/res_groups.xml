@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="dnk_crm_user_group" model="res.groups">
+      <field name="name">User</field>
+      <field name="comment">Sólo documentos propios</field>
+      <field name="category_id" ref="dnk_groups_categories.dnk_crm_category"/>
+    </record>
+    <record id="dnk_crm_team_group" model="res.groups">
+      <field name="name">Team</field>
+      <field name="comment">Sólo Documentos del Equipo.</field>
+      <field name="category_id" ref="dnk_groups_categories.dnk_crm_category"/>
+    </record>
+    <record id="dnk_crm_company_group" model="res.groups">
+      <field name="name">Company</field>
+      <field name="comment">Todos los Documentos de la Compañía.</field>
+      <field name="category_id" ref="dnk_groups_categories.dnk_crm_category"/>
+    </record>
+    <record id="dnk_crm_admin_group" model="res.groups">
+      <field name="name">Admin</field>
+      <field name="comment">Todos los documentos.</field>
+      <field name="category_id" ref="dnk_groups_categories.dnk_crm_category"/>
+    </record>
+
+    <record id="dnk_crm_rule_user" model="ir.rule">
+        <field name="name">- Denker CRM Opportunities - User</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="groups" eval="[(4, ref('dnk_crm_opportunities.dnk_crm_user_group'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1" />
+        <field name="domain_force">[('user_id','=',[user.id]),('company_id','=',[user.company_id.id])]</field>
+    </record>
+
+    <record id="dnk_crm_rule_team" model="ir.rule">
+        <field name="name">- Denker CRM Opportunities - Team</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="groups" eval="[(4, ref('dnk_crm_opportunities.dnk_crm_team_group'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1" />
+        <field name="domain_force">['&amp;',('company_id','=',[user.company_id.id]),'|','|','|',('user_id','=',user.id),('user_id','=',False),('team_id.member_ids','in', [user.id]),('team_id.user_id','=',user.id)]</field>
+    </record>
+
+    <record id="dnk_crm_rule_company" model="ir.rule">
+        <field name="name">- Denker CRM Opportunities - Company</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="groups" eval="[(4, ref('dnk_crm_opportunities.dnk_crm_company_group'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1" />
+        <field name="domain_force">[('company_id','=',[user.company_id.id])]</field>
+    </record>
+
+    <record id="dnk_crm_rule_admin" model="ir.rule">
+        <field name="name">- Denker CRM Opportunities - Admin</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="groups" eval="[(4, ref('dnk_crm_opportunities.dnk_crm_admin_group'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+    </record>
+  </data>
+</odoo>

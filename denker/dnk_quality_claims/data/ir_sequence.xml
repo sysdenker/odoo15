@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Sequences for product.development -->
+        <record id="dnk_product_development_sequence" model="ir.sequence">
+            <field name="name">- Quejas</field>
+            <field name="code">dnk.quality.claims</field>
+            <field name="prefix">Q-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

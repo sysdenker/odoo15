@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="dnk_product_costs_form" model="ir.ui.view">
+          <field name="name">dnk_product_costs_form</field>
+          <field name="model">product.template</field>
+          <field name="inherit_id" ref="product.product_template_only_form_view"/>
+          <field name="arch" type="xml">
+                <page name="general_information" position="after">
+                    <page string="- Costs" name="costs"  groups="dnk_product_hide_cost.dnk_show_cost_price">
+                          <separator string="Indirect Manufacturing Costs (GIF Gastos Indirectos de Fabricación)"/>
+                          <field name="dnk_imc_ids">
+                              <form>
+                                  <sheet>
+                                      <group>
+                                          <field name="dnk_name" readonly="1"/>
+                                          <field name="dnk_default_value_html" readonly="1"/>
+                                      </group>
+                                  </sheet>
+                              </form>
+                              <tree edit="false">
+                                  <field name="dnk_name" readonly="1"/>
+                                  <field name="dnk_default_value_html" readonly="1"/>
+                              </tree>
+                          </field>
+                          <separator string="Labour Cost (Costo de Mano de Obra)"/>
+                          <field name="dnk_lc_ids" >
+                              <form>
+                                  <sheet>
+                                      <group>
+                                          <field name="dnk_product_labour_cost_id" required="1"/>
+                                          <field name="dnk_product_labour_minutes_qty" required="1"/>
+                                      </group>
+                                  </sheet>
+                              </form>
+                              <tree>
+                                  <field name="dnk_product_labour_cost_id" readonly="1"/>
+                                  <field name="dnk_product_labour_minutes_qty" readonly="1"/>
+                                  <field name="dnk_unit_price_usd" readonly="1"/>
+                              </tree>
+                          </field>
+                      </page>
+                </page>
+          </field>
+      </record>
+  </data>
+</odoo>

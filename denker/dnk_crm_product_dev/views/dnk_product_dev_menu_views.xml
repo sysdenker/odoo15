@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <menuitem id="menu_dnk_product_dev"
+    name="Product Development"
+    action="action_dnk_product_dev_act"
+    web_icon="dnk_crm_product_dev,static/description/icon.png"
+    groups="dnk_crm_product_dev.dnk_crm_product_dev_user_group,dnk_crm_product_dev.dnk_crm_product_dev_admin_group"/>
+
+    <menuitem action="action_dnk_product_dev_act" id="dnk_crm_pd_main_menu"
+      parent="menu_dnk_product_dev" sequence="2" />
+
+    <menuitem
+      id="dnk_product_dev_item"
+      name="Product Development"
+      parent="dnk_crm_pd_main_menu"
+      action="action_dnk_product_dev_act"
+      sequence="1"/>
+
+    <menuitem
+      id="dnk_product_dev_line_item"
+      name="Product Development Lines"
+      parent="dnk_crm_pd_main_menu"
+      action="dnk_crm_pdev_line_action"
+      sequence="2"/>
+
+
+      <menuitem
+        id="dnk_crm_pdev_stage_hist_item"
+        name="Stage History"
+        parent="dnk_crm_pd_main_menu"
+        action="dnk_crm_pdev_stage_hist_action"
+        sequence="3"/>
+
+
+    <menuitem
+      id="dnk_product_dev_config"
+      name="Configuration"
+      parent="menu_dnk_product_dev"
+      action="dnk_crm_pd_stage_action"
+      sequence="3"/>
+
+
+
+  <menuitem action="dnk_crm_pd_stage_action" id="dnk_crm_pd_stage_menu"
+    parent="dnk_product_dev_config" sequence="10" />
+
+  <menuitem action="dnk_crm_pd_type_action" id="dnk_crm_pd_type_menu"
+    parent="dnk_product_dev_config" sequence="20" />
+
+
+  <menuitem action="dnk_product_attribute_category_action"
+      id="menu_attribute_category_action"
+      parent="dnk_product_dev_config" sequence="11"/>
+
+  <menuitem action="dnk_pdev_product_cat_action"
+      id="menu_product_category_pirce_action"
+      parent="dnk_product_dev_config" sequence="12"/>
+
+
+
+
+
+</odoo>

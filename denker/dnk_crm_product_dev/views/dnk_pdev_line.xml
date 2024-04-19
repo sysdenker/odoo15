@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="dnk_crm_pdev_line_tree_view" model="ir.ui.view">
+      <field name="name">dnk_crm_pdev_line_tree_view</field>
+      <field name="model">dnk.crm.product.dev.line</field>
+      <field name="arch" type="xml">
+          <tree string="- Product Development Line" create="false">
+            <field name="dnk_pd_id" />
+            <field name="name" />
+            <field name="dnk_new_product"  invisible="1"/>
+            <field name="dnk_ps_qty"/>
+            <field name="dnk_ps_delivery_date"/>
+          </tree>
+      </field>
+  </record>
+
+
+  <record id="dnk_crm_pdev_line_form_view" model="ir.ui.view">
+      <field name="name">dnk_crm_pdev_line_form_view</field>
+      <field name="model">dnk.crm.product.dev.line</field>
+      <field name="arch" type="xml">
+          <form string="Product Development Line" create="false" class="o_sale_order">
+            <header>
+              <div class="oe_button_box" name="button_box">
+                <field name="dnk_pd_id" widget="statinfo" string="PDev"/>
+              </div>
+            </header>
+            <sheet>
+              <div class="oe_title">
+                <h1>
+                  <strong>[<field name="dnk_pd_id" required="1"  readonly="1"  /> - <field name="name" readonly="1"  />]</strong>
+
+                </h1>
+              </div>
+              <group>
+                <group name="dnk_product_info_left" string= "Línea de Producto">
+                  <field name="dnk_new_product"  invisible="1"/>
+                  <field name="dnk_stage_id"  invisible="1"/>
+                  <field name="active"  invisible="1"/>
+                  <field name="dnk_family_id" readonly="1"  invisible="1"/>
+                  <field name="dnk_product_id" attrs="{'invisible': [('dnk_new_product','=', True)]}"/>
+                  <field name="dnk_new_default_code" widget="text" attrs="{'invisible': [('dnk_new_product','=', False)]}"/>
+                  <field name="dnk_family_id"  invisible="0"/>
+                  <field name="dnk_subfamily_id"  invisible="0"/>
+                </group>
+                <group name="dnk_det_prod_right" string="Captura Ingeniería">
+                    <field name="dnk_new_dev"  widget="boolean_toggle"/>
+                </group>
+                <group name="dnk_sale_det_right" string="Captura Ventas">
+                    <field name="dnk_ps_price_required" widget="boolean_toggle"/>
+                    <field name="dnk_ps_required" widget="boolean_toggle"/>
+                    <field name="dnk_color_approval"/>
+                    <field name="dnk_ps_qty"/>
+                    <field name="dnk_ps_delivery_date" attrs="{'invisible': [('dnk_ps_required','=', False)]}"/>
+                    <field name="dnk_ps_tracking_ref"/>
+                    <field name="dnk_embroidery"  widget="text" attrs="{'invisible': [('dnk_family_id','in', ['274',''])]}"/>
+                </group>
+
+              </group>
+              <notebook name="desc_pdev_notebook">
+                <page string="Atributes" name="dnk_atributes_lines">
+                  <group>
+                    <field name="dnk_fabric_color_dom" invisible="1"/>
+                    <field name="dnk_fabric_color_id"/>
+                    <field name="dnk_fabric_type_dom" invisible="1"/>
+                    <field name="dnk_fabric_type_id" />
+                    <field name="dnk_fabric_cutting_dom" invisible="1"/>
+                    <field name="dnk_fabric_cutting_id" />
+                    <field name="dnk_additional_atts_dom" invisible="1"/>
+                    <field name="dnk_additional_atts_ids" widget="many2many_tags" options="{'color_field': 'html_color'}"/>
+                  </group>
+                </page>
+              </notebook>
+            </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="activity_ids" widget="mail_activity"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
+          </form>
+      </field>
+  </record>
+
+  <record id="dnk_crm_pdev_line_action" model="ir.actions.act_window">
+      <field name="name">Product Development Line</field>
+      <field name="res_model">dnk.crm.product.dev.line</field>
+      <field name="view_id" ref="dnk_crm_pdev_line_tree_view"/>
+      <field name="view_mode">tree,form</field>
+  </record>
+
+  <!--  Product Category Price -->
+  <record id="dnk_pdev_product_cat_price_tree_view" model="ir.ui.view">
+      <field name="name">dnk_pdev_product_cat_price_tree_view</field>
+      <field name="model">dnk.pdev.category.price</field>
+      <field name="arch" type="xml">
+          <tree string="- Product Category Price">
+            <field name="name" />
+            <field name="dnk_description" />
+            <field name="dnk_price"/>
+            <field name="dnk_product_category_id" />
+            <field name="active" />
+          </tree>
+      </field>
+  </record>
+
+  <record id="dnk_product_cat_price_form_view" model="ir.ui.view">
+       <field name="name">dnk_product_cat_price_form_view</field>
+       <field name="model">dnk.pdev.category.price</field>
+       <field name="arch" type="xml">
+           <form string="- Product Category Price" >
+           <sheet>
+              <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+              <group>
+                  <field name="active" invisible="1"/>
+                  <field name="name" />
+                  <field name="active" widget="boolean_toggle"/>
+                  <field name="dnk_description" />
+                  <field name="dnk_product_category_id" />
+                  <field name="dnk_price"/>
+              </group>
+           </sheet>
+           </form>
+       </field>
+  </record>
+
+  <record id="dnk_pdev_product_cat_action" model="ir.actions.act_window">
+      <field name="name">- Product Category Price</field>
+      <field name="res_model">dnk.pdev.category.price</field>
+      <field name="view_id" ref="dnk_pdev_product_cat_price_tree_view"/>
+      <field name="view_mode">tree,form</field>
+  </record>
+
+
+  <!-- Acción para contar dps en los templates -->
+  <record model="ir.actions.act_window" id="dnk_pd_product_tmpl_action">
+      <field name="name">- Desarrollo de Producto</field>
+      <field name="res_model">dnk.crm.product.dev.line</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[('dnk_product_tmpl_id', '=', active_id)]</field>
+  </record>
+
+
+</odoo>

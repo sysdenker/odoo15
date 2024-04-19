@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <template id="dnk_product_product_label" name="Etiqueta Variante">
+^XA
+^FO80,14^BY3
+^A@N,30,14,B:CYRI_UB.FNT
+^FO010,016^A0N,35,35^FB406,3,0,C,0^FD<t t-esc="record.company_id.name"/>^FS
+
+Codigo de barras Producto
+<t t-if="record.barcode">
+<t t-set="x_coord" t-value="203-(len(record.barcode)*27)/2"/>
+^FO<t t-esc="int(x_coord)"/>,78^BY2^BC,60,70,Y,N^FD<t t-esc="record.barcode"/>^FS
+</t>
+^FO30,145^AD^FD<t t-esc="record.name"/>^FS
+
+<t t-set="product_attributes" t-value="''"/>
+<t t-if="record.attribute_value_ids" t-foreach="record.attribute_value_ids" t-as="value">
+     <t t-set="product_attributes" t-value="product_attributes+'%s: %s' % (value.attribute_id.name, value.name)+', '"/>
+</t>
+<t t-set="product_attributes" t-value="product_attributes[:-2]"/>
+
+^FO30,165^AD^FD<t t-esc="product_attributes[:30]"/>^FS
+^FO30,185^AD^FD<t t-esc="record.company_id.currency_id.symbol"/> <t t-esc="'{0:,.2f}'.format(record.list_price)"/>^FS
+^FO260,185^AD^FD<t t-esc="datetime.datetime.today().strftime('%d-%m-%Y')"/>^FS
+
+Repetir la etiqueta N veces
+^PQ<t t-esc="int(labels_to_print_qty)"/>,0,1,Y
+
+^XZ
+        </template>
+        <record id="dnk_product_product_label" model="ir.ui.view">
+            <field name="type">qweb</field>
+            <field name="model">product.product</field>
+            <field name="dnk_label_flag">True</field>
+        </record>
+    </data>
+</odoo>

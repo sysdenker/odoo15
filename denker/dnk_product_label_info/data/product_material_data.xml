@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Material TELA PA -->
+        <record id="data_material_fabric_pa" model="dnk.product.material">
+            <field name="dnk_name">TELA PA</field>
+        </record>
+        <record id="data_material_composition_fabric_pa_polyester" model="dnk.product.material.composition">
+            <field name="dnk_name">Polyester</field>
+            <field name="dnk_name_es_mx">Poliester</field>
+            <field name="dnk_percent">66%</field>
+            <field name="dnk_sequence">1</field>
+            <field name="dnk_product_material_id" ref="data_material_fabric_pa"/>
+        </record>
+        <record id="data_material_composition_fabric_pa_cotton" model="dnk.product.material.composition">
+            <field name="dnk_name">Cotton</field>
+            <field name="dnk_name_es_mx">Algodon</field>
+            <field name="dnk_percent">32%</field>
+            <field name="dnk_sequence">2</field>
+            <field name="dnk_product_material_id" ref="data_material_fabric_pa"/>
+        </record>
+        <record id="data_material_composition_fabric_pa_carbon_fiber" model="dnk.product.material.composition">
+            <field name="dnk_name">Carbon Fiber</field>
+            <field name="dnk_name_es_mx">Fibra Carbon</field>
+            <field name="dnk_percent">2%</field>
+            <field name="dnk_sequence">3</field>
+            <field name="dnk_product_material_id" ref="data_material_fabric_pa"/>
+        </record>
+        <!-- Material TELA AD -->
+        <record id="data_material_fabric_ad" model="dnk.product.material">
+            <field name="dnk_name">TELA AD</field>
+        </record>
+        <record id="data_material_composition_fabric_ad_polyester" model="dnk.product.material.composition">
+            <field name="dnk_name">Polyester</field>
+            <field name="dnk_name_es_mx">Poliester</field>
+            <field name="dnk_percent">98%</field>
+            <field name="dnk_sequence">1</field>
+            <field name="dnk_product_material_id" ref="data_material_fabric_ad"/>
+        </record>
+        <record id="data_material_composition_fabric_ad_carbon_fiber" model="dnk.product.material.composition">
+            <field name="dnk_name">Carbon Fiber</field>
+            <field name="dnk_name_es_mx">Fibra Carbon</field>
+            <field name="dnk_percent">2%</field>
+            <field name="dnk_sequence">2</field>
+            <field name="dnk_product_material_id" ref="data_material_fabric_ad"/>
+        </record>
+        <!-- Material TELA L1 -->
+        <record id="data_material_fabric_l1" model="dnk.product.material">
+            <field name="dnk_name">TELA L1</field>
+        </record>
+        <record id="data_material_composition_fabric_l1_polyester" model="dnk.product.material.composition">
+            <field name="dnk_name">Polyester</field>
+            <field name="dnk_name_es_mx">Poliester</field>
+            <field name="dnk_percent">99%</field>
+            <field name="dnk_sequence">1</field>
+            <field name="dnk_product_material_id" ref="data_material_fabric_l1"/>
+        </record>
+        <record id="data_material_composition_fabric_l1_carbon_fiber" model="dnk.product.material.composition">
+            <field name="dnk_name">Carbon Fiber</field>
+            <field name="dnk_name_es_mx">Fibra Carbon</field>
+            <field name="dnk_percent">1%</field>
+            <field name="dnk_sequence">2</field>
+            <field name="dnk_product_material_id" ref="data_material_fabric_l1"/>
+        </record>
+        <!-- Material TELA Plastilona -->
+        <record id="data_material_fabric_pa" model="dnk.product.material">
+            <field name="dnk_name">TELA PA</field>
+        </record>
+        <record id="data_material_composition_fabric_pa_polyester" model="dnk.product.material.composition">
+            <field name="dnk_name">Polyester</field>
+            <field name="dnk_name_es_mx">Poliester</field>
+            <field name="dnk_percent">66%</field>
+            <field name="dnk_sequence">1</field>
+            <field name="dnk_product_material_id" ref="data_material_fabric_pa"/>
+        </record>
+        <record id="data_material_composition_fabric_pa_cotton" model="dnk.product.material.composition">
+            <field name="dnk_name">Cotton</field>
+            <field name="dnk_name_es_mx">Algodon</field>
+            <field name="dnk_percent">32%</field>
+            <field name="dnk_sequence">2</field>
+            <field name="dnk_product_material_id" ref="data_material_fabric_pa"/>
+        </record>
+        <record id="data_material_composition_fabric_pa_carbon_fiber" model="dnk.product.material.composition">
+            <field name="dnk_name">Carbon Fiber</field>
+            <field name="dnk_name_es_mx">Fibra Carbon</field>
+            <field name="dnk_percent">2%</field>
+            <field name="dnk_sequence">3</field>
+            <field name="dnk_product_material_id" ref="data_material_fabric_pa"/>
+        </record>
+        <!-- Material TELA LR -->
+        <record id="data_material_fabric_lr" model="dnk.product.material">
+            <field name="dnk_name">TELA LR</field>
+        </record>
+        <record id="data_material_composition_fabric_lr_polyester" model="dnk.product.material.composition">
+            <field name="dnk_name">Polyester</field>
+            <field name="dnk_name_es_mx">Poliester</field>
+            <field name="dnk_percent">94%</field>
+            <field name="dnk_sequence">1</field>
+            <field name="dnk_product_material_id" ref="data_material_fabric_lr"/>
+        </record>
+        <record id="data_material_composition_fabric_lr_carbon_fiber" model="dnk.product.material.composition">
+            <field name="dnk_name">Carbon Fiber</field>
+            <field name="dnk_name_es_mx">Fibra Carbon</field>
+            <field name="dnk_percent">6%</field>
+            <field name="dnk_sequence">2</field>
+            <field name="dnk_product_material_id" ref="data_material_fabric_lr"/>
+        </record>
+        <!-- Material TELA PP -->
+        <record id="data_material_fabric_pp" model="dnk.product.material">
+            <field name="dnk_name">TELA PP</field>
+        </record>
+        <record id="data_material_composition_fabric_pp_polyester" model="dnk.product.material.composition">
+            <field name="dnk_name">Polyester</field>
+            <field name="dnk_name_es_mx">Poliester</field>
+            <field name="dnk_percent">65%</field>
+            <field name="dnk_sequence">1</field>
+            <field name="dnk_product_material_id" ref="data_material_fabric_pp"/>
+        </record>
+        <record id="data_material_composition_fabric_pp_cotton" model="dnk.product.material.composition">
+            <field name="dnk_name">Cotton</field>
+            <field name="dnk_name_es_mx">Algodon</field>
+            <field name="dnk_percent">35%</field>
+            <field name="dnk_sequence">2</field>
+            <field name="dnk_product_material_id" ref="data_material_fabric_pp"/>
+        </record>
+        <!-- Material TELA Plastilona -->
+        <record id="data_material_fabric_plastilona" model="dnk.product.material">
+            <field name="dnk_name">TELA Plastilona</field>
+        </record>
+    </data>
+</odoo>

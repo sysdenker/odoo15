@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="dnk_purchase_confirm_group" model="res.groups">
+      <field name="name">Confirm Purchase Order</field>
+      <field name="comment">Confirmar Orden de Compra</field>
+      <field name="category_id" ref="dnk_groups_categories.dnk_purchases_category"/>
+    </record>
+  </data>
+</odoo>

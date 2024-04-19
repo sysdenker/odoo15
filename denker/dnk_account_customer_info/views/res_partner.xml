@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="dnk_res_partner_l10n_mx_edi_form_view_1" model="ir.ui.view">
+        <field name="name">dnk_res_partner_l10n_mx_edi_form_view_1</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="property_account_position_id" position="after" >
+                <field name="dnk_l10n_mx_edi_usage"/>
+                <field name="dnk_l10n_mx_edi_payment_method_id"/>
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <template id="dnk_stock_picking_label" name="Etiqueta Transferencia">
+^XA
+
+Recuadro
+^FO20,190^GB770,270,5,,2^FS
+
+Linea
+^FO20,515^GB770,0,5^FS
+
+Almacen
+^FO630,60^A0N,103,68^FB150,3,0,R,0^FD<t t-esc="record.x_studio_field_POkZc"/>^FS
+
+Usuario ID
+^FO30,206^A0N,30,24^FB180,3,0,C,0^FD<t t-esc="user_id.id"/>^FS
+
+Fecha
+^FO30,236^A0N,40,30^FB180,3,0,C,0^FD<t t-esc="datetime.datetime.today().strftime('%Y-%m-%d')"/>^FS
+
+Codigo QR
+^FO40,270^BQ,3,4,10^FDMA,https://grupodenker.odoo.com/web?debug=#id=<t t-esc="record.id"/>&amp;view_type=form&amp;model=stock.picking&amp;active_id=<t t-esc="record.id"/>&amp;^FS
+
+Pedido
+<t t-if="record.origin">
+<t t-if="record.origin[:10]=='Return of '">
+    <t t-set="origin" t-value="record.origin[10:]"/>
+</t>
+<t t-else="">
+    <t t-set="origin" t-value="record.origin"/>
+</t>
+^FO203,210^A0N,103,68^FB609,3,0,C,0^FD<t t-esc="origin"/>^FS
+</t>
+
+Documento Origen
+^FO203,300^A0N,54,54^FB609,3,0,C,0^FD<t t-esc="record.name"/>^FS
+
+Paquete
+^FO203,350^A0N,54,54^FB609,3,0,C,0^FD<t t-esc="package_id.name"/>^FS
+
+Codigo de barras Paquete
+<t t-if="package_id.name">
+<t t-set="x_coord" t-value="487-(len(package_id.name)*24)/2"/>
+^FO<t t-esc="x_coord"/>,400^BY2^BCN,40,N,N,N^FD<t t-esc="package_id.name"/>^FS
+</t>
+
+Producto
+^FO20,480^A0N,40,27^FB260,3,0,C,0^FDPRODUCTO^FS
+
+Sku
+^FO406,480^A0N,40,27^FB203,3,0,C,0^FDSKU^FS
+
+Cantidad
+^FO609,480^A0N,40,27^FB203,3,0,C,0^FDCANTIDAD^FS
+
+PRODUCTOS
+<t t-set="y_coord" t-value="530"/>
+<t t-if="record.move_line_ids" t-foreach="record.move_line_ids" t-as="l">
+
+<t t-if="l.result_package_id.id==package_id.id">
+
+Producto Default Code
+^FO30,<t t-esc="y_coord"/>^A0N,40,27^FB385,3,0,L,0^FD<t t-esc="l.product_id.default_code"/>^FS
+
+Codigo de barras Producto
+^FO392,<t t-esc="y_coord"/>^BY2^BCN,30,Y,N,N^FD<t t-esc="l.product_id.barcode"/>^FS
+
+Cantidad Hecha
+^FO609,<t t-esc="y_coord"/>^A0N,40,40^FB173,3,0,R,0^FD<t t-esc="l.qty_done"/>^FS
+
+<t t-set="y_coord" t-value="y_coord + 60"/>
+
+</t>
+
+</t>
+
+^XZ
+        </template>
+        <record id="dnk_stock_picking_label" model="ir.ui.view">
+            <field name="type">qweb</field>
+            <field name="model">stock.picking</field>
+            <field name="dnk_label_flag">True</field>
+        </record>
+    </data>
+</odoo>

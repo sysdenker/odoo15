@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="dnk_new_denker_cost_tree_view" model="ir.ui.view">
+            <field name="name">New Denker Cost</field>
+            <field name="model">dnk.new.product.cost</field>
+            <field name="arch" type="xml">
+              <form string="New Denker Standar Cost">
+                  <separator string="New Denker Cost"/>
+                  <group>
+                          <span>Generar Nuevo Costo Denker de los registros seleccionados. </span>
+                          <field name="dnk_updt_std_cost" widget="boolean_toggle" invisible="0" />
+                          <field name="dnk_cost_option" invisible="0" />
+                  </group>
+                  <footer>
+                      <button name="new_dnk_std_cost" type="object" string="New Dnk Cost" class="btn-primary" />
+                      <button string="Cancel" class="btn-secondary" special="cancel" />
+                  </footer>
+              </form>
+            </field>
+        </record>
+
+        <record id="action_tree_view_create_denker_cost" model="ir.actions.act_window">
+            <field name="name">- New Denker Cost</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dnk.new.product.cost</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="dnk_new_denker_cost_tree_view"/>
+            <field name="binding_model_id" ref="product.model_product_product"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

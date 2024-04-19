@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Account Invoice -->
+        <record id="dnk_invoice_to_sale_order_form_1" model="ir.ui.view">
+            <field name="name">dnk_invoice_to_sale_order_form_1</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <field name="invoice_origin" position="after">
+                    <field name="dnk_order_id" readonly="0" />
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

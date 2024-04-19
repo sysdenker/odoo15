@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inicia actualización del Costo Estándar de Denker -->
+        <record id="view_change_denker_cost" model="ir.ui.view">
+            <field name="name">Change Denker Standard Cost</field>
+            <field name="model">dnk.product.standard.cost</field>
+            <field name="arch" type="xml">
+              <form string="Change Denker Standar Cost">
+                  <separator string="Change Cost"/>
+                  <group>
+                      <group>
+                          <field name="dnk_product_id" invisible="1"/>
+                          <field name="dnk_prev_cost" invisible="1" string="Previous Cost"/>
+                          <field name="dnk_new_cost" invisible="0" string="Cost"/>
+                      </group>
+                  </group>
+                  <footer>
+                      <button name="change_dnk_std_cost" type="object" string="Update" class="btn-primary" />
+                      <button string="Cancel" class="btn-secondary" special="cancel" />
+                  </footer>
+              </form>
+            </field>
+        </record>
+
+        <record id="dnk_view_update_denker_cost" model="ir.ui.view">
+            <field name="name">Update Denker Standard Cost</field>
+            <field name="model">dnk.product.standard.cost</field>
+            <field name="arch" type="xml">
+              <form string="Update Denker Standar Cost">
+                  <separator string="Update Cost"/>
+                  <group>
+                          <span>Dependiendo de la opción, se actualiza al último registro del costeador o tomarlo desde el Precio Estándar</span>
+                          <field name="dnk_update_option" invisible="0"/>
+                          <field name="dnk_product_id" invisible="1" string="Product"/>
+                          <field name="dnk_prev_cost" invisible="1" string="Previous Cost"/>
+                          <field name="dnk_new_cost" invisible="1"  string="Cost"/>
+                  </group>
+                  <footer>
+                      <button name="update_dnk_std_cost" type="object" string="Update" class="btn-primary" />
+                      <button string="Cancel" class="btn-secondary" special="cancel" />
+                  </footer>
+              </form>
+            </field>
+        </record>
+
+        <record id="action_view_change_denker_cost" model="ir.actions.act_window">
+            <field name="name">- Change Dnk Std. Cost</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dnk.product.standard.cost</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_change_denker_cost"/>
+            <field name="binding_model_id" ref="product.model_product_product"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="action_view_update_denker_cost" model="ir.actions.act_window">
+            <field name="name">- Update Dnk Std. Cost</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dnk.product.standard.cost</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="dnk_view_update_denker_cost"/>
+            <field name="binding_model_id" ref="product.model_product_product"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

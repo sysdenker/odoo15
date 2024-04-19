@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Manufacturing Order Tree -->
+    <record id="dnk_view_stock_picking_cancel_group_form" model="ir.ui.view">
+        <field name="name">dnk.view.stock.picking.cancel.group.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_cancel']" position="attributes">
+                <attribute name="groups">dnk_stock_picking_cancel_group.dnk_group_stock_picking_cancel</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="dnk_view_stock_picking_add_date_done_tree" model="ir.ui.view">
+        <field name="name">dnk_view_stock_picking_add_date_done_tree</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <field name="scheduled_date" position="after">
+                <field name="date_done"/>
+            </field>
+        </field>
+    </record>
+</odoo>

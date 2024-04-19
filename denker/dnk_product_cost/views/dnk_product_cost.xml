@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="dnk_view_change_product_cost" model="ir.ui.view">
+            <field name="name">Change Product Cost</field>
+            <field name="model">dnk.product.cost</field>
+            <field name="arch" type="xml">
+                <form string="Add New Product Costs">
+                    <separator string="Change Costs"/>
+                    <group>
+                        <separator/>
+                        <field name="dnk_total_cost" readonly="1"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="dnk_product_id" readonly="1" invisible="1  "/>
+                            <field name="dnk_product_bom_cost"  readonly="0"  widget="many2one"
+                                domain="[('dnk_product_id','=',dnk_product_id)]"
+                                options="{'no_create_edit': True, 'no_create': True}"/>
+                            <field name="dnk_labour_cost" readonly="0" widget="monetary"/>
+                            <field name="dnk_attribute_cost" readonly="1" widget="monetary"/>
+                            <separator/>
+                        </group>
+                        <group>
+                            <field name="dnk_raw_mat_cost" readonly="0" widget="monetary"/>
+                            <field name="dnk_indirect_cost" readonly="0" widget="monetary"/>
+                            <field name="dnk_cost_option" />
+                        </group>
+                    </group>
+                    <group>
+                      <field name="dnk_description" readonly="0"/>
+                    </group>
+                    <!--<separator string= "- Attribute and Time Details:" attrs="{'invisible':[('dnk_attr_value_html', '=', False)]}"/>-->
+                    <separator/>
+                    <field name="dnk_attr_value_html" readonly="1" attrs="{'invisible':[('dnk_attr_value_html', '=', False)]}"/>
+                    <field name="dnk_attribute_cost" invisible="1"/>
+                    <separator/>
+                    <separator string ="- Consumed Materials:" attrs="{'invisible':[('dnk_move_raws_html', '=', False)]}"/>
+                    <field name="dnk_move_raws_html" readonly="1"/>
+                    <footer>
+                        <button name="dnk_change_cost" string="_Apply" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="dnk_action_view_change_product_costs" model="ir.actions.act_window">
+            <field name="name">Change Product Cost</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dnk.product.cost</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="dnk_view_change_product_cost"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

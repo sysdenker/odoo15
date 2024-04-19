@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="dnk_purchase_order_sale_form_1" model="ir.ui.view">
+            <field name="name">dnk_purchase_order_sale_form_1</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                  <label for="dnk_purchase_order_file"/>
+                  <div class="o_row">
+                      <field widget="binary" name="dnk_purchase_order_file" filename="dnk_purchase_order_name"/>
+                      <div attrs="{'invisible': [('dnk_po_file_count', '&lt;', 2)]}" class="text-warning">
+                        The Purchase Order file has already been used <field name="dnk_po_file_count" class="oe_inline"/> times.
+                      </div>
+                  </div>
+                  <field name="dnk_purchase_order_name" invisible="1" />
+                  <field name="dnk_po_file_count" invisible="1" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

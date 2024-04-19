@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <template id="dnk_mrp_production_talonera_label" name="Etiqueta Talonera">
+^XA
+
+LOGO
+^FO120,0^GFA,504,504,12,,::19,04E,0338,019EM088,004FCL0E2,0033FL0F18,0019FCK0FCE,I0CFF8J0FE38,I033FEJ0FF1C,I019FF8I0FFC6,J0CFFEI0FFE38,J073FFC00IF9C,J019IF00IFC7,K0C7FFE1IFE38,K073IFBJF8C,K019NFC7,L0C7NF18,L073NF8E,L019NFE7,M0E7NF18,M073KF1FF8C,M038JFE07FE3,N0E7IFE01FF18,N073IFE003FC6,N038IFEI0FE3,O0E7FFEI03F98,O071FFEJ07C6,O038FFEJ01E3,O01E7FEK0788,P071FEL0C,P038FEL02,P01E7EM08,Q071E,Q018E,S06,,:::^FS
+
+CURE
+^FT60,0^A0R,16,19^FB180,1,0,C^FH^SN<t t-esc="record.get_last_digits(record.name, 6)"/><t t-esc="record.get_last_digits(record.origin, 6)"/><t t-esc="str(dnk_labels_to_print_index_start).zfill(3)"/>, 1, Y^FS
+
+CODIGO PRODUCTO
+^FO80,0^A0R,20,18^FB168,0,12,C,0^FD<t t-esc="record.product_id.default_code"/>^FS
+
+LEYENDA:
+^FO20,0^A0R,18,18^FB168,2,0,C,0^FH^FDHecho en M_82xico^FS
+^FO0,0^A0R,25,27^FB168,0,12,C,0^FDestatec.com^FS
+^FO140,15^A0R,18,18^FB168,2,0,C,0^FH^FDAntiestatica de^FS
+^FO120,15^A0R,18,18^FB168,0,12,C,0^FDMexico SA de CV^FS
+
+Repetir la etiqueta N veces
+^PQ<t t-esc="dnk_labels_to_print_index_stop-dnk_labels_to_print_index_start+1"/>,0,1,Y
+
+^XZ
+        </template>
+        <record id="dnk_mrp_production_talonera_label" model="ir.ui.view">
+            <field name="type">qweb</field>
+            <field name="model">mrp.production</field>
+            <field name="dnk_label_flag">True</field>
+        </record>
+    </data>
+</odoo>

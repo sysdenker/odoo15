@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="dnk_sm_service_level_search_view" model="ir.ui.view">
+            <field name="name">dnk.sm.service.level.view.search</field>
+            <field name="model">dnk.sm.service.level</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="sm_sale_order_id"/>
+                    <field name="sm_customer_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="dnk_sm_service_level_graph_view" model="ir.ui.view">
+            <field name="name">dnk.sm.service.level.view.graph</field>
+            <field name="model">dnk.sm.service.level</field>
+            <field name="arch" type="xml">
+                <graph type="bar">
+                    <field name="sm_date" interval="month" type="row"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="dnk_sm_service_level_tree_view" model="ir.ui.view">
+            <field name="name">dnk.sm.service.level.view.tree</field>
+            <field name="model">dnk.sm.service.level</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <field name="sm_sale_order_id"/>
+                    <field name="sm_open_sale_order"/>
+                    <field name="sm_date_order"/>
+                    <field name="sm_date"/>
+                    <field name="sm_ns"/>
+                    <field name="sm_commitment_date"/>
+                    <field name="sm_customer_id"/>
+                    <field name="sm_sales_team_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="dnk_sm_service_level_pivot_view" model="ir.ui.view">
+            <field name="name">dnk.sm.service.level.view.pivot</field>
+            <field name="model">dnk.sm.service.level</field>
+            <field name="arch" type="xml">
+                <pivot string="Sales Overview">
+                    <field name="sm_date" type="col"/>
+                    <field name="dnk_family_id" type="row"/>
+                    <field name="sm_sale_order_id" type="measure"/>
+                    <field name="sm_ns" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="dnk_sm_service_level_form_view" model="ir.ui.view">
+            <field name="name">dnk.sm.service.level.view.form</field>
+            <field name="model">dnk.sm.service.level</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                              <field name="sm_sale_order_id"/>
+                              <field name="sm_open_sale_order"/>
+                              <field name="sm_date_order"/>
+                              <field name="sm_date"/>
+                              <field name="sm_ns"/>
+                              <field name="sm_commitment_date"/>
+                            </group>
+                            <group>
+                              <field name="sm_customer_id"/>
+                              <field name="sm_sales_team_id"/>
+                              <field name="company_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="dnk_sm_service_level_dashboard_view" model="ir.ui.view">
+            <field name="name">dnk.sm.service.level.view.dashboard</field>
+            <field name="model">dnk.sm.service.level</field>
+            <field name="arch" type="xml">
+                <dashboard>
+                    <view type="graph" ref="dnk_sm_service_level_graph_view"/>
+                    <group>
+                        <group>
+                            <widget name="pie_chart" title="Nivel Servicio" attrs="{'groupby': 'sm_ns'}"/>
+                        </group>
+                        <group>
+                            <aggregate name="aaa" string="aaa" group_operator="avg" field="sm_ns"/>
+                        </group>
+                    </group>
+                    <view type="pivot" ref="dnk_sm_service_level_pivot_view"/>
+                </dashboard>
+            </field>
+        </record>
+
+        <record id="dnk_sm_service_level_dashboard_action" model="ir.actions.act_window">
+           <field name="name">Service Level Analysis</field>
+           <field name="res_model">dnk.sm.service.level</field>
+           <field name="view_mode">dashboard,tree</field>
+           <field name="search_view_id" ref="dnk_sm_service_level_dashboard_view"/>
+           <field name="context">{'search_default_done': 1, 'time_ranges': {'field':'sm_date', 'range':'this_year'}}</field>
+           <field name="domain">[]</field>
+       </record>
+
+
+        <menuitem
+            id="dnk_sale_dashboard_menuitem"
+            name="Service Level Analysis"
+            parent="sale.menu_sale_invoicing"
+            action="dnk_sm_service_level_dashboard_action"/>
+    </data>
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="dnk_res_config_fixed_rate_view_form" model="ir.ui.view">
+		<field name="name">dnk.res.config.fixed.rate.view.form</field>
+		<field name="model">res.config.settings</field>
+		<field name="inherit_id" ref="account.res_config_settings_view_form"/>
+		<field name="arch" type="xml">
+			<field name="currency_id" position="after">
+				<label for="dnk_usd_fixed_rate" class="col-md-3 o_light_label"/>
+				<field name="dnk_usd_fixed_rate"/>
+			</field>
+		</field>
+	</record>
+</odoo>

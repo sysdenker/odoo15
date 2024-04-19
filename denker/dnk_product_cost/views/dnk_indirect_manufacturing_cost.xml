@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="dnk_indirect_manufacturing_cost_tree_view" model="ir.ui.view">
+        <field name="name">dnk_indirect_manufacturing_cost_tree_view</field>
+        <field name="model">dnk.indirect.manufacturing.cost</field>
+        <field name="arch" type="xml">
+            <tree string="Indirect Manufacturing Cost">
+                <field name="dnk_name"/>
+                <field name="dnk_description"/>
+                <field name="dnk_type"/>
+                <field name="dnk_value"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="dnk_indirect_manufacturing_cost_form_view" model="ir.ui.view">
+        <field name="name">dnk_indirect_manufacturing_cost_form_view</field>
+        <field name="model">dnk.indirect.manufacturing.cost</field>
+        <field name="arch" type="xml">
+            <form string="Indirect Manufacturing Cost">
+            <sheet>
+                <div class="oe_title">
+                    <label for="dnk_name" class="oe_edit_only" string="- Indirect Manufacturing Cost"/>
+                    <h1><field name="dnk_name"/></h1>
+                </div>
+                <group>
+                    <group>
+                        <field name="dnk_type"/>
+                    </group>
+                    <group>
+                        <field name="dnk_value" attrs="{'invisible': [('dnk_type', '=', 'volume')]}"/>
+                        <field name="dnk_volume_cost_line_ids" attrs="{'invisible': [('dnk_type', '!=', 'volume')]}">
+                            <form>
+                                <group>
+                                    <field name="dnk_quantity"/>
+                                    <field name="dnk_default_price_usd"/>
+                                </group>
+                            </form>
+                            <tree>
+                                <field name="dnk_quantity"/>
+                                <field name="dnk_default_price_usd"/>
+                            </tree>
+                        </field>
+                    </group>
+                </group>
+                <label for="dnk_default_value_html"/>
+                <field name="dnk_default_value_html"/>
+                <label for="dnk_description"/>
+                <field name="dnk_description"/>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="dnk_action_indirect_manufacturing_cost" model="ir.actions.act_window">
+        <field name="name">Indirect Manufacturing Cost</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">dnk.indirect.manufacturing.cost</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create a Indirect Manufacturing Cost, the first step of a Product Indirect Manufacturing Cost Lines.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_indirect_manufacturing_cost_tree" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="dnk_indirect_manufacturing_cost_tree_view"/>
+        <field name="act_window_id" ref="dnk_action_indirect_manufacturing_cost"/>
+    </record>
+
+    <record id="action_indirect_manufacturing_cost_form" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="dnk_indirect_manufacturing_cost_form_view"/>
+        <field name="act_window_id" ref="dnk_action_indirect_manufacturing_cost"/>
+    </record>
+
+    <menuitem id="menu_dnk_cost" name="- Costs"
+        parent="mrp.menu_mrp_configuration" sequence="5"/>
+
+    <menuitem action="dnk_action_indirect_manufacturing_cost"
+        id="menu_indirect_manufacturing_cost" name="- Indirect Manufacturing Cost"
+        parent="menu_dnk_cost" sequence="5"/>
+
+</odoo>

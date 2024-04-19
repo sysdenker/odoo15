@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="data_dnk_zk_machine_id_1" model="dnk.zk.machine">
+        <field name="name">Estatec 1</field>
+        <field name="dnk_ip">192.168.12.11</field>
+        <field name="zk_after_date">2020-01-01 06:00:00</field>
+    </record>
+    <record id="data_dnk_zk_machine_id_2" model="dnk.zk.machine">
+        <field name="name">Estatec 2</field>
+        <field name="dnk_ip">10.3.12.30</field>
+        <field name="zk_after_date">2019-12-01 06:00:00</field>
+    </record>
+    <record id="data_dnk_zk_machine_id_3" model="dnk.zk.machine">
+        <field name="name">Estatec Inc</field>
+        <field name="dnk_ip">192.168.12.12</field>
+        <field name="zk_after_date">2020-01-01 06:00:00</field>
+    </record>
+    <record id="data_dnk_zk_machine_id_4" model="dnk.zk.machine">
+        <field name="name">Extrupac EG</field>
+        <field name="dnk_ip">10.1.12.5</field>
+        <field name="zk_after_date">2020-01-01 06:00:00</field>
+    </record>
+    <record id="data_dnk_zk_machine_id_5" model="dnk.zk.machine">
+        <field name="name">SCD EG</field>
+        <field name="dnk_ip">10.1.12.9</field>
+        <field name="zk_after_date">2020-01-01 06:00:00</field>
+    </record>
+    <record id="data_dnk_zk_machine_id_6" model="dnk.zk.machine">
+        <field name="name">Estatec 3</field>
+        <field name="dnk_ip">192.168.12.13</field>
+        <field name="zk_after_date">2021-10-01 06:00:00</field>
+    </record>
+    <record id="data_dnk_zk_machine_id_7" model="dnk.zk.machine">
+        <field name="name">Prod SCD </field>
+        <field name="dnk_ip">10.1.12.7</field>
+        <field name="zk_after_date">2021-10-01 06:00:00</field>
+    </record>
+  </data>
+</odoo>

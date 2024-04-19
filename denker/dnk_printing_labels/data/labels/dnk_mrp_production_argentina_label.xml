@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <template id="dnk_mrp_production_argentina_label" name="Etiqueta Argentina">
+^XA
+
+COMPOSICIÓN
+<t t-set="y_coord" t-value="43"/>
+<t t-if="record.product_id.product_tmpl_id.dnk_material_id" t-foreach="record.product_id.product_tmpl_id.dnk_material_id.dnk_composition_ids" t-as="l">
+^FO30,<t t-esc="y_coord"/>^A1,24,12^FB66,1,,R^FD<t t-esc="l.dnk_percent"/>^FS
+^FO110,<t t-esc="y_coord"/>^A1,24,12^FD<t t-esc="l.dnk_name_es_mx"/>/<t t-esc="l.dnk_name"/>^FS
+<t t-set="y_coord" t-value="y_coord + 30"/>
+</t>
+
+LEYENDA: Centrar Texto 314 para 1.5 pulgadas
+^FO0,140^A1N,22,12^FB500,3,0,C,0^FH^FDHecho en M_82xico por:^FS
+^FO0,164^A0N,32,32^FB500,3,0,C,0^FDANTIESTATICA DE MEXICO^FS
+
+Argentina
+^FO0,192^A1,24,12^FB500,3,0,C,0^FDMacon Fueguina S.A.^FS
+^FO0,222^A1,24,12^FB500,3,0,C,0^FDCUIT No 30-710511635-5^FS
+^FO0,252^A1,24,12^FB500,3,0,C,0^FDOrigen Mexico ^FS
+^FO0,282^A1,24,12^FB500,3,0,C,0^FDV-218-04^FS
+
+
+
+PRODUCT CODE
+^FO0,320^A0N,33,30^FB500,3,0,C,0^FD<t t-esc="record.product_id.default_code"/>^FS
+
+TALLA
+^FO0,350^A0N,33,30^FB500,3,0,C,0^FD<t t-esc="record.dnk_attribute_size"/>^FS
+
+Codigo de barras 214 mitad
+<t t-if="record.product_id.barcode">
+<t t-set="x_coord" t-value="214-(len(record.product_id.barcode)*24)/2"/>
+^FO<t t-esc="x_coord"/>,380^BCN,50,N,N,N^FD<t t-esc="record.product_id.barcode"/>^FS
+</t>
+
+CURE
+^FT70,530^A0B,30,30^FB450,1,0,C^FH^SN<t t-esc="record.get_last_digits(record.name, 6)"/><t t-esc="record.get_last_digits(record.origin, 6)"/><t t-esc="str(dnk_labels_to_print_index_start).zfill(3)"/>, 1, Y^FS
+^FT70,845^A0B,30,30^FB450,1,0,C^FH^SN<t t-esc="record.get_last_digits(record.name, 6)"/><t t-esc="record.get_last_digits(record.origin, 6)"/><t t-esc="str(dnk_labels_to_print_index_start).zfill(3)"/>, 1, Y^FS
+^FT30,920^A0,30,30^FB450,3,0,C,0^FH^SN<t t-esc="record.get_last_digits(record.name, 6)"/><t t-esc="record.get_last_digits(record.origin, 6)"/><t t-esc="str(dnk_labels_to_print_index_start).zfill(3)"/>, 1, Y^FS
+
+Codigo QR
+^FO102,480^BQ,3,7,10^FDMA,https://grupodenker.odoo.com/web?debug=#id=<t t-esc="record.dnk_costura_workorder_id"/>&amp;view_type=form&amp;model=mrp.workorder&amp;active_id=<t t-esc="record.dnk_costura_workorder_id"/>&amp;^FS
+
+FECHA MM/YY
+^FC%,{,#
+^FO400,590^A0B,30,30^FD%y/%m^FS
+
+Repetir la etiqueta N veces
+^PQ<t t-esc="dnk_labels_to_print_index_stop-dnk_labels_to_print_index_start+1"/>,0,1,Y
+
+^XZ
+        </template>
+        <record id="dnk_mrp_production_argentina_label" model="ir.ui.view">
+            <field name="type">qweb</field>
+            <field name="model">mrp.production</field>
+            <field name="dnk_label_flag">True</field>
+        </record>
+    </data>
+</odoo>

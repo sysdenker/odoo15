@@ -1,0 +1,26 @@
+<odoo>
+  <data>
+    <record id="dnk_view_sale_order_volume_quotation_form" model="ir.ui.view">
+        <field name="name">dnk.view.sale.order.volume.quotation.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <!--<field name="dnk_customer_service_rep_id" can_create="true" can_write="true" modifiers="{}"/>-->
+                <field name="dnk_order_has_volume_prices" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/form/group/group[2]" position="inside">
+                <field name="dnk_minimum_quantity" attrs="{'invisible': [('parent.dnk_order_has_volume_prices', '=', False)]}" readonly="1" style="text-align:right;" class="oe_right"/>
+                <field name="dnk_volume_prices" attrs="{'invisible': [('parent.dnk_order_has_volume_prices', '=', False)]}" readonly="1" style="text-align:right;" class="oe_right"/>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+                <field name="dnk_minimum_quantity" readonly="1" style="text-align:right;"/>
+                <field name="dnk_volume_prices" readonly="1" style="text-align:right;"/>
+                <field name="dnk_has_volume_prices" invisible="1" style="text-align:right;"/>
+            </xpath>
+        </field>
+    </record>
+  </data>
+</odoo>

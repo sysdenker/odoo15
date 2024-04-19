@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Denker - CRM Oportunidades</h2>
+            <h4 class="oe_slogan">Grupo Denker, www.grupodenker.com</h4>
+        </div>
+        <div class="oe_row oe_spaced">
+        <ul>
+           <li style="list-style:none !important;">&nbsp;&nbsp;
+               Módulo para agregar campos a las Oportunidades para su funcionamiento
+               de acuerdo a las necesidades de cada empresa del grupo.
+           </li>
+        </ul>
+        </div>
+        <div class="oe_span12">
+            <p class="oe_mt32">
+                Éste módulo agrega los siguientes campos:<br/>
+                    <br/><b>[crm.lead] - CRM:</b><br/>
+                        [dnk_final_customer_id] - Final Customer<br/>
+                        [dnk_is_vendor] - Is Vendor?<br/>
+                        [dnk_family_id] - Family<br/>
+                        [dnk_subfamily_id] - SubFamily<br/>
+                        [dnk_product_id] - Product<br/>
+                        [dnk_price] - Price<br/>
+                        [dnk_pieces] - Pieces<br/>
+                    <br/><b>[res.partner] - Partner:</b><br/>
+                        [dnk_is_final_customer] - Is Final Customer?<br/>
+
+                    <br/><b>[ir.module.category] - Category:</b><br/>
+                        [dnk_crm_category] - Denker CRM<br/>
+                    <br/><b>[ir.rule]: Record Rules</b><br/>
+                        [dnk_crm_rule_user] - Denker CRM Opportunities - User<br/>
+                        [dnk_crm_rule_team] - Denker CRM Opportunities - Team<br/>
+                        [dnk_crm_rule_admin] - Denker CRM Opportunities - Admin <br/>
+                    </br>
+                        <br/><b>Deshailitar las reglas de registro relacionadas a crm.lead</b> <br/>
+                        - All Leads<br/>
+                        - Personal Leads<br/>
+
+                        Para agregar el campo de la oportunidad de origen a la vista de sale order, tuve que hacer una copia
+                        porque no puedo reinstalar si lo llego a poner con xml.
+            </p>
+        </div>
+    </div>
+</section>

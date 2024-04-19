@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="dnk_crm_pdav_tree_view" model="ir.ui.view">
+       <field name="name">dnk_crm_pdav_tree_view</field>
+       <field name="model">dnk.pdev.attribute.value</field>
+       <field name="arch" type="xml">
+           <tree string="- Product Dev Attribute Values">
+               <field name="sequence" widget="handle" />
+               <field name="name" />
+               <field name="dnk_family_id" />
+               <field name="dnk_subfamily_id" />
+               <field name="dnk_pda_id" />
+               <field name="fold" widget="boolean_toggle"/>
+           </tree>
+       </field>
+  </record>
+
+  <record id="dnk_crm_pdav_form_view" model="ir.ui.view">
+       <field name="name">dnk_crm_pdav_form_view</field>
+       <field name="model">dnk.pdev.attribute.value</field>
+       <field name="arch" type="xml">
+           <form string="- Product Dev Attribute Values" >
+           <sheet>
+              <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+              <group>
+                  <field name="active" invisible="1"/>
+                  <field name="name" force_save="1" readonly="1" />
+                  <field name="dnk_description" />
+                  <field name="dnk_family_id" />
+                  <field name="dnk_subfamily_id" />
+                  <field name="dnk_pda_id" />
+                  <field name="dnk_pda_category_id" readonly="0" invisible="1"/>
+                  <field name="dnk_pdav_dom" invisible="1"/>
+                  <field name="dnk_pdav_ids" widget="many2many_tags" options="{'color_field': 'html_color'}" />
+                  <field name="dnk_pdev_field" />
+                  <field name="fold" widget="boolean_toggle" invisible="1"/>
+              </group>
+           </sheet>
+           </form>
+       </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="dnk_crm_pdav_action">
+      <field name="name">- Product Dev Attribute Values</field>
+      <field name="res_model">dnk.pdev.attribute.value</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[]</field>
+  </record>
+
+  <menuitem action="dnk_crm_pdav_action" id="dnk_crm_pdav_menu"
+    parent="dnk_product_dev_config" sequence="25" />
+</odoo>

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="dnk_crm_case_form_view_oppor" model="ir.ui.view">
+        <field name="name">dnk_crm_case_form_view_oppor</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <strong>[<field name="id"/>] </strong>
+            </field>
+            <!-- Parte para Lead -->
+            <xpath expr="/form/sheet/group/group[1]/field[@name='partner_id']" position="attributes">
+                <attribute name="attrs">{}</attribute>
+                <attribute name="attrs">{'required': [('type', '=', 'opportunity')]}</attribute>
+                <attribute name="options">{'no_create': True}</attribute>
+            </xpath>
+            <xpath expr="/form/sheet/group/group[1]/field[@name='partner_id']" position="after">
+                <field name="dnk_final_customer_id" domain="[('dnk_is_final_customer','=',True)]" options="{'no_create': True}"/>
+                <field name="dnk_dealer_id" attrs="{'invisible': [('dnk_dealer_id', '=', False)]}"  options="{'no_create': True}"/>
+                <field name="dnk_family_id" attrs="{'required': [('type', '=', 'opportunity')]}" options="{'no_create': True}"/>
+                <field name="dnk_subfamily_id" domain="[('id','child_of',dnk_family_id),('id','!=',dnk_family_id)]" options="{'no_create': True}"/>
+                <field name="dnk_product_id" domain="[('categ_id','=',dnk_subfamily_id)]" options="{'no_create': True}"/>
+                <field name="dnk_pieces" required="1"/>
+                <field name="dnk_price" required="1"/>
+            </xpath>
+            <!-- Parte para opportunity -->
+            <xpath expr="/form/sheet/group/group[2]/field[@name='partner_id']" position="attributes">
+                <attribute name="attrs">{}</attribute>
+                <attribute name="attrs">{'required': [('type', '=', 'opportunity')]}</attribute>
+                <attribute name="options">{'no_create': True}</attribute>
+            </xpath>
+            <xpath expr="/form/sheet/group/group[2]/field[@name='partner_id']" position="after">
+                <field name="dnk_final_customer_id" options="{'no_create': True}"/>
+                <field name="dnk_dealer_id" attrs="{'invisible': [('dnk_dealer_id', '=', False)]}"  options="{'no_create': True}"/>
+                <field name="dnk_family_id" attrs="{'required': [('type', '=', 'opportunity')]}" options="{'no_create': True}"/>
+                <field name="dnk_subfamily_id" domain="[('id','child_of',dnk_family_id),('id','!=',dnk_family_id)]" options="{'no_create': True}"/>
+                <field name="dnk_product_id" domain="[('categ_id','=',dnk_subfamily_id)]" options="{'no_create': True}"/>
+                <field name="dnk_pieces" required="1"/>
+                <field name="dnk_price" required="1"/>
+            </xpath>
+
+            <field name="expected_revenue" position="attributes">
+                <attribute name="options">{}</attribute>
+                <attribute name="widget">float</attribute>
+            </field>
+            <field name="expected_revenue" position="after">
+                <span class="oe_grey"> USD </span>
+            </field>
+
+            <!-- para V15 -->
+            <field name="recurring_revenue" position="attributes">
+                <attribute name="options">{}</attribute>
+                <attribute name="widget">float</attribute>
+            </field>
+            <field name="recurring_revenue" position="after">
+                <span class="oe_grey"> USD </span>
+            </field>
+
+            <field name="date_deadline" position="attributes">
+                <attribute name="attrs">{'required': [('type', '=', 'opportunity')]}</attribute>
+            </field>
+            <field name="date_deadline" position="before">
+                <field name="create_date"/>
+            </field>
+            <field name="user_id" position="attributes">
+                <attribute name="required">True</attribute>
+            </field>
+            <field name="team_id" position="attributes">
+                <attribute name="required">True</attribute>
+            </field>
+        </field>
+    </record>
+
+
+
+    <record id="dnk_crm_case_opportunities_filter_view" model="ir.ui.view">
+        <field name="name">dnk_crm_case_opportunities_filter_view</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="dnk_final_customer_id" />
+                <field name="dnk_is_vendor" />
+                <field name="dnk_family_id" />
+                <field name="dnk_subfamily_id" />
+                <field name="dnk_product_id" />
+            </field>
+            <filter name="stage" position="after">
+                <filter name="dnk_family_id" string="- Family" context="{'group_by':'dnk_family_id'}"/>
+                <filter name="dnk_subfamily_id" string="- SubFamily" context="{'group_by':'dnk_subfamily_id'}"/>
+                <filter name="dnk_product_id" string="- Product" context="{'group_by':'dnk_product_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="dnk_crm_case_kanban_view_leads" model="ir.ui.view">
+        <field name="name">dnk_crm_case_kanban_view_leads</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_kanban_view_leads" />
+        <field name="arch" type="xml">
+            <kanban position="attributes">
+                <attribute name="quick_create">false</attribute>
+            </kanban>
+
+            <field name="active" position="before">
+                <!-- Debe agregarse el field si se va a mostrar-->
+                <field name="dnk_family_id"/>
+            </field>
+            <!--ID de la oportunidad -->
+            <!--
+            <xpath expr="/kanban/templates/t/div/div[2]/div[4]/div[2]" position="before">
+                <strong>[<field name="id"/>]</strong>
+            </xpath>-->
+            <!-- Siempre será USD -->
+            <!--
+            <xpath expr="//div[hasclass('text-muted','o_kanban_record_subtitle')]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>-->
+            <!--
+            <xpath expr="//div[hasclass('text-muted','o_kanban_record_subtitle')]" position="after">
+                <div class="text-muted o_kanban_record_subtitle">
+                    <t t-if="record.expected_revenue.raw_value">
+                        <span>$</span><field name="expected_revenue" widget="float"/> USD
+                        <span t-if="record.partner_id.value">,</span>
+                    </t><span t-if="record.partner_id.value"> <t t-esc="record.partner_id.value"/></span>
+                </div>
+            </xpath>-->
+            <!-- Familia -->
+            <!--
+            <xpath expr="/kanban/templates/t/div/div[2]/div[3]" position="before">
+                 <span t-if="record.dnk_family_id.raw_value"><b>Fam :</b></span>
+                 <span style="font-size:10px" t-if="record.dnk_family_id.raw_value"><t t-esc="record.dnk_family_id.value"/></span>
+            </xpath>-->
+        </field>
+    </record>
+
+    <!-- Ocultar botón/widget del total de venta de las oportunidades porque está en pesos. -->
+    <record id="dnk_crm_opportunity_hide_button_amount_total" model="ir.ui.view">
+        <field name="name">dnk_crm_opportunity_hide_button_amount_total</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="sale_crm.crm_case_form_view_oppor" />
+        <field name="arch" type="xml">
+            <button name="action_view_sale_order" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </button>
+        </field>
+    </record>
+
+    <!-- Mostrar campo de Canal y ocultar campo Meddium. -->
+    <record id="dnk_crm_opportunity_conctact_channel" model="ir.ui.view">
+        <field name="name">dnk_crm_opportunity_conctact_channel</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form" />
+        <field name="arch" type="xml">
+          <field name="campaign_id" position="attributes">
+              <attribute name="invisible">True</attribute>
+          </field>
+          <field name="user_id" position="after">
+              <field name="dnk_contact_channel_ids" widget="many2many_tags"/>
+              <field name="dnk_purchase_intent_id" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True}"/>
+          </field>
+        </field>
+    </record>
+
+    <!-- Ya ocultado el botón en MXN, agregaré dos nuevos, uno con el año actual y uno con el año anterior-->
+    <record id="dnk_sale_action_orders_from_usd_amount" model="ir.actions.act_window">
+        <field name="name">Sale orders</field>
+        <field name="res_model">sale.order</field>
+        <field name="domain">[('opportunity_id', '=', active_id), ('state', 'not in', ('draft', 'sent', 'cancel'))]</field>
+        <field name="context">{'search_default_opportunity_id': [active_id], 'default_opportunity_id': active_id}</field>
+    </record>
+
+    <!-- Se agrega acción para asignarla a Distribuidor-->
+    <record id="dnk_view_crm_dealer_button" model="ir.ui.view">
+        <field name="name">dnk_view_crm_dealer_button</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="sale_crm.crm_case_form_view_oppor" />
+        <field name="arch" type="xml">
+            <button name="toggle_active" position="before">
+                <button name="button_assign_dealer" string="Assigned to Dealer" type="object"/>
+            </button>
+        </field>
+    </record>
+
+    <record id="dnk_crm_case_usd_button_form_view_oppor" model="ir.ui.view">
+        <field name="name">dnk_crm_case_usd_button_form_view_oppor</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="sale_crm.crm_case_form_view_oppor" />
+        <field name="arch" type="xml">
+            <button name="action_view_sale_order" position="before">
+              <button class="oe_stat_button" type="action" attrs="{'invisible': [('dnk_sale_usd_total_amount', '=', 0)]}"
+                      name="%(dnk_sale_action_orders_from_usd_amount)d" icon="fa-usd"
+                      context="{'search_default_partner_id': partner_id, 'default_partner_id': partner_id, 'search_default_sales': 1}">
+                  <div class="o_field_widget o_stat_info">
+                    <span class="o_stat_value"><field name="dnk_sale_usd_total_amount" widget="monetary"/> USD</span>
+                    <span class="o_stat_text"> Orders (Total)</span>
+                  </div>
+              </button>
+              <button class="oe_stat_button" type="action" attrs="{'invisible': [('dnk_sale_usd_lastyear_amount', '=', 0)]}"
+                      name="%(dnk_sale_action_orders_from_usd_amount)d" icon="fa-usd"
+                      context="{'search_default_partner_id': partner_id, 'default_partner_id': partner_id, 'search_default_sales': 1}">
+                  <div class="o_field_widget o_stat_info">
+                    <span class="o_stat_value"><field name="dnk_sale_usd_lastyear_amount" widget="monetary"/> USD</span>
+                    <span class="o_stat_text"> Orders (<field name="dnk_last_year"/>)</span>
+                  </div>
+              </button>
+              <button class="oe_stat_button" type="action" attrs="{'invisible': [('dnk_sale_usd_amount', '=', 0)]}"
+                      name="%(dnk_sale_action_orders_from_usd_amount)d" icon="fa-usd"
+                      context="{'search_default_partner_id': partner_id, 'default_partner_id': partner_id, 'search_default_sales': 1}">
+                  <div class="o_field_widget o_stat_info">
+                      <span class="o_stat_value"><field name="dnk_sale_usd_amount" widget="monetary"/> USD</span>
+                      <span class="o_stat_text"> Orders (<field name="dnk_current_year"/>)</span>
+                  </div>
+              </button>
+            </button>
+        </field>
+    </record>
+
+
+    <!-- Para el menú de la intención de compra -->
+    <record id="dnk_crm_purchase_intent_config" model="ir.actions.act_window">
+        <field name="name">- Purchase Intention</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">dnk.crm.purchase.intent</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        name="- Purchase Intent"
+        id="dnk_crm_purchase_intent_action"
+        action="dnk_crm_opportunities.dnk_crm_purchase_intent_config"
+        parent="crm.crm_menu_config" sequence="13"/>
+
+    <record id="dnk_crm_pruchase_intent_tree_view" model="ir.ui.view">
+         <field name="name">dnk_crm_pruchase_intent_tree_view</field>
+         <field name="model">dnk.crm.purchase.intent</field>
+         <field name="arch" type="xml">
+             <tree string="- Purchase Intention">
+                 <field name="sequence" widget="handle" />
+                 <field name="name" />
+             </tree>
+         </field>
+    </record>
+
+    <record id="dnk_crm_pruchase_intent_form_view" model="ir.ui.view">
+         <field name="name">dnk_crm_pruchase_intent_form_view</field>
+         <field name="model">dnk.crm.purchase.intent</field>
+         <field name="arch" type="xml">
+           <form string="- Purchase Intention" >
+              <group>
+                  <field name="name" />
+                  <field name="description"/>
+              </group>
+           </form>
+         </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+dnk_quality_claims_admin_access, Denker Quality Claims Admin Access,model_dnk_quality_claims,dnk_quality_claims.dnk_quality_claims_admin_group,1,1,1,1
+dnk_quality_claims_user_access, Denker Quality Claims User Access,model_dnk_quality_claims,dnk_quality_claims.dnk_quality_claims_user_group,1,1,1,1
+dnk_claim_stages_admin_access, Denker Claims Stages Admin Access,model_dnk_quality_claim_stage,dnk_quality_claims.dnk_quality_claims_admin_group,1,1,1,1
+dnk_claim_claims_user_access, Denker Claims Claims User Access,model_dnk_quality_claim_stage,dnk_quality_claims.dnk_quality_claims_user_group,1,1,0,0
+dnk_claim_tag_admin_access, Denker Claims Tags Admin Access,model_dnk_quality_claim_tags,dnk_quality_claims.dnk_quality_claims_admin_group,1,1,1,1
+dnk_claim_tag_user_access, Denker Claims Tags User Access,model_dnk_quality_claim_tags,dnk_quality_claims.dnk_quality_claims_user_group,1,1,0,0
+dnk_claim_dep_admin_access, Denker Claims Department Admin Access,model_dnk_quality_claim_department,dnk_quality_claims.dnk_quality_claims_admin_group,1,1,1,1
+dnk_claim_dep_user_access, Denker Claims Department User Access,model_dnk_quality_claim_department,dnk_quality_claims.dnk_quality_claims_user_group,1,1,0,0

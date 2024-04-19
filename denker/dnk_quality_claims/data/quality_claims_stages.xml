@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="data_claim_stage_1" model="dnk.quality.claim.stage">
+            <field name="dnk_name">New</field>
+            <field name="dnk_description">New</field>
+            <field name="dnk_sequence">1</field>
+        </record>
+        <record id="data_claim_stage_2" model="dnk.quality.claim.stage">
+            <field name="dnk_name">Cancel</field>
+            <field name="dnk_description">Cancel</field>
+            <field name="dnk_sequence">2</field>
+        </record>
+
+        <record id="data_claim_stage_4" model="dnk.quality.claim.stage">
+            <field name="dnk_name">Working</field>
+            <field name="dnk_description">Working</field>
+            <field name="dnk_sequence">4</field>
+        </record>
+
+        <record id="data_payment_solution_9" model="dnk.quality.claim.stage">
+            <field name="dnk_name">Solved</field>
+            <field name="dnk_description">Solved</field>
+            <field name="dnk_sequence">9</field>
+        </record>
+
+    </data>
+</odoo>

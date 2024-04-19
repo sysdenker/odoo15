@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Agrego campo Untaxed Amount en la vista de Lista por defecto de Account Invoice. -->
+    <record id="dnk_account_usd_amount_tree_view" model="ir.ui.view">
+        <field name="name">dnk_account_usd_amount_tree_view</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="arch" type="xml">
+            <field name="invoice_origin" position="after">
+                <field name="dnk_usd_amount" sum="-Subtotal USD" />
+                <field name="dnk_usd_amount_total" sum="-Total USD" />
+            </field>
+        </field>
+    </record>
+
+    <!-- Ya no existe esta vista por defecto en Odoo13, hay que revisar si se migrará, por lo tanto
+        NO eliminaré este código. -->
+
+    <!-- Agrego campo USD Amount en la vista de Pivote por defecto de Account Invoice. -->
+    <!--
+    <record id="dnk_account_usd_amount_pivot_view" model="ir.ui.view">
+        <field name="name">dnk_account_usd_amount_pivot_view</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_pivot"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_total_signed']" position="after">
+                <field name="dnk_amount_untaxed_usd" type="measure"/>
+            </xpath>
+        </field>
+    </record>
+    -->
+</odoo>

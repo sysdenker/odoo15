@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <record id="data_claim_tags_1" model="dnk.quality.claim.tags">
+          <field name="dnk_name">EST-Costura Abierta</field>
+          <field name="dnk_sequence">1</field>
+          <field name="dnk_company_id">1</field>
+      </record>
+      <record id="data_claim_tags_2" model="dnk.quality.claim.tags">
+          <field name="dnk_name">EST-Bastilla Inferior Desalineada</field>
+          <field name="dnk_sequence">2</field>
+          <field name="dnk_company_id">1</field>
+      </record>
+      <record id="data_claim_tags_3" model="dnk.quality.claim.tags">
+          <field name="dnk_name">EST-Bolsas Inferiores Desalineadas</field>
+          <field name="dnk_sequence">3</field>
+          <field name="dnk_company_id">1</field>
+      </record>
+      <record id="data_claim_tags_4" model="dnk.quality.claim.tags">
+          <field name="dnk_name">EST-Broches Frontales Desalineados</field>
+          <field name="dnk_sequence">4</field>
+          <field name="dnk_company_id">1</field>
+      </record>
+      <record id="data_claim_tags_5" model="dnk.quality.claim.tags">
+          <field name="dnk_name">EST-Costura Floja</field>
+          <field name="dnk_sequence">5</field>
+          <field name="dnk_company_id">1</field>
+      </record>
+      <record id="data_claim_tags_6" model="dnk.quality.claim.tags">
+          <field name="dnk_name">EST-Descuadre en Laterales</field>
+          <field name="dnk_sequence">6</field>
+          <field name="dnk_company_id">1</field>
+      </record>
+      <record id="data_claim_tags_7" model="dnk.quality.claim.tags">
+          <field name="dnk_name">EST-Desprendimiento de Broches</field>
+          <field name="dnk_sequence">7</field>
+          <field name="dnk_company_id">1</field>
+      </record>
+      <record id="data_claim_tags_8" model="dnk.quality.claim.tags">
+          <field name="dnk_name">EST-Diseño Bata vs Especificación en Sistema</field>
+          <field name="dnk_sequence">8</field>
+          <field name="dnk_company_id">1</field>
+      </record>
+      <record id="data_claim_tags_9" model="dnk.quality.claim.tags">
+          <field name="dnk_name">EST-ESD No Conduce</field>
+          <field name="dnk_sequence">9</field>
+          <field name="dnk_company_id">1</field>
+      </record>
+      <record id="data_claim_tags_10" model="dnk.quality.claim.tags">
+          <field name="dnk_name">EST-Fruncimiento Excesivo de Costura</field>
+          <field name="dnk_sequence">10</field>
+          <field name="dnk_company_id">1</field>
+      </record>
+      <record id="data_claim_tags_11" model="dnk.quality.claim.tags">
+          <field name="dnk_name">EST-Remaches de Costura</field>
+          <field name="dnk_sequence">11</field>
+          <field name="dnk_company_id">1</field>
+      </record>
+      <record id="data_claim_tags_12" model="dnk.quality.claim.tags">
+          <field name="dnk_name">EST-Otro</field>
+          <field name="dnk_sequence">12</field>
+          <field name="dnk_company_id">1</field>
+      </record>
+      
+
+      <record id="data_claim_tags_13" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-Impresión Incorrecta</field>
+          <field name="dnk_sequence">13</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_14" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-Impresión Borrosa</field>
+          <field name="dnk_sequence">14</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_15" model="dnk.quality.claim.tags">
+          <field name="dnk_name">  XTP-Manchas de Impresión</field>
+          <field name="dnk_sequence">15</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_16" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-Desprendimiento de Impresión</field>
+          <field name="dnk_sequence">16</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_17" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-Sin propiedad ESD</field>
+          <field name="dnk_sequence">17</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_18" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-Sin propiedad Antiestática</field>
+          <field name="dnk_sequence">18</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_19" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-Tratado Corona Débil</field>
+          <field name="dnk_sequence">19</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_20" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-Medida Incorrecta</field>
+          <field name="dnk_sequence">20</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_21" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-Calibre Incorrecto</field>
+          <field name="dnk_sequence">21</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_22" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-Deslaminado</field>
+          <field name="dnk_sequence">22</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_23" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-Grumos</field>
+          <field name="dnk_sequence">23</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_24" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-Burbujas</field>
+          <field name="dnk_sequence">24</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_25" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-Arrugas</field>
+          <field name="dnk_sequence">25</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_26" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-Ondulaciones</field>
+          <field name="dnk_sequence">27</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_28" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-Cáscara de Naranja</field>
+          <field name="dnk_sequence">28</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_29" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-Sello Débil</field>
+          <field name="dnk_sequence">29</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_30" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-Sello Desfasado</field>
+          <field name="dnk_sequence">20</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_31" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-Zipper Débil</field>
+          <field name="dnk_sequence">31</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_32" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-Zipper No Funcional</field>
+          <field name="dnk_sequence">32</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_33" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-Fuga</field>
+          <field name="dnk_sequence">33</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_34" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-No se adhiere la Pintura</field>
+          <field name="dnk_sequence">34</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+      <record id="data_claim_tags_35" model="dnk.quality.claim.tags">
+          <field name="dnk_name">XTP-Otro</field>
+          <field name="dnk_sequence">35</field>
+          <field name="dnk_company_id">4</field>
+      </record>
+    </data>
+</odoo>

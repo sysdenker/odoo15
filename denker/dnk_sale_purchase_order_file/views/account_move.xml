@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <!-- Account Invoice -->
+        <record id="dnk_sale_purchase_order_file_form_1" model="ir.ui.view">
+            <field name="name">dnk_sale_purchase_order_file_form_1</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='other_info']//field[@name='invoice_origin']" position="after">
+                    <field name="dnk_purchase_order_name" invisible="1" />
+                    <field widget="binary" name="dnk_purchase_order_file" filename="dnk_purchase_order_name" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

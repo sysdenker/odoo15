@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="dnk_mrp_planned_date_wizard_form" model="ir.ui.view">
+            <field name="name">Manufacturing Orders</field>
+            <field name="model">dnk.mrp.production.pdate.wizard</field>
+            <field name="arch" type="xml">
+              <form string="Edit Planned Date">
+                  <separator string="Planned Date"/>
+                    <group>
+                        <field name="dnk_planned_date"/>
+                    </group>
+                  <separator/>
+                  <footer>
+                      <button name="dnk_mrp_planned_date_wizard" type="object" string="Update" class="btn-primary" />
+                      <button string="Cancel" class="btn-secondary" special="cancel" />
+                  </footer>
+              </form>
+            </field>
+        </record>
+
+        <record id="action_view_update_planned_date" model="ir.actions.act_window">
+            <field name="name">- Update Planned Date</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dnk.mrp.production.pdate.wizard</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="dnk_mrp_planned_date_wizard_form"/>
+            <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

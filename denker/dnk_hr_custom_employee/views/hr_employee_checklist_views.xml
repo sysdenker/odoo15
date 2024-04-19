@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="dnk_hr_custom_employee_checklist_category_tree_view" model="ir.ui.view">
+        <field name="name">dnk.hr.custom.employee.checklist.category.tree.view</field>
+        <field name="model">hr.employee.checklist.category</field>
+        <field name="arch" type="xml">
+            <tree string="Checklist Category">
+                <field name="name"/>
+                <field name="sequence" widget="handle"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="dnk_hr_custom_employee_checklist_category_form_view" model="ir.ui.view">
+        <field name="name">dnk.hr.custom.employee.checklist.category.form.view</field>
+        <field name="model">hr.employee.checklist.category</field>
+        <field name="arch" type="xml">
+            <form string="Checklist Category">
+            <sheet>
+                <div class="oe_title">
+                    <label class="oe_edit_only" for="name" string="- Category"/>
+                    <h1><field name="name" placeholder="Category"/></h1>
+                </div>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_employee_checklist_category" model="ir.actions.act_window">
+        <field name="name">Checklist categories</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.employee.checklist.category</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create a Checklist Category, the first step of a new checklist.
+            </p><p>
+                Once the quotation is confirmed, it becomes a Checklist Category.
+                You'll be able to invoice it and collect payments.
+                From the <i>Sport leagues</i> menu, you can track delivery
+                orders or services.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_hr_employee_checklist_category_tree" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="dnk_hr_custom_employee.dnk_hr_custom_employee_checklist_category_tree_view"/>
+        <field name="act_window_id" ref="action_hr_employee_checklist_category"/>
+    </record>
+
+    <record id="action_hr_employee_checklist_category_form" model="ir.actions.act_window.view">
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="dnk_hr_custom_employee.dnk_hr_custom_employee_checklist_category_form_view"/>
+        <field name="act_window_id" ref="action_hr_employee_checklist_category"/>
+    </record>
+
+    <menuitem id="menu_hr_employee_checklist" name="Employee checklist"
+        parent="hr.menu_human_resources_configuration" sequence="5"/>
+
+    <menuitem action="action_hr_employee_checklist_category"
+        id="menu_hr_employee_checklist_category" parent="menu_hr_employee_checklist"
+        groups="base.group_no_one" sequence="1"/>
+
+    <!-- CHECKLIST LINES hr.employee.checklist.line -->
+    <record id="dnk_hr_custom_employee_checklist_line_tree_view" model="ir.ui.view">
+        <field name="name">dnk.hr.custom.employee.checklist.line.tree.view</field>
+        <field name="model">hr.employee.checklist.line</field>
+        <field name="arch" type="xml">
+            <tree string="Checklist Line">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="description"/>
+                <field name="category_id"/>
+                <field name="required"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="dnk_hr_custom_employee_checklist_line_form_view" model="ir.ui.view">
+        <field name="name">dnk.hr.custom.employee.checklist.line.form.view</field>
+        <field name="model">hr.employee.checklist.line</field>
+        <field name="arch" type="xml">
+            <form string="Checklist Line">
+            <sheet>
+                <div class="oe_title">
+                    <label class="oe_edit_only" for="name" string="- Checklist Line"/>
+                    <h1><field name="name" placeholder="Line"/></h1>
+                </div>
+                <group>
+                    <group colspan="4">
+                        <field name="description"/>
+                    </group>
+                    <group>
+                        <field name="category_id"/>
+                    </group>
+                    <group>
+                        <field name="required"/>
+                    </group>
+                 </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_employee_checklist_line" model="ir.actions.act_window">
+        <field name="name">Checklist lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.employee.checklist.line</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create a Checklist Line, the second step of a new checklist. After creating the checlist categories.
+            </p><p>
+                Once the quotation is confirmed, it becomes a Checklist Line.
+                You'll be able to invoice it and collect payments.
+                From the <i>Sport leagues</i> menu, you can track delivery
+                orders or services.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_hr_employee_checklist_line_tree" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="dnk_hr_custom_employee.dnk_hr_custom_employee_checklist_line_tree_view"/>
+        <field name="act_window_id" ref="action_hr_employee_checklist_line"/>
+    </record>
+
+    <record id="action_hr_employee_checklist_line_form" model="ir.actions.act_window.view">
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="dnk_hr_custom_employee.dnk_hr_custom_employee_checklist_line_form_view"/>
+        <field name="act_window_id" ref="action_hr_employee_checklist_line"/>
+    </record>
+
+    <menuitem action="action_hr_employee_checklist_line"
+        id="menu_hr_employee_checklist_line" parent="menu_hr_employee_checklist"
+        groups="base.group_no_one" sequence="2"/>
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="dnk_crm_product_dev_paperformat" model="report.paperformat">
+        <field name="name">Product Development Report</field>
+        <field name="format">Letter</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">21</field>
+        <field name="margin_right">16</field>
+        <field name="header_spacing">12</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="report_pdev_quot_info" model="ir.actions.report">
+          <field name="name">Quotation</field>
+          <field name="model">dnk.crm.product.dev</field>
+          <field name="report_type">qweb-pdf</field>
+          <field name="report_name">dnk_crm_product_dev.report_pdev_quot_document</field>
+          <field name="report_file">report_pdev_quot_info</field>
+          <field name="print_report_name">'Quotation - %s' % (object.name or '',)</field>
+          <field name="paperformat_id" ref="dnk_crm_product_dev.dnk_crm_product_dev_paperformat"/>
+          <field name="attachment">'quotation_'+(object.name or '')+'_dev.pdf'</field>
+          <field name="attachment_use">True</field>
+    </record>
+
+    <!--
+    <record
+        id="report_pdev_quot_info"
+        model="dnk.crm.product.dev"
+        string="Quotation"
+        print_report_name="'Quotation - '+ ((object.name or ''))"
+        report_type="qweb-pdf"
+        name="dnk_crm_product_dev.report_pdev_quot_document"
+        file="report_pdev_quot_info"
+        attachment_use="True"
+        attachment="('quotation_'+(object.name or '').replace('/','')+'.pdf')"
+        paperformat="dnk_crm_product_dev.dnk_crm_product_dev_paperformat"
+    />-->
+</odoo>

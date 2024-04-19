@@ -1,0 +1,178 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* dnk_sale_order_custom_document
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-07 13:49+0000\n"
+"PO-Revision-Date: 2020-08-07 13:49+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "&amp;nbsp;<span>on</span>&amp;nbsp;"
+msgstr "&amp;nbsp;<span>en</span>&amp;nbsp;"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "<span>Disc.%</span>"
+msgstr "<span>Desc.%</span>"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "<strong class=\"mr16\">Subtotal</strong>"
+msgstr ""
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "<strong style=\"font-size: 10px;\">Attention: </strong>"
+msgstr "<strong style=\"font-size: 10px;\">Atención: </strong>"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "<strong style=\"font-size: 10px;\">Customer: </strong>"
+msgstr "<strong style=\"font-size: 10px;\">Cliente: </strong>"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "<strong style=\"font-size: 10px;\">Order #:</strong>"
+msgstr "<strong style=\"font-size: 10px;\">Pedido #:</strong>"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "<strong style=\"font-size: 10px;\">Quotation #:</strong>"
+msgstr "<strong style=\"font-size: 10px;\">Presupuesto #:</strong>"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "<strong>Payment Terms:</strong>"
+msgstr "<strong>Términos de Pago:</strong>"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "<strong>Salesperson:</strong>"
+msgstr "<strong>Comercial:</strong>"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "<strong>Signature</strong>"
+msgstr "<strong>Firma</strong>"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "<strong>Subtotal</strong>"
+msgstr ""
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "<strong>Total</strong>"
+msgstr ""
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "<strong>Your Reference:</strong>"
+msgstr "<strong>Su Referencia:</strong>"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "Amount"
+msgstr "Importe"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_custom_document_base_document_layout_view
+msgid "Background Colors"
+msgstr "Colores de Fondo"
+
+#. module: dnk_sale_order_custom_document
+#: model:ir.model,name:dnk_sale_order_custom_document.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: dnk_sale_order_custom_document
+#: model:ir.model,name:dnk_sale_order_custom_document.model_base_document_layout
+msgid "Company Document Layout"
+msgstr "Diseño de documentos de la empresa"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "Date Ordered:"
+msgstr "Fecha del Pedido:"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "Description"
+msgstr "Descripción"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "Fiscal Position Remark:"
+msgstr "Comentario de Posición Fiscal"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "Image"
+msgstr "Imagen"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "Internal Code"
+msgstr "Referencia interna"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "Line"
+msgstr "Línea"
+
+#. module: dnk_sale_order_custom_document
+#: model:ir.model.fields,field_description:dnk_sale_order_custom_document.field_base_document_layout__primary_background_color
+#: model:ir.model.fields,field_description:dnk_sale_order_custom_document.field_res_company__primary_background_color
+msgid "Primary Background Color"
+msgstr "Color Primario de Fondo"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "Quotation Date:"
+msgstr "Fecha de Cotización:"
+
+#. module: dnk_sale_order_custom_document
+#: model:ir.model.fields,field_description:dnk_sale_order_custom_document.field_base_document_layout__secondary_background_color
+#: model:ir.model.fields,field_description:dnk_sale_order_custom_document.field_res_company__secondary_background_color
+msgid "Secondary Background Color"
+msgstr "Color Secundario de Fondo"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "Taxes"
+msgstr "Impuestos"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "Terms and Conditions:"
+msgstr "Términos y Condiciones:"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "Total Price"
+msgstr "Precio Total"
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "Unit Price"
+msgstr "Precio Unit."
+
+#. module: dnk_sale_order_custom_document
+#: model_terms:ir.ui.view,arch_db:dnk_sale_order_custom_document.dnk_sale_order_custom_report_document
+msgid "UoM"
+msgstr "UdM"

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+   <record id="hr_contract_view_form_nomina_cfdi" model="ir.ui.view">
+        <field name="name">hr.contract.nomina</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//notebook" position="inside">
+            <page name="info_nomina" string="- Información Nómina">
+              <group cols="4"  string="Configuración">
+                 <group>
+                    <field name="periodicidad_pago" required="1"/>
+                    <field name="riesgo_puesto" />
+                    <field name="tablas_cfdi_id" />
+                    <field name="sueldo_diario" />
+                    <field name="sueldo_hora" />
+                    <field name="sueldo_diario_integrado" />
+                    <field name="sueldo_base_cotizacion" />
+                 </group>
+                 <group>
+                    <field name="dias_aguinaldo" />
+                 </group>
+              </group>
+                        <group cols="4">
+                            <group string="Percepciones adicionales">
+                                <field name="bono_productividad"/>
+                                <field name="bono_asistencia"/>
+                                <field name="bono_puntualidad"/>
+                                <field name="prevision_social"/>
+                            </group>
+                            <!--<group string="Deducciones adicionales">
+                                <field name="infonavit_fijo"/>
+                                <field name="infonavit_vsm"/>
+                                <field name="infonavit_porc"/>
+                                <field name="anticipo_sueldo"/>
+                                <field name="deduc_gral"/>
+                                <field name="prestamo_fonacot"/>
+                                <field name="pago_de_serv"/>
+                                <field name="pens_alim"/>
+                                <field name="prest_financ"/>
+                                <field name="fondo_ahorro"/>
+                            </group>-->
+                        </group>
+            </page>
+            <page name="liquidaciones" string="Liquidaciones e Indemnizaciones">
+              <group cols="4">
+                 <group  string="Liquidaciones">
+                    <field name="indemnizacion" />
+                    <field name="antiguedad_anos" />
+                    <field name="dias_base" />
+                    <field name="dias_x_ano" />
+                    <field name="dias_totales" />
+                    <button name="button_dummy"
+                            string="Calcular" type="object" class="oe_edit_only oe_inline oe_highlight" style="margin-left: 10px;"/>
+                 </group>
+                 <group string="Días">
+                    <field name="dias_pendientes_pagar" />
+                    <field name="dias_vacaciones" />
+                 </group>
+              </group>
+            </page>
+
+          </xpath>
+        </field>
+    </record>
+
+    <record id="dnk_hr_custom_employee_contract_inherit_form_view" model="ir.ui.view">
+         <field name="name">dnk.custom.employee.nomina.inherit.form.view</field>
+         <field name="model">hr.contract</field>
+         <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+         <field name="arch" type="xml">
+             <field name="sueldo_diario" position="after">
+                <field name="sueldo_diario_palabras"/>
+             </field>
+             <field name="prevision_social" position="after">
+                <field name="total_vales_despensa"/>
+                <field name="total_vales_despensa_palabras"/>
+             </field>
+             <field name="sueldo_base_cotizacion" position="after">
+                <field name="ingreso_bruto"/>
+                <field name="ingreso_neto"/>
+                <field name="fondo_ahorro"/>
+                <field name="company_currency_id" invisible="1"/>
+             </field>
+         </field>
+     </record>
+</odoo>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="dnk_hr_attendance_machine_id_form" model="ir.ui.view">
+        <field name="name">dnk_hr_attendance_machine_id_form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr_attendance.view_employee_form_inherit_hr_attendance"/>
+        <field name="arch" type="xml">
+            <field name="barcode" position="after">
+              <field name="dnk_device_user_id" />
+            </field>
+            <field name="tz" position="after">
+              <field name="dnk_homeoffice" />
+              <field name="dnk_hoffice_att_ids" widget="many2many_tags" attrs="{'invisible': ['|',('dnk_homeoffice','=',False)]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="dnk_resource_calendar_form" model="ir.ui.view">
+        <field name="name">dnk_resource_calendar_form</field>
+        <field name="model">resource.calendar</field>
+        <field name="inherit_id" ref="resource.resource_calendar_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//field[@name='attendance_ids']" position="inside">
+          <tree string="Working Time" editable="top">
+            <field name="name" modifiers="{&quot;required&quot;: true}"/>
+            <field name="dayofweek" modifiers="{&quot;required&quot;: true}"/>
+            <field name="hour_from" widget="float_time" modifiers="{&quot;required&quot;: true}"/>
+            <field name="hour_to" widget="float_time" modifiers="{&quot;required&quot;: true}"/>
+            <field name="date_from" modifiers="{}"/>
+            <field name="date_to" modifiers="{}"/>
+          </tree>
+        </xpath>
+        </field>
+    </record>
+</odoo>

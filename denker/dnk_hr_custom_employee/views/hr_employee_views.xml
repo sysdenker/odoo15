@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+   <record id="view_employee_form_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.nomina</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='hr_settings']" position="inside">
+                <group cols="4">
+                    <group string="Detalles de Pago">
+                        <field name="tipo_pago"/>
+                        <field name="banco"/>
+                        <field name="no_cuenta"/>
+                        <field name="correo_electronico"/>
+                    </group>
+                    <group string="Información fiscal">
+                        <field name="regimen"/>
+                        <field name="contrato"/>
+                        <field name="jornada"/>
+                    </group>
+                </group>
+                <group cols="4">
+                    <group string="Registros">
+                        <field name="rfc" required="1"/>
+                        <field name="curp" required="1"/>
+                        <field name="segurosocial" required="1"/>
+                        <!--<field name="estado"/>-->
+                    </group>
+                </group>
+            </xpath>
+
+           <xpath expr="//notebook" position="inside">
+                <page name="reclutamiento" string="- Reclutamiento">
+                </page>
+                <page name="utilidades" string="- Reparto de utilidades" invisible="1">
+                   <group cols="4">
+                      <field name="fecha_utilidad_inicio"/>
+                      <field name="fecha_utilidad_fin"/>
+                      <field name="dias_utilidad"/>
+                      <field name="sueldo_utilidad"/>
+                   </group>
+                </page>
+           </xpath>
+        </field>
+    </record>
+
+    <record id="dnk_custom_employee_inherit_form_view" model="ir.ui.view">
+         <field name="name">dnk.custom.employee.inherit.form.view</field>
+         <field name="model">hr.employee</field>
+         <field name="inherit_id" ref="hr.view_employee_form"/>
+         <field name="arch" type="xml">
+            <field name="work_phone" position="after">
+                <field name="extension_telefonica"/>
+            </field>
+            <field name="birthday" position="after">
+                <field name="edad"/>
+            </field>
+            <field name="birthday" position="attributes">
+                <attribute name="required">True</attribute>
+            </field>
+            <xpath expr="//field[@name='marital']" position="after">
+                <field name="type_id"/>
+            </xpath>
+            <field name="address_home_id" position="after">
+                <field name="contacto_emergencia"/>
+                <field name="telefono_emergencia"/>
+                <field name="sangre_tipo"/>
+            </field>
+            <xpath expr="//page[@name='personal_information']" position="inside">
+              <group string="- Designación de Beneficiarios" col="4">
+                  <field name="beneficiary_ids" nolabel="1" col="4">
+                      <tree editable="bottom">
+                          <field name="name"/>
+                          <field name="relationship" required="1"/>
+                          <field name="percentage"/>
+                      </tree>
+                  </field>
+              </group>
+            </xpath>
+         </field>
+     </record>
+
+     <record id="dnk_custom_employee_nomina_inherit_form_view" model="ir.ui.view">
+          <field name="name">dnk.custom.employee.nomina.inherit.form.view</field>
+          <field name="model">hr.employee</field>
+          <field name="inherit_id" ref="view_employee_form_inherit"/>
+          <field name="arch" type="xml">
+              <field name="coach_id" position="attributes">
+                  <attribute name="invisible">1</attribute>
+              </field>
+              <field name="segurosocial" position="after">
+                 <field name="tiene_credito_infonavit"/>
+                 <field name="numero_credito_infonavit"
+                   attrs="{'invisible': [('tiene_credito_infonavit','=',False)], 'required': [('tiene_credito_infonavit','=',True)]}"/>
+                 <field name="tiene_credito_fonacot"/>
+                 <field name="numero_credito_fonacot"
+                   attrs="{'invisible': [('tiene_credito_fonacot','=',False)], 'required': [('tiene_credito_fonacot','=',True)]}"/>
+              </field>
+              <page name="reclutamiento" position="inside">
+                 <group cols="4">
+                     <group string="Generales">
+                         <field name="tipo_nomina"/>
+                         <field name="medium_id"/>
+                         <field name="source_id"/>
+                         <field name="reference"/>
+                         <field name="fecha_ingreso_actual"/>
+                         <field name="fecha_baja_ultima"/>
+                         <field name="anterior_fecha_ingreso"/>
+                         <field name="anterior_fecha_baja"/>
+                         <field name="anterior_company_id"/>
+                     </group>
+                     <group string="Fechas Contratos">
+                         <field name="fecha_1er_contrato" required="1"/>
+                         <field name="termino_1er_contrato"/>
+                         <field name="fecha_planta_contrato"/>
+                     </group>
+                  </group>
+                  <group string="Historial de Reclutamiento">
+                    <field name="recruitment_history_ids" nolabel="1">
+                       <tree string="Historial de Reclutamiento" editable="bottom" edit="true" delete="true">
+                           <field name="company_id"/>
+                           <field name="employ_date"/>
+                           <field name="administrative_leave_date"/>
+                           <field name="leave_cause_id" attrs="{ 'required': [('administrative_leave_date','!=',False)] }"/>
+                       </tree>
+                     </field>
+                  </group>
+                  <group string="Uniformes">
+                      <group>
+                          <field name="talla_camisa_blusa"/>
+                          <field name="talla_playera_polo"/>
+                          <field name="talla_playera_cuello_redondo"/>
+                          <field name="talla_zapato_industrial"/>
+                      </group>
+                  </group>
+              </page>
+             <page name="reclutamiento" position="after">
+                 <page name="documents" string="- Control de Documentos">
+                    <group>
+                      <group>
+                        <field name="no_empleado" readonly="1"/>
+                      </group>
+                    </group>
+                    <group>
+                      <div class="oe_right">
+                          <h3>
+                            Porcentaje Completado
+                            <field name="documentos_porcentaje_completado" class="oe_inline"/> %%
+                          </h3>
+                      </div>
+                    </group>
+                    <group col="4" colspan="4">
+                        <div class="oe_title">
+                            <h2>Documentos Legales</h2>
+                            <field name="documentos_legales_state" class="oe_right"/>
+                        </div>
+                    </group>
+                    <group>
+                      <field name="documentos_legales_ids" nolabel="1" readonly="1">
+                         <tree editable="bottom" edit="true" delete="false" create="false">
+                             <field name="name"/>
+                             <field name="description"/>
+                             <field name="write_uid" readonly="1"/>
+                             <field name="write_date" readonly="1"/>
+                             <field name="state"/>
+                         </tree>
+                       </field>
+                    </group>
+                    <group col="4" colspan="4">
+                        <div class="oe_title">
+                            <h2>Documentos Personales</h2>
+                            <field name="documentos_personales_state" class="oe_right"/>
+                        </div>
+                    </group>
+                    <group cols="4">
+                      <field name="documentos_personales_ids" nolabel="1" readonly="1">
+                         <tree editable="bottom" edit="true" delete="false" create="false">
+                             <field name="name"/>
+                             <field name="description"/>
+                             <field name="write_uid" readonly="1"/>
+                             <field name="write_date" readonly="1"/>
+                             <field name="state"/>
+                         </tree>
+                       </field>
+                    </group>
+                </page>
+            </page>
+          </field>
+      </record>
+
+      <record id="dnk_custom_employee_edit_documents_management_inherit_form_view" model="ir.ui.view">
+           <field name="name">dnk.custom.employee.edit.documents.management.inherit.form.view</field>
+           <field name="model">hr.employee</field>
+           <field name="inherit_id" ref="dnk_custom_employee_nomina_inherit_form_view"/>
+           <field name="groups_id" eval="[(4, ref('dnk_hr_custom_employee.dnk_hr_documents_management_group'))]"/>
+           <field name="arch" type="xml">
+             <field name="no_empleado" position="attributes">
+               <attribute name="readonly">0</attribute>
+             </field>
+             <field name="documentos_legales_ids" position="attributes">
+               <attribute name="readonly">0</attribute>
+             </field>
+             <field name="documentos_personales_ids" position="attributes">
+               <attribute name="readonly">0</attribute>
+             </field>
+           </field>
+       </record>
+
+       <!--Hr Employee inherit search view-->
+       <!--
+       <record id="dnk_hr_custom_employe_view_search" model="ir.ui.view">
+           <field name="name">dnk.hr.custom.employe.view.search</field>
+           <field name="model">hr.employee</field>
+           <field name="inherit_id" ref="hr.view_employee_filter"/>
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name='department_id']" position="after">
+                   <filter name="employee_to_authorize" string="To Authorize" domain="[('active', '=', False),('fecha_ingreso_actual', '=', False)]" groups="dnk_hr_custom_employee.dnk_hr_documents_management_group"/>
+               </xpath>
+           </field>
+       </record> -->
+
+       <!--NO FUNIONA, SOLO FUNCIONO AL PRINCIPIO
+       <record id="dnk_hr_custom_employee_contracts_count_inherit_form_view" model="ir.ui.view">
+            <field name="name">dnk.hr.custom.employee.contracts.count.inherit.form.view</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_contract.hr_hr_employee_view_form2"/>
+            <field name="arch" type="xml">
+                <button name="%(hr_contract.act_hr_employee_2_hr_contract)d" position="replace">
+                    <button name="contract_fields_validate"
+                       class="oe_stat_button"
+                       icon="fa-book"
+                       type="object"
+                       groups="hr.group_hr_manager">
+                       <field name="contracts_count" widget="statinfo" string="Contracts"/>
+                    </button>
+                </button>
+            </field>
+        </record>-->
+</odoo>

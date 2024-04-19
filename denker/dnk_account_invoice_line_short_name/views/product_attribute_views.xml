@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<odoo>
+  <data>
+    <record id="dnk_account_invoice_line_dnk_show_in_invoice_tree_view" model="ir.ui.view">
+        <field name="name">dnk.account.invoice.line.show.in.invoice.tree.view</field>
+        <field name="model">product.attribute</field>
+        <field name="inherit_id" ref="product.attribute_tree_view"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <field name="create_variant" position="after">
+                <field name="dnk_show_in_invoice"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="dnk_account_invoice_line_dnk_show_in_invoice_form_view" model="ir.ui.view">
+        <field name="name">dnk.account.invoice.line.show.in.invoice.form.view</field>
+        <field name="model">product.attribute</field>
+        <field name="inherit_id" ref="product.product_attribute_view_form"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <field name="create_variant" position="after">
+              <label for="dnk_show_in_invoice"/>
+              <field name="dnk_show_in_invoice" nolabel="1"/>
+            </field>
+        </field>
+    </record>
+  </data>
+</odoo>

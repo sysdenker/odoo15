@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+    <record model="ir.sequence" id="dnk_seq_res_partner">
+        <field name="name">- Partner code</field>
+        <field name="code">res.partner</field>
+        <field name="prefix"></field>
+        <field name="padding">1</field>
+        <field name="number_next">190001</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

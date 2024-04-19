@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="dnk_account_move_line_custom_tree" model="ir.ui.view">
+        <field name="name">dnk.account.move.line.custom.tree</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree[1]/field[@name='name']" position="after">
+                <field name="dnk_product_default_code" string="- Product"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Quitar el dominio: ['|', ('parent_id', '=', False), ('is_company', '=', True)]
+    Para poder registrar asientos contables a empleados para llevar el control de préstamos -->
+    <record id="dnk_account_move_line_custom_form" model="ir.ui.view">
+        <field name="name">dnk.account.move.line.custom.form</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="attributes">
+                <attribute name="domain"></attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="dnk_account_move_custom_tree" model="ir.ui.view">
+        <field name="name">dnk.account.move.custom.tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="dnk_product_default_code" string="- Product"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Quitar el dominio: ['|', ('parent_id', '=', False), ('is_company', '=', True)]
+    Para poder registrar asientos contables a empleados para llevar el control de préstamos -->
+    <record id="dnk_account_move_custom_form" model="ir.ui.view">
+        <field name="name">dnk.account.move.custom.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="attributes">
+                <attribute name="domain"></attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

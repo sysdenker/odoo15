@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="dnk_account_credit_limit_config_settings_form" model="ir.ui.view">
+            <field name="name">dnk_account_credit_limit_config_settings_form</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div/div[3]/div[8]" position="after">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                       <div class="o_setting_left_pane"/>
+                       <div class="o_setting_right_pane">
+                           <span class="o_form_label">- Immediate Payment Term</span>
+                           <div class="text-muted">
+                              Immediate Payment Term for Credit Limit
+                           </div>
+                           <div class="text-muted">
+                               <field name="dnk_immediate_payment_term" options="{'no_create': True}"/>
+                           </div>
+                       </div>
+                   </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

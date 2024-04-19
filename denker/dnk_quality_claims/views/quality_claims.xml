@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="dnk_quality_claims_dashboard_view_kanban" model="ir.ui.view">
+        <field name="name">dnk_quality_claim_dashboard_view_kanban</field>
+        <field name="model">dnk.quality.claims</field>
+        <field name="arch" type="xml">
+            <kanban class="oe_background_grey o_kanban_dashboard o_quality_kanban" create="1">
+                <field name="dnk_name"/>
+                <field name="dnk_acc_move_id"/>}
+                <field name="dnk_color" />
+                <field name="user_id" />
+                <field name="dnk_product_id" />
+                <field name="dnk_active" />
+                <field name="dnk_partner_id" />
+                <field name="dnk_damaged_qty" />
+                <templates>
+                      <t t-name="kanban-box">
+                          <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                              <div class="o_kanban_record_top mb16">
+                                  <div class="o_kanban_record_headings mt4">
+                                      <strong class="o_kanban_record_title"><span><t t-esc="record.dnk_name.value"/></span></strong>
+                                  </div>
+                              </div>
+                                <span><strong><field name="dnk_product_id"/></strong><br/>Qty:[<t t-esc="record.dnk_damaged_qty.value"/>]</span>
+                              <div>
+                              </div>
+                              <div class="o_kanban_record_bottom">
+                                  <div class="oe_kanban_bottom_left text-muted">
+                                      <span><t t-esc="record.dnk_partner_id.value"/> </span>
+                                  </div>
+
+                              </div>
+                          </div>
+                      </t>
+                  </templates>
+            </kanban>
+        </field>
+    </record>
+￼
+
+    <record id="dnk_quality_claims_search_view_1" model="ir.ui.view">
+         <field name="name">dnk_quality_claims_search_view_1</field>
+         <field name="model">dnk.quality.claims</field>
+         <field name="arch" type="xml">
+             <search string="- Claims">
+                 <field name="dnk_name" />
+                 <field name="dnk_product_id"/>
+                 <field name="dnk_partner_id"/>
+                 <field name="dnk_damaged_qty"/>
+                 <filter string="My Claims" domain="[('user_id','=',uid)]" name="my_claim"/>
+                 <filter string="Unassigned Claims" domain="[('user_id','=',False)]" name="unassigned"/>
+                 <filter string="Canceled" domain="[('dnk_stage_id.dnk_name','=','Cancel')]" name="dnk_is_canceled"/>
+                 <filter string="Solved" domain="[('dnk_stage_id.dnk_name','=','Solved')]" name="dnk_is_done"/>
+                 <filter string="Open" domain="['|',('dnk_stage_id.dnk_name','=','New'),('dnk_stage_id.dnk_name','=','Working')]" name="dnk_is_open"/>
+                 <group expand="0" string="Group By">
+                     <filter string="User" name="dnk_filter_by_user" context="{'group_by':'user_id'}"/>
+                     <filter string="Stage" name="dnk_filter_by_stage" context="{'group_by':'dnk_stage_id'}"/>
+                     <filter string="Product" name="dnk_filter_by_product" context="{'group_by':'dnk_product_id'}"/>
+                 </group>
+             </search>
+         </field>
+    </record>
+
+    <record id="dnk_quality_claims_tree_view_1" model="ir.ui.view">
+         <field name="name">dnk_qaulity_claims_tree_view_1</field>
+         <field name="model">dnk.quality.claims</field>
+         <field name="arch" type="xml">
+             <tree string="- Claims">
+                 <field name="dnk_stage_id" />
+                 <field name="dnk_date"/>
+                 <field name="dnk_product_default_code"/>
+                 <field name="dnk_damaged_qty"/>
+                 <field name="dnk_order_id"/>
+                 <field name="dnk_manufacturing_order_id"/>
+                 <field name="user_id"/>
+                 <field name="dnk_description"/>
+             </tree>
+         </field>
+    </record>
+
+    <record id="dnk_quality_claims_pivot_view_1" model="ir.ui.view">
+         <field name="name">dnk_quality_claims_pivot_view_1</field>
+         <field name="model">dnk.quality.claims</field>
+         <field name="arch" type="xml">
+             <pivot string="- Claims">
+                 <field name="dnk_stage_id" type="row"/>
+                 <field name="dnk_date"/>
+             </pivot>
+         </field>
+    </record>
+
+    <record id="dnk_quality_claims_graph_view_1" model="ir.ui.view">
+         <field name="name">dnk_quality_claims_graph_view_1</field>
+         <field name="model">dnk.quality.claims</field>
+         <field name="arch" type="xml">
+             <graph string="- Claims">
+                 <field name="dnk_date"  type="row" />
+                 <field name="dnk_stage_id"  type="col" />
+             </graph>
+         </field>
+    </record>
+
+    <record id="dnk_quality_claims_form_view_1" model="ir.ui.view">
+         <field name="name">dnk_quality_claims_form_view_1</field>
+         <field name="model">dnk.quality.claims</field>
+         <field name="arch" type="xml">
+             <form string="- Claims" >
+             <sheet>
+               <header>
+                   <field name="dnk_stage_id" widget="statusbar"
+                            options="{'clickable': '1', 'fold_field': 'fold'}"/>
+               </header>
+                <div class="oe_title">
+                    <h1>
+                        <field name="dnk_name" default_focus="1" placeholder="- Name"/>
+                    </h1>
+                </div>
+                <group>
+                    <group>
+                        <field name="dnk_acc_move_id" options="{'no_create': True, 'no_create_edit': True, 'always_reload': True}"/>
+                        <field name="dnk_invoice_date" />
+                        <field name="dnk_acc_move_line_id" options="{'no_create': True, 'no_create_edit': True, 'always_reload': True, 'no_open': True}"/>
+                        <field name="dnk_product_id" invisible="0" readonly="1"/>
+                        <field name="dnk_partner_id" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="dnk_order_id" readonly="1" />
+                        <field name="dnk_sale_order_name" />
+                        <field name="dnk_manufacturing_order_id" options="{'no_create': True, 'no_create_edit': True, 'always_reload': True}"/>
+                        <field name="create_uid" readonly = "1"/>
+                        <field name="user_id" required = "1"/>
+                        <field name="dnk_department_id"  options="{'no_create': True, 'no_create_edit': True, 'always_reload': True}"/>
+                    </group>
+                </group>
+                <notebook>
+                  <page string="Info">
+                    <group >
+                        <group>
+                            <field name="dnk_date" required = "1"/>
+                            <field name="dnk_acc_move_qty"/>
+                            <field name="dnk_damaged_qty"/>
+                            <field name="dnk_description" required = "1"/>
+                            <field name="dnk_observations"/>
+                        </group>
+                        <group>
+                            <field name="dnk_tag_id" required = "1" options="{'no_create': True, 'no_create_edit': True, 'always_reload': True}"/>
+                            <field name="dnk_evualuation" readonly="1"/>
+                            <field name="dnk_desc_evaluation" readonly="1" />
+                        </group>
+                    </group>
+                  </page>
+                </notebook>
+             </sheet>
+             <div class="oe_chatter">
+                 <field name="message_follower_ids" widget="mail_followers"/>
+                 <field name="activity_ids" widget="mail_activity"/>
+                 <field name="message_ids" widget="mail_thread"/>
+             </div>
+             </form>
+         </field>
+    </record>
+
+    <record id="dnk_quality_claims_form_view__2" model="ir.ui.view">
+    	<field name="name">dnk_quality_claims_form_view_2</field>
+    	<field name="model">dnk.quality.claims</field>
+    	<field name="inherit_id" ref="dnk_quality_claims_form_view_1"/>
+    	<field name="groups_id" eval="[(4, ref('dnk_quality_claims.dnk_quality_claims_admin_group'))]"/>
+    	<field name="arch" type="xml">
+    			<xpath expr="//field[@name='dnk_evualuation']" position="attributes">
+                    <attribute name="readonly">False</attribute>
+    			</xpath>
+                <xpath expr="//field[@name='dnk_desc_evaluation']" position="attributes">
+                    <attribute name="readonly">False</attribute>
+    			</xpath>
+    	</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="dnk_quality_claims_action">
+        <field name="name">- Quality Claims</field>
+        <field name="res_model">dnk.quality.claims</field>
+        <field name="view_mode">tree,kanban,form,pivot,graph</field>
+        <field name="domain">[]</field>
+        <field name="context">{'search_default_dnk_is_open': True}</field>
+    </record>
+
+    <menuitem
+        id="dnk_quality_claims_main_menu"
+        name="Claims"
+        web_icon="dnk_quality_claims,static/description/icon.png"
+        sequence="14"/>
+
+    <menuitem
+        id="dnk_quality_master_data_menu"
+        name="Claims"
+        action="dnk_quality_claims_action"
+        parent="dnk_quality_claims_main_menu"
+        sequence="1" />
+
+    <menuitem
+        id="dnk_quality_configuration_menu"
+        name="Configuration"
+        parent="dnk_quality_claims_main_menu"
+        sequence="1" />
+
+        <!-- Claims STAGE-->
+    <record id="dnk_quality_claims_stage_tree_view_1" model="ir.ui.view">
+         <field name="name">dnk_quality_claims_stage_tree_view_1</field>
+         <field name="model">dnk.quality.claim.stage</field>
+         <field name="arch" type="xml">
+             <tree string="- Stages of Quality Claims">
+                 <field name="dnk_sequence" widget="handle" />
+                 <field name="dnk_name" />
+                 <field name="dnk_description" />
+                 <field name="fold"/>
+             </tree>
+         </field>
+    </record>
+    <record id="dnk_quality_claims_stage_form_view_1" model="ir.ui.view">
+         <field name="name">dnk_quality_claims_stage_form_view_1</field>
+         <field name="model">dnk.quality.claim.stage</field>
+         <field name="arch" type="xml">
+             <form string="- Stages of Quality Claims" >
+             <sheet>
+                <group>
+                    <field name="dnk_name" />
+                    <field name="dnk_description" />
+                    <field name="fold"/>
+                </group>
+             </sheet>
+             </form>
+         </field>
+    </record>
+    <record model="ir.actions.act_window" id="dnk_quality_claims_stage_action">
+        <field name="name">- Stages of Quality Claims</field>
+        <field name="res_model">dnk.quality.claim.stage</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+    <menuitem action="dnk_quality_claims_stage_action" id="dnk_quality_claims_stage_menu"
+        parent="dnk_quality_configuration_menu" sequence="50" />
+
+        <!-- Claims Department-->
+    <record id="dnk_quality_claims_department_tree_view" model="ir.ui.view">
+         <field name="name">dnk_quality_claims_stage_tree_view</field>
+         <field name="model">dnk.quality.claim.department</field>
+         <field name="arch" type="xml">
+             <tree string="- Department">
+                 <field name="dnk_sequence" widget="handle" />
+                 <field name="dnk_name" />
+                 <field name="dnk_description" />
+                 <field name="fold"/>
+             </tree>
+         </field>
+    </record>
+    <record id="dnk_quality_claims_department_form_view" model="ir.ui.view">
+         <field name="name">dnk_quality_claims_department_form_view</field>
+         <field name="model">dnk.quality.claim.department</field>
+         <field name="arch" type="xml">
+             <form string="- Department" >
+             <sheet>
+                <group>
+                    <field name="dnk_name" />
+                    <field name="dnk_description" />
+                    <field name="fold"/>
+                </group>
+             </sheet>
+             </form>
+         </field>
+    </record>
+    <record model="ir.actions.act_window" id="dnk_quality_claims_department_action">
+        <field name="name">- Department of Quality Claims</field>
+        <field name="res_model">dnk.quality.claim.department</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+    <menuitem action="dnk_quality_claims_department_action" id="dnk_quality_claims_department_menu"
+        parent="dnk_quality_configuration_menu" sequence="60" />
+
+    <!-- Claims Tags-->
+    <record id="dnk_quality_claims_tags_tree_view_1" model="ir.ui.view">
+         <field name="name">dnk_quality_claims_tags_tree_view_1</field>
+         <field name="model">dnk.quality.claim.tags</field>
+         <field name="arch" type="xml">
+             <tree string="- Tags of Quality Claims">
+                 <field name="dnk_sequence" widget="handle" />
+                 <field name="dnk_name" />
+                 <field name="dnk_company_id"/>
+             </tree>
+         </field>
+    </record>
+    <record id="dnk_quality_claims_tags_form_view_1" model="ir.ui.view">
+         <field name="name">dnk_quality_claims_tags_form_view_1</field>
+         <field name="model">dnk.quality.claim.tags</field>
+         <field name="arch" type="xml">
+             <form string="- Tags of Quality Claims" >
+             <sheet>
+                <group>
+                    <field name="dnk_name" />
+                    <field name="dnk_company_id"/>
+                </group>
+             </sheet>
+             </form>
+         </field>
+    </record>
+    <record model="ir.actions.act_window" id="dnk_quality_claims_tags_action">
+        <field name="name">- Tags of Quality Claims</field>
+        <field name="res_model">dnk.quality.claim.tags</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain"></field>
+    </record>
+    <menuitem action="dnk_quality_claims_tags_action" id="dnk_quality_claims_tags_menu"
+        parent="dnk_quality_configuration_menu" sequence="55" />
+    </data>
+</odoo>

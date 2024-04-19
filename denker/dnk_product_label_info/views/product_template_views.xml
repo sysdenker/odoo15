@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="dnk_product_template_product_material_form_view" model="ir.ui.view">
+        <field name="name">dnk.product.template.product.material.form.view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="groups_id" eval="[(4, ref('dnk_printing_labels.dnk_printing_label_user_group'))]"/>
+        <field name="arch" type="xml">
+            <field name="route_ids" position="before">
+                <field name="dnk_material_id"/>
+            </field>
+        </field>
+    </record>
+</odoo>

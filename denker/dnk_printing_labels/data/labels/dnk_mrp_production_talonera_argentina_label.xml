@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <template id="dnk_mrp_production_talonera_argentina_label" name="Etiqueta Talonera Argentina">
+^XA
+
+CODIGO PRODUCTO
+^FO165,0^A0R,18,16^FB168,0,12,C,0^FD<t t-esc="record.product_id.default_code"/>^FS
+
+
+CURE
+^FO153,0^A0R,14,16^FB168,0,12,C^FH^SN<t t-esc="record.get_last_digits(record.name, 6)"/><t t-esc="record.get_last_digits(record.origin, 6)"/><t t-esc="str(dnk_labels_to_print_index_start).zfill(3)"/>, 1, Y^FS
+
+
+LEYENDA:
+^FO140,0^A0R,18,18^FB168,0,12,C,0^FDwww.estatec.com^FS
+^FO125,0^A0R,18,18^FB168,0,12,C,0^FDHecho en Mexico^FS
+^FO110,0^A0R,18,18^FB168,0,12,C,0^FDMacon Fuegina S.A.^FS
+^FO95,0^A0R,18,12^FB168,0,12,C,0^FDCUIT No.30-71051635-5^FS
+^FO80,0^A0R,18,18^FB168,0,12,C,0^FH^FDOrigen: Mexico^FS
+^FO65,0^A0R,18,18^FB168,0,12,C,0^FDV-218-04^FS
+^FO55,0^A0R,14,14^FB168,0,12,C,0^FD50% Hule^FS
+^FO44,0^A0R,14,14^FB168,0,12,C,0^FD30% Velcro^FS
+^FO33,0^A0R,14,14^FB168,0,12,C,0^FD10% Cinta Carbon^FS
+^FO22,0^A0R,14,14^FB168,0,12,C,0^FD6% Elastico Poliester^FS
+^FO11,0^A0R,14,14^FB168,0,12,C,0^FD2% Etiqueta Algodon^FS
+^FO0,0^A0R,14,14^FB168,0,12,C,0^FD2% Hilo Poliester^FS
+
+Repetir la etiqueta N veces
+^PQ<t t-esc="dnk_labels_to_print_index_stop-dnk_labels_to_print_index_start+1"/>,0,1,Y
+
+^XZ
+        </template>
+        <record id="dnk_mrp_production_talonera_argentina_label" model="ir.ui.view">
+            <field name="type">qweb</field>
+            <field name="model">mrp.production</field>
+            <field name="dnk_label_flag">True</field>
+        </record>
+    </data>
+</odoo>

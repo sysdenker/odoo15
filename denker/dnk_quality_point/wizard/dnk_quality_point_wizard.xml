@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="dnk_view_quality_point_wiz" model="ir.ui.view">
+        <field name="name">dnk_view_quality_point_wiz</field>
+        <field name="model">dnk.quality.point.wiz</field>
+        <field name="arch" type="xml">
+            <form string="Dnk Quality Point">
+                <group>
+                    <p>
+                        Quality Point
+                    </p>
+                </group>
+                <group>
+                    <field name="dnk_tolerance_min"/>
+                    <field name="dnk_tolerance_max"/>
+                    <field name="dnk_norm"/>
+                    <field name="dnk_norm_unit"/>
+                    <field name="dnk_qp_name" invisible="1" />
+                    <field widget="binary" name="dnk_qp_file" filename="dnk_qp_name"/>
+                </group>
+                <footer>
+                    <button name="button_create_qp" string="_Create Quality Point" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_tree_view_create_quality_point" model="ir.actions.act_window">
+        <field name="name">- New Quality Point</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">dnk.quality.point.wiz</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="dnk_view_quality_point_wiz"/>
+        <field name="binding_model_id" ref="product.model_product_product"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

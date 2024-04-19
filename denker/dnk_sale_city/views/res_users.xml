@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="dnk_res_user_sale_city_form_view" model="ir.ui.view">
+            <field name="name">dnk_res_user_sale_city_form_view</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                  <field name="signature" position="after">
+                    <field name="dnk_sale_city_ids"  widget="many2many_tags"
+                        options="{'no_create_edit': True, 'no_create': True}"/>
+                  </field>
+            </field>
+        </record>
+
+        <record id="dnk_res_user_preferences_sale_city_form_view" model="ir.ui.view">
+            <field name="name">dnk_res_user_preferences_sale_city_form_view</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+            <field name="arch" type="xml">
+                  <field name="tz_offset" position="after">
+                    <field name="dnk_sale_city_ids"  widget="many2many_tags"
+                        options="{'no_create_edit': True, 'no_create': True}"/>
+                  </field>
+            </field>
+        </record>
+    </data>
+</odoo>

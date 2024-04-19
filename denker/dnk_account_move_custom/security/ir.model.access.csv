@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+dnk_acc_move_wizard_all, Denker Account Move Wizard Admin,model_dnk_account_move_wizard,dnk_account_move_custom.dnk_account_move_wizard_admin_group,1,1,1,1
+dnk_acc_move_line_wizard_all, Denker Account Move Line Wizard Admin,model_dnk_account_move_line_wizard,dnk_account_move_custom.dnk_account_move_wizard_admin_group,1,1,1,1

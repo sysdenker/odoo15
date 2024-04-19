@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+	<record forcecreate="True" id="cron_download_zk_machine_data" model="ir.cron">
+		<field name="name">Download All ZK Machine Data</field>
+		<field eval="False" name="active" />
+		<field name="user_id" ref="base.user_root" />
+		<field name="interval_number">12</field>
+		<field name="interval_type">hours</field>
+		<field name="numbercall">-1</field>
+
+		<field name="model_id" ref="dnk_hr_attendance_hist.model_dnk_zk_machine" />
+		<field name="state">code</field>
+		<field name="code">model.cron_download_zk_machine_data()</field>
+	</record>
+
+	<record forcecreate="True" id="cron_create_default_attendance_data" model="ir.cron">
+		<field name="name">Create Default Attendance Data</field>
+		<field eval="True" name="active" />
+		<field name="user_id" ref="base.user_root" />
+		<field name="interval_number">1</field>
+		<field name="interval_type">days</field>
+		<field name="numbercall">-1</field>
+
+		<field name="model_id" ref="dnk_hr_attendance_hist.model_hr_attendance" />
+		<field name="state">code</field>
+		<field name="code">model.cron_create_default_attendance_data()</field>
+	</record>
+
+	<record forcecreate="True" id="cron_update_attendance_data" model="ir.cron">
+		<field name="name">Update Attendance Data</field>
+		<field eval="True" name="active" />
+		<field name="user_id" ref="base.user_root" />
+		<field name="interval_number">1</field>
+		<field name="interval_type">days</field>
+		<field name="numbercall">-1</field>
+
+		<field name="model_id" ref="dnk_hr_attendance_hist.model_hr_attendance" />
+		<field name="state">code</field>
+		<field name="code">model.dnk_update_attendance()</field>
+	</record>
+
+	<record forcecreate="True" id="create_default_attendance_from_date" model="ir.cron">
+		<field name="name">Create Default Attendance Data From Date</field>
+		<field eval="False" name="active" />
+		<field name="user_id" ref="base.user_root" />
+		<field name="interval_number">1</field>
+		<field name="interval_type">days</field>
+		<field name="numbercall">-1</field>
+		<field name="model_id" ref="dnk_hr_attendance_hist.model_hr_attendance" />
+		<field name="state">code</field>
+		<field name="code">
+#Para generar a partir de cierta los registros de Asistencia
+#No le puse validaciones de que la fecha final sea mayor, tons hay que cuidar esto
+#El formato es aaaa-mm-dd
+#Si se quiere un solo día, se debe repetir la fecha que se quiere generar
+
+# model.dnk_create_att_from_date("2020-01-25","2020-01-25")
+# model.dnk_crate_att()
+# model.dnk_update_attendance("2021-10-01","2021-10-22")
+		</field>
+	</record>
+</odoo>

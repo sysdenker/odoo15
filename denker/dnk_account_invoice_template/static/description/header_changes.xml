@@ -1,0 +1,118 @@
+Cambiar el header original:
+  <div class="header o_background_header">
+      <div class="pull-right">
+          <h3 class="mt0 text-right" t-field="company.report_header"/>
+      </div>
+      <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)" class="pull-left"/>
+      <img t-if="company.logo2" t-att-src="'data:image/png;base64,%s' % to_text(company.logo2)" class="pull-right"/>
+      <div class="pull-left company_address">
+          <div>
+              <strong t-field="company.partner_id.name"/>
+          </div>
+          <span t-field="company.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: true}"/>
+      </div>
+      <div class="clearfix mb8"/>
+  </div>
+
+por el siguiente header:
+<div class="header o_background_header">
+    <div class="row">
+        <div class="col-xs-4">
+            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)" style="max-height: 45px;"/>
+        </div>
+        <div class="col-xs-4 text-center">
+          <span t-field="company.partner_id.name" style="margin-top:10px;display:inline-block;font-size: 10px;font-weight: bold;"/><br/>
+          <span t-field="company.partner_id.vat" style="display:inline-block;font-size: 8px;font-weight: bold;"/>
+        </div>
+        <div class="col-xs-4 text-right" style="margin-top:20px;font-size: 10px;" t-field="company.report_header"/>
+    </div>
+    <div class="row zero_min_height">
+        <div class="col-xs-12">
+            <div style="border-bottom: 1px solid #555555;"/>
+        </div>
+        <div class="col-xs-6" name="company_address" style="display:none;">
+            <span t-field="company.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}" style="border-bottom: 1px solid black; display:inline-block;"/>
+        </div>
+    </div>
+</div>
+
+
+Odoo 10
+<t t-name="report.external_layout_header">
+    <div class="header">
+        <div class="row">
+            <div class="col-xs-4">
+                <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/>
+            </div>
+            <div class="col-xs-4 text-center">
+                <span t-field="company.partner_id.name" style="margin-top:10px;display:inline-block;font-size: 10px;font-weight: bold;"/><br/>
+                <span t-esc="company.partner_id.vat[2:]" style="display:inline-block;font-size: 8px;font-weight: bold;"/>
+            </div>
+            <div class="col-xs-4 text-right" style="margin-top:20px;font-size: 10px;" t-field="company.rml_header1"/>
+        </div>
+        <div class="row zero_min_height">
+            <div class="col-xs-12">
+                <div style="border-bottom: 1px solid black;"/>
+            </div>
+            <div class="col-xs-6" name="company_address" style="display:none;">
+                <span t-field="company.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}" style="border-bottom: 1px solid black; display:inline-block;"/>
+            </div>
+        </div>
+    </div>
+</t>
+
+
+
+Cambiar el footer original Odoo 11:
+  <div class="footer o_background_footer">
+      <div class="text-center">
+          <ul class="list-inline">
+              <li t-if="company.phone"><i class="fa fa-phone"/> <span t-field="company.phone"/></li>
+              <li t-if="company.email"><i class="fa fa-at"/> <span t-field="company.email"/></li>
+              <li t-if="company.website"><i class="fa fa-globe"/> <span t-field="company.website"/></li>
+              <li t-if="company.vat"><i class="fa fa-building-o"/><t t-esc="company.country_id.vat_label or 'TIN'"/>: <span t-field="company.vat"/></li>
+          </ul>
+          <div t-field="company.report_footer"/>
+          <div class="text-muted">
+              Page:
+              <span class="page"/>
+              of
+              <span class="topage"/>
+          </div>
+      </div>
+  </div>
+por el siguiente:
+<div class="footer">
+   <div class="row zero_min_height">
+       <div class="col-xs-12">
+           <div style="border-bottom: 1px solid #555555;"/>
+       </div>
+   </div>
+   <div style="font-size: 10px; color:#555555;" class="text-center">
+       <ul class="list-inline">
+           <li t-if="company.phone" style="color:#555555;"><i class="fa fa-phone"/> <span t-field="company.phone"/></li>
+           <li t-if="company.website" style="color:#555555;"><i class="fa fa-globe"/> <span t-field="company.website"/></li>
+           <li t-if="company.report_footer" style="color:#555555;"><span t-field="company.report_footer"/></li>
+           <li class="text-muted" style="color:#555555;">
+               Page:
+               <span class="page"/>
+               of
+               <span class="topage"/>
+           </li>
+       </ul>
+   </div>
+</div>
+
+Asignar el formato de Papel al reporte de Cotizaciones a "US Letter"
+
+Cambiar los siguientes campos:
+
+Top Margin (mm): 40.00
+Bottom Margin (mm): 25.00
+Header spacing: 35
+
+por:
+
+Top Margin (mm): 15.00
+Bottom Margin (mm): 10.00
+Header spacing: 12

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="dnk_product_product_costs_normal_form" model="ir.ui.view">
+        <field name="name">dnk_product_product_costs_normal_form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <page name="general_information" position="after">
+                <page string="- Costs" name="costs"  groups="dnk_product_hide_cost.dnk_show_cost_price">
+                    <group>
+                        <field name="dnk_raw_mat_cost" readonly="1"  invisible="1"/>
+                        <field name="dnk_labour_cost" readonly="1"  invisible="1"/>
+                        <field name="dnk_indirect_cost" readonly="1" invisible="1"/>
+                        <field name="dnk_attribute_cost" readonly="1" invisible="1"/>
+                        <field name="dnk_total_cost" readonly="1" invisible="0"/>
+                    </group>
+                    <button string="- Add New Cost" name="bttn_new_cost" type="object"/>
+                    <field name="dnk_product_cost_ids" groups="dnk_product_hide_cost.dnk_show_cost_price" >
+                        <form>
+                          <sheet>
+                             <group>
+                                <group>
+                                    <field name="dnk_raw_mat_cost" readonly="1" />
+                                    <field name="dnk_labour_cost" readonly="1"/>
+                                    <field name="dnk_indirect_cost" readonly="1"/>
+                                    <field name="dnk_attribute_cost" readonly="1"/>
+                                    <field name="dnk_total_cost" readonly="1"/>
+                                    <field name="dnk_usd_cost_fixed_rate" readonly="1" />
+                                </group>
+                                <group>
+                                    <field name="create_date" readonly="1" />
+                                    <field name="create_uid" readonly="1" />
+                                    <field name="dnk_description"/>
+                                </group>
+                            </group>
+                          </sheet>
+                        </form>
+                        <tree default_order='create_date desc' decoration-muted="dnk_active != True" delete="false" create="false" edit="false">
+                            <field name="dnk_raw_mat_cost" readonly="1" />
+                            <field name="dnk_labour_cost" readonly="1"/>
+                            <field name="dnk_indirect_cost" readonly="1"/>
+                            <field name="dnk_attribute_cost" readonly="1"/>
+                            <field name="dnk_total_cost" readonly="1"/>
+                            <field name="create_uid" readonly="1" />
+                            <field name="create_date" readonly="1" />
+                            <field name="dnk_active" widget="boolean_toggle"/>
+                        </tree>
+                    </field>
+                </page>
+            </page>
+            <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='general_information']/group[1]/group[@name='group_standard_price']/field[@name='company_id']" position="after">
+              <field name="dnk_cost_currency_id" invisible="1" />
+              <label for="dnk_standard_cost"/>
+               <div name="dnk_standard_cost" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}" class="o_row">
+                   <field name="dnk_standard_cost" widget="monetary" options="{'currency_field': 'dnk_cost_currency_id'}"/>
+                   <button string="Update from Last Denker Cost" type="object"
+                        name="button_denker_standar_cost"
+                        class="oe_link pt-0 oe_inline"/>
+               </div>
+               <label for="dnk_commercial_cost"/>
+               <div name="dnk_commercial_cost" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}" class="o_row">
+                   <field name="dnk_commercial_cost" widget="monetary" options="{'currency_field': 'dnk_cost_currency_id'}"/>
+                   <button string="Update From Std. Cost" type="object"
+                        name="button_denker_commercial_cost"
+                        class="oe_link pt-0 oe_inline"/>
+               </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="dnk_product_product_costs_easy_form" model="ir.ui.view">
+        <field name="name">dnk_product_product_costs_easy_form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='standard_price']" position="after">
+                <group col="4" groups="dnk_product_hide_cost.dnk_show_cost_price">
+                    <field name="dnk_cost_currency_id"/>
+                    <field name="dnk_raw_mat_cost"/>
+                    <field name="dnk_labour_cost"/>
+                    <field name="dnk_indirect_cost"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+
+</data>
+</odoo>

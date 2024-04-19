@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <record model="ir.ui.view" id="dnk_sale_order_line_commitment_date_view_order_form">
+            <field name="name">dnk.sale.order.line.commitment.date.view.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/form//field[@name='tax_id']" position="after">
+					<field name = "dnk_has_moves" attrs="{'invisible': True}"/>
+                    <field name="dnk_expected_date"
+						attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])],
+						'readonly': True}" force_save="1"/>
+					<field name="dnk_commitment_date" attrs="{'readonly': True}" force_save="1"/>
+					<field name="dnk_confirmation_count" force_save="1"/>
+                    <field name="dnk_delivery_days"
+						attrs="{'column_invisible': [('parent.state', 'in', ['sale', 'done'])],
+						'readonly': True}"
+						force_save="1"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="after">
+					<field name = "dnk_has_moves"  attrs="{'invisible': True}"/>
+                    <field name="dnk_expected_date"
+						attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])],
+						'readonly': True}"/>
+                    <field name="dnk_delivery_days"
+						attrs="{'column_invisible': [('parent.state', 'in', ['sale', 'done'])],
+						'readonly': True }"
+						force_save="1"/>
+                </xpath>
+            </field>
+        </record>
+
+		<record id="dnk_sale_order_line_commitment_date_view_order_admin" model="ir.ui.view">
+            <field name="name">dnk_sale_order_line_commitment_date_view_order_admin</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="dnk_sale_order_line_commitment_date_view_order_form"/>
+            <field name="groups_id" eval="[(4, ref('sales_team.group_sale_manager'))]"/>
+            <field name="arch" type="xml">
+                <field name="dnk_expected_date" position="attributes">
+					<attribute name="attrs">{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])],
+					'readonly': [('dnk_has_moves', '=', False)]}</attribute>
+                </field>
+            </field>
+        </record>
+	</data>
+</odoo>

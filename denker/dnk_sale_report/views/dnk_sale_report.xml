@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="dnk_sale_report_search_view" model="ir.ui.view">
+            <field name="name">dnk.sale.report.view.search</field>
+            <field name="model">dnk.sale.report</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="move_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="dnk_sale_report_graph_view" model="ir.ui.view">
+            <field name="name">dnk.sale.report.view.graph</field>
+            <field name="model">dnk.sale.report</field>
+            <field name="arch" type="xml">
+                <graph type="line">
+                    <field name="invoice_date" interval="year" type="row"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="dnk_sale_report_tree_view" model="ir.ui.view">
+            <field name="name">dnk.sale.report.view.tree</field>
+            <field name="model">dnk.sale.report</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <field name="name"/>
+                    <field name="invoice_date"/>
+                    <field name="dnk_usd_subtotal"/>
+                    <field name="dnk_usd_residual"/>
+                    <field name="price_subtotal"/>
+                    <field name="invoice_user_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="dnk_sale_report_pivot_view" model="ir.ui.view">
+            <field name="name">dnk.sale.report.view.pivot</field>
+            <field name="model">dnk.sale.report</field>
+            <field name="arch" type="xml">
+                <pivot string="Sales Overview">
+                    <field name="invoice_date" type="col"/>
+                    <field name="company_id" type="row"/>
+                    <field name="dnk_usd_subtotal" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="dnk_sale_report_form_view" model="ir.ui.view">
+            <field name="name">dnk.sale.report.view.form</field>
+            <field name="model">dnk.sale.report</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="move_id"/>
+                                <field name="name"/>
+                                <field name="journal_type"/>
+                                <field name="analytic_account_id"/>
+                                <field name="account_id"/>
+                                <field name="dnk_crm_lead_id"/>
+                                <field name="invoice_date"/>
+                            </group>
+                            <group>
+                                <field name="commercial_partner_id"/>
+                                <field name="team_id"/>
+                                <field name="invoice_user_id"/>
+                                <label for="medium_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="dnk_sale_report_dashboard_view" model="ir.ui.view">
+            <field name="name">dnk.sale.report.view.dashboard</field>
+            <field name="model">dnk.sale.report</field>
+            <field name="arch" type="xml">
+                <dashboard>
+                    <view type="graph" ref="dnk_sale_report_graph_view"/>
+                    <view type="pivot" ref="dnk_sale_report_pivot_view"/>
+
+                </dashboard>
+            </field>
+        </record>
+
+        <!--
+        <record id="dnk_sale_report_cohort_view" model="ir.ui.view">
+            <field name="name">dnk.sale.report.cohort.view</field>
+            <field name="model">dnk.sale.report</field>
+            <field name="arch" type="xml">
+                <cohort string="Report" date_start="creation_date" date_stop="invoice_date" interval="day" mode="churn"/>
+            </field>
+        </record>-->
+
+        <record id="dnk_sale_report_dashboard_action" model="ir.actions.act_window">
+           <field name="name">Sales Analysis</field>
+           <field name="res_model">dnk.sale.report</field>
+           <field name="view_mode">dashboard,tree</field>
+           <field name="search_view_id" ref="dnk_sale_report.dnk_sale_report_dashboard_view"/>
+           <field name="context">{'search_default_done': 1, 'time_ranges': {'field':'invoice_date', 'range':'this_year'}}</field>
+           <field name="domain">[]</field>
+       </record>
+       <!--
+        <record id="dnk_sale_report_dashboard_action" model="ir.actions.act_window">
+            <field name="name">Sales Analysis</field>
+            <field name="res_model">dnk.sale.report</field>
+            <field name="view_mode">dashboard</field>
+            <field name="view_id" ref="dnk_sale_report_tree_view"/>
+            <field name="search_view_id" ref="dnk_sale_report.dnk_sale_report_search_view"/>
+            <field name="domain" eval="[]"/>
+            <field name="context">{'search_default_done': 1, 'time_ranges': {'field':'invoice_date', 'range':'last_30_days'}}</field>
+
+        </record>
+        -->
+
+        <menuitem
+            id="dnk_sale_dashboard_menuitem"
+            name="Sales Analysis"
+            parent="sale.menu_sale_invoicing"
+            action="dnk_sale_report_dashboard_action"/>
+    </data>
+</odoo>

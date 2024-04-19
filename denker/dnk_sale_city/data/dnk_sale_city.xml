@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="data_sale_city_1" model="dnk.sale.city">
+            <field name="dnk_name">Guadalajara</field>
+            <field name="dnk_sequence">1</field>
+            <field name="dnk_code">GD</field>
+        </record>
+        <record id="data_sale_city_2" model="dnk.sale.city">
+            <field name="dnk_name">Ciudad Juárez</field>
+            <field name="dnk_sequence">2</field>
+            <field name="dnk_code">CJ</field>
+        </record>
+        <record id="data_sale_city_3" model="dnk.sale.city">
+            <field name="dnk_name">Aguascalientes</field>
+            <field name="dnk_sequence">3</field>
+            <field name="dnk_code">AG</field>
+        </record>
+        <record id="data_sale_city_4" model="dnk.sale.city">
+            <field name="dnk_name">Chihuahua</field>
+            <field name="dnk_sequence">4</field>
+            <field name="dnk_code">CH</field>
+        </record>
+        <record id="data_sale_city_5" model="dnk.sale.city">
+            <field name="dnk_name">Tijuana</field>
+            <field name="dnk_sequence">5</field>
+            <field name="dnk_code">TJ</field>
+        </record>
+        <record id="data_sale_city_6" model="dnk.sale.city">
+            <field name="dnk_name">Nogales</field>
+            <field name="dnk_sequence">6</field>
+            <field name="dnk_code">NG</field>
+        </record>
+        <record id="data_sale_city_7" model="dnk.sale.city">
+            <field name="dnk_name">Reynosa</field>
+            <field name="dnk_sequence">4</field>
+            <field name="dnk_code">RY</field>
+        </record>
+        <record id="data_sale_city_8" model="dnk.sale.city">
+            <field name="dnk_name">Monterrey</field>
+            <field name="dnk_sequence">8</field>
+            <field name="dnk_code">MY</field>
+        </record>
+        <record id="data_sale_city_9" model="dnk.sale.city">
+            <field name="dnk_name">Querétaro</field>
+            <field name="dnk_sequence">9</field>
+            <field name="dnk_code">QR</field>
+        </record>
+        <record id="data_sale_city_10" model="dnk.sale.city">
+            <field name="dnk_name">Estado de México</field>
+            <field name="dnk_sequence">10</field>
+            <field name="dnk_code">EM</field>
+        </record>
+        <record id="data_sale_city_11" model="dnk.sale.city">
+            <field name="dnk_name">San Diego</field>
+            <field name="dnk_sequence">11</field>
+            <field name="dnk_code">SD</field>
+        </record>
+        <record id="data_sale_city_12" model="dnk.sale.city">
+            <field name="dnk_name">Los Ángeles</field>
+            <field name="dnk_sequence">12</field>
+            <field name="dnk_code">LA</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="dnk_account_move_line_wizard_form" model="ir.ui.view">
+            <field name="name">Account Move Line</field>
+            <field name="model">dnk.account.move.line.wizard</field>
+            <field name="arch" type="xml">
+              <form string="Edit Account Move Line">
+                  <separator string="Update Option"/>
+                  <group>
+                      <field name="dnk_company_id" invisible="True"/>
+                      <field name="dnk_invoice_option"/>
+                  </group>
+                  <separator/>
+                  <group>
+                      <field name="dnk_account_id" attrs="{'invisible': [('dnk_invoice_option', '!=', 'account_id')]}"/>
+                      <field name="dnk_date" attrs="{'invisible': [('dnk_invoice_option', '!=', 'date')]}"/>
+                      <field name="dnk_tax_ids" attrs="{'invisible': [('dnk_invoice_option', '!=', 'tax')]}"/>
+                  </group>
+                  <footer>
+                      <button name="update_move_line_wizard" type="object" string="Update" class="btn-primary" />
+                      <button string="Cancel" class="btn-secondary" special="cancel" />
+                  </footer>
+              </form>
+            </field>
+        </record>
+
+        <record id="action_tree_view_update_account_move_line" model="ir.actions.act_window">
+            <field name="name">- Update Account Move Line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dnk.account.move.line.wizard</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="dnk_account_move_line_wizard_form"/>
+            <field name="binding_model_id" ref="account.model_account_move_line"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

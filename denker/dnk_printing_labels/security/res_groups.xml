@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="dnk_printing_label_category" model="ir.module.category">
+            <field name="name">- Denker Printing Label</field>
+            <field name="description">Printing Label Category</field>
+            <field name="sequence">107</field>
+        </record>
+
+        <record id="dnk_printing_label_user_group" model="res.groups">
+            <field name="name">Printing Labels User</field>
+            <field name="comment">User that can print labels on models</field>
+            <field name="category_id" ref="dnk_printing_label_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="dnk_printing_label_manager_group" model="res.groups">
+            <field name="name">Printing Labels Manager</field>
+            <field name="comment">User that configure labels on any model</field>
+            <field name="category_id" ref="dnk_printing_label_category"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+            <field name="implied_ids" eval="[(4, ref('dnk_printing_labels.dnk_printing_label_user_group'))]"/>
+        </record>
+    </data>
+</odoo>

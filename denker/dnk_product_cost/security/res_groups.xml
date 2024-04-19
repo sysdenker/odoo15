@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <!-- TODAVIA NO, hasta que genere el objeto -->
+    <!-->
+    <record id="dnk_company_product_cost" model="ir.rule">
+        <field name="name">- Denker costs - Company</field>
+        <field name="model_id" ref="model_dnk_product_costs"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1" />
+        <field name="domain_force">[('dnk_company_id','in',company_ids)]</field>
+    </record>
+    -->
+
+    <record id="dnk_group_mrp_cost_manager" model="res.groups">
+        <field name="name">Cost Manager</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="comment">This group can manage the indirect manufacturing and labour costs.</field>
+        <field name="category_id" ref="dnk_groups_categories.dnk_mrp_category"/>
+    </record>
+
+    <record id="dnk_group_mrp_close_mo_manager" model="res.groups">
+        <field name="name">MRP Mark as Done MO Manager</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="comment">This group can close manufacturing Orders if cost is higer than spected.</field>
+        <field name="category_id" ref="dnk_groups_categories.dnk_mrp_category"/>
+    </record>
+
+  </data>
+
+
+
+</odoo>

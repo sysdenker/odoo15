@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="dnk_account_move_wizard_form" model="ir.ui.view">
+            <field name="name">Account Move</field>
+            <field name="model">dnk.account.move.wizard</field>
+            <field name="arch" type="xml">
+              <form string="Edit Account Move">
+                  <separator string="Update Option"/>
+                  <group>
+                      <field name="dnk_company_id" invisible="True"/>
+                      <field name="dnk_invoice_option"/>
+                  </group>
+                  <separator/>
+                  <group>
+                      <field name="dnk_invoice_date" attrs="{'invisible': [('dnk_invoice_option', '!=', 'invoice_date')]}"/>
+                      <field name="dnk_accounting_date" attrs="{'invisible': [('dnk_invoice_option', '!=', 'accounting_date')]}"/>
+                      <field name="dnk_state" attrs="{'invisible': [('dnk_invoice_option', '!=', 'state')]}"/>
+                      <field name="dnk_invoice_payment_term_id" attrs="{'invisible': [('dnk_invoice_option', '!=', 'invoice_payment_term_id')]}"/>
+                      <field name="dnk_partner_shipping_id" attrs="{'invisible': [('dnk_invoice_option', '!=', 'delivery_address')]}"/>
+                      <field name="dnk_invoice_date_due" attrs="{'invisible': [('dnk_invoice_option', '!=', 'invoice_date_due')]}"/>
+                  </group>
+                  <footer>
+                      <button name="update_move_wizard" type="object" string="Update" class="btn-primary" />
+                      <button string="Cancel" class="btn-secondary" special="cancel" />
+                  </footer>
+              </form>
+            </field>
+        </record>
+
+        <record id="action_tree_view_update_account_move" model="ir.actions.act_window">
+            <field name="name">- Update Account Move</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dnk.account.move.wizard</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="dnk_account_move_wizard_form"/>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

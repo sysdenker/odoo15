@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="dnk_crm_lead_sale_city_form_view" model="ir.ui.view">
+            <field name="name">dnk_crm_lead_sale_city_form_view</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                    <field name="dnk_sale_city_id"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,202 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* dnk_sale_volume_quotation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e-20181226\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-22 17:53+0000\n"
+"PO-Revision-Date: 2019-02-22 17:53+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "&amp;bull;"
+msgstr "&amp;bull;"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.model.fields,field_description:dnk_sale_volume_quotation.field_sale_order_dnk_customer_service_rep_id
+msgid "- Customer Service Rep"
+msgstr "- Servicio al Cliente"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.model.fields,field_description:dnk_sale_volume_quotation.field_sale_order_line_dnk_minimum_quantity
+msgid "- Minimun Qty."
+msgstr "- Cant. Mínima"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.model.fields,field_description:dnk_sale_volume_quotation.field_sale_order_line_dnk_volume_prices
+msgid "- Volume Prices"
+msgstr "- Precios por Volumen"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.model.fields,field_description:dnk_sale_volume_quotation.field_product_product_dnk_volume_quotation
+#: model:ir.model.fields,field_description:dnk_sale_volume_quotation.field_product_template_dnk_volume_quotation
+msgid "- Volume Quotation"
+msgstr "- Cotización por Volumen"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "<strong style=\"font-size: 10px;\">Attention: </strong>"
+msgstr "<strong style=\"font-size: 10px;\">Atención: </strong>"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "<strong style=\"font-size: 10px;\">Customer: </strong>"
+msgstr "<strong style=\"font-size: 10px;\">Cliente: </strong>"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "<strong style=\"font-size: 10px;\">Order # </strong>"
+msgstr "<strong style=\"font-size: 10px;\">Pedido # </strong>"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "<strong style=\"font-size: 10px;\">Quotation # </strong>"
+msgstr "<strong style=\"font-size: 10px;\">Cotización # </strong>"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "<strong>Customer Service Rep:</strong>"
+msgstr "<strong>- Servicio al Cliente:</strong>"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "<strong>Fiscal Position Remark:</strong>"
+msgstr "<strong>Posición Fiscal:</strong>"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "<strong>Payment Terms:</strong>"
+msgstr "<strong>Plazo de pago:</strong>"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "<strong>Salesperson:</strong>"
+msgstr "<strong>Asesor Comercial:</strong>"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "<strong>Subtotal: </strong>"
+msgstr "<strong>Subtotal: </strong>"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "<strong>Total Without Taxes</strong>"
+msgstr "<strong>Total Sin Impuestos</strong>"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "<strong>Total</strong>"
+msgstr "<strong>Total</strong>"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "<strong>Your Reference:</strong>"
+msgstr "<strong>Su referencia:</strong>"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "Code"
+msgstr "Código"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "Date Ordered:"
+msgstr "Fecha del Pedido:"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "Delivery Date"
+msgstr "Entrega"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "Disc.(%)"
+msgstr "Desc.(%)"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "Image"
+msgstr "Imagen"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "Lead Time (days)"
+msgstr "Plazo (días)"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "Line"
+msgstr "Línea"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "Price"
+msgstr "Precio"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "Product"
+msgstr "Producto"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.model,name:dnk_sale_volume_quotation.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "Qty."
+msgstr "Cant."
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.model,name:dnk_sale_volume_quotation.model_sale_order
+msgid "Quotation"
+msgstr "Quotation"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "Quotation Date:"
+msgstr "Fecha de Cotización:"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.model,name:dnk_sale_volume_quotation.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de ventas"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "Taxes"
+msgstr "Impuestos"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "Terms and Conditions:"
+msgstr "Términos y Condiciones:"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "Total Price"
+msgstr "Precio total"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "Unit Price"
+msgstr "Precio unitario"
+
+#. module: dnk_sale_volume_quotation
+#: model:ir.ui.view,arch_db:dnk_sale_volume_quotation.dnk_report_saleorder_document_volume_quotation
+msgid "UoM"
+msgstr "UdM"

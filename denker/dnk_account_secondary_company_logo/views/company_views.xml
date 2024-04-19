@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="view_account_secondary_company_logo_form_view" model="ir.ui.view">
+            <field name="name">view.sale.secondary.company.logo.form.view</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="priority">250</field>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook" position="before">
+                    <group>
+                        <field name="dnk_logo2" widget="image" class="oe_avatar"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="secondary_company_external_layout_standard_view" model="ir.ui.view">
+            <field name="name">secondary.company.external.layout.standard.view</field>
+            <field name="inherit_id" ref="web.external_layout_standard"/>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <!-- Reemplazar el Header -->
+                <xpath expr="//t/div" position="replace">
+                    <div class="header o_background_header">
+                        <div class="row">
+                            <div class="col-3">
+                                <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)" style="max-height: 45px;"/>
+                            </div>
+                            <div class="col-6 text-center" style="border-style: solid;font-size: 4px;">
+                                <strong t-field="company.partner_id.name" style="font-size: 12px;"/><br/>
+                                <strong t-field="company.partner_id.vat" style="font-size: 9px;"/>
+                                <div t-field="company.partner_id" style="font-size: 7px;" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: true}"/>
+                            </div>
+                            <div t-if="company.report_header" class="col-3 text-right" style="margin-top:20px;font-size: 10px;" t-field="company.report_header"/>
+                            <div t-if="company.dnk_logo2" class="col-3 text-right">
+                                <img t-if="company.dnk_logo2" t-att-src="'data:image/png;base64,%s' % to_text(company.dnk_logo2)" style="max-height: 45px;"/>
+                            </div>
+                        </div>
+                        <div class="row zero_min_height">
+                            <div class="col-12">
+                                <div style="border-bottom: 1px solid #555555;"/>
+                            </div>
+                            <div class="col-6" name="company_address" style="display:none;">
+                                <span t-field="company.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}" style="border-bottom: 1px solid black; display:inline-block;"/>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+
+                <!-- Reemplazar el Footer -->
+                <xpath expr="//t/div[3]" position="replace">
+                    <div class="footer o_standard_footer" style="font-size: 9px;">
+                        <div class="text-center" style="border-top: 1px solid black;">
+                            <ul class="list-inline mb4">
+                                <!-- using the list-inline-item class from bootstrap causes weird behaviours in pdf report
+                                     adding d-inline class fixes the problem-->
+                                <li t-if="company.phone" class="list-inline-item d-inline">Phone: <span t-field="company.phone"/></li>
+                                <li t-if="company.email" class="list-inline-item d-inline">Email: <span t-field="company.email"/></li>
+                                <li t-if="company.website" class="list-inline-item d-inline">Web: <span t-field="company.website"/></li>
+                                <li t-if="company.vat" class="list-inline-item d-inline"><t t-esc="company.country_id.vat_label or 'Tax ID'"/>: <span t-field="company.vat"/></li>
+                            </ul>
+
+                            <div name="financial_infos">
+                                <span t-field="company.report_footer"/>
+                            </div>
+
+                            <div t-if="report_type == 'pdf'" class="text-muted">
+                                Page: <span class="page"/> / <span class="topage"/>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="secondary_company_external_layout_boxed_view" model="ir.ui.view">
+            <field name="name">secondary.company.external.layout.boxed.view</field>
+            <field name="inherit_id" ref="web.external_layout_boxed"/>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <!-- Reemplazar el Header -->
+                <xpath expr="//t/div" position="replace">
+                    <div class="header o_background_header">
+                        <div class="row">
+                            <div class="col-3">
+                                <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)" style="max-height: 45px;"/>
+                            </div>
+                            <div class="col-6 text-center" style="border-style: solid;font-size: 4px;">
+                                <strong t-field="company.partner_id.name" style="font-size: 12px;"/><br/>
+                                <strong t-field="company.partner_id.vat" style="font-size: 9px;"/>
+                                <div t-field="company.partner_id" style="font-size: 7px;" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: true}"/>
+                            </div>
+                            <div t-if="company.report_header" class="col-3 text-right" style="margin-top:20px;font-size: 10px;" t-field="company.report_header"/>
+                            <div t-if="company.dnk_logo2" class="col-3 text-right">
+                                <img t-if="company.dnk_logo2" t-att-src="'data:image/png;base64,%s' % to_text(company.dnk_logo2)" style="max-height: 45px;"/>
+                            </div>
+                        </div>
+                        <div class="row zero_min_height">
+                            <div class="col-12">
+                                <div style="border-bottom: 1px solid #555555;"/>
+                            </div>
+                            <div class="col-6" name="company_address" style="display:none;">
+                                <span t-field="company.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}" style="border-bottom: 1px solid black; display:inline-block;"/>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+
+                <!-- Reemplazar el Footer -->
+                <xpath expr="//t/div[3]" position="replace">
+                    <div class="footer o_standard_footer" style="font-size: 9px;">
+                        <div class="text-center" style="border-top: 1px solid black;">
+                            <ul class="list-inline mb4">
+                                <!-- using the list-inline-item class from bootstrap causes weird behaviours in pdf report
+                                     adding d-inline class fixes the problem-->
+                                <li t-if="company.phone" class="list-inline-item d-inline">Phone: <span t-field="company.phone"/></li>
+                                <li t-if="company.email" class="list-inline-item d-inline">Email: <span t-field="company.email"/></li>
+                                <li t-if="company.website" class="list-inline-item d-inline">Web: <span t-field="company.website"/></li>
+                                <li t-if="company.vat" class="list-inline-item d-inline"><t t-esc="company.country_id.vat_label or 'Tax ID'"/>: <span t-field="company.vat"/></li>
+                            </ul>
+
+                            <div name="financial_infos">
+                                <span t-field="company.report_footer"/>
+                            </div>
+
+                            <div t-if="report_type == 'pdf'" class="text-muted">
+                                Page: <span class="page"/> / <span class="topage"/>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="secondary_company_external_layout_background_view" model="ir.ui.view">
+            <field name="name">secondary.company.external.layout.background.view</field>
+            <field name="inherit_id" ref="web.external_layout_striped"/>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <!-- Reemplazar el Header -->
+                <xpath expr="//t/div" position="replace">
+                    <div class="header o_background_header">
+                        <div class="row">
+                            <div class="col-3">
+                                <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)" style="max-height: 45px;"/>
+                            </div>
+                            <div class="col-6 text-center" style="border-style: solid;font-size: 4px;">
+                                <strong t-field="company.partner_id.name" style="font-size: 12px;"/><br/>
+                                <strong t-field="company.partner_id.vat" style="font-size: 9px;"/>
+                                <div t-field="company.partner_id" style="font-size: 7px;" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: true}"/>
+                            </div>
+                            <div t-if="company.report_header" class="col-3 text-right" style="margin-top:20px;font-size: 10px;" t-field="company.report_header"/>
+                            <div t-if="company.dnk_logo2" class="col-3 text-right">
+                                <img t-if="company.dnk_logo2" t-att-src="'data:image/png;base64,%s' % to_text(company.dnk_logo2)" style="max-height: 45px;"/>
+                            </div>
+                        </div>
+                        <div class="row zero_min_height">
+                            <div class="col-12">
+                                <div style="border-bottom: 1px solid #555555;"/>
+                            </div>
+                            <div class="col-6" name="company_address" style="display:none;">
+                                <span t-field="company.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}" style="border-bottom: 1px solid black; display:inline-block;"/>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+
+                <!-- Reemplazar el Footer -->
+                <xpath expr="//t/div[3]" position="replace">
+                    <div class="footer o_standard_footer" style="font-size: 9px;">
+                        <div class="text-center" style="border-top: 1px solid black;">
+                            <ul class="list-inline mb4">
+                                <!-- using the list-inline-item class from bootstrap causes weird behaviours in pdf report
+                                     adding d-inline class fixes the problem-->
+                                <li t-if="company.phone" class="list-inline-item d-inline">Phone: <span t-field="company.phone"/></li>
+                                <li t-if="company.email" class="list-inline-item d-inline">Email: <span t-field="company.email"/></li>
+                                <li t-if="company.website" class="list-inline-item d-inline">Web: <span t-field="company.website"/></li>
+                                <li t-if="company.vat" class="list-inline-item d-inline"><t t-esc="company.country_id.vat_label or 'Tax ID'"/>: <span t-field="company.vat"/></li>
+                            </ul>
+
+                            <div name="financial_infos">
+                                <span t-field="company.report_footer"/>
+                            </div>
+
+                            <div t-if="report_type == 'pdf'" class="text-muted">
+                                Page: <span class="page"/> / <span class="topage"/>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

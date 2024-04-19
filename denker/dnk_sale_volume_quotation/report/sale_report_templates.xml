@@ -1,0 +1,33 @@
+<odoo>
+    <!-- sudo nano /opt/odoo10dev/odoo/addons/sale/report/sale_report_templates.xml -->
+    <template id="dnk_report_saleorder_document_volume_quotation" inherit_id="dnk_sale_order_custom_document.dnk_sale_order_custom_report_document">
+        <!-- Se hizo por studio
+        <div t-if="doc.user_id.name" position="after">
+            <div t-if="doc.user_id.name" class="col-3">
+                <strong>Customer Service Rep:</strong>
+                <p>
+                  <span t-field="doc.dnk_customer_service_rep_id"/>
+                  <a target="_top" t-att-href="'mailto:%s' % doc.dnk_customer_service_rep_id.partner_id.email"><span t-field="doc.dnk_customer_service_rep_id.partner_id.email"/></a>
+                </p>
+            </div>
+        </div>-->
+
+        <th name="th_description" position="after">
+            <th name="th_dnk_minimum_quantity" t-if="doc.state in ['draft','sent'] and doc.dnk_order_has_volume_prices" class="text-right" style="color:#888888;">Volume Qty.</th>
+            <th name="th_dnk_volume_prices" t-if="doc.state in ['draft','sent'] and doc.dnk_order_has_volume_prices" class="text-right" style="color:#888888;">Vol. Unit Price</th>
+        </th>
+
+        <td name="td_name" position="after">
+            <td name="td_dnk_minimum_quantity" t-if="doc.state in ['draft','sent'] and doc.dnk_order_has_volume_prices" class="text-right" style="color:#888888;">
+                <span t-field="line.dnk_minimum_quantity"/>
+            </td>
+            <td name="td_dnk_volume_prices" t-if="doc.state in ['draft','sent'] and doc.dnk_order_has_volume_prices" class="text-right" style="color:#888888;">
+                <span t-field="line.dnk_volume_prices"/>
+            </td>
+            <!-- Quitar la moneda y el colspan="2" del encabezado
+            <td name="td_currency_id" t-if="doc.state in ['draft','sent']">
+                <span t-field="doc.pricelist_id.currency_id"/>
+            </td>-->
+        </td>
+    </template>
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="dnk_partner_readonly_reference_form_view" model="ir.ui.view">
+        <field name="name">dnk.partner.readonly.reference.form.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="ref" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="dnk_partner_edit_reference_form_view" model="ir.ui.view">
+        <field name="name">dnk.partner.edit.reference.form.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="dnk_partner_readonly_reference_form_view"/>
+        <field name="groups_id" eval="[(4, ref('dnk_group_edit_partner_reference'))]"/>
+        <field name="arch" type="xml">
+            <field name="ref" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

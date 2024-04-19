@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Account Invoice -->
+        <record id="dnk_hr_custom_company_form_view" model="ir.ui.view">
+            <field name="name">dnk.hr.custom.company.form.view</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Deed Data">
+                        <group>
+                            <group>
+                                <field name="dnk_deed_number"/>
+                                <field name="dnk_legal_representative"/>
+                            </group>
+                            <group>
+                                <field name="dnk_deed_date"/>
+                                <field name="dnk_deed_date_text"/>
+                            </group>
+                            <label for="dnk_line_of_business" style="font-weight: bold;"/>
+                            <field name="dnk_line_of_business"/>
+                            <group string="Public Notary">
+                                <field name="dnk_public_notary_name"/>
+                                <field name="dnk_public_notary_number"/>
+                                <field name="dnk_public_notary_municipality"/>
+                                <field name="dnk_public_notary_state_id"/>
+                            </group>
+                            <group string="Notice of Privacy">
+                                <field name="dnk_notice_of_privacy_representative"/>
+                                <field name="dnk_notice_of_privacy_email"/>
+                                <field name="dnk_notice_of_privacy_phone"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="inherited_view_attendance_tree" model="ir.ui.view">
+        <field name="name">inherited_hr.attendance.tree</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+        <field name="arch" type="xml">
+            <tree string="Employee attendances">
+                <field name="worked_hours" type="measure"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="inherited_hr_attendance_view_filter" model="ir.ui.view">
+        <field name="name">inherited_hr_attendance_view_filter</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_filter"/>
+        <field name="arch" type="xml">
+            <filter name="myattendances" position="after">
+                <field name="dnk_device_user_id"/>
+                <separator/>
+                <filter name="today" string="Today"
+                    domain="[('check_in', '&gt;=', datetime.datetime.now().replace(hour=0, minute=0, second=0)),('check_in', '&lt;=', datetime.datetime.now().replace(hour=23, minute=59, second=59))]" />
+                <filter string="Últimos 7 días" name="7days"
+                    domain="[('check_in', '&gt;=', datetime.datetime.now() - datetime.timedelta(days=7))]" />
+                <filter string="Últimos 15 días" name="15days"
+                    domain="[('check_in', '&gt;=', datetime.datetime.now() - datetime.timedelta(days=15))]" />
+                <filter string="Current Month" name="current"
+                    domain="[('check_in', '&gt;=', datetime.datetime.now().strftime('%Y-%m-01'))]" />
+                <separator/>
+                <filter string="Retardo" name="retardo"
+                    domain="[('dnk_attendance_stat', 'ilike', 'Retardo')]" />
+                <filter string="Ausencia" name="ausencia"
+                    domain="[('dnk_attendance_stat', 'in', [('Ausencia')])]" />
+
+                <separator/>
+                <filter name="date" string="- Date (Day)" context="{'group_by':'check_in:day'}"/>
+                <filter name="dnk_attendance_stat" string="- Status" context="{'group_by':'dnk_attendance_stat'}"/>
+                <filter name="dnk_device_id" string="- Device" context="{'group_by':'dnk_device_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+
+    <record id="dnk_hr_attendance_tree_view" model="ir.ui.view">
+        <field name="name">dnk_hr_attendance_tree_view</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+        <field name="arch" type="xml">
+          <xpath expr="//tree[1]" position="attributes">
+            <attribute name="create">false</attribute>
+            <attribute name="edit">false</attribute>
+          </xpath>
+          <field name="check_out" position="after">
+            <field name="dnk_attendance_stat" />
+            <field name="dnk_device_id" />
+            <field name="dnk_device_user_id" />
+          </field>
+        </field>
+    </record>
+
+    <record id="dnk_hr_attendance_form_view" model="ir.ui.view">
+        <field name="name">dnk_hr_attendance_form_view</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
+        <field name="arch" type="xml">
+            <field name="check_out" position="after">
+              <field name="dnk_attendance_stat"  readonly="1"/>
+              <field name="dnk_device_id"  readonly="1"/>
+              <field name="dnk_device_user_id"  readonly="1"/>
+            </field>
+            <field name="employee_id" position="attributes">
+              <attribute name="readonly">1</attribute>
+            </field>
+            <field name="check_in" position="attributes">
+              <attribute name="readonly">1</attribute>
+            </field>
+            <field name="check_out" position="attributes">
+              <attribute name="readonly">1</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="dnk_crm_pd_kanban_view" model="ir.ui.view">
+        <field name="name">dnk_crm_pd_kanban_view</field>
+        <field name="model">dnk.crm.product.dev</field>
+        <field name="arch" type="xml">
+            <kanban create="0" default_group_by="dnk_stage_id" class="o_kanban_small_column o_kanban_dnk_crm_product_dev">
+                 <field name="dnk_stage_id" options='{"group_by_tooltip": {"dnk_description": "Descripción"}}' />
+                 <field name="dnk_lead_id" />
+                 <field name="name" />
+                 <field name="dnk_family_id"/>
+                 <field name="dnk_partner_id"/>
+                 <field name="dnk_planned_revenue" sum="- Total"/>
+                 <field name="dnk_contact_name" />
+                 <field name="dnk_user_id" />
+                 <field name="dnk_color" />
+                 <field name="dnk_active" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_content oe_kanban_global_click">
+                                <div class="oe_kanban_content">
+                                    <div>
+                                        <strong><field name="dnk_id"/>-<field name="dnk_lead_id"/></strong>
+                                    </div>
+                                    <div class="text-muted">
+                                        <t t-if="record.dnk_planned_revenue.raw_value"><field name="dnk_planned_revenue" /><span t-if="record.dnk_partner_id.value">,</span></t> <span t-if="record.dnk_partner_id.value"> <t t-esc="record.dnk_partner_id.value"/></span>
+                                    </div>
+                                    <div class="text-muted">
+                                        <strong class="o_kanban_record_title">- Fam :</strong><span t-if="record.dnk_family_id.raw_value"><t t-esc="record.dnk_family_id.value"/></span>
+                                    </div>
+                                    <div class="o_kanban_footer">
+                                        <div>
+                                            <img t-att-src="kanban_image('res.users', 'image_small', record.dnk_user_id.raw_value)" t-att-alt="record.dnk_user_id.value" t-att-title="record.dnk_user_id.value" width="24" height="24" class="oe_kanban_avatar pull-right"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+        </field>
+    </record>
+
+    <record id="dnk_crm_pd_search_view" model="ir.ui.view">
+           <field name="name">dnk_crm_pd_search_view</field>
+           <field name="model">dnk.crm.product.dev</field>
+           <field name="arch" type="xml">
+               <search>
+                   <field name="name"/>
+                   <field name="dnk_partner_id"/>
+                   <field name="dnk_user_id"/>
+                   <!--<field name="dnk_nombre"/>-->
+                   <field name="dnk_family_id"/>
+                   <field name="dnk_team_id"/>
+                   <field name="dnk_date"/>
+                   <field name="dnk_date_deadline"/>
+                   <!--<field name="dnk_codigo_final"/>-->
+               </search>
+           </field>
+     </record>
+
+    <record id="dnk_crm_pd_form_view" model="ir.ui.view">
+        <field name="name">dnk_crm_pd_form_view</field>
+        <field name="model">dnk.crm.product.dev</field>
+        <field name="arch" type="xml">
+            <form string="Desarrollo de Productos" create="false" class="o_opportunity_form">
+                <header>
+                    <button string="Test" type="action" class="oe_highlight" attrs="{'invisible': True}"/>
+                    <field name="dnk_stage_id" widget="statusbar" clickable="True"  options="{'fold_field': 'fold'}"  />
+                </header>
+                <sheet>
+                    <field name="dnk_pd_form_type" readonly="1"/>
+                    <group col="4">
+                        <field name="name" readonly="1"/>
+                        <field name="dnk_lead_id" readonly="1"/>
+                        <field name="dnk_operative" invisible="1"/>
+                        <field name="dnk_family_id" readonly="1"/>
+                        <field name="dnk_subfamily_id" options="{'no_create': True}" attrs="{'readonly': [('dnk_subfamily_id','!=',False)]}" domain="[('id','child_of',dnk_family_id),('id','!=',dnk_family_id)]" />
+                        <field name="dnk_partner_id" readonly="1"/>
+                        <field name="dnk_final_customer_id" readonly="1"/>
+                        <field name="dnk_planned_revenue" sum="Total" readonly="1"/>
+                        <field name="dnk_contact_name" readonly="1"/>
+                        <field name="dnk_user_id" readonly="1"/>
+                        <field name="dnk_company_id" readonly="1"/>
+                        <field name="dnk_team_id" readonly="1"/>
+                        <field name="dnk_prenda" invisible="1"/>
+                    </group>
+                    <group col="4">
+                        <!--<field name="dnk_nombre" required="1"/>-->
+                        <!--<field name="dnk_especificacion" attrs="{'invisible': [('dnk_lead_id','=','personalizado')]}"/>-->
+                        <field name="dnk_date" />
+                        <field name="dnk_date_deadline" required="1"/>
+                        <!--<field name="dnk_pedido_muestra" />-->
+                    </group>
+                    <!--
+                    <notebook>
+                        <page string="Se solicita">
+                            <group attrs="{'invisible': ['|',('dnk_pd_form_type','=','diseno'),('dnk_pd_form_type','=','bolsa')]}">
+                                <group>
+                                    <field name="dnk_costeo"/>
+                                    <field name="dnk_codigo"/>
+                                </group>
+                                <group>
+                                    <field name="dnk_product_code"  attrs="{'readonly': [('dnk_pd_form_type','!=','personalizado')]}" />
+
+                                </group>
+                            </group>
+                            <group attrs="{'invisible': [('dnk_pd_form_type','=','personalizado')]}">
+                                <group>
+                                    <field name="dnk_dibujo"/>
+                                    <field name="dnk_costeo"/>
+                                </group>
+                                <group>
+                                    <field name="dnk_product_code" attrs="{'required': ['|',('dnk_pd_form_type','!=','diseno'),('dnk_pd_form_type','!=','bolsa')]}"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group attrs="{'invisible': [('dnk_pd_form_type','=','bolsa')]}">
+                                    <field name="dnk_piezas_proyecto"  attrs="{'required': True}"/>
+                                    <field name="dnk_tiempo_consumo" attrs="{'required': True}"/>
+                                    <field name="dnk_cantidad_consumo" attrs="{'invisible': ['|',('dnk_tiempo_consumo','=',''),('dnk_tiempo_consumo','=','unico')],'required': ['|','|',('dnk_tiempo_consumo','=','mensual'),('dnk_tiempo_consumo','=','anual'),('dnk_tiempo_consumo','=','semestral')]}"/>
+                                    <field name="dnk_precio_estimado" attrs="{'required': True}" />
+                                    <field name="dnk_importe_oportunidad" />
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Datos del Componente" attrs="{'invisible': [('dnk_pd_form_type','!=','diseno')]}">
+                            <group>
+                                <group string="Se Proporciona:">
+                                    <field name="dnk_muestra_producto" />
+                                    <field name="dnk_muestra_componente" />
+                                    <field name="dnk_muestra_dibujo" />
+                                </group>
+                                <group>
+                                    <field name="dnk_unidad_medida" />
+                                    <field name="dnk_peso" />
+                                    <field name="dnk_largo" />
+                                    <field name="dnk_ancho" />
+                                    <field name="dnk_alto" />
+                                    <field name="dnk_acomodo" />
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Datos del Producto" attrs="{'invisible': [('dnk_pd_form_type','!=','diseno')]}">
+                                <group>
+                                    <group>
+                                        <field name="dnk_propiedades"  widget="many2many_checkboxes"/>
+                                    </group>
+                                    <group>
+                                        <field name="dnk_materiales" widget="many2many_checkboxes"/>
+                                    </group>
+                                    <group>
+                                        <field name="dnk_product_code"  attrs="{'required': True}" />
+                                    </group>
+                                </group>
+                                <group>
+
+                                    <group string="Dimensiones del Empaque:">
+                                        <field name="dnk_um_producto" />
+                                        <field name="dnk_largo_producto" />
+                                        <field name="dnk_ancho_producto" />
+                                        <field name="dnk_espesor_producto" />
+                                    </group>
+                                    <group string="Información de Cavidad:">
+                                        <field name="dnk_um_cavidad" />
+                                        <field name="dnk_largo_cavidad" />
+                                        <field name="dnk_ancho_cavidad" />
+                                        <field name="dnk_espesor_cavidad" />
+                                    </group>
+                                    <group>
+                                        <field name="dnk_accesorios"  widget="many2many_checkboxes"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="dnk_espesor_ids" mode="tree">
+                                        <form string="- Espesor de niveles y Función">
+                                            <group>
+                                                <field name="sequence" widget="handle"/>
+                                                <field name="dnk_function" />
+                                                <field name="dnk_size" />
+                                                <field name="dnk_um" />
+                                            </group>
+                                        </form>
+                                        <tree string="- Espesor" editable="bottom">
+                                            <field name="sequence" widget="handle"/>
+                                            <field name="dnk_function" />
+                                            <field name="dnk_size" />
+                                            <field name="dnk_um" />
+                                        </tree>
+                                    </field>
+                                </group>
+                                <group col="4">
+                                    <field name="dnk_cavidades" />
+                                    <field name="dnk_contenedor" />
+                                    <field name="dnk_puerta" />
+                                    <field name="dnk_estibable"/>
+                                </group>
+                        </page>
+                        <page string="Datos del Producto"  attrs="{'invisible': ['|',('dnk_pd_form_type','=','diseno'),('dnk_pd_form_type','=','bolsa')]}">
+                            <group>
+                                <field name="dnk_tela" />
+                                <field name="dnk_corte" />
+                                <field name="dnk_personalizaciones_ids" options="{'no_create_edit': True, 'no_create': True}" widget="many2many_tags" />
+                            </group>
+                        </page>
+                        <page string="Datos del Producto"  attrs="{'invisible': ['|',('dnk_pd_form_type','=','diseno'),('dnk_pd_form_type','=','personalizado')]}">
+                            <group>
+                                <group>
+                                    <field name="dnk_serie" attrs="{ 'required': [('dnk_pd_form_type','=','bolsa')] }"/>
+                                    <field name="dnk_estilo"  attrs="{'required': [('dnk_pd_form_type','=','bolsa')]}"/>
+                                    <field name="dnk_aditamentos" widget="many2many_tags"/>
+                                    <field name="dnk_product_code"  attrs="{'required': True}" />
+                                    <field name="dnk_abertura"  attrs="{'required': [('dnk_pd_form_type','=','bolsa')]}"/>
+                                    <field name="dnk_altura" attrs="{ 'required': [('dnk_pd_form_type','=','bolsa')]}"/>
+                                    <field name="dnk_fuelle" />
+                                    <field name="dnk_calibre" />
+                                    <field name="dnk_um" attrs="{'readonly': True}"/>
+                                </group>
+                                <group>
+                                    <field name="dnk_piezas_proyecto"  attrs="{'required': [('dnk_pd_form_type','=','bolsa')]}" />
+                                    <field name="dnk_tiempo_consumo" attrs="{'required': True}"/>
+                                    <field name="dnk_cantidad_consumo" attrs="{'invisible': ['|',('dnk_tiempo_consumo','=',False),('dnk_tiempo_consumo','=','unico')],'required': ['|','|',('dnk_tiempo_consumo','=','mensual'),('dnk_tiempo_consumo','=','anual'),('dnk_tiempo_consumo','=','semestral')]}"/>
+                                    <field name="dnk_precio_estimado" attrs="{'required': True}"/>
+                                    <field name="dnk_importe_oportunidad" />
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Observaciones">
+                            <group>
+                                <field name="dnk_descripcion" attrs="{'required': True}"/>
+                                <field name="dnk_observaciones"/>
+                            </group>
+                        </page>
+                        <page string="Código Final">
+                            <group col="4">
+                                <field name="dnk_codigo_final"   attrs="{'required': [('dnk_stage_id','=','Pendiente de precio')],'readonly':[('dnk_operative','=',True)]}" />
+                                <field name="dnk_codigo_final_desc" attrs="{'readonly':[('dnk_operative','=',True)]}" />
+                                <field name="dnk_rechazado" attrs="{'readonly':[('dnk_operative','=',True)]}" />
+                                <field name="dnk_rechazado_desc" attrs="{'invisible': [('dnk_rechazado','=',False)],'required': [('dnk_rechazado','=',True)], 'readonly':[('dnk_operative','=',True)]}"/>
+                            </group>
+                        </page>
+
+                    </notebook>
+                    -->
+                 </sheet>
+                 <div class="oe_chatter">
+                     <field name="message_follower_ids" widget="mail_followers"/>
+                     <field name="activity_ids" widget="mail_activity"/>
+                     <field name="message_ids" widget="mail_thread"/>
+                 </div>
+            </form>
+        </field>
+    </record>
+    <record id="dnk_create_pd_simplified" model="ir.actions.act_window">
+        <field name="name">- Crear Desarrollo de Producto</field>
+        <field name="res_model">dnk.crm.product.dev</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="dnk_crm_pd_form_view"/>
+        <field name="target">new</field>
+    </record>
+    <record model="ir.actions.act_window" id="dnk_pd_lead_action">
+        <field name="name">- Desarrollo de Producto</field>
+        <field name="res_model">dnk.crm.product.dev</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('dnk_lead_id', '=', active_id)]</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="dnk_pd_action">
+        <field name="name">- Desarrollo de Productos</field>
+        <field name="res_model">dnk.crm.product.dev</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+    <menuitem action="dnk_pd_action" id="dnk_pd_action_menu"
+            parent="crm.crm_menu_sales" sequence="50" />
+
+    <!-- STAGE-->
+    <record id="dnk_crm_pd_stage_tree_view_1" model="ir.ui.view">
+         <field name="name">dnk_crm_pd_stage_tree_view_1</field>
+         <field name="model">dnk.crm.pd.stage</field>
+         <field name="arch" type="xml">
+             <tree string="- Etapas del Desarrollo de Productos">
+                 <field name="sequence" widget="handle" />
+                 <field name="name" />
+                 <field name="dnk_description" />
+                 <field name="fold"/>
+             </tree>
+         </field>
+    </record>
+    <record id="dnk_crm_pd_stage_form_view_1" model="ir.ui.view">
+         <field name="name">dnk_crm_pd_stage_form_view_1</field>
+         <field name="model">dnk.crm.pd.stage</field>
+         <field name="arch" type="xml">
+             <form string="- Etapas del Desarrollo de Productos" >
+             <sheet>
+                <group>
+                    <field name="name" />
+                    <field name="dnk_description" />
+                    <field name="fold"/>
+                </group>
+             </sheet>
+             </form>
+         </field>
+    </record>
+    <record model="ir.actions.act_window" id="dnk_crm_pd_stage_action">
+        <field name="name">- Etapas. DP</field>
+        <field name="res_model">dnk.crm.pd.stage</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <menuitem action="dnk_crm_pd_stage_action" id="dnk_crm_pd_stage_menu"
+        parent="crm.crm_menu_config" sequence="50" />
+
+    <!-- STYLE-->
+    <record id="cnk_crm_dp_style_tree_view_1" model="ir.ui.view">
+         <field name="name">cnk_crm_dp_style_tree_view_1</field>
+         <field name="model">dnk.crm.pd.style</field>
+         <field name="arch" type="xml">
+             <tree string="- Estilo">
+                 <field name="name" />
+             </tree>
+         </field>
+    </record>
+
+    <record id="dnk_crm_dp_estyle_form_view_1" model="ir.ui.view">
+         <field name="name">dnk_crm_dp_estyle_form_view_1</field>
+         <field name="model">dnk.crm.pd.style</field>
+         <field name="arch" type="xml">
+             <form string="- Estilo" >
+             <sheet>
+                <group>
+                    <field name="name" />
+                </group>
+             </sheet>
+             </form>
+         </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="dnk_crm_dp_estyle_action">
+        <field name="name">- Estilos DP</field>
+        <field name="res_model">dnk.crm.pd.style</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <menuitem action="dnk_crm_dp_estyle_action" id="dnk_crm_pd_estyle_action_menu"
+        parent="crm.crm_menu_config" sequence="60" />
+
+    <!-- Serial-->
+    <record id="cnk_crm_dp_serial_tree_view_1" model="ir.ui.view">
+         <field name="name">cnk_crm_dp_serial_tree_view_1</field>
+         <field name="model">dnk.crm.pd.serial</field>
+         <field name="arch" type="xml">
+             <tree string="- Serie">
+                 <field name="name" />
+             </tree>
+         </field>
+    </record>
+    <record id="dnk_crm_dp_serial_form_view_1" model="ir.ui.view">
+         <field name="name">dnk_crm_dp_serial_form_view_1</field>
+         <field name="model">dnk.crm.pd.serial</field>
+         <field name="arch" type="xml">
+             <form string="- Serie" >
+             <sheet>
+                <group>
+                    <field name="name" />
+                </group>
+             </sheet>
+             </form>
+         </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="dnk_crm_dp_serial_action">
+        <field name="name">- Series DP</field>
+        <field name="res_model">dnk.crm.pd.serial</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <menuitem action="dnk_crm_dp_serial_action" id="dnk_crm_pd_serial_action_menu"
+        parent="crm.crm_menu_config" sequence="65" />
+
+    <!-- ATTACHMENTS-->
+    <record id="dnk_crm_dp_attachments_tree_view_1" model="ir.ui.view">
+         <field name="name">dnk_crm_dp_attachments_tree_view_1</field>
+         <field name="model">dnk.crm.pd.attachments</field>
+         <field name="arch" type="xml">
+             <tree string="- Aditamentos">
+                 <field name="name" />
+             </tree>
+         </field>
+    </record>
+
+    <record id="dnk_crm_pd_attachments_form_view_1" model="ir.ui.view">
+         <field name="name">dnk_crm_pd_attachments_form_view_1</field>
+         <field name="model">dnk.crm.pd.attachments</field>
+         <field name="arch" type="xml">
+             <form string="- Aditamentos" >
+             <sheet>
+                <group>
+                    <field name="name" />
+                </group>
+             </sheet>
+             </form>
+         </field>
+    </record>
+    <record model="ir.actions.act_window" id="dnk_crm_pd_attachments_action">
+        <field name="name">- Aditamentos DP</field>
+        <field name="res_model">dnk.crm.pd.attachments</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <menuitem action="dnk_crm_pd_attachments_action" id="dnk_crm_pd_attachments_menu"
+        parent="crm.crm_menu_config" sequence="70" />
+
+        <!-- MATERIALS-->
+    <record id="dnk_crm_dp_materials_tree_view_1" model="ir.ui.view">
+         <field name="name">dnk_crm_dp_materials_tree_view_1</field>
+         <field name="model">dnk.crm.pd.materials</field>
+         <field name="arch" type="xml">
+             <tree string="- Materiales">
+                 <field name="sequence" widget="handle"/>
+                 <field name="name" />
+             </tree>
+         </field>
+    </record>
+    <record id="dnk_crm_pd_materials_form_view_1" model="ir.ui.view">
+         <field name="name">dnk_crm_pd_materials_form_view_1</field>
+         <field name="model">dnk.crm.pd.materials</field>
+         <field name="arch" type="xml">
+             <form string="- Materiales" >
+             <sheet>
+                <group>
+                    <field name="name" />
+                </group>
+             </sheet>
+             </form>
+         </field>
+    </record>
+    <record model="ir.actions.act_window" id="dnk_crm_pd_materials_action">
+        <field name="name">- Materiales DP</field>
+        <field name="res_model">dnk.crm.pd.materials</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <menuitem action="dnk_crm_pd_materials_action" id="dnk_crm_pd_material_menu"
+        parent="crm.crm_menu_config" sequence="70" />
+
+    <!-- Clothing-->
+    <record id="dnk_crm_dp_fabric_type_tree_view" model="ir.ui.view">
+         <field name="name">dnk_crm_dp_fabric_type_tree_view</field>
+         <field name="model">dnk.crm.pd.fabric.type</field>
+         <field name="arch" type="xml">
+             <tree string="- Ropa">
+                 <field name="sequence" widget="handle"/>
+                 <field name="name" />
+             </tree>
+         </field>
+     </record>
+     <record id="dnk_crm_pd_fabric_type_form_view" model="ir.ui.view">
+         <field name="name">dnk_crm_pd_fabric_type_form_view</field>
+         <field name="model">dnk.crm.pd.fabric.type</field>
+         <field name="arch" type="xml">
+             <form string="- Ropa" >
+             <sheet>
+                <group>
+                    <field name="name" />
+                </group>
+             </sheet>
+             </form>
+         </field>
+     </record>
+    <record model="ir.actions.act_window" id="dnk_crm_pd_fabric_type_action">
+        <field name="name">- Tela DP</field>
+        <field name="res_model">dnk.crm.pd.fabric.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <menuitem action="dnk_crm_pd_fabric_type_action" id="dnk_crm_pd_clothing_menu"
+        parent="crm.crm_menu_config" sequence="71" />
+
+
+    <!-- Clothing Cut-->
+    <record id="dnk_crm_dp_clothing_cut_tree_view_1" model="ir.ui.view">
+         <field name="name">dnk_crm_dp_clothing_cut_tree_view_1</field>
+         <field name="model">dnk.crm.pd.clothing.cut</field>
+         <field name="arch" type="xml">
+             <tree string="- Corte DP">
+                 <field name="sequence" widget="handle"/>
+                 <field name="name" />
+             </tree>
+         </field>
+    </record>
+    <record id="dnk_crm_pd_clothing_cut_form_view_1" model="ir.ui.view">
+         <field name="name">dnk_crm_pd_clothing_cut_form_view_1</field>
+         <field name="model">dnk.crm.pd.clothing.cut</field>
+         <field name="arch" type="xml">
+             <form string="- Corte DP" >
+             <sheet>
+                <group>
+                    <field name="name" />
+                </group>
+             </sheet>
+             </form>
+         </field>
+    </record>
+    <record model="ir.actions.act_window" id="dnk_crm_pd_clothing_cut_action">
+        <field name="name">- Corte DP</field>
+        <field name="res_model">dnk.crm.pd.clothing.cut</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <menuitem action="dnk_crm_pd_clothing_cut_action" id="dnk_crm_pd_clothing_cut_menu"
+        parent="crm.crm_menu_config" sequence="72" />
+
+    <!-- Customisations-->
+    <record id="dnk_crm_dp_clothing_customisations_tree_view_1" model="ir.ui.view">
+         <field name="name">dnk_crm_dp_clothing_customisations_tree_view_1</field>
+         <field name="model">dnk.crm.pd.clothing.customisations</field>
+         <field name="arch" type="xml">
+             <tree string="- Personalizaciones DP">
+                 <field name="sequence" widget="handle"/>
+                 <field name="name" />
+             </tree>
+         </field>
+    </record>
+    <record id="dnk_crm_pd_clothing_customisations_form_view_1" model="ir.ui.view">
+         <field name="name">dnk_crm_pd_clothing_customisations_form_view_1</field>
+         <field name="model">dnk.crm.pd.clothing.customisations</field>
+         <field name="arch" type="xml">
+             <form string="- Personalizaciones DP" >
+             <sheet>
+                <group>
+                    <field name="name" />
+                </group>
+             </sheet>
+             </form>
+         </field>
+    </record>
+    <record model="ir.actions.act_window" id="dnk_crm_pd_clothing_customisations_action">
+        <field name="name">- Personalizaciones DP</field>
+        <field name="res_model">dnk.crm.pd.clothing.customisations</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <menuitem action="dnk_crm_pd_clothing_customisations_action" id="dnk_crm_pd_clothing_customisations_menu"
+        parent="crm.crm_menu_config" sequence="73" />
+
+
+    <!-- ACCESSORIES-->
+    <record id="dnk_crm_dp_accessories_tree_view_1" model="ir.ui.view">
+         <field name="name">dnk_crm_dp_accessories_tree_view_1</field>
+         <field name="model">dnk.crm.pd.accessories</field>
+         <field name="arch" type="xml">
+             <tree string="- Accesorios">
+                 <field name="sequence" widget="handle"/>
+                 <field name="name" />
+             </tree>
+         </field>
+     </record>
+     <record id="dnk_crm_pd_accessories_form_view_1" model="ir.ui.view">
+         <field name="name">dnk_crm_pd_accessories_form_view_1</field>
+         <field name="model">dnk.crm.pd.accessories</field>
+         <field name="arch" type="xml">
+             <form string="- Accesorios" >
+             <sheet>
+                <group>
+                    <field name="name" />
+                </group>
+             </sheet>
+             </form>
+         </field>
+    </record>
+    <record model="ir.actions.act_window" id="dnk_crm_pd_accessories_action">
+        <field name="name">- Accesorios DP</field>
+        <field name="res_model">dnk.crm.pd.accessories</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <menuitem action="dnk_crm_pd_accessories_action" id="dnk_crm_pd_accessories_menu"
+        parent="crm.crm_menu_config" sequence="65" />
+    <!-- Thikness-->
+    <record model="ir.actions.act_window" id="dnk_crm_dp_thickness_action">
+        <field name="name">- Grosor</field>
+        <field name="res_model">dnk.crm.pd.thickness</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+    <record id="dnk_crm_dp_thickness_tree_view_1" model="ir.ui.view">
+         <field name="name">dnk_crm_dp_thickness_tree_view_1</field>
+         <field name="model">dnk.crm.pd.thickness</field>
+         <field name="arch" type="xml">
+             <tree string="- Espesor">
+                 <field name="sequence" />
+                 <field name="dnk_function" />
+                 <field name="dnk_size" />
+                 <field name="dnk_um" />
+             </tree>
+         </field>
+    </record>
+
+    <record id="dnk_crm_pd_tree_view_1" model="ir.ui.view">
+        <field name="name">dnk_crm_pd_tree_view_1</field>
+        <field name="model">dnk.crm.product.dev</field>
+        <field name="arch" type="xml">
+            <tree string="- Desarrollo de Productos">
+                 <field name="name" />
+                 <field name="dnk_lead_id" />
+                 <field name="dnk_family_id"/>
+                 <field name="dnk_partner_id"/>
+                 <field name="dnk_final_customer_id"/>
+                 <field name="dnk_planned_revenue" sum="Total"/>
+                 <field name="dnk_contact_name" />
+                 <field name="dnk_user_id" />
+                 <field name="dnk_stage_id"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

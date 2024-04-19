@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="dnk_stock_quant_report_search_view" model="ir.ui.view">
+            <field name="name">dnk_stock_quant_report_search_view</field>
+            <field name="model">dnk.stock.quant</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="in_date"/>
+                    <field name="product_id"/>
+                    <field name="warehouse_id"/>
+                    <field name="quantity_on_hand"/>
+                    <field name="available_quantity"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="dnk_stock_quant_report_tree_view" model="ir.ui.view">
+            <field name="name">dnk_stock_quant_report_tree_view</field>
+            <field name="model">dnk.stock.quant</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <field name="name"/>
+                    <field name="in_date"/>
+                    <field name="product_id"/>
+                    <field name="warehouse_id"/>
+                    <field name="quantity_on_hand"/>
+                    <field name="available_quantity"/>
+                    <field name="total_cost"/>
+                    <field name="available_cost"/>
+                    <field name="last_sale_qty"/>
+                    <field name="last_sale_days"/>
+                    <field name="product_min_qty"/>
+                    <field name="product_max_qty"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="dnk_stock_quant_report_form_view" model="ir.ui.view">
+            <field name="name">dnk_stock_quant_report_form_view</field>
+            <field name="model">dnk.stock.quant</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="product_id"/>
+                                <field name="product_tmpl_id" invisble="1"/>
+                                <field name="in_date"/>
+                                <field name="name"/>
+                                <field name="dnk_color_id" invisble="1"/>
+                                <field name="dnk_family_id" invisble="1"/>
+                                <field name="dnk_subfamily_id" />
+                                <field name="company_id"/>
+                            </group>
+                            <group>
+                                <field name="name"/>
+                                <field name="warehouse_id"/>
+                                <field name="quantity_on_hand"/>
+                                <field name="reserved_quantity"/>
+                                <field name="available_quantity"/>
+                                <field name="total_cost"/>
+                                <field name="available_cost"/>
+                                <field name="product_min_qty"/>
+                                <field name="product_max_qty"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Sale">
+                                <field name="dnk_stock_move_line_last_sale_id"/>
+                                <field name="last_sale_date"/>
+                                <field name="last_sale_qty"/>
+                                <field name="last_sale_reference"/>
+                                <field name="x_studio_location_type_sale"/>
+                                <field name="last_sale_days"/>
+                                <field name="product_id"/>
+                                <field name="x_comment"/>
+                            </group>
+                            <group string="Input">
+                                <field name="dnk_stock_move_line_last_input_id"/>
+                                <field name="last_move_in_date"/>
+                                <field name="last_move_in_qty"/>
+                                <field name="last_move_in_reference"/>
+                                <field name="x_studio_location_type_origin"/>
+                                <field name="last_input_days"/>
+                            </group>
+                            <group string="Output">
+                                <field name="dnk_stock_move_line_last_output_id"/>
+                                <field name="last_move_out_date"/>
+                                <field name="last_move_out_qty"/>
+                                <field name="last_move_out_reference"/>
+                                <field name="x_studio_location_type_destination"/>
+                                <field name="last_output_days"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="dnk_stock_quant_report_action" model="ir.actions.act_window">
+           <field name="name">Stock Quant Analysis</field>
+           <field name="res_model">dnk.stock.quant</field>
+           <field name="view_mode">tree,form</field>
+           <field name="search_view_id" ref="dnk_stock_quant_report_search_view"/>
+           <field name="context">{'search_default_done': 1, 'time_ranges': {'field':'in_date', 'range':'this_year'}}</field>
+           <field name="domain">[]</field>
+       </record>
+
+        <menuitem
+            id="dnk_stock_quant_menuitem"
+            name="+ Stock Quant Analysis"
+            parent="stock.menu_product_in_config_stock"
+            action="dnk_stock_quant_report_action"/>
+    </data>
+</odoo>

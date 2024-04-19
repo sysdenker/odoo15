@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="data_dnk_asset_owner_option_1" model="dnk.asset.owner">
+            <field name="name">Propio</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="data_dnk_asset_owner_option_2" model="dnk.asset.owner">
+            <field name="name">Arrendado</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="data_dnk_asset_owner_option_3" model="dnk.asset.owner">
+            <field name="name">Rentado</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="data_dnk_asset_owner_option_4" model="dnk.asset.owner">
+            <field name="name">Prestado</field>
+            <field name="sequence">4</field>
+        </record>
+    </data>
+</odoo>

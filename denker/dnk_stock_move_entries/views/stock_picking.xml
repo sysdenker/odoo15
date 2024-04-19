@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="dnk_stock_picking_journal_entries_form_view_1" model="ir.ui.view">
+        <field name="name">dnk_stock_picking_journal_entries_form_view_1</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button string="- Journal Entries" name="dnk_stock_journal_entries" type="object" class="oe_stat_button"
+                        attrs="{'invisible':[('state','!=','done')]}" icon="fa-bars"/>
+                <button string="- Journal Items" name="dnk_stock_journal_items" type="object" class="oe_stat_button"
+                        attrs="{'invisible':[('state','!=','done')]}" icon="fa-bars"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

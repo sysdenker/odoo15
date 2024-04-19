@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <template id="dnk_mrp_production_classic_label" name="Etiqueta Classic">
+^XA
+
+COMPOSICIÓN
+<t t-set="y_coord" t-value="43"/>
+<t t-if="record.product_id.product_tmpl_id.dnk_material_id" t-foreach="record.product_id.product_tmpl_id.dnk_material_id.dnk_composition_ids" t-as="l">
+^FO30,<t t-esc="y_coord"/>^A1,24,12^FB66,1,,R^FD<t t-esc="l.dnk_percent"/>^FS
+^FO110,<t t-esc="y_coord"/>^A1,24,12^FD<t t-esc="l.dnk_name_es_mx"/>/<t t-esc="l.dnk_name"/>^FS
+<t t-set="y_coord" t-value="y_coord + 30"/>
+</t>
+
+LEYENDA: Centrar Texto 314 para 1.5 pulgadas
+^FO0,150^A1N,22,12^FB500,3,0,C,0^FH^FDHecho en M_82xico por:^FS
+^FO0,174^A0N,32,32^FB500,3,0,C,0^FDANTIESTATICA DE MEXICO^FS
+
+LOGO
+^FO126,212^GFA,147,147,3,,J01,J02,:J04,J0C,I01C,I018,I038,I07,I0F,:001E,003E,007C,:00F8,01F8,03F8,03IF807IF807IF,0JF,:0IFE,0CFFE,003FC,007F8,007F,007E,00FE,00FC,01F8,01F,:03E,03C,078,:0F,0E,0C,1C,18,3,2,6,4,,^FS
+
+SITIO WEB
+^FO0,220^A0N,36,40^FB500,3,0,C,0^FDestatec.com^FS
+
+PRODUCT CODE
+^FO0,270^A0N,33,30^FB500,3,0,C,0^FD<t t-esc="record.product_id.default_code"/>^FS
+
+TALLA
+^FO0,306^A0N,33,30^FB500,3,0,C,0^FD<t t-esc="record.dnk_attribute_size"/>^FS
+
+Codigo de barras 214 mitad
+<t t-if="record.product_id.barcode">
+<t t-set="x_coord" t-value="214-(len(record.product_id.barcode)*24)/2"/>
+^FO<t t-esc="x_coord"/>,340^BCN,80,N,N,N^FD<t t-esc="record.product_id.barcode"/>^FS
+</t>
+
+CURE
+^FT70,530^A0B,30,30^FB450,1,0,C^FH^SN<t t-esc="record.get_last_digits(record.name, 6)"/><t t-esc="record.get_last_digits(record.origin, 6)"/><t t-esc="str(dnk_labels_to_print_index_start).zfill(3)"/>, 1, Y^FS
+^FT70,845^A0B,30,30^FB450,1,0,C^FH^SN<t t-esc="record.get_last_digits(record.name, 6)"/><t t-esc="record.get_last_digits(record.origin, 6)"/><t t-esc="str(dnk_labels_to_print_index_start).zfill(3)"/>, 1, Y^FS
+^FT30,920^A0,30,30^FB450,3,0,C,0^FH^SN<t t-esc="record.get_last_digits(record.name, 6)"/><t t-esc="record.get_last_digits(record.origin, 6)"/><t t-esc="str(dnk_labels_to_print_index_start).zfill(3)"/>, 1, Y^FS
+
+Codigo QR
+^FO102,480^BQ,3,7,10^FDMA,https://grupodenker.odoo.com/web?debug=#id=<t t-esc="record.dnk_costura_workorder_id"/>&amp;view_type=form&amp;model=mrp.workorder&amp;active_id=<t t-esc="record.dnk_costura_workorder_id"/>&amp;^FS
+
+FECHA MM/YY
+^FC%,{,#
+^FO400,590^A0B,30,30^FD%y/%m^FS
+
+Repetir la etiqueta N veces
+^PQ<t t-esc="dnk_labels_to_print_index_stop-dnk_labels_to_print_index_start+1"/>,0,1,Y
+
+^XZ
+        </template>
+        <record id="dnk_mrp_production_classic_label" model="ir.ui.view">
+            <field name="type">qweb</field>
+            <field name="model">mrp.production</field>
+            <field name="dnk_label_flag">True</field>
+        </record>
+    </data>
+</odoo>

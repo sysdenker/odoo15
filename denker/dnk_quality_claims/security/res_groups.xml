@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="dnk_quality_claims_user_group" model="res.groups">
+          <field name="name">Claims - User</field>
+          <field name="comment">Usuario de Quejas</field>
+          <field name="category_id" ref="dnk_groups_categories.dnk_crm_category"/>
+        </record>
+        <record id="dnk_quality_claims_admin_group" model="res.groups">
+          <field name="name">Claims - Admin</field>
+          <field name="comment">Administrador de Quejas</field>
+          <field name="category_id" ref="dnk_groups_categories.dnk_crm_category"/>
+        </record>
+
+        <record id="dnk_quality_claims_rule_company" model="ir.rule">
+            <field name="name">- Denker - Quality Claims</field>
+            <field name="model_id" ref="dnk_quality_claims.model_dnk_quality_claims"/>
+            <field name="groups" eval="[(4, ref('dnk_quality_claims.dnk_quality_claims_user_group')),(4, ref('dnk_quality_claims.dnk_quality_claims_admin_group'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1" />
+            <field name="domain_force">[('dnk_company_id','child_of',[user.company_id.id])]</field>
+        </record>
+
+        <record id="dnk_quality_claims_tags_rules_company" model="ir.rule">
+            <field name="name">- Denker - Tags Quality Claims</field>
+            <field name="model_id" ref="dnk_quality_claims.model_dnk_quality_claim_tags"/>
+            <field name="groups" eval="[(4, ref('dnk_quality_claims.dnk_quality_claims_user_group')),(4, ref('dnk_quality_claims.dnk_quality_claims_admin_group'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1" />
+            <field name="domain_force">[('dnk_company_id','child_of',[user.company_id.id])]</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="utm_source_occ" model="utm.source">
+            <field name="name">OCC Mundial</field>
+        </record>
+        <record id="utm_source_computrabajo" model="utm.source">
+            <field name="name">Computrabajo</field>
+        </record>
+        <record id="utm_source_recomendado" model="utm.source">
+            <field name="name">Recomendado</field>
+        </record>
+
+        <record id="dnk_hr_custom_employee.leave_cause_separacion_voluntaria" model="hr.employee.leave.cause">
+            <field name="name">Separación Voluntaria</field>
+        </record>
+        <record id="dnk_hr_custom_employee.leave_cause_sueldo_mejor" model="hr.employee.leave.cause">
+            <field name="name">Me ofrecen un puesto o sueldo mejor</field>
+        </record>
+        <record id="dnk_hr_custom_employee.leave_cause_ambiente_laboral" model="hr.employee.leave.cause">
+            <field name="name">Mal ambiente laboral</field>
+        </record>
+        <record id="dnk_hr_custom_employee.leave_cause_problemas_salud" model="hr.employee.leave.cause">
+            <field name="name">Problemas de salud</field>
+        </record>
+        <record id="dnk_hr_custom_employee.leave_cause_problemas_familiares" model="hr.employee.leave.cause">
+            <field name="name">Problemas familiares</field>
+        </record>
+        <record id="dnk_hr_custom_employee.leave_cause_rescision_contrato" model="hr.employee.leave.cause">
+            <field name="name">Rescisión de contrato</field>
+        </record>
+        <record id="dnk_hr_custom_employee.leave_cause_abandono" model="hr.employee.leave.cause">
+            <field name="name">Abandono</field>
+        </record>
+        <record id="dnk_hr_custom_employee.leave_cause_inconformidad_pago" model="hr.employee.leave.cause">
+            <field name="name">Inconformidad en pago de nomina</field>
+        </record>
+        <record id="dnk_hr_custom_employee.leave_cause_prestaciones_laborales" model="hr.employee.leave.cause">
+            <field name="name">Prestaciones laborales</field>
+        </record>
+        <record id="dnk_hr_custom_employee.leave_cause_desmotivacion" model="hr.employee.leave.cause">
+            <field name="name">Desmotivación</field>
+        </record>
+        <record id="dnk_hr_custom_employee.leave_cause_trato_jefe" model="hr.employee.leave.cause">
+            <field name="name">Trato de mi jefe inmediato</field>
+        </record>
+        <record id="dnk_hr_custom_employee.leave_cause_cambio_compania" model="hr.employee.leave.cause">
+            <field name="name">Cambio Compañía del grupo</field>
+        </record>
+
+        <!-- Checklist Category Data -->
+        <record id="dnk_hr_custom_employee.checklist_category_documentos_legales" model="hr.employee.checklist.category">
+            <field name="name">Documentos Legales</field>
+        </record>
+        <record id="dnk_hr_custom_employee.checklist_category_documentos_personales" model="hr.employee.checklist.category">
+            <field name="name">Documentos Personales</field>
+        </record>
+
+        <!-- Checklist Line Data -->
+        <!-- Documentos Legales -->
+        <record id="dnk_hr_custom_employee.checklist_line_contrato_laboral" model="hr.employee.checklist.line">
+            <field name="name">Contrato Laboral</field>
+            <field name="description">Contrato inicial, contrato de planta.</field>
+            <field name="category_id" ref="dnk_hr_custom_employee.checklist_category_documentos_legales"/>
+            <field name="sequence">1</field>
+        </record>
+        <record id="dnk_hr_custom_employee.checklist_category_contrato_confidencialidad" model="hr.employee.checklist.line">
+            <field name="name">Contrato de Confidencialidad</field>
+            <field name="description"></field>
+            <field name="category_id" ref="dnk_hr_custom_employee.checklist_category_documentos_legales"/>
+            <field name="sequence">2</field>
+        </record>
+        <record id="dnk_hr_custom_employee.checklist_line_aviso_privacidad" model="hr.employee.checklist.line">
+            <field name="name">Aviso de Privacidad</field>
+            <field name="description"></field>
+            <field name="category_id" ref="dnk_hr_custom_employee.checklist_category_documentos_legales"/>
+            <field name="sequence">3</field>
+        </record>
+        <record id="dnk_hr_custom_employee.checklist_line_carta_compromiso_etica" model="hr.employee.checklist.line">
+            <field name="name">Carta Compromiso Ética</field>
+            <field name="description"></field>
+            <field name="category_id" ref="dnk_hr_custom_employee.checklist_category_documentos_legales"/>
+            <field name="sequence">4</field>
+        </record>
+        <record id="dnk_hr_custom_employee.checklist_line_carta_compromiso_conducta" model="hr.employee.checklist.line">
+            <field name="name">Carta Compromiso Conducta</field>
+            <field name="description"></field>
+            <field name="category_id" ref="dnk_hr_custom_employee.checklist_category_documentos_legales"/>
+            <field name="sequence">5</field>
+        </record>
+        <record id="dnk_hr_custom_employee.checklist_line_propuesta_salarial" model="hr.employee.checklist.line">
+            <field name="name">Propuesta Salarial</field>
+            <field name="description">Solo puesto de nivel coordinación, gerentes y directores.</field>
+            <field name="category_id" ref="dnk_hr_custom_employee.checklist_category_documentos_legales"/>
+            <field name="sequence">6</field>
+        </record>
+        <!-- Documentos Personales -->
+        <record id="dnk_hr_custom_employee.checklist_line_solicitud_empleo" model="hr.employee.checklist.line">
+            <field name="name">Solicitud de Empleo o CV</field>
+            <field name="description"></field>
+            <field name="category_id" ref="dnk_hr_custom_employee.checklist_category_documentos_personales"/>
+            <field name="sequence">7</field>
+        </record>
+        <record id="dnk_hr_custom_employee.checklist_line_acta_nacimiento" model="hr.employee.checklist.line">
+            <field name="name">Acta de Nacimiento</field>
+            <field name="description"></field>
+            <field name="category_id" ref="dnk_hr_custom_employee.checklist_category_documentos_personales"/>
+            <field name="sequence">8</field>
+        </record>
+        <record id="dnk_hr_custom_employee.checklist_line_identificacion_oficial" model="hr.employee.checklist.line">
+            <field name="name">Identificación Oficial</field>
+            <field name="description">Credencial del IFE ó INE, Pasaporte.</field>
+            <field name="category_id" ref="dnk_hr_custom_employee.checklist_category_documentos_personales"/>
+            <field name="sequence">9</field>
+        </record>
+        <record id="dnk_hr_custom_employee.checklist_line_documento_imss" model="hr.employee.checklist.line">
+            <field name="name">IMSS</field>
+            <field name="description">Documento Oficial (web, hoja rosa, afore)</field>
+            <field name="category_id" ref="dnk_hr_custom_employee.checklist_category_documentos_personales"/>
+            <field name="sequence">10</field>
+        </record>
+        <record id="dnk_hr_custom_employee.checklist_line_curp" model="hr.employee.checklist.line">
+            <field name="name">CURP</field>
+            <field name="description"></field>
+            <field name="category_id" ref="dnk_hr_custom_employee.checklist_category_documentos_personales"/>
+            <field name="sequence">11</field>
+        </record>
+        <record id="dnk_hr_custom_employee.checklist_line_rfc" model="hr.employee.checklist.line">
+            <field name="name">RFC</field>
+            <field name="description"></field>
+            <field name="category_id" ref="dnk_hr_custom_employee.checklist_category_documentos_personales"/>
+            <field name="sequence">12</field>
+        </record>
+        <record id="dnk_hr_custom_employee.checklist_line_comprobante_domicilio" model="hr.employee.checklist.line">
+            <field name="name">Comprobante de Domicilio</field>
+            <field name="description">Luz, agua, telefonía fija, predial, carta municipal</field>
+            <field name="category_id" ref="dnk_hr_custom_employee.checklist_category_documentos_personales"/>
+            <field name="sequence">13</field>
+        </record>
+        <record id="dnk_hr_custom_employee.checklist_line_comprobante_estudios" model="hr.employee.checklist.line">
+            <field name="name">Comprobante de Estudios</field>
+            <field name="description">Certificado, boleta o Kardex -con sello-, cédula.</field>
+            <field name="category_id" ref="dnk_hr_custom_employee.checklist_category_documentos_personales"/>
+            <field name="sequence">14</field>
+        </record>
+        <record id="dnk_hr_custom_employee.checklist_line_cuenta_bancaria" model="hr.employee.checklist.line">
+            <field name="name">Número de Cuenta Bancaria o Tarjeta de Banco</field>
+            <field name="description"></field>
+            <field name="category_id" ref="dnk_hr_custom_employee.checklist_category_documentos_personales"/>
+            <field name="sequence">15</field>
+        </record>
+        <record id="dnk_hr_custom_employee.checklist_line_aviso_infonavit" model="hr.employee.checklist.line">
+            <field name="name">Aviso de Retención/Suspensión INFONAVIT</field>
+            <field name="description">Si aplica</field>
+            <field name="category_id" ref="dnk_hr_custom_employee.checklist_category_documentos_personales"/>
+            <field name="sequence">16</field>
+            <field name="required">False</field>
+        </record>
+        <record id="dnk_hr_custom_employee.checklist_line_aviso_fonacot" model="hr.employee.checklist.line">
+            <field name="name">Aviso de Retención/Suspensión FONACOT</field>
+            <field name="description">Si aplica</field>
+            <field name="category_id" ref="dnk_hr_custom_employee.checklist_category_documentos_personales"/>
+            <field name="sequence">17</field>
+            <field name="required">False</field>
+        </record>
+    </data>
+
+    <record forcecreate="True" id="cron_update_plantilla_aut" model="ir.cron">
+  		<field name="name">Update Plantilla Autorizada</field>
+  		<field eval="True" name="active" />
+  		<field name="user_id" ref="base.user_root" />
+  		<field name="interval_number">1</field>
+  		<field name="interval_type">days</field>
+  		<field name="numbercall">-1</field>
+
+  		<field name="model_id" ref="model_hr_job" />
+  		<field name="state">code</field>
+  		<field name="code">model._cron_update_plantilla_aut()</field>
+  	</record>
+    <!-- Contract Types -->
+    <!--
+        <data noupdate="1">
+            <record id="hr_contract.hr_contract_type_emp" model="hr.contract.type">
+                <field name="name">Determinado</field>
+                <field name="sequence">5</field>
+            </record>
+
+            <record id="hr_contract.hr_contract_type_wrkr" model="hr.contract.type">
+                <field name="name">Indeterminado</field>
+                <field name="sequence">10</field>
+            </record>
+
+            <record id="hr_contract.hr_contract_type_sub" model="hr.contract.type">
+                <field name="name">Sustitución Patronal</field>
+                <field name="sequence">15</field>
+            </record>
+        </data>
+    -->
+    <!-- Recruitment Degree -->
+    <!--<data noupdate="1">
+        <record id="without_studies" model="hr.recruitment.degree">
+            <field name="name">Sin estudio</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="primary_education" model="hr.recruitment.degree">
+            <field name="name">Primaria</field>
+            <field name="sequence">3</field>
+        </record>
+
+        <record id="high_school" model="hr.recruitment.degree">
+            <field name="name">Secundaria</field>
+            <field name="sequence">5</field>
+        </record>
+
+        <record id="hr_recruitment.degree_bachelor" model="hr.recruitment.degree">
+            <field name="name">Bachillerato</field>
+            <field name="sequence">7</field>
+        </record>
+
+        <record id="hr_recruitment.degree_graduate" model="hr.recruitment.degree">
+            <field name="name">Maestría</field>
+            <field name="sequence">9</field>
+        </record>
+
+        <record id="hr_recruitment.degree_licenced" model="hr.recruitment.degree">
+            <field name="name">Licenciatura</field>
+            <field name="sequence">11</field>
+        </record>
+
+        <record id="hr_recruitment.degree_bac5" model="hr.recruitment.degree">
+            <field name="name">Doctorado</field>
+            <field name="sequence">13</field>
+        </record>
+    </data>-->
+
+    <!-- Recruitment Degree -->
+    <data noupdate="1">
+        <record id="family_connection_mother" model="hr.family.connection">
+            <field name="name">Madre</field>
+        </record>
+
+        <record id="family_connection_father" model="hr.family.connection">
+            <field name="name">Padre</field>
+        </record>
+
+        <record id="family_connection_brother" model="hr.family.connection">
+            <field name="name">Hermano</field>
+        </record>
+
+        <record id="family_connection_sister" model="hr.family.connection">
+            <field name="name">Hermana</field>
+        </record>
+
+        <record id="family_connection_grandfather" model="hr.family.connection">
+            <field name="name">Abuelo</field>
+        </record>
+
+        <record id="family_connection_grandmother" model="hr.family.connection">
+            <field name="name">Abuela</field>
+        </record>
+
+        <record id="family_connection_uncle" model="hr.family.connection">
+            <field name="name">Tío</field>
+        </record>
+
+        <record id="family_connection_aunt" model="hr.family.connection">
+            <field name="name">Tía</field>
+        </record>
+
+        <record id="family_connection_son" model="hr.family.connection">
+            <field name="name">Hijo</field>
+        </record>
+
+        <record id="family_connection_daughter" model="hr.family.connection">
+            <field name="name">Hija</field>
+        </record>
+
+        <record id="family_connection_cousin" model="hr.family.connection">
+            <field name="name">Primo(a)</field>
+        </record>
+
+        <record id="family_connection_grandson" model="hr.family.connection">
+            <field name="name">Nieto</field>
+        </record>
+
+        <record id="family_connection_granddaughter" model="hr.family.connection">
+            <field name="name">Nieta</field>
+        </record>
+    </data>
+</odoo>

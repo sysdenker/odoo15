@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="dnk_product_customer_code_view_form" model="ir.ui.view">
+        <field name="name">dnk_product_customer_code_view_form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <group name="sale" position="before">
+                <separator string="- Customer Codes"
+                    attrs="{'invisible': [('is_product_variant', '=', False)]}"
+                    />
+                    <field name="dnk_customer_ids"
+                        context="{'default_product_id': context.get('product_id',active_id),
+                        'default_product_tmpl_id': context.get('product_tmpl_id'),
+                        'default_dnk_only_code': True}"
+                        nolabel="1" attrs="{'invisible': [('is_product_variant', '=', False)]}">
+                        <tree string="- Customers" editable="bottom">
+                            <field name="name" string="- Customer"/>
+                            <field name="product_id" string="- Product" required="1" invisible="1"/>
+                            <field name="product_tmpl_id" string="- Product Template" invisible="1" />
+                            <field name="company_id" invisible="1"/>
+                            <field name="product_code" required="1" string="- Customer Product Code" />
+                            <field name="dnk_only_code" invisible="1"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <group>
+                                    <field name="name" string="- Customer"/>
+                                    <field name="product_id" string="- Product" required="1" invisible="1"/>
+                                    <field name="product_tmpl_id" string="- Product Template" invisible="1" />
+                                    <field name="company_id" invisible="1"/>
+                                    <field name="product_code" required="1" string="- Customer Product Code" />
+                                </group>
+                                <group>
+                                    <field name="create_uid"/>
+                                    <field name="create_date"/>
+                                    <field name="write_uid"/>
+                                    <field name="write_date"/>
+                                </group>
+                            </group>
+                        </form>
+                    </field>
+            </group>
+        </field>
+    </record>
+</odoo>

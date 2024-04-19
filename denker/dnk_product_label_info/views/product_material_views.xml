@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="dnk_product_material_tree_view" model="ir.ui.view">
+        <field name="name">dnk.product.material.tree.view</field>
+        <field name="model">dnk.product.material</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <tree string="Product Template Material">
+                <field name="dnk_name"/>
+                <field name="dnk_composition_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="dnk_product_material_form_view" model="ir.ui.view">
+        <field name="name">dnk.product.material.form.view</field>
+        <field name="model">dnk.product.material</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <form string="Product Template Material">
+            <sheet>
+                <div class="oe_title">
+                    <label class="oe_edit_only" for="dnk_name" string="- Material"/>
+                    <h1><field name="dnk_name"/></h1>
+                    <group col="4" colspan="4">
+                        <group string="Compositions" col="4" colspan="4">
+                            <field name="dnk_composition_ids" nolabel="1">
+                                <form>
+                                    <div class="oe_title">
+                                        <label class="oe_edit_only" for="dnk_name" string="- Composition"/>
+                                        <h1><field name="dnk_name"/></h1>
+                                    </div>
+                                    <group>
+                                        <field name="dnk_name_es_mx"/>
+                                        <field name="dnk_percent"/>
+                                    </group>
+                                </form>
+                                <tree>
+                                    <field name="dnk_sequence" widget="handle"/>
+                                    <field name="dnk_name"/>
+                                    <field name="dnk_name_es_mx"/>
+                                    <field name="dnk_percent"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </group>
+                </div>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="dnk_action_product_material" model="ir.actions.act_window">
+        <field name="name">Product Materials</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">dnk.product.material</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create Materials for Product Templates.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_dnk_product_material" name="- Product Material" action="dnk_action_product_material"
+        parent="mrp.menu_mrp_configuration" sequence="10" groups="dnk_printing_labels.dnk_printing_label_user_group"/>
+</odoo>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <report
+     id="dnk_attendance_report_reg"
+     model="dnk.wizard.atendance.report"
+     string="Attendances"
+     report_type="qweb-pdf"
+     name="dnk_hr_attendance_hist.dnk_attendance_report"
+     file="dnk_hr_attendance_hist.dnk_attendance_report"
+     print_report_name="'Attendance Report - %s' % (object.name)"
+     paperformat="base.paperformat_us"
+   />
+
+
+   <template id="dnk_attendance_report">
+     <t t-call="web.html_container">
+       <div class="header">
+       </div>
+       <div class="footer">
+          <div class="row zero_min_height">
+              <div class="col-xs-12">
+                  <div style="border-bottom: 1px solid #555555;"/>
+              </div>
+          </div>
+          <div style="font-size: 10px; color:#555555;" class="text-right">
+              <ul class="list-inline">
+                  <li class="text-muted" style="color:#555555;">
+                      Página:
+                      <span class="page"/>
+                      de
+                      <span class="topage"/>
+                  </li>
+              </ul>
+          </div>
+       </div>
+       <t t-call="web.external_layout">
+         <t t-foreach="get_data_from_report" t-as="obj">
+           <div class="page">
+
+             <div class="oe_structure"/>
+
+               <table id="dnk_attendance" class="table table-condensed" >
+                 <thead>
+                   <tr >
+                     <th style="text-align:left;" colspan="2">
+                        <img t-if="obj['company_logo']" t-att-src="'data:image/png;base64,%s' % to_text(obj['company_logo'])" style="max-height: 45px;"/>
+                     </th>
+                     <th class="text-right" colspan="5">
+                       <strong><t t-esc="obj['employee_name']"/></strong> - <t t-esc="obj['department']"/><br/>
+                       <t t-esc="obj['company_name']"/><br/>
+                       Reporte de Asistencia del <t t-esc="dnk_date_from"/> al <t t-esc="dnk_date_to"/>
+                     </th>
+                    </tr>
+                    <tr>
+                      <th colspan="7">
+                      </th>
+                    </tr>
+
+                   <tr style="text-align:center; font-weight: bold;">
+                     &lt;td style="color:<t t-esc="obj['company_color_fnt']"/>; background-color:<t t-esc="obj['company_color']"/>!important; "&gt; Fecha &lt;/td&gt;
+                     &lt;td style="color:<t t-esc="obj['company_color_fnt']"/>; background-color:<t t-esc="obj['company_color']"/>!important; "&gt; Día &lt;/td&gt;
+                     &lt;td style="color:<t t-esc="obj['company_color_fnt']"/>; background-color:<t t-esc="obj['company_color']"/>!important; "&gt; Entrada &lt;/td&gt;
+                     &lt;td style="color:<t t-esc="obj['company_color_fnt']"/>; background-color:<t t-esc="obj['company_color']"/>!important; "&gt; Salida &lt;/td&gt;
+                     &lt;td style="color:<t t-esc="obj['company_color_fnt']"/>; background-color:<t t-esc="obj['company_color']"/>!important; "&gt; Incidencia &lt;/td&gt;
+                     &lt;td style="color:<t t-esc="obj['company_color_fnt']"/>; background-color:<t t-esc="obj['company_color']"/>!important; "&gt; Horas &lt;/td&gt;
+                     &lt;td style="color:<t t-esc="obj['company_color_fnt']"/>; background-color:<t t-esc="obj['company_color']"/>!important; "&gt; Dispositivo &lt;/td&gt;
+                   </tr>
+                 </thead>
+                 <tbody>
+                   <t t-foreach="obj['data']" t-as="att">
+                     <tr style="text-align:center;">
+                       <td><t t-esc="att['date_in']"/></td>
+                       <td><t t-esc="att['dia_sem']"/></td>
+                       <td><t t-esc="att['check_in']"/></td>
+                       <td><t t-esc="att['check_out']"/></td>
+                       &lt;td class="text-center oe_leftfit oe_rightfit" style="color:<t t-esc="att['color_stat']"/>!important; "&gt; <t t-esc="att['dnk_attendance_stat']"/>&lt;/td&gt;
+                       <td><t t-esc="att['worked_hours']"/></td>
+                       <td><t t-esc="att['dnk_device_name']"/></td>
+                     </tr>
+                   </t>
+                 </tbody>
+                 <tfoot>
+                   <tr>
+                    <td colspan="7" style="text-align:right; font-weight: bold;">
+                      Total de Faltas: <t t-esc="obj['total_aus']"/><br/>
+                      Total de Retardos: <t t-esc="obj['total_ret']"/><br/>
+                      Total de Horas: <t t-esc="obj['total_hrs']"/>
+                    </td>
+                   </tr>
+                 </tfoot>
+               </table>
+               <center>
+                <table class="table table-condensed" >
+                  <tbody>
+                   <tr>
+                     <td style="width:100%;text-align:center;border: 0px solid transparent;">
+                       <p>
+                       </p>
+                        Los retardos y ausentismos aquí asentados corresponden al registro o falta de registro de huella
+                        que he realizado en el periodo evaluado.
+                     </td>
+                   </tr>
+                 </tbody>
+                 </table>
+                 <table class="table" style="width:40%;border: 0px solid transparent;" cellpadding="20">
+                   <tr style="width:100%;border: 0px solid transparent;background-color:transparent;">
+                     <td style="width:100%;text-align:center;border: 0px solid transparent;">
+                       <p>
+                         <hr/>
+                       </p>
+                         <b><t t-esc="obj['employee_name']"/></b><br/>
+                         Nombre y firma<br/>
+                     </td>
+                   </tr>
+                 </table>
+               </center>
+               <p style="page-break-after:always;"/>
+             </div>
+             </t>
+
+       </t>
+     </t>
+   </template>
+</odoo>

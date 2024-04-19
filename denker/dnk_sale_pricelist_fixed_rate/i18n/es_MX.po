@@ -1,0 +1,73 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* dnk_sale_pricelist_fixed_rate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-22 16:01+0000\n"
+"PO-Revision-Date: 2020-05-22 16:01+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dnk_sale_pricelist_fixed_rate
+#: model:ir.model.fields,field_description:dnk_sale_pricelist_fixed_rate.field_res_company__dnk_usd_fixed_rate
+#: model:ir.model.fields,field_description:dnk_sale_pricelist_fixed_rate.field_res_config_settings__dnk_usd_fixed_rate
+msgid "- USD Fixed Rate"
+msgstr ""
+
+#. module: dnk_sale_pricelist_fixed_rate
+#: model:ir.model.fields,field_description:dnk_sale_pricelist_fixed_rate.field_product_pricelist__dnk_use_usd_fixed_rate
+msgid "- Use USD Fixed Rate"
+msgstr ""
+
+#. module: dnk_sale_pricelist_fixed_rate
+#: model:res.groups,name:dnk_sale_pricelist_fixed_rate.dnk_group_capture_price_unit
+msgid "Capture Price Unit"
+msgstr "Capturar Precio Unitario"
+
+#. module: dnk_sale_pricelist_fixed_rate
+#: model:ir.model,name:dnk_sale_pricelist_fixed_rate.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: dnk_sale_pricelist_fixed_rate
+#: model:ir.model,name:dnk_sale_pricelist_fixed_rate.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de Configuración"
+
+#. module: dnk_sale_pricelist_fixed_rate
+#: model:ir.model.fields,help:dnk_sale_pricelist_fixed_rate.field_product_pricelist__dnk_use_usd_fixed_rate
+msgid "If checked, the price list use de USD Fixed Rate to convert prices"
+msgstr ""
+
+#. module: dnk_sale_pricelist_fixed_rate
+#: model:ir.model,name:dnk_sale_pricelist_fixed_rate.model_product_pricelist
+msgid "Pricelist"
+msgstr "Tarifa"
+
+#. module: dnk_sale_pricelist_fixed_rate
+#: model:ir.model,name:dnk_sale_pricelist_fixed_rate.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: dnk_sale_pricelist_fixed_rate
+#: model:res.groups,comment:dnk_sale_pricelist_fixed_rate.dnk_group_capture_price_unit
+msgid ""
+"This group can capture the Price Unit on a Sale Order Line without automatic"
+" calculation with the UDS Fixed Rate in Pricelists configured to use it."
+msgstr ""
+"Este grupo puede capturar el Precio Unitario en una Línea de orden de venta "
+"sin un cálculo automático con la Tasa fija UDS en las listas de precios "
+"configuradas para usarla."
+
+#. module: dnk_sale_pricelist_fixed_rate
+#: model:ir.model.fields,help:dnk_sale_pricelist_fixed_rate.field_res_company__dnk_usd_fixed_rate
+#: model:ir.model.fields,help:dnk_sale_pricelist_fixed_rate.field_res_config_settings__dnk_usd_fixed_rate
+msgid "USD Fixed Rate to use on pricelists configured to use it."
+msgstr ""

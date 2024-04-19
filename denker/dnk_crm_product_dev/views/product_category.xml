@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="dnk_account_view_category_property_form" model="ir.ui.view">
+            <field name="name">dnk_account_view_category_property_form</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+                <group name="first" position="after">
+                    <group name="dnk_dp_pc_group" string="Desarrollo de Productos(DP)">
+                        <group>
+	                       <field name="dnk_pd_form_type" />
+	                    </group>
+	                </group>
+                </group>
+            </field>
+        </record>
+
+</odoo>

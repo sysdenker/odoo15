@@ -1,0 +1,1259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="hr_report_contract_document">
+        <t t-name="dnk_hr_custom_employee.hr_report_contract_document">
+            <t t-call="web.html_container">
+                <div class="header">
+                </div>
+                <div class="footer">
+                    <div class="row zero_min_height">
+                        <div class="col-xs-12">
+                            <div style="border-bottom: 1px solid #555555;"/>
+                         </div>
+                     </div>
+                     <div style="font-size: 10px; color:#555555;" class="text-right">
+                         <ul class="list-inline">
+                             <li class="text-muted" style="color:#555555;">
+                                 Página:
+                                 <span class="page"/>
+                                 de
+                                 <span class="topage"/>
+                             </li>
+                         </ul>
+                     </div>
+                 </div>
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page" style="font-family:'Arial Narrow';text-align: justify;background-image:none">
+                            <link href="http://allfont.es/allfont.css?fonts=arial-narrow" rel="stylesheet" type="text/css"/>
+                            <style>
+                                 .titlebar {
+                                    width: 100%;
+                                    text-align: center;
+                                    background-color: #d9d9d9;
+                                    border-style: solid;
+                                    border-color: black;
+                                    border-width: 1px;
+                                    padding: 2px;
+                                    font-weight: bold;
+                                 }
+
+                                 .table_bordered {
+                                    border-collapse: collapse;
+                                 }
+
+                                 .table_bordered th, td {
+                                    border: 1px solid #aaaaaa;
+                                 }
+
+                                 .table_invisible th td {
+                                    background-color: #ffffff;
+                                    border-collapse: collapse;
+                                    padding: 20px;
+                                    border: 0px solid black;
+                                }
+
+                                hr {
+                                    display: block;
+                                    height: 1px;
+                                    border: 0;
+                                    border-top: 1px solid #000;
+                                    margin: 1em 0;
+                                    padding: 0;
+                                }
+
+                                p {
+                                line-height:132%;
+                                }
+
+                                li {
+                                line-height:132%;
+                                }
+
+                                .redspan {
+                                  background-color: #ff0000;
+                                  color: #ffffff;
+                                }
+                            </style>
+
+                            <div id="dnk_variables">
+                                <!-- Dirección de el empleado -->
+                                <t t-set="employee_address" t-value="''"/>
+                                <t t-if="o.employee_id.address_home_id.street_name" t-set="employee_address" t-value="employee_address+o.employee_id.address_home_id.street_name"/>
+                                <t t-if="o.employee_id.address_home_id.street_number" t-set="employee_address" t-value="employee_address+' '+o.employee_id.address_home_id.street_number"/>
+                                <t t-if="o.employee_id.address_home_id.street_number2" t-set="employee_address" t-value="employee_address+' '+o.employee_id.address_home_id.street_number2"/>
+                                <t t-if="o.employee_id.address_home_id.l10n_mx_edi_colony" t-set="employee_address" t-value="employee_address+', Colonia '+o.employee_id.address_home_id.l10n_mx_edi_colony"/>
+                                <t t-if="o.employee_id.address_home_id.zip" t-set="employee_address" t-value="employee_address+', Código Postal '+o.employee_id.address_home_id.zip"/>
+                                <t t-if="o.employee_id.address_home_id.city" t-set="employee_address" t-value="employee_address+', '+o.employee_id.address_home_id.city"/>
+                                <t t-if="o.employee_id.address_home_id.state_id" t-set="employee_address" t-value="employee_address+', '+o.employee_id.address_home_id.state_id.name"/>
+
+                                <!-- Dirección de la compañía actual -->
+                                <t t-set="current_company_address" t-value="''"/>
+                                <t t-if="o.employee_id.company_id.street_name" t-set="current_company_address" t-value="current_company_address+o.employee_id.company_id.street_name"/>
+                                <t t-if="o.employee_id.company_id.street_number" t-set="current_company_address" t-value="current_company_address+' '+o.employee_id.company_id.street_number"/>
+                                <t t-if="o.employee_id.company_id.street_number2" t-set="current_company_address" t-value="current_company_address+' '+o.employee_id.company_id.street_number2"/>
+                                <t t-if="o.employee_id.company_id.l10n_mx_edi_colony" t-set="current_company_address" t-value="current_company_address+', Colonia '+o.employee_id.company_id.l10n_mx_edi_colony"/>
+                                <t t-if="o.employee_id.company_id.zip" t-set="current_company_address" t-value="current_company_address+', Código Postal '+o.employee_id.company_id.zip"/>
+                                <t t-if="o.employee_id.company_id.city" t-set="current_company_address" t-value="current_company_address+', '+o.employee_id.company_id.city"/>
+                                <t t-if="o.employee_id.company_id.state_id" t-set="current_company_address" t-value="current_company_address+', '+o.employee_id.company_id.state_id.name"/>
+
+                                <!-- current_date -->
+                                <t t-set="current_date" t-value="o.format_date(context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S'), format='%A, %d de %B de %Y')"/>
+
+                                <!-- fecha_1er_contrato -->
+                                <!--<t t-if="o.employee_id.fecha_1er_contrato" t-set="fecha_1er_contrato" t-value="o.format_date(o.employee_id.fecha_1er_contrato + "", format='%A, %d de %B de %Y')"/>-->
+                                <t t-if="o.employee_id.fecha_1er_contrato" t-set="fecha_1er_contrato" t-value="o.employee_id.fecha_1er_contrato.strftime('%A, %d de %B de %Y')"/>
+                                <t t-if="not o.employee_id.fecha_1er_contrato" t-set="fecha_1er_contrato" t-value="employee_id.fecha_1er_contrato"/>
+                                <t t-if="o.employee_id.fecha_1er_contrato" t-set="fecha_1er_contrato_class" t-value="''"/>
+                                <t t-if="not o.employee_id.fecha_1er_contrato" t-set="fecha_1er_contrato_class" t-value="'redspan'"/>
+
+                                <!-- termino_1er_contrato -->
+                                <!--<t t-if="o.employee_id.termino_1er_contrato" t-set="termino_1er_contrato" t-value="o.format_date(o.employee_id.termino_1er_contrato + ' 00:00:00', format='%A, %d de %B de %Y')"/>-->
+                                <t t-if="o.employee_id.termino_1er_contrato" t-set="termino_1er_contrato" t-value="o.employee_id.termino_1er_contrato.strftime('%A, %d de %B de %Y')"/>
+                                <t t-if="not o.employee_id.termino_1er_contrato" t-set="termino_1er_contrato" t-value="&quot;&lt;span style='color:#FF0000'&gt;employee_id.termino_1er_contrato&lt;/span&gt;&quot;"/>
+                                <t t-if="o.employee_id.termino_1er_contrato" t-set="termino_1er_contrato_class" t-value="''"/>
+                                <t t-if="not o.employee_id.termino_1er_contrato" t-set="termino_1er_contrato_class" t-value="'redspan'"/>
+
+                                <!-- fecha_ingreso_actual -->
+                                <!--<t t-if="o.employee_id.fecha_ingreso_actual" t-set="fecha_ingreso_actual" t-value="o.format_date(o.employee_id.fecha_ingreso_actual + ' 00:00:00', format='%A, %d de %B de %Y')"/>-->
+                                <t t-if="o.employee_id.fecha_ingreso_actual" t-set="fecha_ingreso_actual" t-value="o.date_start.strftime('%A, %d de %B de %Y')"/>
+                                <t t-if="not o.employee_id.fecha_ingreso_actual" t-set="fecha_ingreso_actual" t-value="&quot;&lt;span style='color:#FF0000'&gt;employee_id.fecha_ingreso_actual&lt;/span&gt;&quot;"/>
+                                <t t-if="o.employee_id.fecha_ingreso_actual" t-set="fecha_ingreso_actual_class" t-value="''"/>
+                                <t t-if="not o.employee_id.fecha_ingreso_actual" t-set="fecha_ingreso_actual_class" t-value="'redspan'"/>
+
+                                <!-- anterior_fecha_ingreso -->
+                                <!--<t t-if="o.employee_id.anterior_fecha_ingreso" t-set="anterior_fecha_ingreso" t-value="o.format_date(o.employee_id.anterior_fecha_ingreso + ' 00:00:00', format='%A, %d de %B de %Y')"/>-->
+                                <t t-if="o.employee_id.anterior_fecha_ingreso" t-set="anterior_fecha_ingreso" t-value="o.employee_id.anterior_fecha_ingreso.strftime('%A, %d de %B de %Y')"/>
+                                <t t-if="not o.employee_id.anterior_fecha_ingreso" t-set="anterior_fecha_ingreso" t-value="&quot;&lt;span style='color:#FF0000'&gt;employee_id.anterior_fecha_ingreso&lt;/span&gt;&quot;"/>
+                                <t t-if="o.employee_id.anterior_fecha_ingreso" t-set="anterior_fecha_ingreso_class" t-value="''"/>
+                                <t t-if="not o.employee_id.anterior_fecha_ingreso" t-set="anterior_fecha_ingreso_class" t-value="'redspan'"/>
+
+                                <!-- anterior_fecha_baja -->
+                                <!--<t t-if="o.employee_id.anterior_fecha_baja" t-set="anterior_fecha_baja" t-value="o.format_date(o.employee_id.anterior_fecha_baja + ' 00:00:00', format='%A, %d de %B de %Y')"/>-->
+                                <t t-if="o.employee_id.anterior_fecha_baja" t-set="anterior_fecha_baja" t-value="o.employee_id.anterior_fecha_baja.strftime('%A, %d de %B de %Y')"/>
+                                <t t-if="not o.employee_id.anterior_fecha_baja" t-set="anterior_fecha_baja" t-value="&quot;&lt;span style='color:#FF0000'&gt;employee_id.anterior_fecha_baja&lt;/span&gt;&quot;"/>
+                                <t t-if="o.employee_id.anterior_fecha_baja" t-set="anterior_fecha_baja_class" t-value="''"/>
+                                <t t-if="not o.employee_id.anterior_fecha_baja" t-set="anterior_fecha_baja_class" t-value="'redspan'"/>
+
+                                <!-- fecha_nacimiento -->
+                                <!--<t t-if="o.employee_id.birthday" t-set="fecha_nacimiento" t-value="o.format_date(o.employee_id.birthday + ' 00:00:00', format='%d de %B de %Y')"/>-->
+                                <t t-if="o.employee_id.birthday" t-set="fecha_nacimiento" t-value="o.employee_id.birthday.strftime('%d de %B de %Y')"/>
+                                <t t-if="not o.employee_id.birthday" t-set="fecha_nacimiento" t-value="&quot;&lt;span style='color:#FF0000'&gt;employee_id.birthday&lt;/span&gt;&quot;"/>
+                                <t t-if="o.employee_id.birthday" t-set="fecha_nacimiento_class" t-value="''"/>
+                                <t t-if="not o.employee_id.birthday" t-set="fecha_nacimiento_class" t-value="'redspan'"/>
+                            </div>
+
+                            <link rel="stylesheet" href="/dnk_hr_custom_employee/static/src/css/file.css"/>
+                            <div class="oe_structure"/>
+
+                            <!-- CONTROL DE DOCUMENTOS -->
+                            <div id="dnk_control_de_documentos">
+                                <p style="page-break-after:always;"/>
+                                    <div class="col-xs-2">
+                                        <img t-if="o.employee_id.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(o.employee_id.company_id.logo)" style="max-height: 45px;"/>
+                                    </div>
+                                    <br/>
+                                    <div class="row" id="control_documentos">
+                                    </div>
+                                        <table style="width: 100%;border: 0px;border-collapse: collapse;">
+                                            <tr style="border-bottom:1pt solid #aaaaaa;">
+                                            <td style="width: 65%;border: 0px;"><b><t t-esc="o.employee_id.name"/></b></td>
+                                            <td style="width: 25%;border: 0px;" align="right">Porcentaje completado</td>
+                                            <td style="width: 10%;border: 0px;background-color:#FF0000;" align="right"><span t-esc="'%.2f'% o.employee_id.documentos_porcentaje_completado"/> %</td>
+                                            </tr>
+                                        </table>
+                                        <br/>
+                                        <table class="table_bordered" style="width: 100%;font-size:13px;">
+                                            <tr style="background-color: #d9d9d9;">
+                                            <th style="width: 4%;text-align:center;">1</th>
+                                            <th style="width: 28%;">Documentos Legales</th>
+                                            <th style="width: 61%;">Descripciones</th>
+                                            <th style="width: 7%;">Estado</th>
+                                            </tr>
+                                            <t t-foreach="o.employee_id.documentos_legales_ids" t-as="l">
+                                                <tr style="background-color:transparent;">
+                                                    <td align="right">1.<span t-esc="l_index + 1"/></td>
+                                                    <td><span t-field="l.name"/></td>
+                                                    <td><span t-field="l.description"/></td>
+                                                    <td align="center"><input type="checkbox" t-att-class="'fa fa-check' if l.state else 'fa'"/></td>
+                                                </tr>
+                                            </t>
+                                        </table>
+                                        <br/>
+                                        <table class="table_bordered" style="width: 100%;font-size:13px;">
+                                            <tr style="background-color: #d9d9d9;">
+                                            <th style="width: 4%;text-align:center;">2</th>
+                                            <th style="width: 28%;">Documentos Personales</th>
+                                            <th style="width: 61%;">Descripciones</th>
+                                            <th style="width: 7%;">Estado</th>
+                                            </tr>
+                                            <t t-foreach="o.employee_id.documentos_personales_ids" t-as="l">
+                                                <tr style="background-color:transparent;">
+                                                    <td style="text-align:right;">2.<span t-esc="l_index + 1"/></td>
+                                                    <td><span t-field="l.name"/></td>
+                                                    <td><span t-field="l.description"/></td>
+                                                    <td align="center"><input type="checkbox" t-att-class="'fa fa-check' if l.state else 'fa'"/></td>
+                                                </tr>
+                                            </t>
+                                        </table>
+                                        <br/>
+                                        <table class="table_bordered" style="width: 100%;font-size:13px;">
+                                            <tr>
+                                            <th style="width:32%;text-align:left;background-color: #d9d9d9;">Uniformes</th>
+                                            <td style="width:68%;">
+                                                Género: <t t-esc="{False: False, 'male': 'Masculino', 'female': 'Femenino'}[o.employee_id.gender]"/>
+                                            </td>
+                                            </tr>
+                                            <tr>
+                                            <td style="width:32%;text-right:left;">Camisa/blusa</td>
+                                            <td style="width:68%;">
+                                                <input type="radio" name="camisa_blusa" value="xch" t-att-checked="o.employee_id.talla_camisa_blusa=='xch'"/> XCH,
+                                                <input type="radio" name="camisa_blusa" value="ch" t-att-checked="o.employee_id.talla_camisa_blusa=='ch'"/> CH,
+                                                <input type="radio" name="camisa_blusa" value="m" t-att-checked="o.employee_id.talla_camisa_blusa=='m'"/> M,
+                                                <input type="radio" name="camisa_blusa" value="g" t-att-checked="o.employee_id.talla_camisa_blusa=='g'"/> G,
+                                                <input type="radio" name="camisa_blusa" value="xg" t-att-checked="o.employee_id.talla_camisa_blusa=='xg'"/> XG,
+                                                <input type="radio" name="camisa_blusa" value="xxg" t-att-checked="o.employee_id.talla_camisa_blusa=='xxg'"/> XXG,
+                                                <input type="radio" name="camisa_blusa" value="xxxg" t-att-checked="o.employee_id.talla_camisa_blusa=='xxxg'"/> XXXG
+                                            </td>
+                                            </tr>
+                                            <tr>
+                                            <td style="width:32%;text-right:left;">Playera polo</td>
+                                            <td style="width:68%;">
+                                                <input type="radio" name="playera_polo" value="xch" t-att-checked="o.employee_id.talla_playera_polo=='xch'"/> XCH,
+                                                <input type="radio" name="playera_polo" value="ch" t-att-checked="o.employee_id.talla_playera_polo=='ch'"/> CH,
+                                                <input type="radio" name="playera_polo" value="m" t-att-checked="o.employee_id.talla_playera_polo=='m'"/> M,
+                                                <input type="radio" name="playera_polo" value="g" t-att-checked="o.employee_id.talla_playera_polo=='g'"/> G,
+                                                <input type="radio" name="playera_polo" value="xg" t-att-checked="o.employee_id.talla_playera_polo=='xg'"/> XG,
+                                                <input type="radio" name="playera_polo" value="xxg" t-att-checked="o.employee_id.talla_playera_polo=='xxg'"/> XXG,
+                                                <input type="radio" name="playera_polo" value="xxxg" t-att-checked="o.employee_id.talla_playera_polo=='xxxg'"/> XXXG
+                                            </td>
+                                            </tr>
+                                            <tr>
+                                            <td style="width:32%;text-right:left;">Playera cuello redondo</td>
+                                            <td style="width:68%;">
+                                                <input type="radio" name="playera_cuello_redondo" value="xch" t-att-checked="o.employee_id.talla_playera_cuello_redondo=='xch'"/> XCH,
+                                                <input type="radio" name="playera_cuello_redondo" value="ch" t-att-checked="o.employee_id.talla_playera_cuello_redondo=='ch'"/> CH,
+                                                <input type="radio" name="playera_cuello_redondo" value="m" t-att-checked="o.employee_id.talla_playera_cuello_redondo=='m'"/> M,
+                                                <input type="radio" name="playera_cuello_redondo" value="g" t-att-checked="o.employee_id.talla_playera_cuello_redondo=='g'"/> G,
+                                                <input type="radio" name="playera_cuello_redondo" value="xg" t-att-checked="o.employee_id.talla_playera_cuello_redondo=='xg'"/> XG,
+                                                <input type="radio" name="playera_cuello_redondo" value="xxg" t-att-checked="o.employee_id.talla_playera_cuello_redondo=='xxg'"/> XXG,
+                                                <input type="radio" name="playera_cuello_redondo" value="xxxg" t-att-checked="o.employee_id.talla_playera_cuello_redondo=='xxxg'"/> XXXG
+                                            </td>
+                                            </tr>
+                                            <tr>
+                                            <td style="width:32%;text-right:left;">Empresa</td>
+                                            <td style="width:68%;font-weight:bold;"><t t-esc="o.employee_id.company_id.name"/></td>
+                                            </tr>
+                                            <tr>
+                                            <th style="width:32%;text-align:left;background-color: #d9d9d9;">Zapato Industrial</th>
+                                            <td style="width:68%;">
+                                                Género: <t t-esc="{False: False, 'male': 'Masculino', 'female': 'Femenino'}[o.employee_id.gender]"/>
+                                            </td>
+                                            </tr>
+                                            <tr>
+                                            <td style="width:32%;text-right:left;">Número</td>
+                                            <td style="width:68%;"><span t-field="o.employee_id.talla_zapato_industrial"/></td>
+                                            </tr>
+                                        </table>
+
+                            </div>
+
+                            <!-- CONTRATO DETERMINADO -->
+                            <div id="dnk_contrato_determinado">
+                                <t t-if="o.x_dnk_type == 'Determinado'">
+                                    <p style="page-break-after:always;"/>
+                                    <div class="row" id="contract_header">
+                                        <p>CONTRATO INDIVIDUAL DE TRABAJO POR <b>TIEMPO DETERMINADO</b> QUE CELEBRAN, POR UNA PARTE LA EMPRESA <b><t t-esc="o.employee_id.company_id.name.upper()"/></b>, A TRAVÉS DE SU REPRESENTANTE LEGAL <b><t t-if="o.employee_id.company_id.dnk_legal_representative" t-esc="o.employee_id.company_id.dnk_legal_representative.name.upper()"/></b>, A QUIEN EN LO SUCESIVO SE LES DENOMINARÁ <b>“EL PATRÓN”</b> Y POR LA OTRA PARTE <b><t t-esc="o.employee_id.name.upper()"/></b>, A QUIEN EN LO SUBSECUENTE SE LE IDENTIFICARÁ COMO <b>“EL (LA) TRABAJADOR (A)”</b>; BAJO EL TENOR DE LAS SIGUIENTES:</p>
+                                    </div>
+                                    <br/>
+                                    <div class="row" id="contract_declarations">
+                                        <p class="titlebar">
+                                          D  E  C  L  A  R  A  C  I  O  N  E  S
+                                        </p>
+                                    </div>
+                                    <p>Declara <b>“EL PATRÓN”</b> que:</p>
+                                    <ol type="I">
+                                    <li>Es una persona jurídica, creada conforme se estipula en la escritura pública número  <b><t t-if="o.employee_id.company_id.dnk_deed_number" t-esc="o.employee_id.company_id.dnk_deed_number"/><span t-if="not o.employee_id.company_id.dnk_deed_number" style="color:#FF0000">company_id.dnk_deed_number</span></b>, de fecha <b><t t-if="o.employee_id.company_id.dnk_deed_date_text" t-esc="o.employee_id.company_id.dnk_deed_date_text"/><span t-if="not o.employee_id.company_id.dnk_deed_date_text" style="color:#FF0000">company_id.dnk_deed_date_text</span></b>, pasada ante la fe del Licenciado <t t-esc="o.employee_id.company_id.dnk_public_notary_name"/><span t-if="not o.employee_id.company_id.dnk_public_notary_name" style="color:#FF0000">company_id.dnk_public_notary_name</span>, notario público número <t t-esc="o.employee_id.company_id.dnk_public_notary_number"/><span t-if="not o.employee_id.company_id.dnk_public_notary_number" style="color:#FF0000">company_id.dnk_public_notary_number</span>, de <t t-esc="o.employee_id.company_id.dnk_public_notary_municipality"/><span t-if="not o.employee_id.company_id.dnk_public_notary_municipality" style="color:#FF0000">company_id.dnk_public_notary_municipality</span>, <t t-esc="o.employee_id.company_id.dnk_public_notary_state_id.name"/><span t-if="not o.employee_id.company_id.dnk_public_notary_state_id" style="color:#FF0000">company_id.dnk_public_notary_state_id</span>, con capacidad para contratar y obligarse en términos del presente contrato.</li>
+                                    <li>Tiene por actividad: <t t-esc="o.employee_id.company_id.dnk_line_of_business"/>.</li>
+                                    <li>Cuenta con Registro Federal de Contribuyentes clave <b><t t-if="o.employee_id.company_id.vat" t-esc="o.employee_id.company_id.vat"/></b>.</li>
+                                    <li>Tiene su domicilio en la finca en <b><t t-esc="current_company_address"/></b>.</li>
+                                    <li>Su representante legal <b><t t-if="o.employee_id.company_id.dnk_legal_representative" t-esc="o.employee_id.company_id.dnk_legal_representative.name"/></b>, tiene las facultades necesarias y suficientes para comparecer a este acto, facultades de representación que manifiesta bajo protesta de decir verdad, que no le han sido limitadas, modificadas o revocadas.</li>
+                                    </ol>
+
+                                    <p>Declara <b>“EL (LA) TRABAJADOR (A)”</b> que:</p>
+
+                                    <ol type="I">
+                                    <li>Es mexicana (o) por nacimiento, <b><t t-esc="{False: False, 'male': 'Masculino', 'female': 'Femenino'}[o.employee_id.gender]"/></b>, cuenta con <b><t t-if="o.employee_id.edad" t-esc="o.employee_id.edad"/></b> años de edad, a la fecha de suscripción de éste contrato, tiene su domicilio particular en <b><t t-if="o.employee_id.address_home_id" t-esc="employee_address"/><span t-if="not o.employee_id.address_home_id" style="color:#FF0000">employee_id.address_home_id</span></b>.</li>
+                                    <li>Cuenta con registro ante el Instituto Mexicano del Seguro Social número  <b><t t-if="o.employee_id.segurosocial" t-esc="o.employee_id.segurosocial"/></b>, CURP clave <b><t t-if="o.employee_id.curp" t-esc="o.employee_id.curp"/></b> y con Registro Federal de Contribuyentes clave <b><t t-if="o.employee_id.rfc" t-esc="o.employee_id.rfc"/></b>.</li>
+                                    </ol>
+
+                                    <p>Declaran ambos contratantes que han decidido suscribir el presente contrato, libres de toda coacción, dolo o mala fe, y que lo realizan a su entera satisfacción y conocimiento, al tenor de las siguientes:</p>
+
+                                    <br/>
+                                    <div class="row" id="contract_declarations">
+                                      <p class="titlebar">
+                                          C  L  Á  U  S  U  L  A  S
+                                      </p>
+                                    </div>
+                                    <p><b>PRIMERA.-</b> Se denominará en lo sucesivo a <b><t t-esc="o.employee_id.company_id.name"/></b>, como <b>"EL PATRÓN"</b>; a <b><t t-esc="o.employee_id.name"/></b> como <b>"EL (LA) TRABAJADOR (A)"</b>; a la Ley Federal del Trabajo como <b>"LA LEY"</b>, al referirse al presente documento como <b>"EL CONTRATO"</b>, y a los que suscriben como <b>"LAS PARTES"</b>.</p>
+
+                                    <p><b>SEGUNDA.-</b> Ambas partes, están de acuerdo en que la vigencia del presente contrato será por <b>TIEMPO DETERMINADO</b>, es decir a partir del día <b><span t-att-class="fecha_1er_contrato_class" t-esc="fecha_1er_contrato"/></b> y con fecha de término al <b><span t-att-class="termino_1er_contrato_class" t-esc="termino_1er_contrato"/></b> señalando que en esta última fecha se considerará por terminada la relación laboral.</p>
+
+                                    <p>Conforme lo disponen los artículos 35 y 36 de la ley Federal del Trabajo, la temporalidad de la suscripción del presente contrato se encuentra estrechamente vinculada con las actividades que desempeñará <b>“EL (LA) TRABAJADOR (A)”</b>, en virtud de ser contratado, para que coadyuve con la realización de los servicios únicos y de carácter temporal que le que fueron contratados mediante orden de trabajo, cuyas características se encuentran establecidas en el <b>“ANEXO UNO”</b>, mismo que es parte integrante del presente contrato.</p>
+
+                                    <p><b>TERCERA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> se obliga a prestar sus servicios subordinados como <b>“<t t-if="o.employee_id.job_id" t-esc="o.employee_id.job_id.name"/>”<span t-if="not o.employee_id.job_id" style="color:#FF0000">employee_id.job_id</span></b>, bajo la dirección y dependencia de <b>“EL PATRÓN”</b>, teniendo que cumplir con las actividades que se especifiquen en el perfil de puestos que se adjunta al presente contrato como  <b>“ANEXO UNO”</b>, mismo que, es parte integrante del presente contrato por la descripción del puesto requerido en el cual se especifican las actividades inherentes al puesto, a realizar durante la jornada de trabajo y bajo su más estricta responsabilidad.</p>
+
+                                    <p><b>“EL (LA) TRABAJADOR (A)”</b> se obliga a realizar su trabajo con una eficiencia del 100%, esto es con la intensidad, cuidado y esmero apropiados en la forma, tiempo y lugar convenidos, absteniéndose de cualquier acto y omisión que implique o cause la suspensión o deficiencia de dicho servicio.</p>
+
+                                    <p>La baja de eficiencia, el incumplimiento total o parcial de las órdenes dadas por <b>"EL PATRÓN"</b> o la mala presentación de los resultados del trabajo serán consideradas como un acto de desobediencia en los términos de la Fracción XI del artículo 47 de la Ley Federal del Trabajo, independientemente de la falta de probidad en que incurriera <b>"EL (LA) TRABAJADOR (A)"</b>.</p>
+
+                                    <p>Así mismo, <b>“EL (LA) TRABAJADOR (A)”</b> se obliga a desempeñar cualquier otra actividad conexa o relacionada que le encomiende <b>“EL PATRÓN”</b>, que sea compatible a sus conocimientos, capacidad o aptitudes, debiendo acatar además todas las disposiciones o instrucciones de carácter administrativo o de organización que <b>“EL PATRÓN”</b> llegue a dictar tanto de manera directa a <b>“EL (LA) TRABAJADOR (A)”</b>. Dichas labores deberá desarrollarlas dentro del centro de trabajo, domicilio, ciudad o lugar que <b>“EL PATRÓN”</b> le señale, quedando este facultado para cambiar el lugar de prestación del servicio en cualquier tiempo de acuerdo a sus necesidades.</p>
+
+                                    <p><b>CUARTA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> deberá desempeñar sus actividades en cualesquiera de las instalaciones en las que <b>“EL PATRÓN”</b> tiene su domicilio, de conformidad a las necesidades y requerimientos establecidos por la carga laboral, para lo cual <b>“EL PATRÓN”</b> deberá dar aviso por escrito por lo menos con 24 horas de anticipación a la fecha en que se determine el cambio de adscripción, plantel y funciones.</p>
+
+                                    <p><b>QUINTA.-</b> Conforme lo disponen los artículos del 59 y demás relativos de la ley Federal del Trabajo, la jornada de trabajo en que prestará los servicios <b>“EL (LA) TRABAJADOR (A)”</b>, será de <b><t t-if="o.employee_id.resource_calendar_id" t-esc="o.employee_id.resource_calendar_id.name"/><span t-if="not o.employee_id.resource_calendar_id" style="color:#FF0000">employee_id.resource_calendar_id</span></b>.</p>
+                                    <p><b>“EL (LA) TRABAJADOR (A)”</b> tendrá derecho a <b><t t-if="o.employee_id.resource_calendar_id" t-esc="o.employee_id.resource_calendar_id.dnk_tiempo_comida"/><span t-if="not o.employee_id.resource_calendar_id" style="color:#FF0000">employee_id.resource_calendar_id.dnk_tiempo_comida</span></b> de descanso, para el libre reposo o comida, en el que saldrá de las instalaciones de <b>“EL PATRÓN”</b>. El momento de la interrupción de la jornada laboral, será aquel que se fije de forma previa, debiendo ser registrada la salida y su posterior ingreso en las tarjetas y/o registro de asistencia.</p>
+
+                                    <p><b>“EL (LA) TRABAJADOR (A)”</b> sin excepción alguna, deberá estar en sus lugares de operación e iniciar sus laborales exactamente en la hora señalada en el párrafo anterior, sin embargo se dará una tolerancia de <t t-if="o.periodicidad_pago in ('02')" t-esc="15"/> <t t-if="o.periodicidad_pago in ('03', '04', '05')" t-esc="30"/> <span t-if="not o.periodicidad_pago" style="color:#FF0000">0000</span> minutos, para casos excepcionales y no como derecho permanente. Al personal que llegue después de esta hora es potestativo para la empresa permitir o no su ingreso, de no ser admitido se le anotará la correspondiente falta de asistencia injustificada, para todos los efectos legales a que haya lugar.</p>
+
+                                    <p><b>SEXTA.-</b> El horario que se fije a cualquier trabajador podrá ser variado, siendo susceptible de modificación, reservándose <b>“EL PATRÓN”</b> la facultad discrecional de cambiarlo de acuerdo a sus necesidades, para lo cual deberá notificar a <b>“EL (LA) TRABAJADOR (A)”</b> anticipadamente con un mínimo de 24 horas. Asimismo, el día o los días de descanso semanal podrán ser modificados según sus necesidades de trabajo.</p>
+
+                                    <p>La duración de la jornada de trabajo para el personal, dada la naturaleza del trabajo, podrá ser abierto, sin que exceda semanalmente la jornada legal de trabajo, prevista por la Ley la cual es de 48 horas a la semana y conforme a lo dispuesto en las modalidades establecidas en el Título Tercero, Capítulo II de La Ley, la jornada podrá ser distribuida de acuerdo a las necesidades de <b>“EL PATRÓN”</b>.</p>
+
+                                    <p><b>SÉPTIMA.-</b> En ningún caso <b>“EL (LA) TRABAJADOR (A)”</b> podrá laborar tiempo extraordinario, sino previa solicitud y autorización por escrito, que <b>“EL PATRÓN”</b> expida a su nombre, y señale bajo qué circunstancias hace indispensable su labor fuera del horario ordinario de labores.</p>
+
+                                    <p><b>OCTAVA.-</b> Son días de descanso obligatorio, los días domingos de todo el año, así como los establecidos por el artículo 74 de la Ley Federal del Trabajo. Por lo que en ningún caso <b>“EL (LA) TRABAJADOR (A)”</b> podrá laborar estos días, sino previa solicitud y autorización por escrito que <b>“EL PATRÓN”</b> expida a su nombre, y señale bajo qué circunstancias hace indispensable su labor.</p>
+
+                                    <p><b>NOVENA.-</b> El salario diario, que <b>“EL PATRÓN”</b> pagará a <b>“EL (LA) TRABAJADOR (A)”</b> será en los siguientes términos:</p>
+
+                                    <table class="table_bordered" style="width: 100%;">
+                                    <tr style="background-color: #d9d9d9;">
+                                        <th style="width:30%;text-align:center;">SALARIO DIARIO</th>
+                                        <th style="width:70%;text-align:center;">CANTIDAD CON LETRA</th>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center"><span t-field="o.sueldo_diario" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.company_currency_id}"/><span t-if="not o.sueldo_diario" style="color:#FF0000">sueldo_diario</span></td>
+                                        <td style="text-align: center">(<t t-if="o.sueldo_diario_palabras" t-esc="o.sueldo_diario_palabras.upper()"/>)<span t-if="not o.sueldo_diario_palabras" style="color:#FF0000">sueldo_diario_palabras</span></td>
+                                    </tr>
+                                    </table>
+                                    <br/>
+                                    <p>El salario será cubierto cada <b><t t-esc="o.ciclo_pago"/></b>, en efectivo o transferencia bancaria a una cuenta de <b>EL (LA) TRABAJADOR (A)</b>, en moneda nacional del cuño corriente.</p>
+
+                                    <p>Del salario anterior <b>"EL PATRÓN"</b> hará por cuenta de <b>"EL (LA) TRABAJADOR (A)"</b> las deducciones legales correspondientes, particularmente las que se refieren a impuestos sobre la Renta, Seguro Social, cuota sindical, etcétera. Asimismo, se harán las aportaciones al IMSS, INFONAVIT, SAR y Hacienda en los términos de las legislaciones respectivas.</p>
+
+                                    <p><b>DÉCIMA.-</b> <b>"EL (LA) TRABAJADOR (A)"</b> deberá cada vez que le sea pagado su salario, extender a favor de <b>"EL PATRÓN"</b> el recibo correspondiente en los documentos que el mismo le presente para tales fines.</p>
+
+                                    <p>En caso de pago en efectivo <b>"EL (LA) TRABAJADOR (A)"</b> recibirá el pago de su salario en el domicilio del lugar de la prestación de sus servicios.</p>
+
+                                    <p><b>DÉCIMA PRIMERA.-</b> <b>"EL (LA) TRABAJADOR (A)"</b> tendrá derecho por cada seis días de labores a descansar uno con el pago de salario diario correspondiente. Quedando establecido preferentemente como día de descanso semanal el día domingo de cada semana, pudiendo ser cambiado el mismo.</p>
+
+                                    <p><b>DÉCIMA SEGUNDA.-</b> Cuando <b>"EL (LA) TRABAJADOR (A)"</b> por razones administrativas tenga que laborar el día domingo, <b>"EL PATRÓN"</b> le pagará, además de su salario, 25% (veinticinco por ciento) como prima dominical sobre el salario ordinario devengado. Independientemente del día de descanso semanal, al que tendrá derecho.</p>
+
+                                    <p><b>DÉCIMA TERCERA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b>, después de un año de servicios continuos, disfrutará de un período anual de vacaciones pagadas, de doce días laborables, que aumentará en dos días laborables, hasta llegar a veinte, por cada año subsiguiente de servicios. Después del quinto año, el período de vacaciones aumentará en dos días por cada cinco años de servicios. Los salarios correspondientes a las vacaciones se cubrirán con una prima del veinticinco por ciento sobre los mismos.</p>
+
+                                    <p><b>DÉCIMA CUARTA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> percibirá un aguinaldo anual, que deberá pagarse antes del veinte de diciembre, equivalente a 15 días de salario. Cuando no haya cumplido el año de servicios, tendrá derecho a que se le pague en proporción al tiempo trabajado.</p>
+
+                                    <p><b>DÉCIMA QUINTA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> tendrá derecho a recibir de <b>“EL PATRÓN”</b>, el equivalente al 10% de premio por puntualidad, del salario semanal que perciba. Para que <b>“EL (LA) TRABAJADOR (A)”</b>, se haga acreedor a este premio, no deberá contar con ningún retardo, durante el periodo semanal, en caso contrario se perderá de este derecho.</p>
+
+                                    <p><b>DÉCIMA SEXTA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> tendrá derecho a recibir por parte de <b>“EL PATRÓN”</b>, el 10% por premio de asistencia, del salario semanal que perciba. Se hará acreedor a este premio, siempre que no se incurra en ninguna falta injustificada. De lo contrario no se tendrá el derecho a exigir este premio.</p>
+
+                                    <p><b>DÉCIMA SÉPTIMA.-</b> <b>EL PATRÓN”</b> se compromete a entregar una ayuda a <b>“EL (LA) TRABAJADOR (A)”</b>, por la cantidad de <b><span t-field="o.total_vales_despensa" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.company_currency_id}"/></b>, (<b><t t-esc="o.total_vales_despensa_palabras"/><span t-if="not o.total_vales_despensa_palabras" style="color:#FF0000">company_id.total_vales_despensa_palabras</span></b>), por <b><t t-esc="o.ciclo_pago"/><span t-if="not o.ciclo_pago" style="color:#FF0000">ciclo_pago</span></b> trabajada, por concepto de despensa.</p>
+
+                                    <p><b>DÉCIMA OCTAVA.-</b> Los salarios correspondientes a las vacaciones y aguinaldo, se pagarán tomando como salario base el promedio que resulte de los salarios recibidos conforme a lo dispuesto en el artículo 89 de la Ley Federal del Trabajo.</p>
+
+                                    <p><b>DÉCIMA NOVENA.-</b> <b>"EL (LA) TRABAJADOR (A)"</b> acepta someterse a los exámenes médicos que periódicamente establezca <b>"EL PATRÓN"</b> en los términos del artículo 134, fracción X de <b>"LA LEY"</b>, a fin de mantener en forma óptima sus facultades físicas e intelectuales, para el mejor desempeño de sus funciones. El médico que practique los reconocimientos será designado y retribuido por <b>"EL PATRÓN"</b>.</p>
+
+                                    <p><b>VIGÉSIMA.-</b> <b>"EL (LA) TRABAJADOR (A)"</b> deberá integrarse a los Planes, Programas y Comisiones Mixtas de Capacitación, Adiestramiento y Productividad, así como a los de Seguridad e Higiene en el Trabajo que tiene constituidos <b>"EL PATRÓN"</b>, tomando parte activa dentro de los mismos según los cursos establecidos y medidas preventivas de riesgos de trabajo.</p>
+
+                                    <p><b>VIGÉSIMA PRIMERA.-</b> Queda prohibido a <b>"EL (LA) TRABAJADOR (A)"</b> disponer para su beneficio particular cualquiera de los utensilios, equipo, herramientas, muebles o enseres que utilice en la relación de trabajo, ya que únicamente, podrá disponer de los mismos para la prestación del servicio contratado.</p>
+
+                                    <p><b>VIGÉSIMA SEGUNDA.-</b> Queda convenida en forma expresa entre <b>“LAS PARTES”</b>, que toda la documentación e información que le sea proporcionado o que llegue a tener <b>"EL (LA) TRABAJADOR (A)"</b> para el desempeño de su trabajo materia de este contrato, se considera su contenido como confidencial, por lo tanto <b>“EL (LA) TRABAJADOR (A)”</b> se obliga a mantener en estricta confidencialidad y reserva todos los documentos e información que reciba de <b>“EL PATRÓN”</b>, así como toda información con respecto a su actividad profesional o personal, por lo que se compromete a no reproducir, copiar, divulgar, difundir, publicar, circular, comunicar y/o transmitir cualquier tipo de información que tenga por virtud de las labores que realiza a terceros, sea de forma directa o indirecta, total o parcial, sin el consentimiento previo y por escrito de <b>“EL PATRÓN”</b>.</p>
+
+                                    <p><b>VIGÉSIMA TERCERA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> en este acto se hace conocedora de cuales son causales de rescisión adicionales a las señaladas por el artículo 47 de la Ley Federal del Trabajo. Son causales de rescisión sin responsabilidad para <b>“EL PATRÓN”</b> las siguientes:</p>
+
+                                    <ol type="I">
+                                    <li>Conducta inadecuada que infrinja las reglas de disciplina de <b>“EL PATRÓN”</b>.</li>
+                                    <li>No mostrar respeto hacia al demás personal que labora para <b>“EL PATRÓN”</b>.</li>
+                                    <li>Cometer actos inmorales o de hostigamiento y/o acoso sexual contra cualquier persona en el establecimiento o lugar de trabajo.</li>
+                                    <li>Extraer o utilizar en forma inadecuada herramienta y material de trabajo propiedad de <b>“EL PATRÓN”</b>.</li>
+                                    <li>Propiciar comentarios que desprestigien al <b>“EL PATRÓN”</b>.</li>
+                                    <li>Acumular tres actas administrativas por faltas al Reglamento Interno de Trabajo.</li>
+                                    <li>Reproducir, copiar, divulgar, difundir, publicar, circular, comunicar y/o transmitir cualquier tipo de información que tenga por virtud de las labores que realiza a terceros, sea de forma directa o indirecta, total o parcial, de la empresa, o de los clientes de ésta, esto incluye cualquier actividad o función que <b>“EL (LA) TRABAJADOR (A)”</b> realice.</li>
+                                    </ol>
+
+                                    <p><b>VIGÉSIMA CUARTA.-</b> Ambas partes convienen que para el caso de cualquier diferencia o controversia con la interpretación del presente contrato, se someten a la jurisdicción de las autoridades laborales de la ciudad de Guadalajara, Jalisco, renunciando a cualquier fuero de su domicilio presente o futuro.</p>
+
+                                    <p><b>VIGÉSIMA QUINTA.-</b> <b>"EL (LA) TRABAJADOR (A)"</b>, deberá dar cumplimiento a las disposiciones contenidas en el artículo 134 de <b>"LA LEY"</b> y que corresponden a las obligaciones de los trabajadores en el desempeño de sus labores al servicio de <b>"EL PATRÓN"</b>.</p>
+
+                                    <p><b>VIGÉSIMA SEXTA.-</b> Para todo lo no previsto en el presente <b>“CONTRATO”</b> se estará a lo contenido en el Contrato Colectivo de Trabajo con que cuente <b>"EL PATRÓN"</b> o bien lo prescrito por <b>"LA LEY"</b>, así como el Reglamento Interior de Trabajo.</p>
+
+                                    <!-- TO DO: Está correcto ?<p><b>VIGÉSIMA SEPTIMA.-</b> <b>"LAS PARTES"</b> reconocen como fecha de antigüedad o de iniciación de prestación de servicio de <b>"EL (LA) TRABAJADOR (A)"</b> a partir del día <b><t t-if="o.employee_id.fecha_ingreso_actual" t-esc="context_timestamp(datetime.datetime.strptime(o.employee_id.fecha_ingreso_actual, '%Y-%m-%d')).strftime('%A, %d de %B de %Y')"/></b>.</p>-->
+
+                                    <p><b>LEIDO ESTE DOCUMENTO POR AMBAS PARTES Y SABEDORES DE LAS OBLIGACIONES QUE EL PRESENTE CONTRATO Y LA LEY IMPONEN, LO FIRMAN POR COMÚN ACUERDO EN <t t-if="o.employee_id.address_id" t-esc="o.employee_id.address_id.l10n_mx_edi_locality.upper()"/><span t-if="not o.employee_id.address_id" style="color:#FF0000">employee_id.address_id.l10n_mx_edi_locality</span>, <t t-if="o.employee_id.address_id" t-esc="o.employee_id.address_id.state_id.name.upper()"/><span t-if="not o.employee_id.address_id" style="color:#FF0000">employee_id.address_id.state_id</span>, A <span t-att-class="fecha_ingreso_actual_class" t-esc="fecha_ingreso_actual"/> QUEDANDO UN EJEMPLAR EN PODER DE EL (LA) TRABAJADOR (A) Y UN EJEMPLAR EN PODER DEL PATRÓN.</b></p>
+
+                                    <br/><br/>
+                                    <center>
+                                    <table class="table_invisible" style="width:80%;border: 0px solid transparent;" cellpadding="20" cellspacing="20">
+                                        <tr style="width:100%;border: 0px solid transparent;background-color:transparent;">
+                                        <th style="width:40%;text-align:center;border: 0px solid transparent;">
+                                            <p>
+                                            <hr/>
+                                            </p>
+                                            <t t-if="o.employee_id.company_id.dnk_legal_representative" t-esc="o.employee_id.company_id.dnk_legal_representative.name"/><br/>
+                                            “REPRESENTANTE LEGAL DE EL PATRÓN”<br/><br/>
+                                        </th>
+                                        <th style="width:20%;background-color:transparent;border: 0px solid transparent;">
+                                        </th>
+                                        <th style="width:40%;text-align:center;background-color:transparent;">
+                                            <p>
+                                            <hr/>
+                                            </p>
+                                            <t t-esc="o.employee_id.name"/><br/>
+                                            “EL (LA) TRABAJADOR (A)”<br/><br/>
+                                        </th>
+                                        </tr>
+                                    </table>
+                                    </center>
+
+                                    <p style="font-size:13px;">La presente hoja de firmas pertenece al contrato individual de trabajo celebrado entre <t t-esc="o.employee_id.company_id.name"/> y <t t-esc="o.employee_id.name"/>, con fecha <b><span t-att-class="fecha_ingreso_actual_class" t-esc="fecha_ingreso_actual"/></b>.</p>
+
+                                </t>
+                            </div>
+
+                            <!-- CONTRATO DE CONFIDENCIALIDAD -->
+                            <div id="dnk_contrato_confidencialidad">
+                                <t t-if="o.x_dnk_type == 'Determinado'">
+                                    <p style="page-break-after:always;"/>
+                                    <div class="row" id="contract_header">
+                                        <p><b>CONTRATO DE CONFIDENCIALIDAD</b> QUE CELEBRAN, POR UNA PARTE LA EMPRESA <b><t t-esc="o.employee_id.company_id.name.upper()"/></b>, A TRAVÉS DE SU REPRESENTANTE LEGAL <b><t t-if="o.employee_id.company_id.dnk_legal_representative" t-esc="o.employee_id.company_id.dnk_legal_representative.name.upper()"/></b>, A QUIEN EN LO SUCESIVO SE LES DENOMINARÁ <b>“EL TRANSMISOR”</b> Y POR LA OTRA PARTE <b><t t-esc="o.employee_id.name.upper()"/></b>, A QUIEN EN LO SUBSECUENTE SE LE IDENTIFICARÁ COMO <b>“EL RECEPTOR”</b>; BAJO EL TENOR DE LAS SIGUIENTES:</p>
+                                    </div>
+
+                                    <br/>
+                                    <div class="row" id="contract_declarations">
+                                      <p class="titlebar">
+                                          D  E  C  L  A  R  A  C  I  O  N  E  S
+                                      </p>
+                                    </div>
+                                    <p>Declara <b>“EL TRANSMISOR”</b> que:</p>
+
+                                    <ol type="I">
+                                        <li>Es una persona jurídica, creada conforme se estipula en la escritura pública número  <b><t t-if="o.employee_id.company_id.dnk_deed_number" t-esc="o.employee_id.company_id.dnk_deed_number"/></b>, de fecha <b><t t-if="o.employee_id.company_id.dnk_deed_date_text" t-esc="o.employee_id.company_id.dnk_deed_date_text"/></b>, pasada ante la fe del Licenciado <t t-esc="o.employee_id.company_id.dnk_public_notary_name"/>, notario público número <t t-esc="o.employee_id.company_id.dnk_public_notary_number"/>, de <t t-esc="o.employee_id.company_id.dnk_public_notary_municipality"/>, <t t-esc="o.employee_id.company_id.dnk_public_notary_state_id.name"/>, con capacidad para contratar y obligarse en términos del presente contrato.</li>
+                                        <li>Tiene por actividad: <t t-esc="o.employee_id.company_id.dnk_line_of_business"/>.</li>
+                                        <li>Cuenta con Registro Federal de Contribuyentes clave <b><t t-if="o.employee_id.company_id.vat" t-esc="o.employee_id.company_id.vat"/></b>.</li>
+                                        <li>Tiene su domicilio en la finca en <b><t t-esc="current_company_address"/></b>.</li>
+                                        <li>Su representante legal <b><t t-if="o.employee_id.company_id.dnk_legal_representative" t-esc="o.employee_id.company_id.dnk_legal_representative.name"/></b>, tiene las facultades necesarias y suficientes para comparecer a este acto, facultades de representación que manifiesta bajo protesta de decir verdad, que no le han sido limitadas, modificadas o revocadas.</li>
+                                    </ol>
+
+                                    <p>Declara <b>“EL RECEPTOR””</b> que:</p>
+
+                                    <ol type="I">
+                                        <li>Es mexicana (o) por nacimiento, <b><t t-esc="{False: False, 'male': 'Masculino', 'female': 'Femenino'}[o.employee_id.gender]"/></b>, cuenta con <b><t t-if="o.employee_id.edad" t-esc="o.employee_id.edad"/></b> años de edad, a la fecha de suscripción de éste contrato, tiene su domicilio particular en <b><t t-if="o.employee_id.address_home_id" t-esc="employee_address"/></b>.</li>
+                                        <li>Cuenta con registro ante el Instituto Mexicano del Seguro Social número  <b><t t-if="o.employee_id.segurosocial" t-esc="o.employee_id.segurosocial"/></b>, CURP clave <b><t t-if="o.employee_id.curp" t-esc="o.employee_id.curp"/></b> y con Registro Federal de Contribuyentes clave <b><t t-if="o.employee_id.rfc" t-esc="o.employee_id.rfc"/></b>.</li>
+                                        <li>Con fecha <b><span t-att-class="fecha_ingreso_actual_class" t-esc="fecha_ingreso_actual"/></b> ingreso a laborar con <b><t t-esc="o.employee_id.company_id.name"/></b>, en los términos del contrato individual de trabajo de misma fecha.</li>
+                                    </ol>
+
+                                    <p>Declaran <b>“EL RECEPTOR”</b> y <b>"EL TRANSMISOR"</b> que: <b><t t-if="o.employee_id" t-esc="o.employee_id.name"/></b> ingresó a laborar con <t t-esc="o.employee_id.company_id.name"/>, con el cargo de <b><t t-if="o.employee_id.job_id" t-esc="o.employee_id.job_id.name"/></b>, siendo sus actividades las que se refiere el diverso contrato individual de trabajo, celebrado entre las partes del presente convenio y el perfil de
+                                    puestos correspondiente.</p>
+
+                                    <p>Que en virtud de la naturaleza de las funciones que desempeña <b>“EL RECEPTOR”</b> es su deseo la celebración de este <b>CONVENIO DE CONFIDENCIALIDAD</b> de conformidad con lo establecido en el presente documento, por lo que se sujeta n al tenor de las siguientes:</p>
+
+                                    <br/>
+                                    <div class="row" id="contract_clausulas">
+                                      <p class="titlebar">
+                                          C  L  Á  U  S  U  L  A  S
+                                      </p>
+                                    </div>
+                                    <p><b>PRIMERA.-</b> Se denominará en lo sucesivo a <b>"EL TRANSMISOR”</b> y <b>“AL RECEPTOR”</b> tal como fue identificado en las declaraciones del presente contrato, al presente documento como <b>“EL CONTRATO”</b>, y a ambos que suscriben como <b>“LAS PARTES”</b>.</p>
+
+                                    <p><b>SEGUNDA.-</b> <b>OBJETO DEL CONTRATO:</b> En virtud del presente, las partes definen sus derechos y obligaciones con respecto a la información confidencial a que tiene acceso <b>“EL RECEPTOR”</b>, durante su relación de trabajo, entendiendo por Información Confidencial y secretos industriales -en adelante <b>“LA INFORMACIÓN”</b> - aquella que se define en la cláusula quinta del presente contrato.</p>
+
+                                    <p><b>TERCERA.-</b> <b>“EL TRANSMISOR”</b> hace del conocimiento de <b>“EL RECEPTOR”</b> que las marcas, patentes y bases de datos tales como listas de clientes, proveedores y precios, se encuentra debidamente registrados ante el Instituto Mexicano de la Propiedad Industrial, de quien se obtuvieron los registros de marcas y Modelos de Utilidad, así como ante el Instituto Nacional del Derecho de Autor, autoridad que otorgó el certificado autoral correspondiente, por lo que son de considerarse “Marcas Registradas” y “Derechos Reservados” © copyright a favor de <b>“EL TRANSMISOR”</b>.</p>
+
+                                    <p>De tal forma y por el sigilo que conlleva l os productos y a fin de sujetarse a los beneficios que establece la Ley de la Propiedad Industrial, <b>“LAS PARTES”</b> acuerdan y reconocen el considerar como secretos industriales la información materia del presente contrato, por ser información de aplicación industrial y comercial, la cual brinda una ventaja competitiva sobre otras personas físicas y morales dedicadas al mismo giro, por lo que la misma se guarda todo lo relativo con el carácter de confidencial.</p>
+
+                                    <p>De tal forma dicha información es considerada com o “secretos industriales”, mismos que se encuentran protegidos por las Leyes de Propiedad Industrial e Intelectual vigentes en nuestro país, así como por contratos y tratados internacionales, ordenamientos que le confieren facultades a <b>“EL TRANSMISOR”</b> para llevar a cabo las acciones jurídicas que consideren necesarias, a fin de proteger la confidencialidad de sus conocimientos.</p>
+
+                                    <p><b>CUARTA.-</b> <b>OBJETO DE LA TRANSMISION: “LA INFORMACIÓN”</b> confidencial que se transmitió por parte de <b>“EL TRANSMISOR"</b> a <b>“EL RECEPTOR”</b> es en virtud y como consecuencia de su relación trabajo con <b>“EL TRANSMISOR”</b>.</p>
+
+                                    <p>En caso de que <b>“EL RECEPTOR”</b> por motivo de la relación de trabajo y haciendo uso de las instalaciones, recursos y <b>“LA INFORMACIÓN”</b> de <b>“EL TRANSMISOR”</b> realice alguna invención que tenga que ver con el desarrollo de sus actividades, los derechos patrimoniales que se deriven serán propiedad exclusiva de <b>“EL TRANSMISOR”</b>.</p>
+
+                                    <p><b>QUINTA.- CONCEPTO DE INFORMACION CONFIDENCIAL:</b> Se entenderá por <b>“LA INFORMACIÓN”</b> confidencial, cualquier información, secretos industriales y/o documentos transmitidos por <b>“EL TRANSMISOR”</b> a <b>“EL RECEPTOR”</b> o aquella que éste último genere derivada de la ejecución de las actividades realizadas en desarrollo de la relación de trabajo.</p>
+
+                                    <p><b>“LA INFORMACIÓN”</b> en forma enunciativa mas no limitativa podrá incluir: nombres y base de datos de clientes, de precios, proveedores, nombres de los empleados que laboran o laboraron para <b>“EL TRANSMISOR”</b>, marcas, patentes, sistemas administrativos, sistemas oper ativos, financieros y de mercad otecnia, programas de cómputo, inventos, fórmulas y sistemas de venta conceptos, planes de negocios, procesos, diseños, planos, especificaciones, dibujos, prototipos, muestras, mejoras, desarrollos, aplicaciones, información financiera, técnica y estratégica, entre otros.</p>
+
+                                    <p><b>“LAS PARTES”</b> reconoce que <b>“LA INFORMACIÓN”</b> a que se refiere esta cláusula Y los derechos derivados de ella, es de propiedad exclusiva de <b>“EL TRANSMISOR”</b> y está debidamente protegidas en favor de la titular de conformidad con lo que establece la Ley de la Propiedad Industrial, la Ley Federal de Derechos de Autor y la Ley Federal del Trabajo.</p>
+
+                                    <p>Por lo tanto, el <b>“EL RECEPTOR”</b> reconoce que <b>“EL TRANSMISOR”</b> es el único que puede explotar o licenciar los derechos que se deriven de esas marcas secretos industriales y secretos comerciales.</p>
+
+                                    <p><b>SEXTA.- INFORMACION TRANSMITIDA POR ESCRITO, CORREO ELECTRÓNICO U OTRO MEDIO TANGIBLE: “LA INFORMACIÓN”</b> que se transmita por escrito, correo electrónico y cualquier otro medio tangible será considerada confidencial conforme a este contrato, salvo que la misma esté identificada de manera clara y expresa como “no confidencial”.</p>
+
+                                    <p><b>SÉPTIMA.- “INFORMACIÓN” TRANSMITIDA DE FORMA ORAL: “LA INFORMACIÓN”</b> que se transmita de forma oral, será considerada confidencial aun cuando no se confirme por escrito.</p>
+
+                                    <p><b>OCTAVA.- SUPUESTOS DE INFORMACIÓN NO CONFIDENCIAL:</b> No se considerará como <b>“LA INFORMACIÓN”</b> confidencial conforme a los términos del presente contrato a la siguiente información:</p>
+                                    <ol type="a">
+                                        <li>Aquella información que se encuentra disponible al público en general.</li>
+                                        <li>Aquella información obvia para un técnico de la materia.</li>
+                                        <li>Aquella información que sea conocida por “EL RECEPTOR” aún antes de recibir la misma por parte de “EL TRANSMISOR”.</li>
+                                    </ol>
+
+                                    <p><b>NOVENA.- PROPIEDAD DE LA “INFORMACIÓN”: “EL TRANSMISOR”</b> es el dueño de <b>“LA INFORMACIÓN”</b> confidencial. De lo anterior se desprende que cuando la transmisión lleve implícita la entrega de de terminados objetos que la contienen (manuales o copias de estos), <b>“EL RECEPTOR”</b> tiene la obligación de proceder a su devolución inmediatamente, obligándose a no realizar copia alguna.</p>
+
+                                    <p><b>DECIMA.- OBLIGACIONES DE “EL RECEPTOR”:</b> Las obligaciones de <b>“EL RECEPTOR”</b> son en forma enunciativa mas no limitativa las siguientes:</p>
+                                    <ol type="1">
+                                        <li>Mantener en estricta confidencialidad “LA INFORMACIÓN” confidencial que reciba y que generó con motivo de la relación de trabajo entre las partes.</li>
+                                        <li>Poner la “LA INFORMACIÓN” confidencial únicamente a disposición de los empleados y/o personas que “EL TRANSMISOR” designe y que tengan estricta necesidad de conocer la misma para desarrollar el objeto a que se refiere la cláusula segunda del presente contrato.</li>
+                                        <li>Adoptar todas las precaucio nes necesarias y adecuadas para que “LA INFORMACIÓN” se mantenga confidencial y para proteger la no divulgación de esta por cualquier medio.</li>
+                                        <li>Informar a “EL TRANSMISOR” cualquier situación que conforme a los términos del presente contrato o que, conforme a su criterio, ponga en peligro la confidencialidad de “LA INFORMACIÓN” revelada y/o proporcionada por “EL TRANSMISOR”.</li>
+                                        <li>Abstenerse de comercializar individualmente y sin autorización de la empresa con los clientes o proveedores de “EL TRANSMISOR” productos iguales o similares a los que esta compra y vende, toda vez que la clientela que “EL RECEPTOR” conozca será con motivo y derivado de su empleo, puesto, trabajo o relación de negocios.</li>
+                                    </ol>
+
+                                    <p><b>DÉCIMA PRIMERA.- DURACIÓN DE LAS OBLIGACIONES:</b> Las obligaciones antes mencionadas y las que deriven del presente contrato tendrán una duración indefinida durante la existencia de desarrollo de la relación de trabajo entre las partes y de igual manera después de concluida la misma, por lo que <b>“EL RECEPTOR”</b> tendrá prohibido el uso, divulgación y/o aprovechamiento de <b>“LA INFORMACIÓN”</b>.</p>
+
+                                    <p>El incumplimiento a la obligación a que se refieren el párrafo anterior acarreará que tal conducta se ajuste en los supuestos de delito a que hace alusión el artículo 223 de la Ley de la Propiedad Industrial en la esfera del derecho penal, independientemente de las demás acciones que procedan legalmente.</p>
+
+                                    <p><b>DÉCIMA SEGUNDA.- PENA POR INCUMPLIMIENTO:</b> En caso de incumplimiento a las obligaciones a su cargo, <b>"EL RECEPTOR"</b> reconoce que le causará un grave daño al <b>"EL TRANSMISOR"</b> mismo que por su naturaleza será de difícil calculo y determinación, por lo que desde estos momentos las partes acuerdan que dichos daños y perjuicios son fijados por la cantidad de $500,000.00 (Quinientos mil pesos 00/100 M.N.), sin perjuicio de las penas, multas, sanciones y responsabilidad penal y civil, de conformidad con lo previsto en por los artículos 82 a 86, 213, 214, 218, 219, 221, 221 bis, 223, 224 y 226 de la Ley de Propiedad Industrial, 101 al 114 y 229 al 236 de la Ley Federal del Derecho de Autor, 210, 211 y 211 bis del Código Penal Federal y 143 del Código Penal para el Estado de Jalisco.</p>
+
+                                    <p><b>DÉCIMA TERCERA.- “LAS PARTES”</b> acuerdan que, con el fin de evitar la competencia desleal, <b>“EL RECEPTOR”</b> no podrá en ninguna circunstancia desempeñarse directamente o a través de terceros, en actividades que signifiquen competencia para <b>“EL TRANSMISOR”</b>, ya sean dichas actividades de índole profesional o comercial, iguales o similares a los servicios y actividades comerciales que realiza <b>“EL TRASMISOR”</b>.</p>
+
+                                    <p>Esta prohibición estará vigente por todo el tiempo que dure la relación de trabajo y hasta cinco años después de terminada dicha relación de trabajo.</p>
+
+                                    <p><b>“LAS PARTES”</b> acuerdan que, en caso de incumplimiento a la obligación señalada en el párrafo anterior, desde este momento se pactan por concepto de daños, lo establecido en la cláusula décima segunda del presente documento.</p>
+
+                                    <p><b>DÉCIMA CUARTA.- “EL TRANSMISOR”</b> está facultado para llevar a cabo todas las acciones que sean necesarias, para cuidar que <b>“EL RECEPTOR”</b> no revele <b>“LA INFORMACIÓN”</b> que conozca con motivo de su relación laboral con <b>“EL TRANSMISOR”</b>.</p>
+
+                                    <p><b>DÉCIMA QUINTA.- TOTALIDAD DEL ACUERDO:</b> El presente contrato se constituye como el único válido entre <b>“EL RECEPTOR”</b> y <b>"EL TRANSMISOR”</b> sobre el objeto que regula y prevalece por sobre cualquier otro pacto, verbal o escrito, que estos hubiesen celebrado. Para su validez, cualquier adición o modificación al presente contrato deberá constar invariablemente por escrito.</p>
+
+                                    <p><b>DÉCIMA SEXTA. - DOMICILIOS CONVENCIONALES:</b> Las partes designan como domicilio convencional para recibir toda clase de citaciones o notificaciones los señalados en el capítulo de declaraciones.</p>
+
+                                    <p>En consecuencia, se considerarán válidos los actos de notificación o citación llevados a cabo en dichos domicilios.</p>
+
+                                    <p><b>DECIMA SÉPTIMA.- USO DE TÍTULOS EN LAS CLÁUSULAS:</b> Los títulos o encabezados utilizados en las cláusulas, inciso o apartados de este convenio se utilizarán únicamente para facilitar la lectura de sus disposiciones y en nada afectan, restringen, limitan o amplían el alcance legal o contenido jurídico de las respectivas cláusulas.</p>
+
+                                    <p><b>DÉCIMA OCTAVA.- SOLUCIÓN DE CONTROVERSIAS: “LAS PARTES”</b>, manifiestan que, en caso de suscitarse duda o controversia en la interpretación y cumplimiento de las obligaciones contenidas en el presente contrato, convienen en someterse a las leyes aplicables del Estado de Jalisco y/o de la República Mexicana y a los Tribunales competentes de la ciudad de Guadalajara, Jalisco, renunciando desde este momento a cualquier otro que les pudiera corresponder debido a su domicilio presente o futuro.</p>
+
+                                    <p>Ambas partes reconocen que no existe dolo, error o ignorancia en cuanto al contenido del contrato que se firma, ratificando su contenido y la firma fehaciente y autógrafa de cada uno de los que lo suscriben, de igual manera se obligan a reconocerlo judicialmente ante la autoridad que se l es requiera.</p>
+
+                                    <p><b>LEÍDO QUE FUE EL PRESENTE CONVENIO POR LAS PARTES, CONSCIENTES DE SU ALCANCE, CONTENIDO Y CONSECUENCIAS LEGALES, FIRMAN DE CONFORMIDAD EL MISMO EN LA CIUDAD DE <t t-if="o.employee_id.address_id" t-esc="o.employee_id.address_id.l10n_mx_edi_locality.upper()"/>, <t t-if="o.employee_id.address_id" t-esc="o.employee_id.address_id.state_id.name.upper()"/>, A <span t-att-class="fecha_ingreso_actual_class" t-esc="fecha_ingreso_actual"/>.</b></p>
+
+                                    <br/><br/><br/>
+                                    <center>
+                                        <table class="table_invisible" style="width:80%;border:0px solid transparent;" cellpadding="20">
+                                            <tr style="width:100%;border: 0px solid transparent;background-color:transparent;">
+                                            <th style="width:45%;text-align:center;background-color:transparent;border: 0px solid transparent;">
+                                                <p>
+                                                <hr/>
+                                                </p>
+                                                <t t-if="o.employee_id.company_id.dnk_legal_representative" t-esc="o.employee_id.company_id.dnk_legal_representative.name"/><br/>
+                                                “REPRESENTANTE LEGAL DE EL TRASMISOR”<br/><br/>
+                                            </th>
+                                            <th style="width:10%;text-align:center;background-color:transparent;border: 0px solid transparent;">
+                                            </th>
+                                            <th style="width:45%;text-align:center;background-color:transparent;border: 0px solid transparent;">
+                                                <p>
+                                                <hr/>
+                                                </p>
+                                                <t t-esc="o.employee_id.name"/><br/>
+                                                “EL RECEPTOR”<br/><br/>
+                                            </th>
+                                            </tr>
+                                        </table>
+                                    </center>
+                                    <p style="font-size:13px;">La presente hoja de firmas pertenece al convenio de confidencialidad firmado entre <b><t t-esc="o.employee_id.company_id.name"/></b> y <b><t t-esc="o.employee_id.name"/></b>, con fecha <b><span t-att-class="fecha_ingreso_actual_class" t-esc="fecha_ingreso_actual"/></b>.</p>
+                                </t>
+                            </div>
+
+                            <!-- AVISO DE PRIVACIDAD -->
+                            <div id="dnk_aviso_privacidad">
+                                <t t-if="o.x_dnk_type == 'Determinado'">
+                                    <p style="page-break-after:always;"/>
+                                    <div style="background-color:transparent;">
+                                      <center><h3>AVISO DE PRIVACIDAD</h3></center>
+                                    </div>
+                                    <div class="row" id="contract_declarations">
+                                      <br/>
+                                      <p class="titlebar">
+                                          IDENTIDAD, DOMICILIO Y COMPROMISO DEL RESPONSABLE
+                                      </p>
+                                    </div>
+
+                                    <p><b><t t-esc="o.employee_id.company_id.name"/></b> con nombre comercial  <b><t t-esc="o.employee_id.company_id.name"/></b> (y en adelante referida con dicho nombre), es el responsable del uso y protección de sus datos personales, con domicilio en <b><t t-esc="current_company_address"/></b>.</p>
+
+                                    <p><b><t t-esc="o.employee_id.company_id.name"/></b> es una compañía dedicada a la ofrecer servicios integrales, dando soporte a todas las empresas mediante actividades propias de los siguientes departamentos recursos humanos, finanzas, mercadotecnia, sistemas y contabilidad. En ese entendido, <b><t t-esc="o.employee_id.company_id.name"/></b> se compromete a manejar con la más completa confidencialidad los datos personales que recibe de conformidad con las políticas internas de la compañía y con las disposiciones legales aplicables.</p>
+
+                                    <br/>
+                                    <p class="titlebar">
+                                        DATOS PERSONALES RECABADOS
+                                    </p>
+
+                                    <p><b><t t-esc="o.employee_id.company_id.name"/></b>, en el caso de los trabajadores y aspirantes a puestos de trabajo, recaba los siguientes datos personales:</p>
+
+                                    <p>Nombre completo, dirección de correo electrónico, sexo, número telefónico, lugar y fecha de nacimiento, estado civil, número de hijos, estado de salud (dato sensible), ciudad, currículum o solicitud de trabajo, experiencia profesional y personal, datos sobre patrones y puestos anteriores, acta de nacimiento, educación y comprobante de estudios, domicilio, comprobante de domicilio, situación socioeconómica (dato sensible), datos patrimoniales y financieros, credencial del Instituto Nacional Electoral (antes Instituto Federal Electoral), número de seguridad social (NSS), número de registro federal de contribuyentes (RFC), clave única de registro de población (CURP), carta de antecedentes penales (dato sensible), carta de recomendación, carta de retención del Infonavit o Fonacot, datos bancarios para pagos de nóminas y prestaciones, resultados de exámenes psicométricos y su imagen al acceder a las instalaciones, misma que queda almacenada en los registros de cámara de video-vigilancia. Los datos recabados son necesarios para el desarrollo de la relación entre los empleados y <b><t t-esc="o.employee_id.company_id.name"/></b>.</p>
+
+                                    <p>Los datos personales de los aspirantes a puestos de trabajo que no hayan resultado seleccionados serán eliminados en el plazo de 03 días posteriores a la notificación al aspirante de que no ha sido seleccionado para el puesto de trabajo.</p>
+
+                                    <p>Los registros de la cámara de videovigilancia sólo son conservados por <b><t t-esc="o.employee_id.company_id.name"/></b> durante 24 horas posteriores a la visita.</p>
+
+                                    <p><b><t t-esc="o.employee_id.company_id.name"/></b> le informa que los datos de resultados de exámenes psicométricos, su estado de salud, situación socioeconómica, sus datos patrimoniales y financieros, la carta de antecedentes penales, y los datos bancarios son considerados datos sensibles en términos de la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, y su tratamiento es necesario para el desarrollo íntegro y sano de la relación laboral que lo une a <b><t t-esc="o.employee_id.company_id.name"/></b>.</p>
+
+                                    <br/>
+                                    <p class="titlebar">
+                                        FINALIDADES
+                                    </p>
+
+                                    <p>El tratamiento que <b><t t-esc="o.employee_id.company_id.name"/></b> dará a sus datos personales tendrá como finalidad el sano desarrollo de la relación laboral, incluyendo el análisis y la evaluación de su información para ocupar algún puesto presente o futuro, la elaboración de documentos legales, la asesoría legal y defensa judicial en caso de ser necesaria; la realización de trámites legales, fiscales, laborales y de seguridad social, incluyendo la inscripción al Instituto Mexicano del Seguro Social, avisos o comunicaciones con el Instituto del Fondo Nacional de la Vivienda para los Trabajadores, trámites fiscales con Secretaría de Hacienda y Crédito Público; trámites administrativos, incluyendo el registro en el área interna de Recursos Humanos de <b><t t-esc="o.employee_id.company_id.name"/></b>, realización del expediente personal virtual, realización de cartas requeridas por esta área interna de <b><t t-esc="o.employee_id.company_id.name"/></b>, elaboración de contratos laborales, trámites de pago de nóminas, trámites de otorgamiento de préstamos, validación de datos proporcionados mediante referencia; trámites bancarios para el pago de nóminas, transferencias de recursos. En el caso de su imagen captada al acceder a las instalaciones, <b><t t-esc="o.employee_id.company_id.name"/></b> la conserva con la finalidad de ofrecer un mejor nivel de seguridad. Además, <b><t t-esc="o.employee_id.company_id.name"/></b> recaba la información para estar en condiciones de responder adecuadamente en caso de accidente laboral y prevención de riesgos, y cualquier otra derivada directamente de la relación laboral, siendo estas finalidades esenciales para el desarrollo de la relación con <b><t t-esc="o.employee_id.company_id.name"/></b>.</p>
+
+                                    <br/>
+                                    <p class="titlebar">
+                                        TRANSFERENCIAS A TERCEROS
+                                    </p>
+
+                                    <p>Sus datos personales podrán ser transferidos a terceras personas, siempre y cuando dicha transferencia guarde relación con las finalidades referidas en el apartado anterior. Sus datos personales pueden ser tratados dentro o fuera del territorio nacional por terceros, siempre y cuando dichas transferencias sean necesarias y guarden relación con las finalidades que se le han dado a conocer. Tales transferencias son las siguientes:</p>
+
+                                    <table class="table_bordered" style="width: 100%;">
+                                    <tr>
+                                        <th style="width: 30%;" rowspan="2">Abogados y despachos legales</th>
+                                        <td>Los datos que se transfieren son: nombre, nacionalidad, estado civil, edad, domicilio, credencial de elector, número de seguro social, clave única de registro de población (CURP), registro federal de contribuyentes (RFC), número de seguridad social (NSS), puesto, horario de jornada de trabajo, salario, día de pago, día de descanso, inicio de la antigüedad y modalidad de contrato.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>La finalidad de esta transferencia de datos es la asesoría, revisión y elaboración de contratos laborales, así como de trámites judiciales en caso de darse el supuesto.</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 30%;" rowspan="2">Instituto Mexicano del Seguro Social</th>
+                                        <td>Los datos que se transfieren son nombre, fecha de nacimiento, domicilio, número de registro federal de contribuyentes (RFC), clave única de registro de población (CURP), número de seguridad social (NSS), información sobre sueldos y prestaciones.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>La finalidad de esta transferencia de datos es obtener el pleno desarrollo de la relación entre los empleados y <b><t t-esc="o.employee_id.company_id.name"/></b>, dando cumplimiento a las obligaciones legales y facilitando el pago de sueldos y prestaciones, incluyendo el alta en el IMSS, incapacidades y trámites de pensiones.</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 30%;" rowspan="2">Banco Nacional de México</th>
+                                        <td>Los datos que se transfieren son nombre, fecha de nacimiento, domicilio, número de registro federal de contribuyentes (RFC), clave única de registro de población (CURP), número de seguridad social (NSS), información sobre sueldos, datos bancarios.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>La finalidad de esta transferencia de datos es obtener el pleno desarrollo de la relación entre los empleados y <b><t t-esc="o.employee_id.company_id.name"/></b>, dando cumplimiento a las obligaciones legales y facilitando el pago de sueldos y prestaciones, incluyendo los trámites para obtención de tarjetas ejecutivas y empresariales.</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 30%;" rowspan="2">INFONAVIT</th>
+                                        <td>Los datos que se transfieren son nombre, fecha de nacimiento, domicilio, número de registro federal de contribuyentes (RFC), clave única de registro de población (CURP), número de seguridad social (NSS), información sobre sueldos y prestaciones.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>La finalidad de esta transferencia de datos es obtener el pleno desarrollo de la relación entre los empleados y <b><t t-esc="o.employee_id.company_id.name"/></b>, dando cumplimiento a las obligaciones legales, incluyendo los trámites para obtención de créditos de vivienda.</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 30%;" rowspan="2">FONACOT</th>
+                                        <td>Los datos que se transfieren son nombre, fecha de nacimiento, domicilio, número de registro federal de contribuyentes (RFC), clave única de registro de población (CURP), número de seguridad social (NSS), información sobre sueldos.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>La finalidad de esta transferencia de datos es obtener el pleno desarrollo de la relación entre los empleados y <b><t t-esc="o.employee_id.company_id.name"/></b>, dando cumplimiento a las obligaciones legales, incluyendo los trámites para obtención de créditos.</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 30%;" rowspan="2">Secretaría de Trabajo y Previsión Social</th>
+                                        <td>Los datos que se transfieren son nombre, fecha de nacimiento, domicilio, número de registro federal de contribuyentes (RFC), clave única de registro de población (CURP), número de seguridad social (NSS), información sobre sueldos.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>La finalidad de esta transferencia de datos es obtener el pleno desarrollo de la relación entre los empleados y <b><t t-esc="o.employee_id.company_id.name"/></b>, dando cumplimiento a las obligaciones legales, incluyendo las declaraciones de pruebas legales.</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 30%;" rowspan="2">(i) Empaques MPK SAPI de CV y (ii) Tecnología en Goma SAPI de CV; todas integrantes de “GRUPO DENKER”.</th>
+                                        <td>Todos aquellos datos a los que se refieren el presente aviso.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>La finalidad de esta transferencia de datos es obtener el pleno desarrollo de la relación entre los empleados y <b><t t-esc="o.employee_id.company_id.name"/></b>, considerando que ésta forma parte de GRUPO DENKER.</td>
+                                    </tr>
+                                    </table>
+
+                                    <br/>
+                                    <p class="titlebar">
+                                        SEGURIDAD DE SUS DATOS PERSONALES
+                                    </p>
+
+                                    <p><b><t t-esc="o.employee_id.company_id.name"/></b> adopta diversas medidas de seguridad para resguardar los datos personales, tales como acceso restringido a las bases de datos, físicas y electrónicas, señalando que sól el personal de Recursos Humanos de <b><t t-esc="o.employee_id.company_id.name"/></b> hace uso de su información; compromisos de confidencialidad que se asumen conforme a las políticas internas de la compañía respecto de toda la información a la que tienen acceso las personas que prestan servicios a <b><t t-esc="o.employee_id.company_id.name"/></b>; cláusulas de confidencialidad con nuestros proveedores; señalándose, además, que los datos personales están resguardados en bases de datos, equipos de cómputo y carpetas altamente identificadas.</p>
+
+                                    <br/>
+                                    <p class="titlebar">
+                                        MEDIOS PARA LIMITAR EL USO O DIVULGACIÓN DE SUS DATOS
+                                    </p>
+
+                                    <p>En los casos en los que proceda el ejercicio del derecho de oposición y con objeto de que usted pueda limitar el uso y divulgación de su información personal, le ofrecemos su registro en el listado de exclusión. Para registrarse y para más información contactar a <b><t t-esc="o.employee_id.company_id.dnk_notice_of_privacy_representative.name"/></b>, <b><t t-esc="o.employee_id.company_id.dnk_notice_of_privacy_representative.function"/></b>, con número de teléfono <b><t t-esc="o.employee_id.company_id.dnk_notice_of_privacy_phone"/></b> y correo electrónico <b><t t-esc="o.employee_id.company_id.dnk_notice_of_privacy_email"/></b>.</p>
+
+                                    <p>Asimismo, con la finalidad de que usted pueda limitar el uso y divulgación de sus datos personales, le informamos que, en adición a las medidas de seguridad con que cuenta nuestra compañía, usted tiene a su disposición la inscripción en el Registro Público para Evitar Publicidad que está a cargo de la Procuraduría Federal del Consumidor a efecto de que sus datos no sean utilizados para recibir publicidad o promociones de empresas de bienes o servicios. Para más información sobre este Registro usted puede consultar el portal de Internet de PROFECO o ponerse en contacto con ellos.</p>
+
+                                    <br/>
+                                    <p class="titlebar">
+                                        MECANISMOS PARA EJERCER SUS DERECHOS ARCO O PARA REVOCAR EL CONSENTIMIENTO
+                                    </p>
+
+                                    <p>En los casos que la ley lo autorice, Usted podrá tener acceso a sus datos, o solicitar su rectificación, oposición o cancelación, o bien, oponerse al tratamiento total o parcial de sus datos, revocar el consentimiento previamente otorgado, manifestar su negativa para el tratamiento de sus datos para finalidades que no son necesarias, ni han dado origen a la relación con <b><t t-esc="o.employee_id.company_id.name"/></b>, de la siguiente manera:</p>
+
+                                    <p>Deberá llenar el formato único para acceso a Derechos ARCO y Revocación de Consentimiento, disponible en la siguiente liga: <b>www.grupodenker.com</b>.</p>
+
+                                    <p>Una vez llenado dicho documento, deberá entregarlo debidamente firmado con una copia de su identificación oficial y los anexos que estime convenientes al Departamento de Recursos Humanos de <b><t t-esc="o.employee_id.company_id.name"/></b>, en el domicilio señalado en el apartado primero de este documento, con referencia a <b><t t-esc="o.employee_id.company_id.dnk_notice_of_privacy_representative.name"/></b>, <b><t t-esc="o.employee_id.company_id.dnk_notice_of_privacy_representative.function"/></b>, con número de teléfono <b><t t-esc="o.employee_id.company_id.dnk_notice_of_privacy_phone"/></b> y correo electrónico <b><t t-esc="o.employee_id.company_id.dnk_notice_of_privacy_email"/></b>. Le informamos que usted podrá contactar a esta persona con la finalidad de conocer y/o aclarar dudas sobre el procedimiento.</p>
+
+                                    <p>Dentro de los plazos que marca la Ley y en dichos términos, <b><t t-esc="o.employee_id.company_id.name"/></b> le comunicará la respuesta a su solicitud. En caso de ser necesario, <b><t t-esc="o.employee_id.company_id.name"/></b> podrá solicitarle que amplíe o aclare la información que haya aportado a través del formato antes señalado, a efecto de estar en posibilidades de atender su solicitud de manera completa.</p>
+
+                                    <p>Se hace del conocimiento que, en cumplimiento a la obligación de acceso, la información será puesta a disposición en sitio, o bien, mediante la expedición de copias simples, medios magnéticos, ópticos, sonoros, visuales y/u holográficos.</p>
+
+                                    <br/>
+                                    <p class="titlebar">
+                                        CAMBIOS EN LOS AVISOS DE PRIVACIDAD
+                                    </p>
+
+                                    <p>Cualquier cambio en este aviso de privacidad o en las finalidades del tratamiento de los datos que usted nos ha proporcionado, le será comunicado mediante correo electrónico, tablero informativo y/o en lugares visibles de las instalaciones de <b><t t-esc="o.employee_id.company_id.name"/></b>, personalmente, o bien, por la página de Internet.</p>
+
+                                    <br/>
+                                    <p class="titlebar">
+                                        AUTORIDAD ENCARGADA
+                                    </p>
+
+                                    <p>Si usted considera que su derecho a la protección de sus datos personales ha sido lesionado por alguna conducta u omisión de nuestra parte, podrá interponer su inconformidad o denuncia ante el Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales (INAI).</p>
+
+                                    <p style="text-align:right;"><b>Fecha de última actualización: 01/08/2016</b></p>
+
+                                    <br/>
+                                    <p class="titlebar">
+                                        CONSENTIMIENTO DEL TITULAR
+                                    </p>
+
+                                    <p>Estoy de acuerdo en que mis datos personales sean tratados en los términos y condiciones del presente  <b>Aviso de Privacidad</b>. Asimismo, estoy de acuerdo en la transferencia de mis datos en los términos aquí indicados.</p>
+
+                                    <br/><br/><br/>
+                                    <center>
+                                    <table class="table_invisible" style="width:40%;border: 0px solid transparent;" cellpadding="20">
+                                        <tr style="width:100%;border: 0px solid transparent;background-color:transparent;">
+                                        <td style="width:100%;text-align:center;border: 0px solid transparent;">
+                                            <p>
+                                            <hr/>
+                                            </p>
+                                            <b><t t-esc="o.employee_id.name"/></b><br/>
+                                            Nombre y firma<br/>
+                                        </td>
+                                        </tr>
+                                    </table>
+                                    </center>
+
+                                    <p style="font-size:13px;">Fecha <b><span t-att-class="fecha_ingreso_actual_class" t-esc="fecha_ingreso_actual"/></b>.</p>
+
+
+                                </t>
+                            </div>
+
+                            <!-- CARTA DE COMPROMISO DE CÓDIGO DE ÉTICA -->
+                            <div id="dnk_compromiso_codigo_etica">
+                                <t t-if="o.x_dnk_type == 'Determinado'">
+                                    <p style="page-break-after:always;"/>
+                                    <div style="background-color:transparent;">
+                                      <center><h3>CARTA COMPROMISO DE CÓDIGO DE ÉTICA</h3></center>
+
+                                      <br/><br/><br/>
+                                      <p style="text-align:right;"><t t-if="o.employee_id.address_id" t-esc="o.employee_id.address_id.l10n_mx_edi_locality"/><span t-if="not o.employee_id.address_id.l10n_mx_edi_locality" style="color:#FF0000">employee_id.address_id.l10n_mx_edi_locality</span>, <t t-if="o.employee_id.address_id" t-esc="o.employee_id.address_id.state_id.name"/><br/>
+                                      <t t-esc="current_date"/></p>
+                                    </div>
+                                    <br/><br/>
+                                    <div class="row" id="contract_declarations">
+                                    </div>
+                                    <br/><br/>
+                                    <p>Yo, <b><t t-esc="o.employee_id.name"/></b> manifiesto mi compromiso de respetar el <b>Código de Ética</b> de <b><t t-esc="o.employee_id.company_id.name"/></b> empresa parte del GRUPO DENKER, el cual he leído íntegramente, asimismo hago constar que se me entregó un ejemplar de dicho <b>Código de Ética</b>.
+                                    <br/><br/>
+                                    Como colaborador de <b><t t-esc="o.employee_id.company_id.name"/></b> haré lo necesario para ser un ejemplo del  <b>Código de Ética</b> a través de mi conducta diaria.</p>
+
+                                    <br/><br/><br/>
+                                    <center><p>Atentamente</p></center>
+
+                                    <br/><br/><br/>
+                                    <center>
+                                        <table class="table_invisible" style="width:40%;border: 0px solid transparent;" cellpadding="20">
+                                          <tr style="width:100%;border: 0px solid transparent;background-color:transparent;">
+                                            <td style="width:100%;text-align:center;border: 0px solid transparent;">
+                                              <p>
+                                                <hr/>
+                                              </p>
+                                                <b><t t-esc="o.employee_id.name"/></b><br/>
+                                                Nombre y firma<br/>
+                                            </td>
+                                          </tr>
+                                        </table>
+                                    </center>
+
+                                </t>
+                            </div>
+
+                            <!-- CARTA DE COMPROMISO DE REGLAMENTO INTERIOR DE TRABAJO -->
+                            <div id="dnk_compromiso_reglamento_interno">
+                                <t t-if="o.x_dnk_type == 'Determinado'">
+                                    <p style="page-break-after:always;"/>
+                                    <div style="background-color:transparent;">
+                                      <center><h3>CARTA COMPROMISO DE REGLAMENTO INTERIOR DE TRABAJO</h3></center>
+
+                                      <br/><br/><br/>
+                                      <p style="text-align:right;"><t t-if="o.employee_id.address_id" t-esc="o.employee_id.address_id.l10n_mx_edi_locality"/><span t-if="not o.employee_id.address_id.l10n_mx_edi_locality" style="color:#FF0000">employee_id.address_id.l10n_mx_edi_locality</span>, <t t-if="o.employee_id.address_id" t-esc="o.employee_id.address_id.state_id.name"/><br/>
+                                      <t t-esc="current_date"/></p>
+                                    </div>
+                                    <br/><br/>
+                                    <div class="row" id="contract_declarations">
+                                    </div>
+                                    <p>Yo, <b><t t-esc="o.employee_id.name"/></b> manifiesto mi compromiso de respetar el  <b>Reglamento Interior de Trabajo</b> de <b><t t-esc="o.employee_id.company_id.name"/></b> empresa parte del GRUPO DENKER, el cual he leído íntegramente, asimismo hago constar que se me entregó un ejemplar de dicho <b>Reglamento Interior de Trabajo</b>.</p>
+
+                                    <p>Como colaborador de <b><t t-esc="o.employee_id.company_id.name"/></b> haré lo necesario para ser un ejemplo del  <b>Reglamento Interior de Trabajo</b> a través de mi conducta diaria.</p>
+
+                                    <br/><br/><br/>
+                                    <center><p>Atentamente</p></center>
+
+                                    <br/><br/><br/>
+                                    <center>
+                                    <table class="table_invisible" style="width:40%;border: 0px solid transparent;" cellpadding="20">
+                                        <tr style="width:100%;border: 0px solid transparent;background-color:transparent;">
+                                        <td style="width:100%;text-align:center;border: 0px solid transparent;">
+                                            <p>
+                                            <hr/>
+                                            </p>
+                                            <b><t t-esc="o.employee_id.name"/></b><br/>
+                                            Nombre y firma<br/>
+                                        </td>
+                                        </tr>
+                                    </table>
+                                    </center>
+
+                                </t>
+                            </div>
+
+                            <!-- CONTRATO DE INDETERMINADO -->
+                            <div id="dnk_contrato_indeterminado">
+                                <t t-if="o.x_dnk_type == 'Indeterminado'">
+                                    <p style="page-break-after:always;"/>
+                                    <div class="row" id="contract_header">
+                                    </div>
+                                    <p>CONTRATO INDIVIDUAL DE TRABAJO POR <b>TIEMPO INDETERMINADO</b> QUE CELEBRAN, POR UNA PARTE LA EMPRESA <b><t t-esc="o.employee_id.company_id.name.upper()"/></b>, A TRAVÉS DE SU REPRESENTANTE LEGAL <b><t t-if="o.employee_id.company_id.dnk_legal_representative" t-esc="o.employee_id.company_id.dnk_legal_representative.name.upper()"/></b>, A QUIEN EN LO SUCESIVO SE LES DENOMINARÁ <b>“EL PATRÓN”</b> Y POR LA OTRA PARTE <b><t t-esc="o.employee_id.name.upper()"/></b>, A QUIEN EN LO SUBSECUENTE SE LE IDENTIFICARÁ COMO <b>“EL (LA) TRABAJADOR (A)”</b>; BAJO EL TENOR DE LAS SIGUIENTES:</p>
+
+
+                                    <div class="row" id="contract_declarations">
+                                      <p class="titlebar">
+                                          D  E  C  L  A  R  A  C  I  O  N  E  S
+                                      </p>
+                                    </div>
+                                    <p>Declara <b>“EL PATRÓN”</b> que:</p>
+
+                                    <ol type="I">
+                                        <li>Es una persona jurídica, creada conforme se estipula en la escritura pública número  <b><t t-if="o.employee_id.company_id.dnk_deed_number" t-esc="o.employee_id.company_id.dnk_deed_number"/></b>, de fecha <b><t t-if="o.employee_id.company_id.dnk_deed_date_text" t-esc="o.employee_id.company_id.dnk_deed_date_text"/></b>, pasada ante la fe del Licenciado <t t-esc="o.employee_id.company_id.dnk_public_notary_name"/>, notario público número <t t-esc="o.employee_id.company_id.dnk_public_notary_number"/>, de <t t-esc="o.employee_id.company_id.dnk_public_notary_municipality"/>, <t t-esc="o.employee_id.company_id.dnk_public_notary_state_id.name"/>, con capacidad para contratar y obligarse en términos del presente contrato.</li>
+                                        <li>Tiene por actividad: <t t-esc="o.employee_id.company_id.dnk_line_of_business"/>.</li>
+                                        <li>Cuenta con Registro Federal de Contribuyentes clave <b><t t-if="o.employee_id.company_id.vat" t-esc="o.employee_id.company_id.vat"/></b>.</li>
+                                        <li>Tiene su domicilio en la finca en <b><t t-esc="current_company_address"/></b>.</li>
+                                        <li>Su representante legal <b><t t-if="o.employee_id.company_id.dnk_legal_representative" t-esc="o.employee_id.company_id.dnk_legal_representative.name"/></b>, tiene las facultades necesarias y suficientes para comparecer a este acto, facultades de representación que manifiesta bajo protesta de decir verdad, que no le han sido limitadas, modificadas o revocadas.</li>
+                                    </ol>
+
+                                    <p>Declara <b>“EL (LA) TRABAJADOR (A)”</b> que:</p>
+
+                                    <ol type="I">
+                                        <li>Es mexicana (o) por nacimiento, <b><t t-esc="{False: False, 'male': 'Masculino', 'female': 'Femenino'}[o.employee_id.gender]"/></b>, cuenta con <b><t t-if="o.employee_id.edad" t-esc="o.employee_id.edad"/></b> años de edad, a la fecha de suscripción de éste contrato, tiene su domicilio particular en <b><t t-if="o.employee_id.address_home_id" t-esc="employee_address"/></b>.</li>
+                                        <li>Cuenta con registro ante el Instituto Mexicano del Seguro Social número  <b><t t-if="o.employee_id.segurosocial" t-esc="o.employee_id.segurosocial"/></b>, CURP clave <b><t t-if="o.employee_id.curp" t-esc="o.employee_id.curp"/></b> y con Registro Federal de Contribuyentes clave <b><t t-if="o.employee_id.rfc" t-esc="o.employee_id.rfc"/></b>.</li>
+                                    </ol>
+
+                                    <p>Declaran ambos contratantes que han decidido suscribir el presente contrato, libres de toda coacción, dolo o mala fe, y que lo realizan a su entera satisfacción y conocimiento, al tenor de las siguientes:</p>
+
+
+                                    <div class="row" id="contract_declarations">
+                                      <p class="titlebar">
+                                          C  L  Á  U  S  U  L  A  S
+                                      </p>
+                                    </div>
+                                    <p><b>PRIMERA.-</b> Se denominará en lo sucesivo a <b><t t-esc="o.employee_id.company_id.name"/></b>, como <b>"EL PATRÓN"</b>; a <b><t t-esc="o.employee_id.name"/></b> como <b>"EL (LA) TRABAJADOR (A)"</b>; a la Ley Federal del Trabajo como <b>"LA LEY"</b>, al referirse al presente documento como <b>"EL CONTRATO"</b>, y a los que suscriben como <b>"LAS PARTES"</b>.</p>
+
+                                    <p><b>SEGUNDA.-</b> <b>“EL EMPLEADO (A)”</b> manifiesta expresamente que para demostrar los conocimientos, capacidad, aptitudes y facultades que posee para realizar el trabajo para el que fue contratado, requiere de un periodo máximo de 30 días, por lo que si concluido éste o con anterioridad al mismo, no le fue posible demostrar lo anterior, o bien, demuestre engaño en los certificados y referencias presentados, <b>"LA EMPRESA"</b> le rescindirá el presente contrato sin responsabilidad de ninguna índole para <b>"LA EMPRESA"</b>.</p>
+
+                                    <p><b>TERCERA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> se obliga a prestar sus servicios subordinados como <b>“<t t-if="o.employee_id.job_id" t-esc="o.employee_id.job_id.name"/><span t-if="not o.employee_id.job_id" style="color:#FF0000">employee_id.job_id</span>”</b>, bajo la dirección y dependencia de <b>“EL PATRÓN”</b>, teniendo que cumplir con las actividades que se especifiquen en el perfil de puestos que se adjunta al presente contrato como  <b>“ANEXO UNO”</b>, mismo que, es parte integrante del presente contrato por la descripción del puesto requerido en el cual se especifican las actividades inherentes al puesto, a realizar durante la jornada de trabajo y bajo su más estricta responsabilidad.</p>
+
+
+                                    <p><b>“EL (LA) TRABAJADOR (A)”</b> se obliga a realizar su trabajo con una eficiencia del 100%, esto es con la intensidad, cuidado y esmero apropiados en la forma, tiempo y lugar convenidos, absteniéndose de cualquier acto y omisión que implique o cause la suspensión o deficiencia de dicho servicio.</p>
+
+                                    <p>La baja de eficiencia, el incumplimiento total o parcial de las órdenes dadas por <b>"EL PATRÓN"</b> o la mala presentación de los resultados del trabajo serán consideradas como un acto de desobediencia en los términos de la Fracción XI del artículo 47 de la Ley Federal del Trabajo, independientemente de la falta de probidad en que incurriera <b>"EL (LA) TRABAJADOR (A)"</b>.</p>
+
+                                    <p>Así mismo, <b>“EL (LA) TRABAJADOR (A)”</b> se obliga a desempeñar cualquier otra actividad conexa o relacionada que le encomiende <b>“EL PATRÓN”</b>, que sea compatible a sus conocimientos, capacidad o aptitudes, debiendo acatar además todas las disposiciones o instrucciones de carácter administrativo o de organización que <b>“EL PATRÓN”</b> llegue a dictar tanto de manera directa a <b>“EL (LA) TRABAJADOR (A)”</b>. Dichas labores deberá desarrollarlas dentro del centro de trabajo, domicilio, ciudad o lugar que <b>“EL PATRÓN”</b> le señale, quedando este facultado para cambiar el lugar de prestación del servicio en cualquier tiempo de acuerdo a sus necesidades.</p>
+
+                                    <p><b>CUARTA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> deberá desempeñar sus actividades en cualesquiera de las instalaciones en las que <b>“EL PATRÓN”</b> tiene su domicilio, de conformidad a las necesidades y requerimientos establecidos por la carga laboral, para lo cual <b>“EL PATRÓN”</b> deberá dar aviso por escrito por lo menos con 24 horas de anticipación a la fecha en que se determine el cambio de adscripción, plantel y funciones.</p>
+
+                                    <p><b>QUINTA.-</b> Conforme lo disponen los artículos del 59 y demás relativos de la ley Federal del Trabajo, la jornada de trabajo en que prestará los servicios <b>“EL (LA) TRABAJADOR (A)”</b>, será de <b><t t-if="o.employee_id.resource_calendar_id" t-esc="o.employee_id.resource_calendar_id.name"/><span t-if="not o.employee_id.resource_calendar_id" style="color:#FF0000">employee_id.resource_calendar_id</span></b>.</p>
+                                    <p><b>“EL (LA) TRABAJADOR (A)”</b> tendrá derecho a <b><t t-if="o.employee_id.resource_calendar_id" t-esc="o.employee_id.resource_calendar_id.dnk_tiempo_comida"/><span t-if="not o.employee_id.resource_calendar_id.dnk_tiempo_comida" style="color:#FF0000">employee_id.resource_calendar_id.dnk_tiempo_comida</span></b> de descanso, para el libre reposo o comida, en el que saldrá de las instalaciones de <b>“EL PATRÓN”</b>. El momento de la interrupción de la jornada laboral, será aquel que se fije de forma previa, debiendo ser registrada la salida y su posterior ingreso en las tarjetas y/o registro de asistencia.</p>
+
+                                    <p><b>“EL (LA) TRABAJADOR (A)”</b> sin excepción alguna, deberá estar en sus lugares de operación e iniciar sus laborales exactamente en la hora señalada en el párrafo anterior, sin embargo se dará una tolerancia de <t t-if="o.periodicidad_pago in ('02')" t-esc="15"/> <t t-if="o.periodicidad_pago in ('03', '04', '05')" t-esc="30"/> <span t-if="not o.periodicidad_pago" style="color:#FF0000">0000</span> minutos, para casos excepcionales y no como derecho permanente. Al personal que llegue después de esta hora es potestativo para la empresa permitir o no su ingreso, de no ser admitido se le anotará la correspondiente falta de asistencia injustificada, para todos los efectos legales a que haya lugar.</p>
+
+                                    <p><b>SEXTA.-</b> El horario que se fije a cualquier trabajador podrá ser variado, siendo susceptible de modificación, reservándose <b>“EL PATRÓN”</b> la facultad discrecional de cambiarlo de acuerdo a sus necesidades, para lo cual deberá notificar a <b>“EL (LA) TRABAJADOR (A)”</b> anticipadamente con un mínimo de 24 horas. Asimismo, el día o los días de descanso semanal podrán ser modificados según sus necesidades de trabajo.</p>
+
+                                    <p>La duración de la jornada de trabajo para el personal, dada la naturaleza del trabajo, podrá ser abierto, sin que exceda semanalmente la jornada legal de trabajo, prevista por la Ley la cual es de 48 horas a la semana y conforme a lo dispuesto en las modalidades establecidas en el Título Tercero, Capítulo II de La Ley, la jornada podrá ser distribuida de acuerdo a las necesidades de <b>“EL PATRÓN”</b>.</p>
+
+                                    <p><b>SÉPTIMA.-</b> En ningún caso <b>“EL (LA) TRABAJADOR (A)”</b> podrá laborar tiempo extraordinario, sino previa solicitud y autorización por escrito, que <b>“EL PATRÓN”</b> expida a su nombre, y señale bajo qué circunstancias hace indispensable su labor fuera del horario ordinario de labores.</p>
+
+                                    <p><b>OCTAVA.-</b> Son días de descanso obligatorio, los días domingos de todo el año, así como los establecidos por el artículo 74 de la Ley Federal del Trabajo. Por lo que en ningún caso <b>“EL (LA) TRABAJADOR (A)”</b> podrá laborar estos días, sino previa solicitud y autorización por escrito que <b>“EL PATRÓN”</b> expida a su nombre, y señale bajo qué circunstancias hace indispensable su labor.</p>
+
+                                    <p><b>NOVENA.-</b> El salario diario, que <b>“EL PATRÓN”</b> pagará a <b>“EL (LA) TRABAJADOR (A)”</b> será en los siguientes términos:</p>
+
+                                    <table class="table_bordered" style="width: 100%;">
+                                        <tr style="background-color: #d9d9d9;">
+                                            <th style="width: 30%;text-align:center;">SALARIO DIARIO</th>
+                                            <th style="text-align:center;">CANTIDAD CON LETRA</th>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: center"><span t-field="o.sueldo_diario" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.company_currency_id}"/><span t-if="not o.sueldo_diario" style="color:#FF0000">sueldo_diario</span></td>
+                                            <td style="text-align: center">(<t t-if="o.sueldo_diario_palabras" t-esc="o.sueldo_diario_palabras.upper()"/>)<span t-if="not o.sueldo_diario_palabras" style="color:#FF0000">sueldo_diario_palabras</span></td>
+                                        </tr>
+                                    </table>
+
+                                    <p>El salario será cubierto cada <b><t t-esc="o.ciclo_pago"/><span t-if="not o.ciclo_pago" style="color:#FF0000">ciclo_pago</span></b>, en efectivo o transferencia bancaria a una cuenta de <b>EL (LA) TRABAJADOR (A)</b>, en moneda nacional del cuño corriente.</p>
+
+                                    <p>Del salario anterior <b>"EL PATRÓN"</b> hará por cuenta de <b>"EL (LA) TRABAJADOR (A)"</b> las deducciones legales correspondientes, particularmente las que se refieren a impuestos sobre la Renta, Seguro Social, cuota sindical, etcétera. Asimismo, se harán las aportaciones al IMSS, INFONAVIT, SAR y Hacienda en los términos de las legislaciones respectivas.</p>
+
+                                    <p><b>DÉCIMA.-</b> <b>"EL (LA) TRABAJADOR (A)"</b> deberá cada vez que le sea pagado su salario, extender a favor de <b>"EL PATRÓN"</b> el recibo correspondiente en los documentos que el mismo le presente para tales fines.</p>
+
+                                    <p>En caso de pago en efectivo <b>"EL (LA) TRABAJADOR (A)"</b> recibirá el pago de su salario en el domicilio del lugar de la prestación de sus servicios.</p>
+
+                                    <p><b>DÉCIMA PRIMERA.-</b> <b>"EL (LA) TRABAJADOR (A)"</b> tendrá derecho por cada seis días de labores a descansar uno con el pago de salario diario correspondiente. Quedando establecido preferentemente como día de descanso semanal el día domingo de cada semana, pudiendo ser cambiado el mismo.</p>
+
+                                    <p><b>DÉCIMA SEGUNDA.-</b> Cuando <b>"EL (LA) TRABAJADOR (A)"</b> por razones administrativas tenga que laborar el día domingo, <b>"EL PATRÓN"</b> le pagará, además de su salario, 25% (veinticinco por ciento) como prima dominical sobre el salario ordinario devengado. Independientemente del día de descanso semanal, al que tendrá derecho.</p>
+
+                                    <p><b>DÉCIMA TERCERA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b>, después de un año de servicios continuos, disfrutará de un período anual de vacaciones pagadas, de doce días laborables, que aumentará en dos días laborables, hasta llegar a veinte, por cada año subsiguiente de servicios. Después del quinto año, el período de vacaciones aumentará en dos días por cada cinco años de servicios. Los salarios correspondientes a las vacaciones se cubrirán con una prima del veinticinco por ciento sobre los mismos.</p>
+
+                                    <p><b>DÉCIMA CUARTA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> percibirá un aguinaldo anual, que deberá pagarse antes del veinte de diciembre, equivalente a 15 días de salario. Cuando no haya cumplido el año de servicios, tendrá derecho a que se le pague en proporción al tiempo trabajado.</p>
+
+                                    <p><b>DÉCIMA QUINTA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> tendrá derecho a recibir de <b>“EL PATRÓN”</b>, el equivalente al 10% de premio por puntualidad, del salario diario que perciba. Para que <b>“EL (LA) TRABAJADOR (A)”</b>, se haga acreedor a este premio, no deberá contar con ningún retardo, durante el periodo semanal, en caso contrario se perderá de este derecho.</p>
+
+                                    <p><b>DÉCIMA SEXTA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> tendrá derecho a recibir por parte de <b>“EL PATRÓN”</b>, el 10% por premio de asistencia, del salario diario que perciba. Se hará acreedor a este premio, siempre que no se incurra en ninguna falta injustificada. De lo contrario no se tendrá el derecho a exigir este premio.</p>
+
+                                    <p><b>DÉCIMA SÉPTIMA.-</b> <b>EL PATRÓN”</b> se compromete a entregar una ayuda a <b>“EL (LA) TRABAJADOR (A)”</b>, por la cantidad de <b><span t-field="o.total_vales_despensa" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.company_currency_id}"/><span t-if="not o.total_vales_despensa" style="color:#FF0000">total_vales_despensa</span></b>, (<b><t t-esc="o.total_vales_despensa_palabras"/><span t-if="not o.total_vales_despensa_palabras" style="color:#FF0000">total_vales_despensa_palabras</span></b>), por <b><t t-esc="o.ciclo_pago"/></b> trabajada, por concepto de despensa.</p>
+
+                                    <p><b>DÉCIMA OCTAVA.-</b> Los salarios correspondientes a las vacaciones y aguinaldo, se pagarán tomando como salario base el promedio que resulte de los salarios recibidos conforme a lo dispuesto en el artículo 89 de la Ley Federal del Trabajo.</p>
+
+                                    <p><b>DÉCIMA NOVENA.-</b> <b>"EL (LA) TRABAJADOR (A)"</b> acepta someterse a los exámenes médicos que periódicamente establezca <b>"EL PATRÓN"</b> en los términos del artículo 134, fracción X de <b>"LA LEY"</b>, a fin de mantener en forma óptima sus facultades físicas e intelectuales, para el mejor desempeño de sus funciones. El médico que practique los reconocimientos será designado y retribuido por <b>"EL PATRÓN"</b>.</p>
+
+                                    <p><b>VIGÉSIMA.-</b> <b>"EL (LA) TRABAJADOR (A)"</b> deberá integrarse a los Planes, Programas y Comisiones Mixtas de Capacitación, Adiestramiento y Productividad, así como a los de Seguridad e Higiene en el Trabajo que tiene constituidos <b>"EL PATRÓN"</b>, tomando parte activa dentro de los mismos según los cursos establecidos y medidas preventivas de riesgos de trabajo.</p>
+
+                                    <p><b>VIGÉSIMA PRIMERA.-</b> Queda prohibido a <b>"EL (LA) TRABAJADOR (A)"</b> disponer para su beneficio particular cualquiera de los utensilios, equipo, herramientas, muebles o enseres que utilice en la relación de trabajo, ya que únicamente, podrá disponer de los mismos para la prestación del servicio contratado.</p>
+
+                                    <p><b>VIGÉSIMA SEGUNDA.-</b> Queda convenida en forma expresa entre <b>“LAS PARTES”</b>, que toda la documentación e información que le sea proporcionado o que llegue a tener <b>"EL (LA) TRABAJADOR (A)"</b> para el desempeño de su trabajo materia de este contrato, se considera su contenido como confidencial, por lo tanto <b>“EL (LA) TRABAJADOR (A)”</b> se obliga a mantener en estricta confidencialidad y reserva todos los documentos e información que reciba de <b>“EL PATRÓN”</b>, así como toda información con respecto a su actividad profesional o personal, por lo que se compromete a no reproducir, copiar, divulgar, difundir, publicar, circular, comunicar y/o transmitir cualquier tipo de información que tenga por virtud de las labores que realiza a terceros, sea de forma directa o indirecta, total o parcial, sin el consentimiento previo y por escrito de <b>“EL PATRÓN”</b>.</p>
+
+                                    <p><b>VIGÉSIMA TERCERA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> en este acto se hace conocedora de cuales son causales de rescisión adicionales a las señaladas por el artículo 47 de la Ley Federal del Trabajo. Son causales de rescisión sin responsabilidad para <b>“EL PATRÓN”</b> las siguientes:</p>
+
+                                    <ol type="I">
+                                        <li>Conducta inadecuada que infrinja las reglas de disciplina de <b>“EL PATRÓN”</b>.</li>
+                                        <li>No mostrar respeto hacia al demás personal que labora para <b>“EL PATRÓN”</b>.</li>
+                                        <li>Cometer actos inmorales o de hostigamiento y/o acoso sexual contra cualquier persona en el establecimiento o lugar de trabajo.</li>
+                                        <li>Extraer o utilizar en forma inadecuada herramienta y material de trabajo propiedad de <b>“EL PATRÓN”</b>.</li>
+                                        <li>Propiciar comentarios que desprestigien al <b>“EL PATRÓN”</b>.</li>
+                                        <li>Acumular tres actas administrativas por faltas al Reglamento Interno de Trabajo.</li>
+                                        <li>Reproducir, copiar, divulgar, difundir, publicar, circular, comunicar y/o transmitir cualquier tipo de información que tenga por virtud de las labores que realiza a terceros, sea de forma directa o indirecta, total o parcial, de la empresa, o de los clientes de ésta, esto incluye cualquier actividad o función que <b>“EL (LA) TRABAJADOR (A)”</b> realice.</li>
+                                    </ol>
+
+                                    <p><b>VIGÉSIMA CUARTA.-</b> Ambas partes convienen que para el caso de cualquier diferencia o controversia con la interpretación del presente contrato, se someten a la jurisdicción de las autoridades laborales de la ciudad de Guadalajara, Jalisco, renunciando a cualquier fuero de su domicilio presente o futuro.</p>
+
+                                    <p><b>VIGÉSIMA QUINTA.-</b> <b>"EL (LA) TRABAJADOR (A)"</b>, deberá dar cumplimiento a las disposiciones contenidas en el artículo 134 de <b>"LA LEY"</b> y que corresponden a las obligaciones de los trabajadores en el desempeño de sus labores al servicio de <b>"EL PATRÓN"</b>.</p>
+
+                                    <p><b>VIGÉSIMA SEXTA.-</b> Para todo lo no previsto en el presente <b>“CONTRATO”</b> se estará a lo contenido en el Contrato Colectivo de Trabajo con que cuente <b>"EL PATRÓN"</b> o bien lo prescrito por <b>"LA LEY"</b>, así como el Reglamento Interior de Trabajo.</p>
+
+                                    <p><b>VIGÉSIMA SÉPTIMA.-</b> <b>"LAS PARTES"</b> reconocen como fecha de antigüedad o de iniciación de prestación de servicio de <b>"EL (LA) TRABAJADOR (A)"</b> a partir del día <b><span t-att-class="fecha_ingreso_actual_class" t-esc="fecha_ingreso_actual"/></b>.</p>
+
+                                    <p><b>LEIDO ESTE DOCUMENTO POR AMBAS PARTES Y SABEDORES DE LAS OBLIGACIONES QUE EL PRESENTE CONTRATO Y LA LEY IMPONEN, LO FIRMAN POR COMÚN ACUERDO EN <t t-if="o.employee_id.address_id" t-esc="o.employee_id.address_id.l10n_mx_edi_locality.upper()"/><span t-if="not o.employee_id.address_id" style="color:#FF0000">employee_id.address_id.l10n_mx_edi_locality</span>, <t t-if="o.employee_id.address_id" t-esc="o.employee_id.address_id.state_id.name.upper()"/>, A <span t-att-class="fecha_ingreso_actual_class" t-esc="fecha_ingreso_actual"/> QUEDANDO UN EJEMPLAR EN PODER DE EL (LA) TRABAJADOR (A) Y UN EJEMPLAR EN PODER DEL PATRÓN.</b></p>
+
+                                    <br/><br/><br/>
+                                    <center>
+                                        <table class="table_invisible" style="width:80%;border: 0px solid transparent;" cellpadding="20">
+                                            <tr style="width:100%;border: 0px solid transparent;background-color:transparent;">
+                                            <th style="width:30%;text-align:center;border: 0px solid transparent;">
+                                                <p>
+                                                <hr/>
+                                                </p>
+                                                <t t-if="o.employee_id.company_id.dnk_legal_representative" t-esc="o.employee_id.company_id.dnk_legal_representative.name"/><br/>
+                                                “REPRESENTANTE LEGAL DE EL PATRÓN”<br/><br/>
+                                            </th>
+                                            <th style="width:20%;text-align:center;border: 0px solid transparent;">
+                                            </th>
+                                            <th style="width:30%;text-align:center;border: 0px solid transparent;">
+                                                <p>
+                                                <hr/>
+                                                </p>
+                                                <t t-esc="o.employee_id.name"/><br/>
+                                                “EL (LA) TRABAJADOR (A)”<br/><br/>
+                                            </th>
+                                            </tr>
+                                        </table>
+                                    </center>
+                                    <br/>
+                                    <p style="font-size:13px;">La presente hoja de firmas pertenece al contrato individual de trabajo celebrado entre <b><t t-esc="o.employee_id.company_id.name"/></b> y <b><t t-esc="o.employee_id.name"/></b>, con fecha <b><span t-att-class="fecha_ingreso_actual_class" t-esc="fecha_ingreso_actual"/></b>.</p>
+
+                                </t>
+                            </div>
+
+                            <!-- CONTRATO SUSTITUCION PATRONAL -->
+                            <div id="dnk_contrato_indeterminado">
+                                <t t-if="o.x_dnk_type == 'Sustitución Patronal'">
+                                    <p style="page-break-after:always;"/>
+                                    <p class="titlebar">
+                                         S U S T I T U C I Ó N   P A T R O N A L
+                                    </p>
+
+                                    <p><b><t t-esc="o.employee_id.company_id.name"/></b> Sociedad legalmente constituida y representada en este acto por el C. <b><t t-if="o.employee_id.company_id.dnk_legal_representative" t-esc="o.employee_id.company_id.dnk_legal_representative.name"/></b> está de acuerdo y así lo manifiesta en estos momentos, de hacerse de los servicios que presta el C. <b><t t-esc="o.employee_id.name"/></b>, que hasta el día de hoy laboraba aún a favor de la empresa <b><t t-esc="o.employee_id.anterior_company_id.name"/></b>, sociedad legalmente constituida y representada en este acto por <b><t t-if="o.employee_id.anterior_company_id.dnk_legal_representative" t-esc="o.employee_id.anterior_company_id.dnk_legal_representative.name"/></b>, compañía con la que ha laborado desde el <b><span t-att-class="anterior_fecha_ingreso_class" t-esc="anterior_fecha_ingreso"/></b>. de manera ininterrumpida y hasta el día de hoy.</p>
+
+                                    <p>Así mismo es voluntad de <b><t t-esc="o.employee_id.company_id.name"/></b>., y por así convenir a sus intereses, que el trabajador antes mencionado preste sus servicios en esta empresa a partir del día <b><span t-att-class="fecha_ingreso_actual_class" t-esc="fecha_ingreso_actual"/></b>, dando continuidad a la relación laboral de conformidad al artículo 8, 20 y 134 fracción III de la Ley Federal del Trabajo para lo cual se acuerda lo siguiente:</p>
+
+                                    <ol type="1">
+                                    <li>RECONOCER AL C. <b><t t-esc="o.employee_id.name"/></b>, LA ANTIGÜEDAD DE QUE GOZABA CON LA ANTERIOR EMPRESA <b><t t-esc="o.employee_id.anterior_company_id.name"/><span t-if="not o.employee_id.anterior_company_id.name" style="color:#FF0000">employee_id.anterior_company_id.name</span></b>, CON QUIEN LABORO DESDE EL <b><span t-att-class="anterior_fecha_ingreso_class" t-esc="anterior_fecha_ingreso"/></b> Y HASTA <b><span t-att-class="anterior_fecha_baja_class" t-esc="anterior_fecha_baja"/></b>, HACIENDOSE LA EMPRESA <b><t t-esc="o.employee_id.company_id.name"/></b>., RESPONSABLE Y MANIFESTANDO SU VOLUNTAD DE RECONOCER A DICHO TRABAJADOR LA ANTIGÜEDAD QUE OBTUVO CON LA ANTERIOR EMPRESA.<br/><br/></li>
+
+                                    <li>A PARTIR DE LA FECHA DE FIRMA DE LA PRESENTE LA EMPRESA <b><t t-esc="o.employee_id.company_id.name"/></b>., SE HARA RESPONSABLE TANTO DE LA ANTIGÜEDAD ANTERIOR COMO DE LA NUEVA ANTIGÜEDAD QUE COMENZARA A CORRER A PARTIR DEL DÍA DE <b><span t-att-class="fecha_ingreso_actual_class" t-esc="fecha_ingreso_actual"/></b>.<br/><br/></li>
+
+                                    <li>LA EMPRESA <b><t t-esc="o.employee_id.company_id.name"/></b>, SE OBLIGA A GARANTIZAR EL SUELDO, ASÍ COMO LAS PRESTACIONES A QUE TIENE DERECHO Y SUS CONDICIONES LABORALES DE QUE GOZABA CON LA ANTERIOR EMPRESA A PARTIR DE QUE PASE A FORMAR PARTE DE ESTA EMPRESA.<br/><br/></li>
+
+                                    <li>LA EMPRESA <b><t t-esc="o.employee_id.company_id.name"/></b>, SE OBLIGA A GARANTIZAR AL C. <b><t t-esc="o.employee_id.name"/></b>, CUANDO MENOS EL PUESTO QUE OCUPABA CON LA ANTERIOR EMPRESA.<br/><br/></li>
+                                    </ol>
+
+                                    <p>El anterior reconocimiento de antigüedad se firma en esta ciudad <t t-if="o.employee_id.address_id" t-esc="o.employee_id.address_id.l10n_mx_edi_locality.upper()"/><span t-if="not o.employee_id.address_id" style="color:#FF0000">employee_id.address_id</span>, <t t-if="o.employee_id.address_id" t-esc="o.employee_id.address_id.state_id.name.upper()"/>, con fecha <b><t t-esc="current_date"/></b>, manifestando ambas partes que para su celebración no existe dolo, mala fe o coacción para su firma y tiene su fundamento en los numerales 158, 159, 160, 161 y 162 de la Ley Federal del Trabajo.</p>
+
+                                    <br/><br/><br/>
+                                    <center>
+                                    <table class="table_invisible" style="width:40%;border: 0px solid transparent;" cellpadding="20">
+                                        <tr style="width:100%;border: 0px solid transparent;background-color:transparent;">
+                                        <th style="width:100%;text-align:center;border: 0px solid transparent;">
+                                            <p>
+                                            <hr/>
+                                            </p>
+                                            <t t-esc="o.employee_id.company_id.name"/><br/>
+                                            <t t-if="o.employee_id.company_id.dnk_legal_representative" t-esc="o.employee_id.company_id.dnk_legal_representative.name"/><br/>
+                                            REPRESENTANTE LEGAL<br/><br/>
+                                        </th>
+                                        </tr>
+                                        <tr style="width:100%;border: 0px solid transparent;background-color:transparent;">
+                                        <th style="width:30%;text-align:center;border: 0px solid transparent;">
+                                            <p>
+                                            <hr/>
+                                            </p>
+                                            <t t-esc="o.employee_id.anterior_company_id.name"/><br/>
+                                            <t t-if="o.employee_id.anterior_company_id.dnk_legal_representative" t-esc="o.employee_id.anterior_company_id.dnk_legal_representative.name"/><br/>
+                                            REPRESENTANTE LEGAL<br/><br/>
+                                        </th>
+                                        </tr>
+                                        <tr style="width:100%;border: 0px solid transparent;background-color:transparent;">
+                                        <th style="width:100%;text-align:center;border: 0px solid transparent;">
+                                            <p>
+                                            <hr/>
+                                            </p>
+                                            <t t-esc="o.employee_id.name"/><br/>
+                                            ENTERADO Y CONFORME<br/><br/>
+                                        </th>
+                                        </tr>
+                                    </table>
+                                    </center>
+
+                                </t>
+                            </div>
+
+                            <!-- SEGMENTO DE BENEFICIARIOS -->
+                            <div id="dnk_segmento_beneficiario">
+                                <p style="page-break-after:always;"/>
+
+                                <table class="table_bordered" style="width: 100%;">
+                                    <tr style="background-color: #d9d9d9;">
+                                        <th style="text-align:center;">
+                                            <img t-if="o.employee_id.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(o.employee_id.company_id.logo)" style="max-height: 45px;"/>
+                                        </th>
+                                        <th style="text-align:center;">
+                                            CONSENTIMIENTO PARA DESIGNAR BENIFICIARIO EN CASO DE FALLECIMIENTO
+                                        </th>
+                                    </tr>
+                                </table>
+
+                                <br/>
+                                <table class="table_bordered" style="width: 100%;">
+                                    <tr style="background-color: #d9d9d9;">
+                                        <th style="text-align:center;">DATOS DEL EMPLEADO</th>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <table class="" style="width: 100%;">
+                                    <tr>
+                                        <td colspan="1" style="width: 25%; background-color: #d9d9d9; margin-left: 10px;"><div style="margin-left: 5px;">NOMBRE COMPLETO:</div></td>
+                                        <td colspan="3"><div style="margin-left: 5px;"><t t-esc="o.employee_id.name.upper()"/></div></td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <table class="" style="width: 100%;">
+                                    <tr>
+                                        <td colspan="1" style="width: 25%; background-color: #d9d9d9;"><div style="margin-left: 5px;">NACIONALIDAD:</div></td>
+                                        <td colspan="3"><div style="margin-left: 5px;"><t t-esc="o.employee_id.country_id.name"/></div></td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <table class="" style="width: 100%;">
+                                    <tr>
+                                        <td style="width: 25%; background-color: #d9d9d9;"><div style="margin-left: 5px;">RFC:</div></td>
+                                        <td style="width: 25%;"><div style="margin-left: 5px;"><span t-esc="o.employee_id.rfc"/></div></td>
+                                        <td style="width: 25%; background-color: #d9d9d9;"><div style="margin-left: 5px;">FECHA DE NACIMIENTO:</div></td>
+                                        <td style="width: 25%;"><div style="margin-left: 5px;"><span t-esc="fecha_nacimiento"/></div></td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <table class="" style="width: 100%;">
+                                    <tr>
+                                        <td style="width: 25%; background-color: #d9d9d9;"><div style="margin-left: 5px;">SEXO:</div></td>
+                                        <td style="width: 25%;">
+                                            <div style="margin-left: 5px;"><t t-esc="{False: False, 'male': 'Masculino', 'female': 'Femenino', 'other': 'Otro'}[o.employee_id.gender]"/></div>
+                                        </td>
+                                        <td style="width: 25%; background-color: #d9d9d9;"><div style="margin-left: 5px;">ESTADO CIVIL:</div></td>
+                                        <td style="width: 25%;">
+                                            <div style="margin-left: 5px;">
+                                                <t t-esc="{False: False, 'single': 'Soltero(a)', 'married': 'Casado(a)', 'cohabitant': 'Cohabitante Legal', 'widower': 'Viudo(a)', 'divorced': 'Divorciado'}[o.employee_id.marital]"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <table class="" style="width: 100%;">
+                                    <tr>
+                                        <td colspan="1" style="width: 25%; background-color: #d9d9d9;"><div style="margin-left: 5px;">DOMICILIO:</div></td>
+                                        <td colspan="3"><div style="margin-left: 5px;"><span t-esc="employee_address"/></div></td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <table class="" style="width: 100%;">
+                                    <tr>
+                                        <td style="width: 25%; background-color: #d9d9d9;"><div style="margin-left: 5px;">FECHA DE INGRESO:</div></td>
+                                        <td style="width: 25%;"><div style="margin-left: 5px;"><span t-esc="fecha_ingreso_actual"/></div></td>
+                                        <td style="width: 20%; background-color: #d9d9d9;"><div style="margin-left: 5px;">EMPRESA:</div></td>
+                                        <td style="width: 30%;"><div style="margin-left: 5px;"><t t-esc="o.employee_id.company_id.name"/></div></td>
+                                    </tr>
+                                </table>
+                                <br/>
+
+                                <table class="table_bordered" style="width: 100%;">
+                                    <tr style="background-color: #d9d9d9;">
+                                        <th colspan="3" style="text-align:center;">
+                                            DESIGNACION DE BENEFICIARIOS
+                                        </th>
+                                    </tr>
+                                    <tr style="background-color: #d9d9d9;">
+                                        <td style="text-align:center;">NOMBRE COMPLETO </td>
+                                        <td style="text-align:center;"> PARENTESCO </td>
+                                        <td style="text-align:center;"> PORCENTAJE </td>
+                                    </tr>
+                                    <t t-foreach="o.employee_id.beneficiary_ids" t-as="b">
+                                        <tr style="background-color:transparent;">
+                                            <td><div style="margin-left: 5px;"><span t-esc="b_index + 1"/>.- <span t-field="b.name"/></div></td>
+                                            <td><div style="margin-left: 5px;"><span t-field="b.relationship"/></div></td>
+                                            <td><div style="margin-left: 5px;"><span t-field="b.percentage"/></div></td>
+                                        </tr>
+                                    </t>
+                                </table>
+                               <br/>
+                                <table class="table_bordered" style="width: 100%;">
+                                    <tr style="background-color: #d9d9d9;">
+                                        <td>ADVERTENCIA: En el caso de que se desee nombrar beneficiarios a menores de edad, no se debe señalar a un mayor de edad como
+                                            representante de los menores para efectos de que en su representación, cobre la indemnización. Lo anterior porque laslegislaciones civiles previenen
+                                            la forma en que debe designarse tutores, albaceas, representantes de herederos u otros cargos similares y no consideran al contrato de seguro
+                                            como el instrumento adecuado para tales designaciones. La designación que se hiciera de un mayor de edad como representante de menores beneficiarios,
+                                            durante la minoría de edad de ellos, legalmente puede implicar que se nombra beneficiario al mayor de edad, quién en todo caso sólo tendría una obligación
+                                            moral, pues ladesignación que se hace de beneficiarios le concede el derecho incondicionado de disponer de la suma asegurada.</td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <div> <p>
+                                    Declaro bajo protesta de decir verdad, que actúo a nombre y por cuenta propia o con las facultades suficientes que mi representado (a) me ha otorgado; y que los recursos utilizados en este acto comercial provienen de actividades lícitas. Manifiesto que conozco y acepto lo establecido en el
+                                    Aviso de Privacidad de GRUPO DENKER</p>
+                                </div>
+                                <br/><br/><br/>
+                                    <center>
+                                    <table class="table_invisible" style="width:40%;border: 0px solid transparent;" cellpadding="20">
+                                        <tr style="width:100%;border: 0px solid transparent;background-color:transparent;">
+                                        <td style="width:100%;text-align:center;border: 0px solid transparent;">
+                                            <p>
+                                            <hr/>
+                                            </p>
+                                            <b><t t-esc="o.employee_id.name"/></b><br/>
+                                            Firma y Huellas<br/>
+                                        </td>
+                                        </tr>
+                                    </table>
+                                    </center>
+
+                            </div>
+
+                            <!-- SEGMENTO DE CARTA INFONAVIT -->
+                            <div id="dnk_segmento_carta_infonavit">
+                              <t t-if="o.x_dnk_type == 'Determinado'">
+                                <p style="page-break-after:always;"/>
+                                <div style="background-color:transparent;">
+                                  <center><h3></h3></center>
+
+                                  <br/><br/><br/>
+                                  <b><p style="text-align:right;"><t t-if="o.employee_id.address_id" t-esc="o.employee_id.address_id.l10n_mx_edi_locality"/><span t-if="not o.employee_id.address_id.l10n_mx_edi_locality" style="color:#FF0000">employee_id.address_id.l10n_mx_edi_locality</span>, <t t-if="o.employee_id.address_id" t-esc="o.employee_id.address_id.state_id.name"/>
+                                          a <t t-esc="current_date"/></p></b>
+                                </div>
+                                <br/><br/>
+
+                                <b><t t-esc="o.employee_id.company_id.name"/></b><br/>
+                                <b>Departamento de reclutamiento y selección.</b>
+                                <br/><br/>
+                                    Yo, el ciudadano/a <b><t t-esc="o.employee_id.name"/></b> con el número de seguridad social <t t-if="o.employee_id.segurosocial" t-esc="o.employee_id.segurosocial"/> declaro no mantener activo adeudos con el Instituto del Fondo Nacional de la vivienda para los trabajadores (INFONAVIT), por lo cual no es necesario se realice la retención que estipula el art. 42 del &#39;Reglamento de inscripción, pago de aportaciones y entero de descuentos al Instituto del Fondo Nacional de la Vivienda para los Trabajadores&#39; , &quot;cuando el Instituto otorgue crédito de vivienda a un trabajador, lo notificará al patrón o a los patrones de dicho trabajador a través del aviso para retención de descuentos, siendo responsables solidarios del entero de descuentos según el art. 48 &quot;El patrón que omita efectuar los descuentos correspondientes deberá enterar por su cuenta los abonos para la amortización de los créditos respectivos”
+
+                                    <br/> <br/> <br/>
+
+                                    De esta manera, en base a los argumentos anteriores, libero de responsabilidad a la <b><t t-esc="o.employee_id.company_id.name"/></b>, en caso de incumplir con lo comentado en el párrafo anterior, aceptando el descuento en una sola exhibición, respecto a los adeudos con INFONAVIT, en caso de ser publicados por la cedula bimestral correspondiente, aceptando esta situación en base al art. 110 de la LFT fracción III, descuento de pagos para cubrir préstamos provenientes de INFONAVIT.
+
+                                    <br/><br/><br/><br/><br/>
+                                    <center>
+                                        <table class="table_invisible" style="width:40%;border: 0px solid transparent;" cellpadding="20">
+                                          <tr style="width:100%;border: 0px solid transparent;background-color:transparent;">
+                                            <td style="width:100%;text-align:center;border: 0px solid transparent;">
+                                              <p>
+                                                <hr/>
+                                              </p>
+                                                <b><t t-esc="o.employee_id.name"/></b><br/>
+                                                Nombre y firma<br/>
+                                            </td>
+                                          </tr>
+                                        </table>
+                                    </center>
+
+                              </t>
+                            </div>
+
+                            <!-- SEGMENTO DE CARTA FONACOT -->
+                            <div id="dnk_segmento_carta_fonacot">
+                                <t t-if="o.x_dnk_type == 'Determinado'">
+                                <p style="page-break-after:always;"/>
+                                <div style="background-color:transparent;">
+                                  <center><h3></h3></center>
+
+                                  <br/><br/><br/>
+                                  <b><p style="text-align:right;"><t t-if="o.employee_id.address_id" t-esc="o.employee_id.address_id.l10n_mx_edi_locality"/><span t-if="not o.employee_id.address_id.l10n_mx_edi_locality" style="color:#FF0000">employee_id.address_id.l10n_mx_edi_locality</span>, <t t-if="o.employee_id.address_id" t-esc="o.employee_id.address_id.state_id.name"/>
+                                          a <t t-esc="current_date"/></p></b>
+                                </div>
+                                <br/><br/>
+
+                                <b><t t-esc="o.employee_id.company_id.name"/></b><br/>
+                                <b>Departamento de reclutamiento y selección.</b>
+                                <br/><br/>
+                                    Yo, el ciudadano/a <b><t t-esc="o.employee_id.name"/></b> con el número de seguridad social <t t-if="o.employee_id.segurosocial" t-esc="o.employee_id.segurosocial"/> declaro no mantener activo adeudos con el Instituto del Fondo Nacional para el Consumo de los Trabajadores (FONACOT), por lo cual no es necesario se realice la retención que estipula el art. artículos 97 fracción IV de la ley federal del trabajo, de la ley del Instituto del Fondo Nacional para el Consumo de los Trabajadores &#39;, &quot; Los enteros al Instituto FONACOT por los descuentos a los salarios de sus trabajadores beneficiados con el Crédito FONACOT no podrán ser interrumpidos por el
+                                    Centro de Trabajo, ni cesar por causa alguna.
+                                    <br/> <br/> <br/>
+                                    VIGESIMO SEXTO. -El centro de trabajo está obligado a descontar a los salarios de  sus trabajadores y enterar al Instituto FONACOT, los importes de los créditos que éste le haya otorgado a dichos trabajadores.
+                                    <br/> <br/> <br/>
+                                    De esta manera, en base a los argumentos anteriores, libero de responsabilidad a la <b><t t-esc="o.employee_id.company_id.name"/></b>, en caso de incumplir con lo comentado en el párrafo anterior, aceptando el descuento en una sola exhibición, respecto a los adeudos con FONACOT, en caso de ser publicados por la cedula bimestral correspondiente, aceptando lo dispuesto por los artículos 115 al 118 de la Ley Federal de Presupuesto y Responsabilidad Hacendaria.
+
+                                    <br/><br/><br/><br/><br/>
+                                    <center>
+                                        <table class="table_invisible" style="width:40%;border: 0px solid transparent;" cellpadding="20">
+                                          <tr style="width:100%;border: 0px solid transparent;background-color:transparent;">
+                                            <td style="width:100%;text-align:center;border: 0px solid transparent;">
+                                              <p>
+                                                <hr/>
+                                              </p>
+                                                <b><t t-esc="o.employee_id.name"/></b><br/>
+                                                Nombre y firma<br/>
+                                            </td>
+                                          </tr>
+                                        </table>
+                                    </center>
+
+                              </t>
+                            </div>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

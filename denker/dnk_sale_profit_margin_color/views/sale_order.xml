@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="dnk_sale_profit_margin_color_form_view" model="ir.ui.view">
+		<field name="name">dnk_sale_profit_margin_color_form_view</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_order_form" />
+		<field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after" >
+                <field name="dnk_profit_margin_html"  widget = "color" invisible="0" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_id']" position="after" >
+                <field name="dnk_profit_margin_html" string="- Margin" widget = "color" invisible="0" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_id']" position="attributes">
+                <attribute name="style"></attribute>
+                <attribute name="style">{font-size: 9px;}</attribute>
+            </xpath>
+
+        </field>
+	</record>
+</odoo>

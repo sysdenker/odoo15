@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="dnk_account_invoice_payment_report_rule_company" model="ir.rule">
+        <field name="name">Invoice Payment Report multi-company</field>
+        <field name="model_id" ref="dnk_account_invoice_payment_report.model_account_invoice_payment_report"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','=',user.company_id.id)]</field>
+    </record>
+
+    <record id="dnk_account_invoice_payment_report_rule_all" model="ir.rule">
+        <field name="name">Invoice Payment Report All</field>
+        <field name="model_id" ref="dnk_account_invoice_payment_report.model_account_invoice_payment_report"/>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman_all_leads'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+    </record>
+
+    <record id="dnk_account_invoice_payment_report_rule_team" model="ir.rule">
+        <field name="name">Invoice Payment Report Team</field>
+        <field name="model_id" ref="dnk_account_invoice_payment_report.model_account_invoice_payment_report"/>
+        <field name="groups" eval="[(4, ref('dnk_crm_opportunities.dnk_crm_team_group'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="domain_force">['|','|','|',('user_id','=',user.id),('user_id','=',False),('team_id.member_ids','in', [user.id]),('team_id.user_id','=',user.id)]</field>
+    </record>
+
+    <record id="dnk_account_invoice_payment_report_rule_own" model="ir.rule">
+        <field name="name">Invoice Payment Report Own</field>
+        <field name="model_id" ref="dnk_account_invoice_payment_report.model_account_invoice_payment_report"/>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>
+    </record>
+
+  </data>
+</odoo>

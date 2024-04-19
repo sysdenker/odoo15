@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+dnk_maintenance_owner_adm, Denker Asset Owner Admin,model_dnk_asset_owner,maintenance.group_equipment_manager,1,1,1,1
+dnk_maintenance_owner_usr, Denker Asset Owner User,model_dnk_asset_owner,base.group_user,1,0,0,0

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!--Email template -->
+        <record id="account.email_template_edi_invoice" model="mail.template">
+            <field name="report_name">${object.l10n_mx_edi_cfdi_name and object.dnk_journal_code+'-'+(object.name or '').replace('/','')+'-MX-Invoice-'+(object.dnk_pac_version or '').replace('.','-')}</field>
+        </record>
+    </data>
+</odoo>

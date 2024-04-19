@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_pdev_quot_document">
+      <t t-call="web.html_container">
+          <t t-foreach="docs" t-as="doc">
+            <t t-call="web.external_layout">
+                <div class="page"/>
+                <div class="oe_structure"/>
+                <h2 class="mt16">
+                    <span >Quotation </span>
+                    <span t-field="doc.name"/>
+                </h2>
+                <div class="row mt32 mb32" id="informations">
+                    <div t-if="doc.dnk_user_id.name" class="col-auto col-3 mw-100 mb-2">
+                        <strong>Salesperson:</strong>
+                        <p class="m-0" t-field="doc.dnk_user_id"/>
+                    </div>
+                </div>
+
+                <table class="table o_report_block_table table-sm">
+                  <thead>
+                    <tr>
+                      <th name="th_name" class="text-left">Name</th>
+                      <th name="th_quantity" class="text-right">Quantity</th>
+                      <th name="th_priceunit" class="text-right">Unit Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <t t-set="current_subtotal" t-value="0"/>
+                    <tr t-foreach="doc.dnk_product_ids" t-as="table_line">
+                      <t t-set="current_subtotal" t-value="current_subtotal + (table_line.dnk_price * table_line.dnk_ps_qty)"/>
+                      <td name="td_name"><span t-field="table_line.name"/></td>
+                      <td name="td_quantity" class="text-right">
+                        <span t-field="table_line.dnk_ps_qty"/>
+                      </td>
+                      <td name="td_priceunit" class="text-right">
+                        <span t-field="table_line.dnk_price"/>
+                      </td>
+                    </tr>
+                    <div class="clearfix" name="so_total_summary">
+                        <table class="table table-sm">
+                          <tbody class="sale_tbody">
+                            <tr>
+                              <span>Subtotal: </span>
+                              <span t-esc="current_subtotal"/>
+                              <span> (USD)</span>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                  </tbody>
+                </table>
+
+            </t>
+          </t>
+      </t>
+    </template>
+</odoo>

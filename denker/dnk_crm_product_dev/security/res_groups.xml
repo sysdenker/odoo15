@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    <record id="dnk_crm_product_dev_user_group" model="res.groups">
+        <field name="name">Desarrollo de Productos - Usuario</field>
+        <field name="comment">Usuario de Desarrollo de productos</field>
+        <field name="category_id" ref="dnk_groups_categories.dnk_crm_category"/>
+    </record>
+
+    <record id="dnk_crm_product_dev_admin_group" model="res.groups">
+        <field name="name">Desarrollo de Productos - Administrador</field>
+        <field name="comment">Administrar Desarrollo de Productos y sus Catálogos</field>
+        <field name="category_id" ref="dnk_groups_categories.dnk_crm_category"/>
+    </record>
+    <!--
+    <record id="dnk_crm_product_dev_oper_group" model="res.groups">
+        <field name="name">Desarrollo de Productos - Operativo</field>
+        <field name="comment">Administrar Códigos del desarrollo de Productos</field>
+        <field name="category_id" ref="dnk_groups_categories.dnk_crm_category"/>
+    </record>
+  -->
+
+    </data>
+</odoo>

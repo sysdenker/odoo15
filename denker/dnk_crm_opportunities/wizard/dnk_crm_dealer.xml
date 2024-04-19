@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="dnk_view_crm_dealer" model="ir.ui.view">
+        <field name="name">dnk_view_crm_dealer</field>
+        <field name="model">dnk.crm.dealer.assigned</field>
+        <field name="arch" type="xml">
+            <form string="CRM Dealer Assigned">
+                <group>
+                    <field name="dnk_crm_lead_id" invisible="1" />
+                    <field name="dnk_dealer_id" options="{'no_create': True}" invisible="0"
+                        domain="[('dnk_is_dealer','=',True)]"/>
+                </group>
+                <footer>
+                    <button name="button_assign_dealer"
+                        string="_Assign" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>

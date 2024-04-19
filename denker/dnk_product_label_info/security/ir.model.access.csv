@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+dnk_product_material_mrp_user_access, Denker Product Material Mrp User Access,model_dnk_product_material,mrp.group_mrp_user,1,0,0,0
+dnk_product_material_mrp_manager_access, Denker Product Material Mrp Manager Access,model_dnk_product_material,mrp.group_mrp_manager,1,1,1,1
+dnk_product_material_composition_mrp_user_access, Denker Product Material Composition Mrp User Access,model_dnk_product_material_composition,mrp.group_mrp_user,1,0,0,0
+dnk_product_material_composition_mrp_manager_access, Denker Product Material Composition Mrp Manager Access,model_dnk_product_material_composition,mrp.group_mrp_manager,1,1,1,1

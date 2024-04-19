@@ -1,0 +1,20 @@
+.row {
+    font-family: 'Arial Narrow';
+    font-style: normal;
+    background-color: white;
+}
+
+<style type="text/css">
+
+<![CDATA[
+
+/* Arial Narrow */
+
+@font-face {
+    font-family: 'Arial Narrow', arial;
+    font-style: normal;
+    url('/dnk_hr_custom_employee/static/src/fonts/arial-narrow.ttf') format('truetype');
+}
+]]>
+
+</style>

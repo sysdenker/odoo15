@@ -1,0 +1,24 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+dnk_sale_costs_all, Denker Costs Admin Write,model_dnk_product_cost,dnk_product_hide_cost.dnk_show_cost_price,1,0,1,1
+dnk_sale_costs_rea, Denker Costs Read,model_dnk_product_cost,base.group_user,1,0,0,0
+dnk_sale_costs_write, Denker Costs Write,model_dnk_product_cost,dnk_group_mrp_cost_manager,1,1,0,0
+dnk_mrp_bom_cost_write, Denker BOM Cost Admin Write,model_dnk_mrp_bom,dnk_product_hide_cost.dnk_show_cost_price,1,1,1,1
+dnk_indirect_manufacturing_cost_admin_access,Denker Indirect Manufacturing Cost Admin Access,model_dnk_indirect_manufacturing_cost,dnk_group_mrp_cost_manager,1,1,1,1
+dnk_indirect_manufacturing_cost_user_access,Denker Indirect Manufacturing Cost User Access,model_dnk_indirect_manufacturing_cost,mrp.group_mrp_user,1,0,0,0
+dnk_indirect_manufacturing_cost_volume_admin_access,Denker Indirect Manufacturing Cost Volume Admin Access,model_dnk_indirect_manufacturing_cost_volume,dnk_group_mrp_cost_manager,1,1,1,1
+dnk_indirect_manufacturing_cost_volume_user_access,Denker Indirect Manufacturing Cost Volume User Access,model_dnk_indirect_manufacturing_cost_volume,mrp.group_mrp_user,1,0,0,0
+dnk_labour_cost_admin_access,Denker Labour Cost Admin Access,model_dnk_labour_cost,dnk_group_mrp_cost_manager,1,1,1,1
+dnk_labour_cost_user_access,Denker Labour Cost User Access,model_dnk_labour_cost,mrp.group_mrp_user,1,0,0,0
+dnk_labour_cost_min_user_access,Denker Labour Cost Min User Access,model_dnk_product_labour_cost_min,mrp.group_mrp_user,1,0,0,0
+dnk_indirect_manufacturing_cost_line_admin_access,Denker Indirect Manufacturing Cost Line Admin Access,model_dnk_indirect_manufacturing_cost,dnk_group_mrp_cost_manager,1,1,1,1
+dnk_indirect_manufacturing_cost_line_user_access,Denker Indirect Manufacturing Cost Line User Access,model_dnk_indirect_manufacturing_cost,mrp.group_mrp_user,1,0,0,0
+dnk_labour_cost_line_admin_access,Denker Labour Cost Line Admin Access,model_dnk_labour_cost,dnk_group_mrp_cost_manager,1,1,1,1
+dnk_labour_cost_line_user_access,Denker Labour Cost Line User Access,model_dnk_labour_cost,mrp.group_mrp_user,1,0,0,0
+dnk_product_labour_cost_min_admin_access,Denker Product Labour Cost P Minute Admin Access,model_dnk_product_labour_cost_min,dnk_group_mrp_cost_manager,1,1,1,1
+dnk_product_labour_cost_min_user_access,Denker Product Labour Cost P Minute  User Access,model_dnk_labour_cost,mrp.group_mrp_user,1,0,0,0
+dnk_mrp_diffrence_in_cost_admin_access,Denker Difference In Cost Line Admin Access,model_dnk_reason_difference_cost,dnk_group_mrp_cost_manager,1,1,1,1
+dnk_mrp_diffrence_in_cost_user_access,Denker Difference In Line User Access,model_dnk_reason_difference_cost,mrp.group_mrp_user,1,0,0,0
+dnk_mrp_cost_val_user_access,Denker MRP Cost Val Access,model_dnk_mrp_cost_val,mrp.group_mrp_user,1,1,1,1
+dnk_wiz_new_product_cost_access,Denker New Product Cost Wiz Access,model_dnk_new_product_cost,mrp.group_mrp_user,1,1,1,1
+dnk_wiz_product_std_cost_access,Denker Product Std Cost Wiz Access,model_dnk_product_standard_cost,mrp.group_mrp_user,1,1,1,1
+dnk_wiz_product_commer_cost_access,Denker Product Commercial Cost Wiz Access,model_dnk_product_commercial_cost,mrp.group_mrp_user,1,1,1,1

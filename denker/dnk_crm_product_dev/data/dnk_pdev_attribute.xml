@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="data_dnk_pd_material_1" model="dnk.crm.pd.materials">
+            <field name="name">Eva VD</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="data_dnk_pd_material_2" model="dnk.crm.pd.materials">
+            <field name="name">Eva VD y Plástico VC</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="data_dnk_pd_material_3" model="dnk.crm.pd.materials">
+            <field name="name">Eva VD y Foam VD</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="data_dnk_pd_material_4" model="dnk.crm.pd.materials">
+            <field name="name">Eva VD y Foam VC</field>
+            <field name="sequence">4</field>
+        </record>
+        <record id="data_dnk_pd_material_5" model="dnk.crm.pd.materials">
+            <field name="name">Plástico VC</field>
+            <field name="sequence">5</field>
+        </record>
+        <record id="data_dnk_pd_material_6" model="dnk.crm.pd.materials">
+            <field name="name">Plástico VC y Foam VD</field>
+            <field name="sequence">6</field>
+        </record>
+        <record id="data_dnk_pd_material_7" model="dnk.crm.pd.materials">
+            <field name="name">Plástico VC y Foam VC</field>
+            <field name="sequence">7</field>
+        </record>
+        <record id="data_dnk_pd_material_8" model="dnk.crm.pd.materials">
+            <field name="name">Material Especial</field>
+            <field name="sequence">8</field>
+        </record>
+
+        <!-- Propiedades del mataerial -->
+        <record id="data_dnk_pd_mat_properties_1" model="dnk.crm.pd.material.properties">
+            <field name="name">Conductivo</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="data_dnk_pd_mat_properties_2" model="dnk.crm.pd.material.properties">
+            <field name="name">Disipativo</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="data_dnk_pd_mat_properties_3" model="dnk.crm.pd.material.properties">
+            <field name="name">Cosmético</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="data_dnk_pd_mat_properties_4" model="dnk.crm.pd.material.properties">
+            <field name="name">Abrasivo</field>
+            <field name="sequence">4</field>
+        </record>
+    </data>
+</odoo>

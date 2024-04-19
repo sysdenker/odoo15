@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+dnk_crm_admin_access, Denker CRM Admin Access,model_crm_lead,dnk_crm_opportunities.dnk_crm_admin_group,1,1,1,1
+dnk_crm_company_access, Denker CRM Company Access,model_crm_lead,dnk_crm_opportunities.dnk_crm_company_group,1,1,1,1
+dnk_crm_team_access, Denker CRM Team Access,model_crm_lead,dnk_crm_opportunities.dnk_crm_team_group,1,1,1,1
+dnk_crm_user_access, Denker CRM User Access,model_crm_lead,dnk_crm_opportunities.dnk_crm_user_group,1,1,1,1
+dnk_crm_wiz_dealer_access, Denker CRM Wizard Dealer Access,model_dnk_crm_dealer_assigned,dnk_crm_opportunities.dnk_crm_user_group,1,1,1,1
+dnk_crm_channel_usr_access, Denker CRM Channel User,model_dnk_crm_contact_channel,base.group_user,1,1,1,1
+dnk_crm_purchase_intent_admin, Dnk CRM Admin Access,model_dnk_crm_purchase_intent,dnk_crm_opportunities.dnk_crm_admin_group,1,1,1,1
+dnk_crm_purchase_intent_user, Dnk CRM Read Access,model_dnk_crm_purchase_intent,dnk_crm_opportunities.dnk_crm_admin_group,1,0,0,0

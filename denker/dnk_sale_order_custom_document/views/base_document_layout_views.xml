@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="dnk_custom_document_base_document_layout_view" model="ir.ui.view">
+            <field name="name">dnk.custom.document.base.document.layout.view</field>
+            <field name="model">base.document.layout</field>
+            <field name="inherit_id" ref="web.view_base_document_layout"/>
+            <field name="priority">250</field>
+            <field name="arch" type="xml">
+                <label for="primary_color" position="before">
+                    <label for="primary_background_color" string="Background Colors" />
+                    <div class="o_document_layout_colors">
+                        <field name="primary_background_color" widget="color" class="mb-4" />
+                        <field name="secondary_background_color" widget="color" class="mb-4" />
+                    </div>
+                </label>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+dnk_wiz_quality_point_access,Denker Quality  Point Wiz Access,model_dnk_quality_point_wiz,mrp.group_mrp_user,1,1,1,1

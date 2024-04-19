@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="dnk_group_account_invoice_duplicate" model="res.groups">
+            <field name="name">Invoices Duplicate</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">This group can duplicate Invoices from its form view</field>
+            <field name="category_id" ref="dnk_groups_categories.dnk_accounting_category"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
+        <record id="dnk_group_account_mrp_production_duplicate" model="res.groups">
+            <field name="name">Manufacturing Orders Duplicate</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">This group can duplicate Manufacturing Orders from its form view</field>
+            <field name="category_id" ref="dnk_groups_categories.dnk_mrp_category"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
+        <record id="dnk_group_account_stock_picking_duplicate" model="res.groups">
+            <field name="name">Transfers Duplicate</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">This group can duplicate Transfers from its form view</field>
+            <field name="category_id" ref="dnk_groups_categories.dnk_stock_category"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
+        <record id="dnk_group_purchase_order_duplicate" model="res.groups">
+            <field name="name">Porchase Order Duplicate</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">This group can duplicate Purchase Orders from its form view</field>
+            <field name="category_id" ref="dnk_groups_categories.dnk_purchases_category"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+    </data>
+</odoo>

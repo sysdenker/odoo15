@@ -1,0 +1,192 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* dnk_sale_order_line_menu
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e-20181226\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-01-03 22:34+0000\n"
+"PO-Revision-Date: 2019-01-03 22:34+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.model.fields,field_description:dnk_sale_order_line_menu.field_sale_order_line_dnk_color_id
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "- Color"
+msgstr "- Color"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.model.fields,field_description:dnk_sale_order_line_menu.field_sale_order_line_dnk_family_id
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "- Family"
+msgstr "- Familia"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.model.fields,field_description:dnk_sale_order_line_menu.field_sale_order_line_dnk_is_invoiced_not_delivered
+msgid "- Invoiced Not Delivered"
+msgstr "- Facturado No Entregado"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.model.fields,field_description:dnk_sale_order_line_menu.field_sale_order_line_dnk_is_pending_delivery
+msgid "- Pending Delivery"
+msgstr "- Entrega Pendiente"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.model.fields,field_description:dnk_sale_order_line_menu.field_sale_order_line_dnk_qty_to_deliver
+msgid "- Qty to Deliver"
+msgstr "- Cant. por Entregar"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.menu,name:dnk_sale_order_line_menu.menu_sale_order_line
+#: model:ir.ui.menu,name:dnk_sale_order_line_menu.menu_sale_order_line_on_mrp
+#: model:ir.ui.menu,name:dnk_sale_order_line_menu.menu_sale_order_line_on_purchase
+msgid "- Sale Orders Lines"
+msgstr "- Líneas de Pedidos de Venta"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.model.fields,field_description:dnk_sale_order_line_menu.field_sale_order_line_dnk_subfamily_id
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "- Subfamily"
+msgstr "- Subfamilia"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_form
+msgid "Delivered Quantity"
+msgstr "Cantidad Entregada"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.report_saleorder_document_product_delivery_date
+msgid "Delivery Days"
+msgstr "Días de Entrega"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "Future Activities"
+msgstr "Actividades futuras"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "Invoiced Not Delivered Lines"
+msgstr "Líneas Facturadas No Entregadas"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_form
+msgid "Invoiced Quantity"
+msgstr "Cantidad Facturada"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "Late Activities"
+msgstr "Actividades tardías"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "My Activities"
+msgstr "Mis actividades"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "My Orders Lines"
+msgstr "Mis Líneas de Pedidos"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_form
+msgid "Ordered Quantity"
+msgstr "Cantidad pedida"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "Pending Delivery Lines"
+msgstr "Líneas Pendientes de Entregar"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "Requested Date Month"
+msgstr "Mes de Fecha Solicitada"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.actions.act_window,name:dnk_sale_order_line_menu.action_sale_order_line
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_form
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_pivot
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_tree
+msgid "Sale Orders Lines"
+msgstr "- Líneas de Pedidos de Venta"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "Sales"
+msgstr "Ventas"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.model.fields,field_description:dnk_sale_order_line_menu.field_sale_order_line_dnk_team_id
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "Sales Channel"
+msgstr "Canal de ventas"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "Sales Order"
+msgstr "Pedido de ventas"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.model,name:dnk_sale_order_line_menu.model_sale_order_line
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "Salesperson"
+msgstr "Comercial"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.model.fields,help:dnk_sale_order_line_menu.field_sale_order_line_dnk_subfamily_id
+msgid "Select category for the current product"
+msgstr "Seleccione la categoría para el producto actual."
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "Show all records which has next action date is before today"
+msgstr "Mostrar todos los registros que tienen la próxima fecha de acción antes de hoy"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "To Invoice"
+msgstr "A facturar"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "Today Activities"
+msgstr "Actividades de Hoy"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "Unread Messages"
+msgstr "Mensajes sin leer"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_filter
+msgid "Upselling"
+msgstr "Venta adicional"
+
+#. module: dnk_sale_order_line_menu
+#: model:ir.ui.view,arch_db:dnk_sale_order_line_menu.dnk_view_sale_order_line_form
+msgid "days"
+msgstr "días"

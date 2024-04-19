@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <template id="dnk_mrp_production_estashoe_label" name="Etiqueta Estashoe">
+^XA
+
+Codigo de barras
+
+^FO250,860^BCN,60,Y,N,N^FD<t t-esc="record.product_id.barcode"/>^FS
+
+
+CURE
+^FT0,985^A0N,50,60^FB812,1,0,C^FH^SN<t t-esc="record.get_last_digits(record.name, 6)"/><t t-esc="record.get_last_digits(record.origin, 6)"/><t t-esc="str(dnk_labels_to_print_index_start).zfill(3)"/>, 1, Y^FS
+
+FECHA MM/YY
+^FWR
+^FC%,{,#
+^FO670,0^A0,80,50^FB1012,1,0,R^FD%d/%m/%Y     ^FS
+
+PRODUCT NAME
+^FO400,70^A0,53,50^FB812,3,12,C,0^FD<t t-esc="record.product_id.display_name"/>^FS
+
+LOGO
+^FO650,40^GFA,504,504,12,,::19,04E,0338,019EM088,004FCL0E2,0033FL0F18,0019FCK0FCE,I0CFF8J0FE38,I033FEJ0FF1C,I019FF8I0FFC6,J0CFFEI0FFE38,J073FFC00IF9C,J019IF00IFC7,K0C7FFE1IFE38,K073IFBJF8C,K019NFC7,L0C7NF18,L073NF8E,L019NFE7,M0E7NF18,M073KF1FF8C,M038JFE07FE3,N0E7IFE01FF18,N073IFE003FC6,N038IFEI0FE3,O0E7FFEI03F98,O071FFEJ07C6,O038FFEJ01E3,O01E7FEK0788,P071FEL0C,P038FEL02,P01E7EM08,Q071E,Q018E,S06,,:::^FS
+
+SITIO WEB
+^FO670,90^A0,36,40^FDestatec.com^FS
+
+LEYENDA:
+^FO0,0^CF0,32,32^FB1015,3,0,C,0^FH^FDHecho en M_82xico por:^FS
+^FO0,0^A0,53,50^FB1015,0,12,C,0^FDANTIESTATICA DE MEXICO^FS
+^FO150,0^A0,53,50^FB1015,1,12,C,0^FDCONTENIDO: 1 Par^FS
+
+Codigo QR
+^FO120,30^BQ,2,4,10^FDMA,https://grupodenker.odoo.com/web?debug=#id=<t t-esc="record.dnk_costura_workorder_id"/>&amp;view_type=form&amp;model=mrp.workorder&amp;active_id=<t t-esc="record.dnk_costura_workorder_id"/>&amp;^FS
+
+Repetir la etiqueta N veces
+^PQ<t t-esc="dnk_labels_to_print_index_stop-dnk_labels_to_print_index_start+1"/>,0,1,Y
+
+^XZ
+        </template>
+        <record id="dnk_mrp_production_estashoe_label" model="ir.ui.view">
+            <field name="type">qweb</field>
+            <field name="model">mrp.production</field>
+            <field name="dnk_label_flag">True</field>
+        </record>
+    </data>
+</odoo>

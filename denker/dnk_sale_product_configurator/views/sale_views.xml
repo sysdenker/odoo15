@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_product_configurator.product_template_view_form" model="ir.ui.view">
+        <field name="groups_id" eval="[(4, ref('dnk_group_product_configurator'))]"/>
+    </record>
+
+    <record id="sale_product_configurator.sale_order_view_form" model="ir.ui.view">
+        <field name="groups_id" eval="[(4, ref('dnk_group_product_configurator'))]"/>
+    </record>
+
+    <record model="ir.ui.view" id="dnk_sale_product_configurator_sale_order_form_view">
+        <field name="name">dnk.sale.product.configurator.sale.order.form.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sale_order_template_id']" position="after">
+                <field name="dnk_use_product_configurator" groups="dnk_sale_product_configurator.dnk_group_product_configurator"/>
+            </xpath>
+            <xpath expr="//tree/field[@name='product_template_id']" position="attributes">
+                <attribute name="invisible"></attribute>
+                <attribute name="readonly"></attribute>
+                <attribute name="attrs">{'column_invisible': [('parent.dnk_use_product_configurator', '=', False)], 'readonly': [('parent.dnk_use_product_configurator', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//tree/field[@name='product_id']" position="attributes">
+                <attribute name="invisible"></attribute>
+                <attribute name="readonly"></attribute>
+                <attribute name="attrs">{'column_invisible': [('parent.dnk_use_product_configurator', '=', True)], 'readonly': [('parent.dnk_use_product_configurator', '=', True)]}</attribute>-
+            </xpath>
+        </field>
+    </record>
+
+    <!--<record id="sale_order_view_form" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.sale.product.configurator</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='product_template_id']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+            <xpath expr="//tree/field[@name='product_template_id']" position="after">
+                <field name="product_template_attribute_value_ids" invisible="1" />
+                <field name="product_custom_attribute_value_ids" invisible="1" >
+                    <tree>
+                        <field name="custom_product_template_attribute_value_id" />
+                        <field name="custom_value" />
+                    </tree>
+                </field>
+                <field name="product_no_variant_attribute_value_ids" invisible="1" />
+                <field name="is_configurable_product" invisible="1" />
+            </xpath>
+            <xpath expr="//tree/field[@name='product_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>-->
+</odoo>

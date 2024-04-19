@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="dnk_sale_pricelist_level_form_view" model="ir.ui.view">
+			 <field name="name">dnk.sale.pricelist.level.form.view</field>
+			 <field name="model">product.pricelist</field>
+			 <field name="inherit_id" ref="product.product_pricelist_view"/>
+			 <field name="arch" type="xml">
+					<xpath expr="//field[@name='company_id']" position="after">
+							<field name="dnk_pricelist_level" readonly="1"/>
+					</xpath>
+			 </field>
+		</record>
+
+	    <record id="dnk_sale_pricelist_level_edit_form_view" model="ir.ui.view">
+	        <field name="name">dnk.sale.pricelist.level.edit.form.view</field>
+	        <field name="model">product.pricelist</field>
+	        <field name="inherit_id" ref="dnk_sale_pricelist_level_form_view"/>
+	        <field name="groups_id" eval="[(4, ref('dnk_group_pricelist_manager'))]"/>
+	        <field name="arch" type="xml">
+	            <field name="dnk_pricelist_level" position="attributes">
+	                <attribute name="readonly">0</attribute>
+	            </field>
+	        </field>
+	    </record>
+
+		<record id="dnk_product_pricelist_tree_view" model="ir.ui.view">
+			 <field name="name">dnk.product.pricelist.tree.view</field>
+			 <field name="model">product.pricelist</field>
+			 <field name="inherit_id" ref="product.product_pricelist_view_tree"/>
+			 <field name="arch" type="xml">
+					<xpath expr="//field[@name='company_id']" position="before">
+							<field name="dnk_pricelist_level"/>
+					</xpath>
+			 </field>
+		</record>
+
+        <menuitem id="menu_product_pricelist_item" name="Pricelist Items" parent="sale.product_menu_catalog" action="product.product_pricelist_item_action" groups="product.group_product_pricelist" sequence="4"/>
+	</data>
+</odoo>

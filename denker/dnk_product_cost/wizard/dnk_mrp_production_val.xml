@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="dnk_view_cost_dif_val" model="ir.ui.view">
+        <field name="name">dnk_view_cost_dif_val</field>
+        <field name="model">dnk.mrp.cost.val</field>
+        <field name="arch" type="xml">
+            <form string="MRP Cost Validation?">
+                <group>
+                    <p>
+                        La direfencia en el costo de la orden <i>done</i> es mayor al esperado,
+                        ¿Desea continuar?
+                    </p>
+
+                </group>
+                <group>
+                    <field name="dnk_mo_id" invisible="1" />
+                    <field name="dnk_price" invisible="1" />
+                    <field name="dnk_to_consume" invisible="1" />
+                    <field name="dnk_restricted" invisible="1" />
+                    <field name="dnk_alow_cost_diff" invisible="1" />
+                    <field name="dnk_option" invisible="1" />
+                    <field name="dnk_reason_diff_cost"
+                        options="{'no_create': True, 'no_create_edit': True, 'always_reload': True, 'no_open': True}"
+                        required="1" invisible="0" />
+                </group>
+                <footer>
+                    <button string="Check MO" class="btn-primary" special="cancel" />
+                    <button name="button_mark_done" attrs="{'invisible': [('dnk_restricted','=',True)]}"
+                        string="_Mark as Done" type="object" class="btn-secondary"/>
+                    <button name="button_mark_done" attrs="{'invisible': [('dnk_restricted','=',False)]}"
+                        groups="dnk_product_cost.dnk_group_mrp_close_mo_manager"
+                        string="_Mark as Done" type="object" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="dnk_view_cost_dif_inv_val" model="ir.ui.view">
+        <field name="name">dnk_view_cost_dif_inv_val</field>
+        <field name="model">dnk.mrp.cost.val</field>
+        <field name="arch" type="xml">
+            <form string="MRP Cost Validation?">
+                <group>
+                    <p>
+                        La direfencia en el costo de la orden <i>done</i> es mayor al esperado,
+                        ¿Desea continuar?
+                    </p>
+
+                </group>
+                <group>
+                    <field name="dnk_mo_id" invisible="1" />
+                    <field name="dnk_price" invisible="1" />
+                    <field name="dnk_to_consume" invisible="1" />
+                    <field name="dnk_restricted" invisible="1" />
+                    <field name="dnk_alow_cost_diff" invisible="1" />
+                    <field name="dnk_option" invisible="1" />
+                    <field name="dnk_reason_diff_cost"
+                        options="{'no_create': True, 'no_create_edit': True, 'always_reload': True, 'no_open': True}"
+                        required="1" invisible="0" />
+                </group>
+                <footer>
+                    <button string="Check MO" class="btn-primary" special="cancel" />
+                    <button name="post_inventory" string="_Post Inventory"    type="object"
+                      attrs="{'invisible': [('dnk_restricted','=',True)]}"
+                     class="btn-secondary"/>
+                   <button name="post_inventory" string="_Post Inventory"    type="object"
+                     attrs="{'invisible': [('dnk_restricted','=',False)]}"
+                     groups="dnk_product_cost.dnk_group_mrp_close_mo_manager"
+                     class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="dnk_mrp_difference_in_cost_tree_view" model="ir.ui.view">
+        <field name="name">dnk_mrp_difference_in_cost_tree_view</field>
+        <field name="model">dnk.reason.difference.cost</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <tree string="Difference in Cost in MO">
+                <field name="name"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="dnk_mrp_difference_in_cost_form_view" model="ir.ui.view">
+        <field name="name">dnk_mrp_difference_in_cost_form_view</field>
+        <field name="model">dnk.reason.difference.cost</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <form string="Difference in Cost in MO">
+            <sheet>
+                <div class="oe_title">
+                    <label for="name" string="- Reason"/>
+                    <h1><field name="name"/></h1>
+                </div>
+                <group>
+                    <field name="company_id"/>
+                </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="dnk_action_mrp_difference_in_cost" model="ir.actions.act_window">
+        <field name="name">Difference in MO Cost</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">dnk.reason.difference.cost</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create reasons for difference in MO cost
+            </p>
+        </field>
+    </record>
+    <record id="action_mrp_difrrence_in_cost_tree" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="dnk_mrp_difference_in_cost_form_view"/>
+        <field name="act_window_id" ref="dnk_action_mrp_difference_in_cost"/>
+    </record>
+
+    <menuitem action="dnk_action_mrp_difference_in_cost"
+        id="menu_mrp_diffence_in_cost" name="- Differeces in Cost"
+        parent="menu_dnk_cost" sequence="6"/>
+
+</odoo>

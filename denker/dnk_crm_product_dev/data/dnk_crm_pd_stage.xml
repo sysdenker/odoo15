@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="data_dnk_pd_stage_10" model="dnk.crm.pd.stage">
+            <field name="name">[10-AV] Autorización Comercial</field>
+            <field name="sequence">10</field>
+            <field name="dnk_department">AV</field>
+            <field name="dnk_description">Autorización Comercial</field>
+        </record>
+        <record id="data_dnk_pd_stage_13" model="dnk.crm.pd.stage">
+            <field name="name">[13-VT] Rechazado</field>
+            <field name="sequence">13</field>
+            <field name="dnk_department">VT</field>
+            <field name="dnk_description">Rechazado</field>
+        </record>
+        <record id="data_dnk_pd_stage_17" model="dnk.crm.pd.stage">
+            <field name="name">[17-CO] Cotización Proveedor</field>
+            <field name="sequence">17</field>
+            <field name="dnk_department">CO</field>
+            <field name="dnk_description">Cotización Proveedor</field>
+        </record>
+        <record id="data_dnk_pd_stage_20" model="dnk.crm.pd.stage">
+            <field name="name">[20-IN] Ingeniería de producto</field>
+            <field name="sequence">20</field>
+            <field name="dnk_department">IN</field>
+            <field name="dnk_description">Ingeniería de producto</field>
+        </record>
+        <record id="data_dnk_pd_stage_25" model="dnk.crm.pd.stage">
+            <field name="name">[25-AV] Crear Precio</field>
+            <field name="sequence">25</field>
+            <field name="dnk_department">AV</field>
+            <field name="dnk_description">Crear Precio</field>
+        </record>
+        <record id="data_dnk_pd_stage_40" model="dnk.crm.pd.stage">
+            <field name="name">[40-VT] Enviar Cotización</field>
+            <field name="sequence">40</field>
+            <field name="dnk_department">VT</field>
+            <field name="dnk_description">Enviar Cotización</field>
+        </record>
+        <record id="data_dnk_pd_stage_50" model="dnk.crm.pd.stage">
+            <field name="name">[50-IN] Producir Muestra, SO y PO</field>
+            <field name="sequence">50</field>
+            <field name="dnk_department">IN</field>
+            <field name="dnk_description">Producir Muestra, SO y PO</field>
+        </record>
+        <record id="data_dnk_pd_stage_60" model="dnk.crm.pd.stage">
+            <field name="name">[60-AL] Enviar muestra</field>
+            <field name="sequence">60</field>
+            <field name="dnk_department">AL</field>
+            <field name="dnk_description">Enviar muestra</field>
+        </record>
+        <record id="data_dnk_pd_stage_80" model="dnk.crm.pd.stage">
+            <field name="name">[80-VT] Entregar muestra</field>
+            <field name="sequence">60</field>
+            <field name="dnk_department">VT</field>
+            <field name="dnk_description">Entregar muestra</field>
+        </record>
+        <record id="data_dnk_pd_stage_85" model="dnk.crm.pd.stage">
+            <field name="name">[85-VT] En retroalimentación</field>
+            <field name="sequence">85</field>
+            <field name="dnk_department">VT</field>
+            <field name="dnk_description">En retroalimentación</field>
+        </record>
+        <record id="data_dnk_pd_stage_93" model="dnk.crm.pd.stage">
+            <field name="name">[93-VT] No autorizado x diseño</field>
+            <field name="sequence">93</field>
+            <field name="dnk_department">VT</field>
+            <field name="dnk_description">No autorizado x diseño</field>
+        </record>
+        <record id="data_dnk_pd_stage_94" model="dnk.crm.pd.stage">
+            <field name="name">[94-VT] No autorizado x calidad</field>
+            <field name="sequence">94</field>
+            <field name="dnk_department">VT</field>
+            <field name="dnk_description">No autorizado x calidad</field>
+        </record>
+        <record id="data_dnk_pd_stage_95" model="dnk.crm.pd.stage">
+            <field name="name">[95-VT] No autorizado x precio</field>
+            <field name="sequence">95</field>
+            <field name="dnk_department">VT</field>
+            <field name="dnk_description">No autorizado x precio</field>
+        </record>
+        <record id="data_dnk_pd_stage_99" model="dnk.crm.pd.stage">
+            <field name="name">[99-VT] Cancelado</field>
+            <field name="sequence">99</field>
+            <field name="dnk_department">VT</field>
+            <field name="dnk_description">Cancelado</field>
+        </record>
+        <record id="data_dnk_pd_stage_100" model="dnk.crm.pd.stage">
+            <field name="name">[100-VT] Aprobado</field>
+            <field name="sequence">100</field>
+            <field name="dnk_department">VT</field>
+            <field name="dnk_description">Aprobado</field>
+        </record>
+    </data>
+</odoo>

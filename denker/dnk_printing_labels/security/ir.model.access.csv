@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+dnk_printing_label_group_manager_access, Denker Printing Label Group Manager Access,model_dnk_printing_label_group,dnk_printing_label_manager_group,1,1,1,1
+dnk_printing_label_group_everybody_access, Denker Printing Label Group Everybody Access,model_dnk_printing_label_group,,1,1,1,1
+dnk_printing_label_wizard_print_access, Denker Wizard Label All Access,model_dnk_wizard_print_record_label,,1,1,1,1

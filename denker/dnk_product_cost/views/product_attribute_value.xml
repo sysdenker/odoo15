@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <record id="dnk_product_attribute_tree_view" model="ir.ui.view">
+          <field name="name">dnk.product_attribute.cost.tree.view</field>
+          <field name="model">product.attribute</field>
+          <field name="inherit_id" ref="product.product_attribute_view_form"/>
+          <field name="arch" type="xml">
+              <xpath expr="//form[1]/sheet[1]/notebook[1]/page[1]/field[@name='value_ids']/tree[1]/field[@name='name']" position="after">
+                  <field name="dnk_product_labour_cost_id" readonly="1"/>
+                  <field name="dnk_product_labour_minutes_qty" readonly="1"/>
+                  <field name="dnk_unit_price_usd" readonly="1"/>
+                  <field name="write_uid" readonly="1"/>
+                  <field name="write_date" readonly="1"/>
+              </xpath>
+          </field>
+      </record>
+
+      <record id="dnk_product_attribute_cost_edit_tree_view" model="ir.ui.view">
+          <field name="name">dnk.product_attribute.cost.edit.tree.view</field>
+          <field name="model">product.attribute</field>
+          <field name="inherit_id" ref="dnk_product_attribute_tree_view"/>
+          <field name="groups_id" eval="[(4, ref('dnk_group_mrp_cost_manager'))]"/>
+          <field name="arch" type="xml">
+              <field name="dnk_product_labour_cost_id" position="attributes">
+                  <attribute name="readonly">0</attribute>
+              </field>
+              <field name="dnk_product_labour_minutes_qty" position="attributes">
+                  <attribute name="readonly">0</attribute>
+              </field>
+              <field name="dnk_unit_price_usd" position="attributes">
+                  <attribute name="readonly">0</attribute>
+              </field>
+          </field>
+      </record>
+  </data>
+</odoo>

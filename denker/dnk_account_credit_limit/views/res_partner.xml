@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="dnk_account_credit_limit_partner_form_view" model="ir.ui.view">
+            <field name="name">dnk_account_credit_limit_partner_form_view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <group name="sale" position="after">
+                    <group  string="- Credit"
+                        attrs="{'invisible': [('is_company','=',False),('parent_id','!=',False)]}">
+                        <field name="credit"/>
+                        <field name="credit_limit" widget="monetary" readonly="1"/>
+                        <field name="dnk_available_credit"/>
+                        <field name="dnk_blocked_sales" readonly="1"/>
+                        <field name="dnk_credit_policy" readonly="1"/>
+                    </group>
+                    <group string="- Credit"
+                        attrs="{'invisible': ['|',('is_company','=',True),('parent_id','=',False)]}">
+                        <div>
+                            <p>Credit limits are managed on <button name="open_commercial_entity" type="object" string="the parent company" class="oe_link"/></p>
+                        </div>
+                    </group>
+                </group>
+                <field name="property_supplier_payment_term_id" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="dnk_account_admin_credit_limit_partner_form_view" model="ir.ui.view">
+            <field name="name">dnk_account_admin_credit_limit_partner_form_view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="dnk_account_credit_limit_partner_form_view"/>
+            <field name="groups_id" eval="[(4, ref('dnk_account_credit_limit.dnk_account_credit_limit_group'))]"/>
+            <field name="arch" type="xml">
+                <field name="credit_limit" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+                <field name="dnk_blocked_sales" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+                <field name="dnk_credit_policy" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+                <field name="property_supplier_payment_term_id" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

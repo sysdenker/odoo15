@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="dnk_group_capture_price_unit" model="res.groups">
+            <field name="name">Capture Price Unit</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+            <field name="comment">This group can capture the Price Unit on a Sale Order Line without automatic calculation with the UDS Fixed Rate in Pricelists configured to use it.</field>
+            <field name="category_id" ref="dnk_groups_categories.dnk_sales_category"/>
+        </record>
+    </data>
+</odoo>

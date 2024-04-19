@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="dnk_purchase_order_patner_form_1" model="ir.ui.view">
+            <field name="name">dnk_purchase_order_patner_form_1</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="property_product_pricelist" position="before">
+                    <field name="dnk_purchase_order_required"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

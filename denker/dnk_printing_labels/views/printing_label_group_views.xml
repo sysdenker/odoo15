@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!--
+    Copyright 2016 SUBTENO-IT
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="view_printing_label_group_tree" model="ir.ui.view">
+        <field name="model">dnk.printing.label.group</field>
+        <field name="arch" type="xml">
+            <tree string="Printing Label Group">
+                <field name="dnk_name"/>
+                <field name="dnk_model_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_printing_label_group_form" model="ir.ui.view">
+        <field name="model">dnk.printing.label.group</field>
+        <field name="arch" type="xml">
+            <form string="Printing Label Group">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <field name="dnk_action_window_id" invisible="1"/>
+                        <button name="create_action" string="Add in the 'Action' menu" type="object" attrs="{'invisible':[('dnk_action_window_id','!=',False)]}" icon="fa-plus-square" help="Display an option on related documents." class="oe_stat_button"/>
+                        <button name="unlink_action" string="Remove from the 'Action' menu" type="object" attrs="{'invisible':[('dnk_action_window_id','=',False)]}" icon="fa-minus-square" help="Remove the contextual action." class="oe_stat_button"/>
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="dnk_active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                        </button>
+                    </div>
+                    <group col="4">
+                        <field name="dnk_name"/>
+                        <field name="dnk_model_id"/>
+                        <field name="dnk_quantities_field_to_show"/>
+                        <field name="dnk_use_default_qty_field_flag" attrs="{'invisible': [('dnk_quantities_field_to_show','=','none')]}"/>
+                        <field name="dnk_script_file_extension"/>
+                        <field name="dnk_default_qty_field" attrs="{'invisible': [('dnk_use_default_qty_field_flag','=',False)], 'required': [('dnk_use_default_qty_field_flag','=',True)]}"/>
+                        <field name="dnk_menu_action_name"/>
+                    </group>
+                    <group name="description_group" groups="base.group_no_one" colspan="4">
+                        <label for="dnk_description"/>
+                        <field name="dnk_description" nolabel="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Labels">
+                            <field name="dnk_ir_ui_view_ids" nolabel="1" colspan="4" widget="many2many" domain="[('dnk_label_group_id','=',None),('dnk_label_flag','=',True)]">
+                                <tree string="Labels">
+                                    <field name="priority" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="type"/>
+                                    <field name="model"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_printing_label_group_search" model="ir.ui.view">
+        <field name="model">dnk.printing.label.group</field>
+        <field name="arch" type="xml">
+            <search string="Printing Label Group">
+                <field name="dnk_name"/>
+                <field name="dnk_model_id"/>
+                <field name="dnk_description"/>
+                <filter string="Archived" name="inactive" domain="[('dnk_active','=',False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="act_open_printing_label_group_view">
+        <field name="name">- Printing Label Group</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">dnk.printing.label.group</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_printing_label_group_search"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="act_open_printing_label_group_view_form">
+        <field name="act_window_id" ref="act_open_printing_label_group_view"/>
+        <field name="sequence" eval="20"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_printing_label_group_form"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="act_open_printing_label_group_view_tree">
+        <field name="act_window_id" ref="act_open_printing_label_group_view"/>
+        <field name="sequence" eval="10"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_printing_label_group_tree"/>
+    </record>
+
+    <menuitem name="Printing"
+        id="printing_labels_menu" sequence="1"
+        parent="base.menu_custom"
+        groups="dnk_printing_label_manager_group"
+        />
+    <menuitem id="menu_printing_label_group" parent="printing_labels_menu" sequence="20" action="act_open_printing_label_group_view"/>
+</odoo>

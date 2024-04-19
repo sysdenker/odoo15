@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <template id="dnk_stock_picking_products_label" name="Etiqueta Líneas de Transferencia">
+          <t name="Etiqueta Transferencia" t-name="stock_picking_printing_label">
+          <t t-if="record.move_lines" t-foreach="record.move_lines" t-as="move_line">
+^XA
+^FO80,14^BY3
+^A@N,30,14,B:CYRI_UB.FNT
+^FO203,016^A0N,35,35^FB406,3,0,C,0^FD<t t-esc="record.company_id.name"/>^FS
+
+Codigo de barras Producto
+<t t-if="move_line.product_id.barcode">
+<t t-set="x_coord" t-value="406-(len(move_line.product_id.barcode)*27)/2"/>
+^FO<t t-esc="int(x_coord)"/>,78^BY2^BC,60,70,Y,N^FD<t t-esc="move_line.product_id.barcode"/>^FS
+</t>
+^FO233,145^AD^FD<t t-esc="move_line.product_id.name"/>^FS
+
+<t t-set="product_attributes" t-value="''"/>
+<t t-if="move_line.product_id.attribute_value_ids" t-foreach="move_line.product_id.attribute_value_ids" t-as="value">
+     <t t-set="product_attributes" t-value="product_attributes+'%s' % (value.name)+', '"/>
+</t>
+<t t-set="product_attributes" t-value="product_attributes[:-2]"/>
+
+^FO233,165^AD^FD<t t-esc="product_attributes[:30]"/>^FS
+^FO233,185^AD^FD<t t-esc="record.company_id.currency_id.symbol"/> <t t-esc="'{0:,.2f}'.format(move_line.product_id.list_price)"/>^FS
+^FO463,185^AD^FD<t t-esc="datetime.datetime.today().strftime('%d-%m-%Y')"/>^FS
+
+Repetir la etiqueta N veces
+^PQ<t t-esc="int(move_line.product_uom_qty)"/>,0,1,Y
+
+^XZ
+</t>
+</t>
+        </template>
+        <record id="dnk_stock_picking_products_label" model="ir.ui.view">
+            <field name="type">qweb</field>
+            <field name="model">stock.picking</field>
+            <field name="dnk_label_flag">True</field>
+        </record>
+    </data>
+</odoo>
