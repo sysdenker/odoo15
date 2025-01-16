@@ -43,8 +43,8 @@
                         </field>
                     </group>
                 </group>
-                <label for="dnk_default_value_html"/>
-                <field name="dnk_default_value_html"/>
+                <label for="dnk_default_value_html" string="Value Desc"/>
+                <field name="dnk_default_value_html" readonly="1" force_save="1"/>
                 <label for="dnk_description"/>
                 <field name="dnk_description"/>
             </sheet>

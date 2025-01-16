@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from . import dnk_indirect_manufacturing_cost
 from . import dnk_labour_cost
+from . import dnk_mrp_operations
 from . import res_company
 from . import product_attribute_value
 

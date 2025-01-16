@@ -19,10 +19,13 @@
     'version': '15.0.1.0',
     'license': 'AGPL-3',
     # any module necessary for this one to work correctly
-    'depends': ['purchase_stock'],
+    'depends': ['purchase_stock', 'purchase', 'account'],
 
     # always loaded
     'data': [
         'security/res_groups.xml',
+        'security/ir.model.access.csv',
+        'views/dnk_vendor_status.xml',
+        'views/res_partner.xml',
     ],
 }

@@ -1,2 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 dnk_updt_planned_date_wizard, Dnk Planned Date Wizard Admin,model_dnk_mrp_production_pdate_wizard,mrp.group_mrp_manager,1,1,1,1
+dnk_prod_status_adm, Dnk Manufacturing Status Admin,model_dnk_mrp_manufacturing_status,mrp.group_mrp_manager,1,1,1,1
+dnk_prod_status_usr, Dnk Manufacturing Status User,model_dnk_mrp_manufacturing_status,mrp.group_mrp_user,1,0,0,0
+dnk_mrp_manuf_delay_adm, Dnk Manufacturing Delays Admin,model_dnk_mrp_manufacturing_delays,mrp.group_mrp_manager,1,1,1,1
+dnk_mrp_manuf_delay_usr, Dnk Manufacturing Delays User,model_dnk_mrp_manufacturing_delays,mrp.group_mrp_user,1,0,0,0

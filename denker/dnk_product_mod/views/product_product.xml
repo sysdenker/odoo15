@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="dnk_product_product_bag_option_normal_form" model="ir.ui.view">
+        <field name="name">dnk_product_product_bag_option_normal_form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <page name="general_information" position="after">
+                <page string="- Bag Options" name="bag_options"  attrs="{'invisible':[('dnk_family_id', 'not in', [217])]}">
+                    <group>
+                        <field name="dnk_family_id" invisible="1"/>
+                        <field name="dnk_printed_substrate_id" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+                        <field name="dnk_bag_lamination_id" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+                        <field name="dnk_bag_thickness_id" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+
+</data>
+</odoo>

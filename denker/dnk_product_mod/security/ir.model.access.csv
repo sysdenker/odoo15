@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+dnk_bag_printed_subst_user, Bag Substrate User,model_dnk_bag_printed_substrate,base.group_user,1,0,0,0
+dnk_bag_printed_subst_admin, Bag Substrate Admin,model_dnk_bag_printed_substrate,mrp.group_mrp_manager,1,1,1,1
+dnk_bag_lamination_user, Bag Lamination User,model_dnk_bag_lamination,base.group_user,1,0,0,0
+dnk_bag_lamination_admin, Bag Lamination Admin,model_dnk_bag_lamination,mrp.group_mrp_manager,1,1,1,1
+dnk_bag_thickness_user, Bag Thickness User,model_dnk_bag_thickness,base.group_user,1,0,0,0
+dnk_bag_thickness_admin, Bag Thickness Admin,model_dnk_bag_thickness,mrp.group_mrp_manager,1,1,1,1
+
+

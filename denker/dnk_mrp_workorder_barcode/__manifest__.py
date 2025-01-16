@@ -18,11 +18,13 @@
     'version': '15.0.1.0.0',
     'license': 'AGPL-3',
     # any module necessary for this one to work correctly
-    'depends': ['mrp', 'mrp_workorder', 'custom_exception'],
+    # 'depends': ['mrp', 'mrp_workorder', 'custom_exception'],
+    'depends': ['mrp', 'mrp_workorder'],
 
     # always loaded
     'data': [
         'views/mrp_workorder_views.xml',
+        'views/mrp_production_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

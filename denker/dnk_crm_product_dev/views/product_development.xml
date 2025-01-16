@@ -73,10 +73,16 @@
                         <group>
                           <group name="dnk_product_info_left" string= "Línea de Producto">
                             <field name="dnk_new_product"  invisible="1"/>
-                            <field name="name"  force_save="1" readonly="1" />
+                            <field name="name"  force_save="1" attrs="{'readonly': [('dnk_categ_type','in', ['bata'])]}"/>
                             <field name="dnk_family_id" readonly="1"  invisible="1"/>
+                            <!-- V15 -->
                             <field name="dnk_product_id" attrs="{'invisible': [('dnk_new_product','=', True)]}"/>
-                            <field name="dnk_new_default_code" force_save="1" readonly="1" widget="text" attrs="{'invisible': [('dnk_new_product','=', False)]}"/>
+                            <field name="dnk_new_default_code" force_save="1"  attrs="{'readonly': [('dnk_categ_type','in', ['bata'])]}" />
+                            <!-- V17 -->
+                            <!--
+                            <field name="dnk_product_id" invisible="[('dnk_new_product','=', True)]"/>
+                            <field name="dnk_new_default_code" force_save="1" readonly="1" widget="text" invisible="[('dnk_new_product','=', False)]"/>
+                            -->
                             <field name="dnk_subfamily_id" force_save="1" readonly="1" invisible="0"/>
                           </group>
                           <group name="dnk_det_prod_right" string="Captura Ingeniería">
@@ -114,7 +120,9 @@
                                 <field name="dnk_additional_atts_ids" widget="many2many_tags" string="- Attributes" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True, 'color_field': 'html_color'}"/>
                                 <field name="dnk_att_count" invisible="1"/>
                                 <field name="dnk_description" widget="text" string="- Additional Attributes"/>
-                                <button string="- Get Model" name="bttn_get_model" type="object" attrs="{'invisible': [('dnk_att_count','>', 2)]}"/>
+                                <!--
+                                  <button string="- Get Model" name="bttn_get_model" type="object" attrs="{'invisible': [('dnk_att_count','>', 2)]}"/>
+                                -->
                               </group>
                               <group>
                                 <field name="dnk_pricelist_dom" invisible="1"/>
@@ -201,11 +209,20 @@
                               <field name="dnk_description"  widget="text"/>
                             </group>
                           </page>
-                          <page string="New" name="dnk_otros_info" attrs="{'invisible': ['|', ('dnk_categ_type','!=', 'otro'), ('dnk_new_product','=', False)]}">
+                          <!-- V15 -->
+                          <page string="New" name="dnk_otros_info" attrs="{'invisible': [('dnk_new_product','=', True)]}">
                             <group>
                               <field name="dnk_description"  string = "- Details" widget="text"/>
                             </group>
                           </page>
+                          <!-- V17 -->
+                          <!--
+                          <page string="New" name="dnk_otros_info" invisible="['|', ('dnk_categ_type','!=', 'otro'), ('dnk_new_product','=', False)]">
+                            <group>
+                              <field name="dnk_description"  string = "- Details" widget="text"/>
+                            </group>
+                          </page>
+                          -->
                         </notebook>
                       </sheet>
                     </form>

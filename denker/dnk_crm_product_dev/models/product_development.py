@@ -214,7 +214,7 @@ class DnkProductDevelopment(models.Model):
             'type': 'ir.actions.act_window', }
 
 
-
+    """
     @api.depends('dnk_product_ids', 'dnk_new_product')
     @api.onchange('dnk_product_ids', 'dnk_new_product')
     def _change_new_product(self):
@@ -225,7 +225,7 @@ class DnkProductDevelopment(models.Model):
                         pd._change_new_product()
                 else :
                     pd.name = pd.dnk_product_id.default_code
-
+    """
 
     def write(self, values):
         if 'dnk_stage_id' in values:

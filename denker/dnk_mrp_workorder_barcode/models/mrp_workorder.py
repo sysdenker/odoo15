@@ -2,11 +2,11 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import api, fields, models, _
-from odoo.exceptions import Warning
+from odoo.exceptions import Warning, UserError, ValidationError
 import math
 
 # Custom Exception
-from odoo.addons.custom_exception.models.exception import UserError
+# from odoo.addons.custom_exception.models.exception import UserError
 
 
 class MrpProduction(models.Model):
@@ -69,7 +69,8 @@ class MrpWorkorder(models.Model):
 
         if self.dnk_product_barcode == barcode:
             if self.qty_producing > self.qty_remaining - 1:
-                raise UserError(_("La cantidad producida ha excedido la cantidad de la Orden de Trabajo."), None, None, sound_file)
+                # raise UserError(_("La cantidad producida ha excedido la cantidad de la Orden de Trabajo."), None, None, sound_file)
+                raise ValidationError(_("La cantidad producida ha excedido la cantidad de la Orden de Trabajo."))
 
             self.qty_producing += 1
             # Reproduce sonido, pero hace log de error, por eso queda comentado
@@ -79,5 +80,5 @@ class MrpWorkorder(models.Model):
         else:
             # Normal o con sonido
             # raise Warning(_("Error: This product does not belong to the current work order!"))
-            raise UserError(_("Este producto no pertenece a la actual Orden de Trabajo!"), None, None, sound_file)
-            # raise UserError(_("Este producto no pertenece a la actual Orden de Trabajo!"))
+            # raise UserError(_("Este producto no pertenece a la actual Orden de Trabajo!"), None, None, sound_file)
+            raise ValidationError(_("Este producto no pertenece a la actual Orden de Trabajo!"))

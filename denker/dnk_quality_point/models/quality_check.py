@@ -9,8 +9,8 @@ from odoo.osv.expression import OR
 class QualityCheck(models.Model):
     _inherit = "quality.check"
 
-    dnk_subfamily_id = fields.Many2one('product.category', string='- Subfamily', related='product_id.categ_id')
-    dnk_family_id = fields.Many2one('product.category', string='- Family', related='product_id.categ_id.parent_id')
+    dnk_subfamily_id = fields.Many2one('product.category', string='- Subfamily', related='product_id.categ_id' , store=True)
+    dnk_family_id = fields.Many2one('product.category', string='- Family', related='product_id.categ_id.parent_id',  store=True)
 
 
     # Campo temporal relacionado a un campo de Studio

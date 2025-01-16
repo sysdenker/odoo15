@@ -22,3 +22,7 @@ dnk_mrp_cost_val_user_access,Denker MRP Cost Val Access,model_dnk_mrp_cost_val,m
 dnk_wiz_new_product_cost_access,Denker New Product Cost Wiz Access,model_dnk_new_product_cost,mrp.group_mrp_user,1,1,1,1
 dnk_wiz_product_std_cost_access,Denker Product Std Cost Wiz Access,model_dnk_product_standard_cost,mrp.group_mrp_user,1,1,1,1
 dnk_wiz_product_commer_cost_access,Denker Product Commercial Cost Wiz Access,model_dnk_product_commercial_cost,mrp.group_mrp_user,1,1,1,1
+dnk_manufacturing_op_admin_access,Denker Manufacturing Operations Admin Access,model_dnk_manufacturing_op,dnk_group_mrp_cost_manager,1,1,1,1
+dnk_manufacturing_op_user_access,Denker Manufacturing Operations User Access,model_dnk_manufacturing_op,mrp.group_mrp_user,1,0,0,0
+dnk_product_op_admin_access,Denker Product Operations Admin Access,model_dnk_product_op,dnk_group_mrp_cost_manager,1,1,1,1
+dnk_product_op_user_access,Denker Product Operations User Access,model_dnk_product_op,mrp.group_mrp_user,1,0,0,0

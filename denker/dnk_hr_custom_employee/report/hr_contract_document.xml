@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" ?>
 <odoo>
     <template id="hr_report_contract_document">
         <t t-name="dnk_hr_custom_employee.hr_report_contract_document">
@@ -314,7 +314,7 @@
                                     <p><b>QUINTA.-</b> Conforme lo disponen los artículos del 59 y demás relativos de la ley Federal del Trabajo, la jornada de trabajo en que prestará los servicios <b>“EL (LA) TRABAJADOR (A)”</b>, será de <b><t t-if="o.employee_id.resource_calendar_id" t-esc="o.employee_id.resource_calendar_id.name"/><span t-if="not o.employee_id.resource_calendar_id" style="color:#FF0000">employee_id.resource_calendar_id</span></b>.</p>
                                     <p><b>“EL (LA) TRABAJADOR (A)”</b> tendrá derecho a <b><t t-if="o.employee_id.resource_calendar_id" t-esc="o.employee_id.resource_calendar_id.dnk_tiempo_comida"/><span t-if="not o.employee_id.resource_calendar_id" style="color:#FF0000">employee_id.resource_calendar_id.dnk_tiempo_comida</span></b> de descanso, para el libre reposo o comida, en el que saldrá de las instalaciones de <b>“EL PATRÓN”</b>. El momento de la interrupción de la jornada laboral, será aquel que se fije de forma previa, debiendo ser registrada la salida y su posterior ingreso en las tarjetas y/o registro de asistencia.</p>
 
-                                    <p><b>“EL (LA) TRABAJADOR (A)”</b> sin excepción alguna, deberá estar en sus lugares de operación e iniciar sus laborales exactamente en la hora señalada en el párrafo anterior, sin embargo se dará una tolerancia de <t t-if="o.periodicidad_pago in ('02')" t-esc="15"/> <t t-if="o.periodicidad_pago in ('03', '04', '05')" t-esc="30"/> <span t-if="not o.periodicidad_pago" style="color:#FF0000">0000</span> minutos, para casos excepcionales y no como derecho permanente. Al personal que llegue después de esta hora es potestativo para la empresa permitir o no su ingreso, de no ser admitido se le anotará la correspondiente falta de asistencia injustificada, para todos los efectos legales a que haya lugar.</p>
+                                    <p><b>“EL (LA) TRABAJADOR (A)”</b> sin excepción alguna, deberá estar en sus lugares de operación e iniciar sus laborales exactamente en la hora señalada en el párrafo anterior, sin embargo se dará una tolerancia de <t t-if="o.periodicidad_pago in ('02')" t-esc="10"/> <t t-if="o.periodicidad_pago in ('03', '04', '05')" t-esc="10"/> <span t-if="not o.periodicidad_pago" style="color:#FF0000">0000</span> minutos, para casos excepcionales y no como derecho permanente. Al personal que llegue después de esta hora es potestativo para la empresa permitir o no su ingreso, de no ser admitido se le anotará la correspondiente falta de asistencia injustificada, para todos los efectos legales a que haya lugar.</p>
 
                                     <p><b>SEXTA.-</b> El horario que se fije a cualquier trabajador podrá ser variado, siendo susceptible de modificación, reservándose <b>“EL PATRÓN”</b> la facultad discrecional de cambiarlo de acuerdo a sus necesidades, para lo cual deberá notificar a <b>“EL (LA) TRABAJADOR (A)”</b> anticipadamente con un mínimo de 24 horas. Asimismo, el día o los días de descanso semanal podrán ser modificados según sus necesidades de trabajo.</p>
 
@@ -337,7 +337,7 @@
                                     </tr>
                                     </table>
                                     <br/>
-                                    <p>El salario será cubierto cada <b><t t-esc="o.ciclo_pago"/></b>, en efectivo o transferencia bancaria a una cuenta de <b>EL (LA) TRABAJADOR (A)</b>, en moneda nacional del cuño corriente.</p>
+                                    <p>El salario será cubierto cada <b><t t-if="o.periodicidad_pago in ('04')" t-esc="'15 y último de cada mes'"/> <t t-if="o.periodicidad_pago not in ('04')"> <span t-field="o.periodicidad_pago"/> </t> </b>, en efectivo o transferencia bancaria a una cuenta de <b>EL (LA) TRABAJADOR (A)</b>, en moneda nacional del cuño corriente.</p>
 
                                     <p>Del salario anterior <b>"EL PATRÓN"</b> hará por cuenta de <b>"EL (LA) TRABAJADOR (A)"</b> las deducciones legales correspondientes, particularmente las que se refieren a impuestos sobre la Renta, Seguro Social, cuota sindical, etcétera. Asimismo, se harán las aportaciones al IMSS, INFONAVIT, SAR y Hacienda en los términos de las legislaciones respectivas.</p>
 
@@ -353,13 +353,13 @@
 
                                     <p><b>DÉCIMA CUARTA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> percibirá un aguinaldo anual, que deberá pagarse antes del veinte de diciembre, equivalente a 15 días de salario. Cuando no haya cumplido el año de servicios, tendrá derecho a que se le pague en proporción al tiempo trabajado.</p>
 
-                                    <p><b>DÉCIMA QUINTA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> tendrá derecho a recibir de <b>“EL PATRÓN”</b>, el equivalente al 10% de premio por puntualidad, del salario semanal que perciba. Para que <b>“EL (LA) TRABAJADOR (A)”</b>, se haga acreedor a este premio, no deberá contar con ningún retardo, durante el periodo semanal, en caso contrario se perderá de este derecho.</p>
+                                    <p><b>DÉCIMA QUINTA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> tendrá derecho a recibir de <b>“EL PATRÓN”</b>, el equivalente al 10% de premio por puntualidad, del salario <span t-field="o.periodicidad_pago"/> que perciba. Para que <b>“EL (LA) TRABAJADOR (A)”</b>, se haga acreedor a este premio, no deberá contar con ningún retardo durante el periodo, en caso contrario se perderá de este derecho.</p>
 
-                                    <p><b>DÉCIMA SEXTA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> tendrá derecho a recibir por parte de <b>“EL PATRÓN”</b>, el 10% por premio de asistencia, del salario semanal que perciba. Se hará acreedor a este premio, siempre que no se incurra en ninguna falta injustificada. De lo contrario no se tendrá el derecho a exigir este premio.</p>
+                                    <p><b>DÉCIMA SEXTA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> tendrá derecho a recibir por parte de <b>“EL PATRÓN”</b>, el 10% por premio de asistencia, del salario <span t-field="o.periodicidad_pago"/> que perciba. Se hará acreedor a este premio, siempre que no se incurra en ninguna falta injustificada. De lo contrario no se tendrá el derecho a exigir este premio.</p>
 
-                                    <p><b>DÉCIMA SÉPTIMA.-</b> <b>EL PATRÓN”</b> se compromete a entregar una ayuda a <b>“EL (LA) TRABAJADOR (A)”</b>, por la cantidad de <b><span t-field="o.total_vales_despensa" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.company_currency_id}"/></b>, (<b><t t-esc="o.total_vales_despensa_palabras"/><span t-if="not o.total_vales_despensa_palabras" style="color:#FF0000">company_id.total_vales_despensa_palabras</span></b>), por <b><t t-esc="o.ciclo_pago"/><span t-if="not o.ciclo_pago" style="color:#FF0000">ciclo_pago</span></b> trabajada, por concepto de despensa.</p>
+                                    <p><b>DÉCIMA SÉPTIMA.-</b> <b>EL PATRÓN”</b> se compromete a entregar una ayuda a <b>“EL (LA) TRABAJADOR (A)”</b>, por la cantidad de <b><span t-field="o.total_vales_despensa" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.company_currency_id}"/></b>, (<b><t t-esc="o.total_vales_despensa_palabras"/><span t-if="not o.total_vales_despensa_palabras" style="color:#FF0000">company_id.total_vales_despensa_palabras</span></b>), por periodo <b><t t-esc="o.periodicidad_pago"/><span t-if="not o.periodicidad_pago" style="color:#FF0000">periodicidad_pago</span></b> trabajado, por concepto de despensa.</p>
 
-                                    <p><b>DÉCIMA OCTAVA.-</b> Los salarios correspondientes a las vacaciones y aguinaldo, se pagarán tomando como salario base el promedio que resulte de los salarios recibidos conforme a lo dispuesto en el artículo 89 de la Ley Federal del Trabajo.</p>
+                                    <p><b>DÉCIMA OCTAVA.-</b> Los salarios correspondientes a las vacaciones y aguinaldo, se pagarán tomando como base el salario diario conforme a lo dispuesto en el artículo 89 de la Ley Federal del Trabajo.</p>
 
                                     <p><b>DÉCIMA NOVENA.-</b> <b>"EL (LA) TRABAJADOR (A)"</b> acepta someterse a los exámenes médicos que periódicamente establezca <b>"EL PATRÓN"</b> en los términos del artículo 134, fracción X de <b>"LA LEY"</b>, a fin de mantener en forma óptima sus facultades físicas e intelectuales, para el mejor desempeño de sus funciones. El médico que practique los reconocimientos será designado y retribuido por <b>"EL PATRÓN"</b>.</p>
 
@@ -625,7 +625,7 @@
                                         <td>La finalidad de esta transferencia de datos es obtener el pleno desarrollo de la relación entre los empleados y <b><t t-esc="o.employee_id.company_id.name"/></b>, dando cumplimiento a las obligaciones legales y facilitando el pago de sueldos y prestaciones, incluyendo el alta en el IMSS, incapacidades y trámites de pensiones.</td>
                                     </tr>
                                     <tr>
-                                        <th style="width: 30%;" rowspan="2">Banco Nacional de México</th>
+                                        <th style="width: 30%;" rowspan="2">Instituciones Bancarias</th>
                                         <td>Los datos que se transfieren son nombre, fecha de nacimiento, domicilio, número de registro federal de contribuyentes (RFC), clave única de registro de población (CURP), número de seguridad social (NSS), información sobre sueldos, datos bancarios.</td>
                                     </tr>
                                     <tr>
@@ -756,6 +756,7 @@
                                     Como colaborador de <b><t t-esc="o.employee_id.company_id.name"/></b> haré lo necesario para ser un ejemplo del  <b>Código de Ética</b> a través de mi conducta diaria.</p>
 
                                     <br/><br/><br/>
+                                    <center><img alt="Barcode" t-att-src="'/report/barcode/?type=QR&amp;value=%s&amp;width=180&amp;height=180'% quote_plus('https://drive.google.com/file/d/1qz2WerI3U32rs9r8iBT3aOPGSF8d967D/view?usp=sharing')"/></center>
                                     <center><p>Atentamente</p></center>
 
                                     <br/><br/><br/>
@@ -795,6 +796,19 @@
                                     <p>Como colaborador de <b><t t-esc="o.employee_id.company_id.name"/></b> haré lo necesario para ser un ejemplo del  <b>Reglamento Interior de Trabajo</b> a través de mi conducta diaria.</p>
 
                                     <br/><br/><br/>
+                                    <!--Estatec-->
+                                    <t t-if="o.employee_id.company_id.id == 1">
+                                        <center><img alt="Barcode" t-att-src="'/report/barcode/?type=QR&amp;value=%s&amp;width=180&amp;height=180'% quote_plus('https://drive.google.com/file/d/1qybA4Pipe7RPPRhFq3djy-wwy_4RqyBK/view?usp=sharing')"/></center>
+                                    </t>
+                                    <!--Extrupac-->
+                                    <t t-if="o.employee_id.company_id.id == 4">
+                                        <center><img alt="Barcode" t-att-src="'/report/barcode/?type=QR&amp;value=%s&amp;width=180&amp;height=180'% quote_plus('https://drive.google.com/file/d/1qyIKV-llG7JFPs5LPRNKIavoOIiYc_7H/view?usp=sharing')"/></center>
+                                    </t>
+                                    <!--Denker-->
+                                    <t t-if="o.employee_id.company_id.id == 3">
+                                        <center><img alt="Barcode" t-att-src="'/report/barcode/?type=QR&amp;value=%s&amp;width=180&amp;height=180'% quote_plus('https://drive.google.com/file/d/1r-6cfAHFovXuOPvJNobFuky1nt5FB5mx/view?usp=sharing')"/></center>
+                                    </t>
+
                                     <center><p>Atentamente</p></center>
 
                                     <br/><br/><br/>
@@ -872,7 +886,7 @@
                                     <p><b>QUINTA.-</b> Conforme lo disponen los artículos del 59 y demás relativos de la ley Federal del Trabajo, la jornada de trabajo en que prestará los servicios <b>“EL (LA) TRABAJADOR (A)”</b>, será de <b><t t-if="o.employee_id.resource_calendar_id" t-esc="o.employee_id.resource_calendar_id.name"/><span t-if="not o.employee_id.resource_calendar_id" style="color:#FF0000">employee_id.resource_calendar_id</span></b>.</p>
                                     <p><b>“EL (LA) TRABAJADOR (A)”</b> tendrá derecho a <b><t t-if="o.employee_id.resource_calendar_id" t-esc="o.employee_id.resource_calendar_id.dnk_tiempo_comida"/><span t-if="not o.employee_id.resource_calendar_id.dnk_tiempo_comida" style="color:#FF0000">employee_id.resource_calendar_id.dnk_tiempo_comida</span></b> de descanso, para el libre reposo o comida, en el que saldrá de las instalaciones de <b>“EL PATRÓN”</b>. El momento de la interrupción de la jornada laboral, será aquel que se fije de forma previa, debiendo ser registrada la salida y su posterior ingreso en las tarjetas y/o registro de asistencia.</p>
 
-                                    <p><b>“EL (LA) TRABAJADOR (A)”</b> sin excepción alguna, deberá estar en sus lugares de operación e iniciar sus laborales exactamente en la hora señalada en el párrafo anterior, sin embargo se dará una tolerancia de <t t-if="o.periodicidad_pago in ('02')" t-esc="15"/> <t t-if="o.periodicidad_pago in ('03', '04', '05')" t-esc="30"/> <span t-if="not o.periodicidad_pago" style="color:#FF0000">0000</span> minutos, para casos excepcionales y no como derecho permanente. Al personal que llegue después de esta hora es potestativo para la empresa permitir o no su ingreso, de no ser admitido se le anotará la correspondiente falta de asistencia injustificada, para todos los efectos legales a que haya lugar.</p>
+                                    <p><b>“EL (LA) TRABAJADOR (A)”</b> sin excepción alguna, deberá estar en sus lugares de operación e iniciar sus laborales exactamente en la hora señalada en el párrafo anterior, sin embargo se dará una tolerancia de <t t-if="o.periodicidad_pago in ('02')" t-esc="10"/> <t t-if="o.periodicidad_pago in ('04', '05')" t-esc="10"/> <span t-if="not o.periodicidad_pago" style="color:#FF0000">0000</span> minutos, para casos excepcionales y no como derecho permanente. Al personal que llegue después de esta hora es potestativo para la empresa permitir o no su ingreso, de no ser admitido se le anotará la correspondiente falta de asistencia injustificada, para todos los efectos legales a que haya lugar.</p>
 
                                     <p><b>SEXTA.-</b> El horario que se fije a cualquier trabajador podrá ser variado, siendo susceptible de modificación, reservándose <b>“EL PATRÓN”</b> la facultad discrecional de cambiarlo de acuerdo a sus necesidades, para lo cual deberá notificar a <b>“EL (LA) TRABAJADOR (A)”</b> anticipadamente con un mínimo de 24 horas. Asimismo, el día o los días de descanso semanal podrán ser modificados según sus necesidades de trabajo.</p>
 
@@ -895,7 +909,7 @@
                                         </tr>
                                     </table>
 
-                                    <p>El salario será cubierto cada <b><t t-esc="o.ciclo_pago"/><span t-if="not o.ciclo_pago" style="color:#FF0000">ciclo_pago</span></b>, en efectivo o transferencia bancaria a una cuenta de <b>EL (LA) TRABAJADOR (A)</b>, en moneda nacional del cuño corriente.</p>
+                                    <p>El salario será cubierto cada <b><span t-field="o.periodicidad_pago"/><span t-if="not o.periodicidad_pago" style="color:#FF0000">periodicidad_pago</span></b>, en efectivo o transferencia bancaria a una cuenta de <b>EL (LA) TRABAJADOR (A)</b>, en moneda nacional del cuño corriente.</p>
 
                                     <p>Del salario anterior <b>"EL PATRÓN"</b> hará por cuenta de <b>"EL (LA) TRABAJADOR (A)"</b> las deducciones legales correspondientes, particularmente las que se refieren a impuestos sobre la Renta, Seguro Social, cuota sindical, etcétera. Asimismo, se harán las aportaciones al IMSS, INFONAVIT, SAR y Hacienda en los términos de las legislaciones respectivas.</p>
 
@@ -911,13 +925,13 @@
 
                                     <p><b>DÉCIMA CUARTA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> percibirá un aguinaldo anual, que deberá pagarse antes del veinte de diciembre, equivalente a 15 días de salario. Cuando no haya cumplido el año de servicios, tendrá derecho a que se le pague en proporción al tiempo trabajado.</p>
 
-                                    <p><b>DÉCIMA QUINTA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> tendrá derecho a recibir de <b>“EL PATRÓN”</b>, el equivalente al 10% de premio por puntualidad, del salario diario que perciba. Para que <b>“EL (LA) TRABAJADOR (A)”</b>, se haga acreedor a este premio, no deberá contar con ningún retardo, durante el periodo semanal, en caso contrario se perderá de este derecho.</p>
+                                    <p><b>DÉCIMA QUINTA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> tendrá derecho a recibir de <b>“EL PATRÓN”</b>, el equivalente al 10% de premio por puntualidad, del salario diario que perciba. Para que <b>“EL (LA) TRABAJADOR (A)”</b>, se haga acreedor a este premio, no deberá contar con ningún retardo durante el periodo, en caso contrario se perderá de este derecho.</p>
 
                                     <p><b>DÉCIMA SEXTA.-</b> <b>“EL (LA) TRABAJADOR (A)”</b> tendrá derecho a recibir por parte de <b>“EL PATRÓN”</b>, el 10% por premio de asistencia, del salario diario que perciba. Se hará acreedor a este premio, siempre que no se incurra en ninguna falta injustificada. De lo contrario no se tendrá el derecho a exigir este premio.</p>
 
-                                    <p><b>DÉCIMA SÉPTIMA.-</b> <b>EL PATRÓN”</b> se compromete a entregar una ayuda a <b>“EL (LA) TRABAJADOR (A)”</b>, por la cantidad de <b><span t-field="o.total_vales_despensa" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.company_currency_id}"/><span t-if="not o.total_vales_despensa" style="color:#FF0000">total_vales_despensa</span></b>, (<b><t t-esc="o.total_vales_despensa_palabras"/><span t-if="not o.total_vales_despensa_palabras" style="color:#FF0000">total_vales_despensa_palabras</span></b>), por <b><t t-esc="o.ciclo_pago"/></b> trabajada, por concepto de despensa.</p>
+                                    <p><b>DÉCIMA SÉPTIMA.-</b> <b>EL PATRÓN”</b> se compromete a entregar una ayuda a <b>“EL (LA) TRABAJADOR (A)”</b>, por la cantidad de <b><span t-field="o.total_vales_despensa" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.company_currency_id}"/><span t-if="not o.total_vales_despensa" style="color:#FF0000">total_vales_despensa</span></b>, (<b><t t-esc="o.total_vales_despensa_palabras"/><span t-if="not o.total_vales_despensa_palabras" style="color:#FF0000">total_vales_despensa_palabras</span></b>), por periodo <b><span t-field="o.periodicidad_pago"/></b> trabajado, por concepto de despensa.</p>
 
-                                    <p><b>DÉCIMA OCTAVA.-</b> Los salarios correspondientes a las vacaciones y aguinaldo, se pagarán tomando como salario base el promedio que resulte de los salarios recibidos conforme a lo dispuesto en el artículo 89 de la Ley Federal del Trabajo.</p>
+                                    <p><b>DÉCIMA OCTAVA.-</b> Los salarios correspondientes a las vacaciones y aguinaldo, se pagarán tomando como base el salario diario conforme a lo dispuesto en el artículo 89 de la Ley Federal del Trabajo.</p>
 
                                     <p><b>DÉCIMA NOVENA.-</b> <b>"EL (LA) TRABAJADOR (A)"</b> acepta someterse a los exámenes médicos que periódicamente establezca <b>"EL PATRÓN"</b> en los términos del artículo 134, fracción X de <b>"LA LEY"</b>, a fin de mantener en forma óptima sus facultades físicas e intelectuales, para el mejor desempeño de sus funciones. El médico que practique los reconocimientos será designado y retribuido por <b>"EL PATRÓN"</b>.</p>
 
@@ -1061,7 +1075,6 @@
                                         <th style="text-align:center;">DATOS DEL EMPLEADO</th>
                                     </tr>
                                 </table>
-                                <br/>
                                 <table class="" style="width: 100%;">
                                     <tr>
                                         <td colspan="1" style="width: 25%; background-color: #d9d9d9; margin-left: 10px;"><div style="margin-left: 5px;">NOMBRE COMPLETO:</div></td>
@@ -1075,7 +1088,6 @@
                                         <td colspan="3"><div style="margin-left: 5px;"><t t-esc="o.employee_id.country_id.name"/></div></td>
                                     </tr>
                                 </table>
-                                <br/>
                                 <table class="" style="width: 100%;">
                                     <tr>
                                         <td style="width: 25%; background-color: #d9d9d9;"><div style="margin-left: 5px;">RFC:</div></td>
@@ -1084,7 +1096,6 @@
                                         <td style="width: 25%;"><div style="margin-left: 5px;"><span t-esc="fecha_nacimiento"/></div></td>
                                     </tr>
                                 </table>
-                                <br/>
                                 <table class="" style="width: 100%;">
                                     <tr>
                                         <td style="width: 25%; background-color: #d9d9d9;"><div style="margin-left: 5px;">SEXO:</div></td>
@@ -1106,7 +1117,6 @@
                                         <td colspan="3"><div style="margin-left: 5px;"><span t-esc="employee_address"/></div></td>
                                     </tr>
                                 </table>
-                                <br/>
                                 <table class="" style="width: 100%;">
                                     <tr>
                                         <td style="width: 25%; background-color: #d9d9d9;"><div style="margin-left: 5px;">FECHA DE INGRESO:</div></td>
@@ -1248,6 +1258,44 @@
                                     </center>
 
                               </t>
+                            </div>
+
+                            <!-- SEGMENTO DE CARTA FONACOT -->
+                            <div id="dnk_segmento_politica_calidad">
+                                <p style="page-break-after:always;"/>
+                                <div style="background-color:transparent;">
+                                  <center><h3>Política de Calidad</h3></center>
+
+                                  <br/><br/><br/>
+                                  <b><p style="text-align:right;"><t t-if="o.employee_id.address_id" t-esc="o.employee_id.address_id.l10n_mx_edi_locality"/><span t-if="not o.employee_id.address_id.l10n_mx_edi_locality" style="color:#FF0000">employee_id.address_id.l10n_mx_edi_locality</span>, <t t-if="o.employee_id.address_id" t-esc="o.employee_id.address_id.state_id.name"/>
+                                          a <t t-esc="current_date"/></p></b>
+                                </div>
+                                <br/><br/>
+
+                                <b><t t-esc="o.employee_id.company_id.name"/></b><br/>
+                                <b>Departamento de reclutamiento y selección.</b>
+                                <br/><br/>
+                                    Yo, el ciudadano/a <b><t t-esc="o.employee_id.name"/></b> con el número de seguridad social <t t-if="o.employee_id.segurosocial" t-esc="o.employee_id.segurosocial"/> declaro no mantener activo adeudos con el Instituto del Fondo Nacional para el Consumo de los Trabajadores (FONACOT), por lo cual no es necesario se realice la retención que estipula el art. artículos 97 fracción IV de la ley federal del trabajo, de la ley del Instituto del Fondo Nacional para el Consumo de los Trabajadores &#39;, &quot; Los enteros al Instituto FONACOT por los descuentos a los salarios de sus trabajadores beneficiados con el Crédito FONACOT no podrán ser interrumpidos por el
+                                    Centro de Trabajo, ni cesar por causa alguna.
+                                    <br/> <br/> <br/>
+                                    VIGESIMO SEXTO. -El centro de trabajo está obligado a descontar a los salarios de  sus trabajadores y enterar al Instituto FONACOT, los importes de los créditos que éste le haya otorgado a dichos trabajadores.
+                                    <br/> <br/> <br/>
+                                    De esta manera, en base a los argumentos anteriores, libero de responsabilidad a la <b><t t-esc="o.employee_id.company_id.name"/></b>, en caso de incumplir con lo comentado en el párrafo anterior, aceptando el descuento en una sola exhibición, respecto a los adeudos con FONACOT, en caso de ser publicados por la cedula bimestral correspondiente, aceptando lo dispuesto por los artículos 115 al 118 de la Ley Federal de Presupuesto y Responsabilidad Hacendaria.
+
+                                    <br/><br/><br/><br/><br/>
+                                    <center>
+                                        <table class="table_invisible" style="width:40%;border: 0px solid transparent;" cellpadding="20">
+                                          <tr style="width:100%;border: 0px solid transparent;background-color:transparent;">
+                                            <td style="width:100%;text-align:center;border: 0px solid transparent;">
+                                              <p>
+                                                <hr/>
+                                              </p>
+                                                <b><t t-esc="o.employee_id.name"/></b><br/>
+                                                Nombre y firma<br/>
+                                            </td>
+                                          </tr>
+                                        </table>
+                                    </center>
                             </div>
 
                         </div>

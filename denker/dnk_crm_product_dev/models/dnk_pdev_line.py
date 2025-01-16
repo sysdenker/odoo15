@@ -384,7 +384,6 @@ class DnkProductDevLine(models.Model):
     @api.onchange('dnk_new_default_code', 'dnk_new_product', 'dnk_product_id', 'dnk_extra_price','dnk_pricelist_item_id')
     def _change_new_product(self):
         for record in self:
-            record.dnk_price = 0
             if record.dnk_new_product:
                 record._product_cat_price()
                 record.name = ""

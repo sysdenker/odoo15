@@ -29,6 +29,7 @@
         'views/product_attribute_value.xml',
         'views/dnk_indirect_manufacturing_cost.xml',
         'views/dnk_labour_cost.xml',
+        'views/dnk_manufacturing_op.xml',
         'views/mrp_production.xml',
         'views/product_product.xml',
         'views/product_template.xml',

@@ -21,8 +21,10 @@
                   <thead>
                     <tr>
                       <th name="th_name" class="text-left">Name</th>
+                      <th name="th_priceunit" class="text-left">Desc.</th>
                       <th name="th_quantity" class="text-right">Quantity</th>
                       <th name="th_priceunit" class="text-right">Unit Price</th>
+                      <th name="th_priceunit" class="text-right">Subtotal</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -30,11 +32,15 @@
                     <tr t-foreach="doc.dnk_product_ids" t-as="table_line">
                       <t t-set="current_subtotal" t-value="current_subtotal + (table_line.dnk_price * table_line.dnk_ps_qty)"/>
                       <td name="td_name"><span t-field="table_line.name"/></td>
+                      <td name="td_name"><span t-field="table_line.dnk_description"/></td>
                       <td name="td_quantity" class="text-right">
                         <span t-field="table_line.dnk_ps_qty"/>
                       </td>
                       <td name="td_priceunit" class="text-right">
                         <span t-field="table_line.dnk_price"/>
+                      </td>
+                      <td name="td_priceunit" class="text-right">
+                        <span t-out="(table_line.dnk_price * table_line.dnk_ps_qty)"/>
                       </td>
                     </tr>
                     <div class="clearfix" name="so_total_summary">
@@ -42,7 +48,7 @@
                           <tbody class="sale_tbody">
                             <tr>
                               <span>Subtotal: </span>
-                              <span t-esc="current_subtotal"/>
+                              <span t-out="current_subtotal"/>
                               <span> (USD)</span>
                             </tr>
                           </tbody>

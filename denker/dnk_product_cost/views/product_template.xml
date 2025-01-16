@@ -39,6 +39,39 @@
                                   <field name="dnk_unit_price_usd" readonly="1"/>
                               </tree>
                           </field>
+
+                          <separator string=" Product Operations"/>
+                          <field name="dnk_product_op_ids">
+                                <form>
+                                    <sheet>
+                                        <group>
+                                             <field name="name" invisible="1" force_save="1"/>
+                                            <field name="dnk_manufacturing_op_dom" invisible="1"/>
+                                            <field name="dnk_manufacturing_op_id" />
+                                            <field name="dnk_equipment_id"/>
+                                            <field name="dnk_time"/>
+                                            <field name="dnk_people_inv_qty"/>
+                                            <field name="dnk_order"/>
+                                            <field name="description"/>
+                                            <field name="dnk_product_tmpl_id" invisible="1"/>
+                                        </group>
+                                    </sheet>
+                                </form>
+                                <tree>
+                                    <field name="sequence" widget='handle'/>
+                                    <field name="name" invisible="1"/>
+                                    <field name="dnk_product_tmpl_id"/>
+                                    <field name="dnk_family_id"/>
+                                    <field name="dnk_manufacturing_op_dom" invisible="1"/>
+                                    <field name="dnk_manufacturing_op_id"/> 
+                                    <field name="dnk_equipment_id"/>
+                                    <field name="dnk_people_inv_qty"/>
+                                    <field name="dnk_order"/>
+                                    <field name="dnk_time"/>
+                                    <field name="dnk_help" widget="url"/>
+                                </tree>
+                          </field>
+
                       </page>
                 </page>
           </field>

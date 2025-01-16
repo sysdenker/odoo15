@@ -19,7 +19,7 @@
     """,
 
     # any module necessary for this one to work correctly
-    'depends': ['product', 'quality'],
+    'depends': ['product', 'quality', 'mrp'],
 
     # always loaded
     'data': [

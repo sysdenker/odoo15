@@ -16,7 +16,22 @@
                 <field name="dnk_workorder_ready"/>
                 <field name="dnk_workorder_ready_state"/>
             </field>
+            <!-- 26Abr2024 Campos para planeación-->
+            <xpath expr="//notebook" position="inside">
+                  <page string="Fabric Cutting" attrs="{'invisible': [['company_id','!=',1]]}">
+                      <group>
+                          <group>
+                              <field name="dnk_fabric_cutting_date"/>
+                              <field name="dnk_cutting_notes"/>
+                              <field name="dnk_prod_status_id"/>
+                          </group>
+                          <group>
+                          </group>
+                      </group>
+                  </page>
+              </xpath>
         </field>
+        
     </record>
 
     <record id="dnk_mrp_production_custom_tree" model="ir.ui.view">

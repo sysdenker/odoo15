@@ -25,6 +25,9 @@
         'views/mrp_production_views.xml',
         'wizard/mrp_production_wizard.xml',
         'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
+        'views/dnk_mrp_manufacturing_status.xml',
+        'views/dnk_mrp_manufacturing_delays.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

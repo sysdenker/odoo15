@@ -26,10 +26,14 @@ class DenkerNewProductCost(models.TransientModel):
                     if rec.dnk_invoice_option == 'account_id':
                         move.account_id = rec.dnk_account_id
                     if rec.dnk_invoice_option == 'date':
+                        
+                        
                         if move.move_id.state == 'posted':
-                            move.move_id.state = 'draft'
-                            move.date = rec.dnk_date
-                            move.move_id.state = 'posted'
+                            self._cr.execute("UPDATE account_move_line SET date = %s WHERE id = %s ", (rec.dnk_date.strftime("%Y-%m-%d"),move.id))
+                           
+                            # move.move_id.state = 'draft'
+                            # move.date = rec.dnk_date
+                            # move.move_id.state = 'posted'
                         else:
                             move.date = rec.dnk_date
                     if rec.dnk_invoice_option == 'tax':

@@ -25,7 +25,23 @@ class DnkPDeveAtributeValues(models.Model):
         domain="[('id', 'in', dnk_pdav_dom)]",
         string='- Attribute Values')
     dnk_pdev_code = fields.Char(string='- Code', translate=True, help="Código que se agregará a la descripción")
-    dnk_pdev_field = fields.Char(string='- Field Name', translate=True, help="Nombre del campo para filtrar las opciones que se muestran en los campos de selección")
+    # dnk_pdev_field = fields.Char(string='- Field Name', translate=True, help="Nombre del campo para filtrar las opciones que se muestran en los campos de selección")
+    dnk_pdev_field = fields.Selection(
+        [
+            ('dnk_attach_ids', '- Attachments'),
+            ('dnk_size_id', '- Size'),
+            ('dnk_fabric_color_id', '- Fabric Color'),
+            ('dnk_fabric_type_id', '- Fabric Type'),
+            ('dnk_fabric_cutting_id', '- Fabric Cutting'),
+            ('dnk_additional_atts_ids', '- Additional Attributes'),
+            ('dnk_bag_style_id', '- Bag Style'),
+            ('dnk_bag_sealing_id', '- Sealing Type'),
+            ('dnk_bag_type_id', '- Bag Type'),
+            ('dnk_bag_design_id', '- Bag Design'),
+            ('dnk_serv_type_id', '- Type'),
+            ('dnk_material_id', '- Material'),
+        ], '- Field Name',
+        help='Nombre del campo en donde se mostrarán los atributos seleccionados', required="1")
     dnk_pdev_priority = fields.Integer(string='- Priority', default=1, help="Prioridad, aun no sé si lo necesitaré")
 
     @api.depends('dnk_pda_id')

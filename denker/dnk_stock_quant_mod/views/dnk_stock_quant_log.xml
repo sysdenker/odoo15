@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Stock Quant Log-->
+    <record id="dnk_stock_quant_log_tree" model="ir.ui.view">
+        <field name="name">dnk_stock_quant_log_tree</field>
+        <field name="model">dnk.stock.quant.log</field>
+        <field name="arch" type="xml">
+            <tree string="Stock Quant Log" create="false" edit="false">
+                <field name="name" invisible="1"/>
+
+                <field name="create_date"/>
+                <field name="create_uid"/>
+                <field name="user_id"/>
+                <field name="product_id" widget="many2one"/>
+                <field name="standard_price"/>
+                <field name="location_id"/>
+                <field name="dnk_family_id"/>
+                <field name="dnk_subfamily_id"/>
+                <field name="quantity"/>
+                <field name="inventory_quantity"/>
+                <field name="inventory_diff_quantity"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="dnk_stock_quant_log_form" model="ir.ui.view">
+        <field name="name">dnk_stock_quant_log_form</field>
+        <field name="model">dnk.stock.quant.log</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <form string="Stock Quant Log" create="false" edit="false">
+            <sheet>
+                <group>
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
+                    <field name="user_id"/>
+                    <field name="product_id"/>
+                    <field name="standard_price"/>
+                    <field name="location_id"/>
+                </group>
+                <group>
+                    <field name="dnk_family_id"/>
+                    <field name="dnk_subfamily_id"/>
+                    <field name="quantity"/>
+                    <field name="inventory_quantity"/>
+                    <field name="inventory_diff_quantity"/>
+                </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_stock_quant_log_form" model="ir.actions.act_window">
+        <field name="name">Stock Quant Log</field>
+        <field name="res_model">dnk.stock.quant.log</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="dnk_stock_quant_log_tree" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Stock Quant Log
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_stock_quant_log" action="action_stock_quant_log_form" name="Stock Quant Log" parent="stock.menu_warehouse_config" sequence="8" />
+
+</odoo>

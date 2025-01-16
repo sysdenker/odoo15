@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Menú de Bolsas en Configuration-->
+    <menuitem id="menu_dnk_bag_options" name="- Bag Options"
+        parent="mrp.menu_mrp_configuration" sequence="8"/>
+    <!-- Printed Substrate -->
+    <record id="dnk_printed_substrate_tree_view" model="ir.ui.view">
+        <field name="name">dnk_printed_substrate_tree_view</field>
+        <field name="model">dnk.bag.printed.substrate</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <tree string="Printed Substrate">
+                <field name="sequence" widget='handle'/>
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="dnk_printed_substrate_form_view" model="ir.ui.view">
+        <field name="name">dnk_printed_substrate_form_view</field>
+        <field name="model">dnk.bag.printed.substrate</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <form string="Printed Substrate">
+            <sheet>
+                <div class="oe_title">
+                    <label for="name" string="- Substrate"/>
+                    <h1><field name="name"/></h1>
+                </div>
+                <group>
+                    <field name="description"/>
+                </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="dnk_printed_substrate_act" model="ir.actions.act_window">
+        <field name="name">Printed Substrate</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">dnk.bag.printed.substrate</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create a Printed Substrate, one more step to create a bag.
+            </p>
+        </field>
+    </record>
+
+    <record id="dnk_action_printed_substrate_tree" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="dnk_printed_substrate_tree_view"/>
+        <field name="act_window_id" ref="dnk_printed_substrate_act"/>
+    </record>
+
+    <menuitem action="dnk_printed_substrate_act"
+        id="menu_printed_substrate" name="- Substrate"
+        parent="menu_dnk_bag_options" sequence="1"/>
+
+    
+    <!-- Lamination -->
+    <record id="dnk_lamination_tree_view" model="ir.ui.view">
+        <field name="name">dnk_lamination_tree_view</field>
+        <field name="model">dnk.bag.lamination</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <tree string="Lamination">
+                <field name="sequence" widget='handle'/>
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="dnk_lamination_form_view" model="ir.ui.view">
+        <field name="name">dnk_lamination_form_view</field>
+        <field name="model">dnk.bag.lamination</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <form string="Lamination">
+            <sheet>
+                <div class="oe_title">
+                    <label for="name" string="- Lamination"/>
+                    <h1><field name="name"/></h1>
+                </div>
+                <group>
+                    <field name="description"/>
+                </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="dnk_lamination_act" model="ir.actions.act_window">
+        <field name="name">Lamination</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">dnk.bag.lamination</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create a lamination Option, one more step to create a bag.
+            </p>
+        </field>
+    </record>
+
+    <record id="dnk_action_lamination_tree" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="dnk_lamination_tree_view"/>
+        <field name="act_window_id" ref="dnk_lamination_act"/>
+    </record>
+
+    <menuitem action="dnk_lamination_act"
+        id="menu_lamination" name="- Lamination"
+        parent="menu_dnk_bag_options" sequence="2"/>
+
+
+    <!-- Bag Thickness -->
+    <record id="dnk_bag_thickness_tree_view" model="ir.ui.view">
+        <field name="name">dnk_bag_thickness_tree_view</field>
+        <field name="model">dnk.bag.thickness</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <tree string="Bag Thickness">
+                <field name="sequence" widget='handle'/>
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="dnk_bag_thickness_form_view" model="ir.ui.view">
+        <field name="name">dnk_bag_thickness_form_view</field>
+        <field name="model">dnk.bag.thickness</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <form string="Bag Thickness">
+            <sheet>
+                <div class="oe_title">
+                    <label for="name" string="- Bag Thickness"/>
+                    <h1><field name="name"/></h1>
+                </div>
+                <group>
+                    <field name="description"/>
+                </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="dnk_bag_thickness_act" model="ir.actions.act_window">
+        <field name="name">Bag Thickness</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">dnk.bag.thickness</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create a Thickness Option, another step to create a bag.
+            </p>
+        </field>
+    </record>
+
+    <record id="dnk_action_bag_thickness_tree" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="dnk_bag_thickness_tree_view"/>
+        <field name="act_window_id" ref="dnk_bag_thickness_act"/>
+    </record>
+
+    <menuitem action="dnk_bag_thickness_act"
+        id="menu_bag_thickness" name="- Bag Thickness"
+        parent="menu_dnk_bag_options" sequence="3"/>
+</odoo>

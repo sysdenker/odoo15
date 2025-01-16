@@ -3,7 +3,11 @@
 
 from datetime import timedelta
 from odoo import api, fields, models, _
+# from odoo.exceptions import Warning, ValidationError
 import string
+
+# Custom Exception
+# from odoo.addons.custom_exception.models.exception import UserError
 
 """
  * Get color (black/white) depending on bgColor so it would be clearly seen.
@@ -11,6 +15,36 @@ import string
  * @returns {string}
  """
 
+
+# 25 Abr 2024 Cambios para planeación
+class DnkMRPPManufacturingStatus(models.Model):
+    _name = "dnk.mrp.manufacturing.status"
+    _description = "MRP Manufacturing Status"
+    _rec_name = 'name'
+    _order = "sequence, name, id"
+
+    name = fields.Char(string='- Name', required=True, translate=True)
+    description = fields.Text(string=' - Description', translate=True)
+    sequence = fields.Integer(string='- Sequence', default=1, help="Order")
+    fold = fields.Boolean(
+        '- Mostrado en Kanban', help='La etapa está plegada cuando no hay registros en la etapa para mostrar.')
+    active = fields.Boolean(string='- Active', default=True)
+
+
+class DnkMRPManufacturingDelays(models.Model):
+    _name = "dnk.mrp.manufacturing.delays"
+    _description = "MRP Manufacturing Delays"
+    _rec_name = 'name'
+    _order = "sequence, name, id"
+
+    name = fields.Char(string='- Name', required=True, translate=True)
+    description = fields.Text(string=' - Description', translate=True)
+    sequence = fields.Integer(string='- Sequence', default=1, help="Order")
+    fold = fields.Boolean(
+        '- Mostrado en Kanban', help='La etapa está plegada cuando no hay registros en la etapa para mostrar.')
+    active = fields.Boolean(string='- Active', default=True)
+
+    
 
 def getColorByBgColor(bgColor):
     if not bgColor:
@@ -22,6 +56,7 @@ def getColorByBgColor(bgColor):
 
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
+
 
     @api.depends('product_id')
     def _dnk_compute_attribute_color(self):
@@ -71,6 +106,18 @@ class MrpProduction(models.Model):
         help="Name Color Attribute of the Product.")
 
     dnk_sale_order_id =  fields.Many2one('sale.order', string='- Sale Order', store=True, compute="dnk_compute_sale_order_id", default=False)
+
+    # 25 Abr 2024  Campos nuevos para planeación
+    
+    dnk_fabric_cutting_date = fields.Date(
+        '- Fabric Cutting Date', copy=False, 
+        help="Date at which you plan to start the Cutting.",
+        index=True, required=False, store=True, tracking=True)
+    dnk_cutting_notes = fields.Html('- Cutting Notes', help="Cutting Notes")
+    dnk_note = fields.Html('- Note', help="Manufacturing Order Notes")
+    dnk_prod_status_id = fields.Many2one('dnk.mrp.manufacturing.status', default=False, string='- Cutting Status', help="Fabric Cutting Status")
+    dnk_maufacturing_delays_id = fields.Many2one('dnk.mrp.manufacturing.delays', default=False, string='- Manuifacturing Delays', help="Manufacturin Delays")
+
 
     @api.depends('origin')
     def dnk_compute_sale_order_id(self):

@@ -42,7 +42,7 @@ class MrpProduction(models.Model):
                     production.dnk_attribute_color_name = attribute_value.name
                     if all(c in string.hexdigits for c in attribute_value.html_color[1:]):
                         production.dnk_attribute_inverse_color = getColorByBgColor(attribute_value.html_color)
-                if attribute_value.attribute_id.name.upper() == 'TALLA':
+                if attribute_value.attribute_id.name.upper() == 'TALLA' or attribute_value.attribute_id.name.upper() == 'SIZE':
                     if "TALLA" in attribute_value.name.upper():
                         production.dnk_attribute_size = attribute_value.name[6:]
                     else:

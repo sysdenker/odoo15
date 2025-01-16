@@ -14,3 +14,14 @@ class ProductTemplate(models.Model):
 
     dnk_imc_ids = fields.Many2many('dnk.indirect.manufacturing.cost', string="- Indirect Manufacturing Costs")
     dnk_lc_ids = fields.One2many('dnk.product.labour.cost.min', inverse_name="dnk_product_tmpl_id", string="- Labour Cost Per Minute")
+    dnk_product_op_ids = fields.One2many('dnk.product.op', inverse_name="dnk_product_tmpl_id", string="- Manufacturing Operations")
+    dnk_product_op_time = fields.Float(string="- Minutes", help="Minutes", store=True, compute="get_product_op_time")
+
+    @api.depends('dnk_product_op_ids')
+    def get_product_op_time(self):
+        for rec in self:
+            time=0
+            for product_op_id in rec.dnk_product_op_ids:
+                time= time + product_op_id.dnk_time
+            if time:
+                rec.dnk_product_op_time = time/60
