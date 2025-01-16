@@ -1,3 +1,4 @@
 workalendar==2.5.0
 pyzk==0.9
 openupgradelib
+zxcvbn
